@@ -1,21 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">ReMemoryDroid</string>
-
-    <string name="str_cat">Catala</string>
-    <string name="str_es">Español</string>
-    <string name="str_en">English</string>
-    <string-array name="languages">
-        <item>@string/str_cat</item>
-        <item>@string/str_es</item>
-        <item>@string/str_en</item>
-    </string-array>
+    <string name="Next">Next</string>
+    <string name="Save">SAve</string>
     <string name="auth_failed">Failed in Auth</string>
     <string name="loading">Loading</string>
     <string name="signed_out">You just signed out</string>
+    <string name="str_cat">Catalan</string>
+    <string name="str_en">English</string>
+    <string name="str_es">Spanish</string>
     <string name="emailpassword_title_text">Credentials</string>
-    <string name="Next">Next</string>
-    <string name="Save">Save</string>
-    <string name="desc_firebase_lockup" translatable="false">ReMemoryDroid</string>
     <string name="hint_email">Assesser\'s email</string>
     <string name="hint_password">Assesser\'s password</string>
     <string name="sign_in">Log in</string>
@@ -25,6 +18,4 @@
     <string name="emailpassword_status_fmt">User\'s email: %1$s (verified: %2$b)</string>
     <string name="firebase_status_fmt">User: %s</string>
     <string name="Required">Required</string>
-
-
 </resources>

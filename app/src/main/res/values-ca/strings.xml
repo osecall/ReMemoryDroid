@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ReMemoryDroid</string>
     <string name="Save">Guardar</string>
     <string name="Next">Següent</string>
+    <string name="auth_failed">Ha fallat l\'autenticació</string>
+    <string name="loading">Cargant</string>
+    <string name="signed_out">Has tancat sessió</string>
+    <string name="str_cat">Català</string>
+    <string name="str_en">Anglès</string>
+    <string name="str_es">Espanyol</string>
+    <string name="emailpassword_title_text">Credencials</string>
+    <string name="hint_email">Email Avaluador</string>
+    <string name="hint_password">Contrasenya Avaluador</string>
+    <string name="sign_in">Entrar</string>
+    <string name="create_account">Crear usuari Avaluador</string>
+    <string name="sign_out">Acabar sessió</string>
+    <string name="verify_email">Verificar email</string>
+    <string name="emailpassword_status_fmt">Email usuari: %1$s (verificat: %2$b)</string>
+    <string name="firebase_status_fmt">Usuari: %s</string>
+    <string name="Required">Requisit</string>
 </resources>
