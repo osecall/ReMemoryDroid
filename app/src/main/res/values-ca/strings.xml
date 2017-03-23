@@ -18,4 +18,5 @@
     <string name="emailpassword_status_fmt">Email usuari: %1$s (verificat: %2$b)</string>
     <string name="firebase_status_fmt">Usuari: %s</string>
     <string name="Required">Requisit</string>
+    <string name="EmailNotVerifiedYet">Email no està verificat encara! Revisa l\'email</string>
 </resources>

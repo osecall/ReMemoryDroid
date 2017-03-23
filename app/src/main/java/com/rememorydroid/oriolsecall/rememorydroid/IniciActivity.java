@@ -274,7 +274,7 @@ public class IniciActivity extends BaseActivity implements
         if (!user.isEmailVerified())
         {
             //FirebaseAuth.getInstance().signOut();
-            Toast.makeText(IniciActivity.this, "Email not verified yet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(IniciActivity.this, R.string.EmailNotVerifiedYet, Toast.LENGTH_LONG).show();
             return false;
         }
         else{
