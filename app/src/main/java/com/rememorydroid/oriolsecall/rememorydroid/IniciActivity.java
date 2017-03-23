@@ -67,6 +67,12 @@ public class IniciActivity extends BaseActivity implements
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    Toast.makeText(IniciActivity.this, user.getEmail().toString(),
+                            Toast.LENGTH_LONG).show();
+
+                    Intent areaAvaluador = new Intent(IniciActivity.this, AreaAvaluadorActivity.class);
+                    startActivity(areaAvaluador);
+
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");

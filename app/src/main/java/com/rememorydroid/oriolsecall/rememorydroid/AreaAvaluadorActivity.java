@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class AreaAvaluadorActivity extends AppCompatActivity {
 
@@ -40,11 +39,10 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(AreaAvaluadorActivity.this, R.string.signed_out,
-                    Toast.LENGTH_LONG).show();
+           // Toast.makeText(AreaAvaluadorActivity.this, FirebaseAuth.getInstance().getCurrentUser().getEmail()+" "+ R.string.signed_out,
+             //       Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(AreaAvaluadorActivity.this, IniciActivity.class);
             startActivity(areaAvaluador);
-
 
         }
 
