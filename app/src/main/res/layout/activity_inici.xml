@@ -94,17 +94,21 @@
                 <Button
                     android:id="@+id/email_sign_in_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:elevation="24dp"
                     android:text="@string/sign_in"
+                    android:textStyle="bold"
                     android:theme="@style/ThemeOverlay.MyDarkButton" />
 
                 <Button
                     android:id="@+id/email_create_account_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:elevation="24dp"
                     android:text="@string/create_account"
+                    android:textStyle="bold"
                     android:theme="@style/ThemeOverlay.MyDarkButton" />
             </LinearLayout>
 
@@ -122,17 +126,21 @@
                 <Button
                     android:id="@+id/sign_out_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_weight="1.0"
+                    android:elevation="24dp"
                     android:text="@string/sign_out"
+                    android:textStyle="bold"
                     android:theme="@style/ThemeOverlay.MyDarkButton" />
 
                 <Button
                     android:id="@+id/verify_email_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_weight="1.0"
+                    android:elevation="24dp"
                     android:text="@string/verify_email"
+                    android:textStyle="bold"
                     android:theme="@style/ThemeOverlay.MyDarkButton" />
 
             </LinearLayout>
