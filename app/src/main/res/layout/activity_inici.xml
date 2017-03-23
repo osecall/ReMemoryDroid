@@ -98,6 +98,7 @@
                     android:layout_weight="1"
                     android:elevation="24dp"
                     android:text="@string/sign_in"
+                    android:textSize="36sp"
                     android:textStyle="bold"
                     android:theme="@style/ThemeOverlay.MyDarkButton" />
 
@@ -108,6 +109,7 @@
                     android:layout_weight="1"
                     android:elevation="24dp"
                     android:text="@string/create_account"
+                    android:textSize="36sp"
                     android:textStyle="bold"
                     android:theme="@style/ThemeOverlay.MyDarkButton" />
             </LinearLayout>
@@ -130,6 +132,7 @@
                     android:layout_weight="1.0"
                     android:elevation="24dp"
                     android:text="@string/sign_out"
+                    android:textSize="36sp"
                     android:textStyle="bold"
                     android:theme="@style/ThemeOverlay.MyDarkButton" />
 
@@ -140,6 +143,7 @@
                     android:layout_weight="1.0"
                     android:elevation="24dp"
                     android:text="@string/verify_email"
+                    android:textSize="36sp"
                     android:textStyle="bold"
                     android:theme="@style/ThemeOverlay.MyDarkButton" />
 
