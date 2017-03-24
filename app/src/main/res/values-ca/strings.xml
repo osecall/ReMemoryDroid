@@ -19,4 +19,5 @@
     <string name="firebase_status_fmt">Usuari: %s</string>
     <string name="Required">Requisit</string>
     <string name="EmailNotVerifiedYet">Email no està verificat encara! Revisa l\'email</string>
+    <string name="sign_out_Pacient">Canviar pacient</string>
 </resources>

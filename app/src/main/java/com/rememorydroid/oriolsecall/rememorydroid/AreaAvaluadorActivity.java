@@ -23,7 +23,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menupostavaluador, menu);
+        getMenuInflater().inflate(R.menu.menuavaluadors, menu);
         return true;
     }
 

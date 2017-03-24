@@ -26,6 +26,7 @@
     <string name="firebase_status_fmt">User: %s</string>
     <string name="Required">Required</string>
     <string name="EmailNotVerifiedYet">Email not verified yet</string>
+    <string name="sign_out_Pacient">Change Pacient</string>
 
 
 </resources>
