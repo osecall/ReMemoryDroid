@@ -20,4 +20,13 @@
     <string name="Required">Requisito</string>
     <string name="EmailNotVerifiedYet">Email aun no esta verficado, revista su email</string>
     <string name="sign_out_Pacient">Cambiar paciente</string>
+    <string name="AssesserArea">Area del Evaluador</string>
+    <string name="PacientSignUp">Dar de alta un paciente</string>
+    <string name="PacientSelection">Seleccionar un paciente</string>
+    <string name="PacientID">ID del paciente</string>
+    <string name="DeletePacient">Eliminar a un paciente</string>
+    <string name="CurrentUser">Usuario actual del paciente</string>
+    <string name="Attention">Atención</string>
+    <string name="KO">Cancelar</string>
+    <string name="OK">De acuerdo</string>
 </resources>

@@ -1,22 +1,53 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AreaAvaluadorActivity extends AppCompatActivity {
 
+    private TextView emailAvaluador;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area_avaluador);
+
+
+
+        emailAvaluador = (TextView) findViewById(R.id.tvAssessersSessionEmail);
+        emailAvaluador.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+
+
+
+        //Diàleg
+
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.Attention))
+                .setMessage("some message")
+                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        // Some stuff to do when ok got clicked
+                    }
+                })
+                .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        // Some stuff to do when cancel got clicked
+                    }
+                })
+                .show();
+
+
     }
 
 
@@ -35,7 +66,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.btIniciMenu) {
+        if (id == R.id.btSignOutMenu) {
 
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();

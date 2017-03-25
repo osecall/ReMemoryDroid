@@ -20,4 +20,13 @@
     <string name="Required">Requisit</string>
     <string name="EmailNotVerifiedYet">Email no està verificat encara! Revisa l\'email</string>
     <string name="sign_out_Pacient">Canviar pacient</string>
+    <string name="AssesserArea">Àrea Avaluador</string>
+    <string name="PacientSignUp">Donar d\'alta un pacient</string>
+    <string name="PacientSelection">Sel·leccionar un pacient</string>
+    <string name="PacientID">ID del pacient</string>
+    <string name="DeletePacient">Eliminar pacient</string>
+    <string name="CurrentUser">Usuari del pacient actual</string>
+    <string name="Attention">Atenció</string>
+    <string name="OK">D\'acord</string>
+    <string name="KO">Cancelar</string>
 </resources>
