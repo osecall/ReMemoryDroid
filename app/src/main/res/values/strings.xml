@@ -45,6 +45,23 @@
     <string name="IntroducePassword">Introduce your assesor password</string>
     <string name="CUName">Name</string>
     <string name="CULastName">Last Name</string>
+    <string name="SignUpPacientTitleActivity">Sign Up Pacient</string>
+    <string name="Name">Name</string>
+    <string name="SurName">Surname</string>
+    <string name="LastName">Last Name</string>
+    <string name="NameFieldEmpty">Introduce pacient\'s name</string>
+    <string name="IDFieldEmpty">Introduce an user\'s pacient ID</string>
+    <string name="NameNotDigits">Name field can\'t contain numbers</string>
+    <string name="LastNameNotDigits">Lastname can\'t contain numbers</string>
+    <string name="SurNameNotDigits">Surname can\'t contain numbers</string>
+    <string name="IDonlyDigits">ID\'s user pacient only accepts numbers</string>
+    <string name="IDlength4">ID can\'t be greater than 9999</string>
+    <string name="IDlength1">ID must be at least 1 digit</string>
+    <string name="LastNameEmpty">Introduce pacient lastname</string>
+    <string name="NameLength">Check the name length please, it should be from 2 to 30 characters maximum</string>
+    <string name="LastNameLength">Check the lastname length please, it should be from 2 to 30 characters maximum</string>
+    <string name="SurnameLength">Check the surname length please, it should be from 2 to 30 characters maximum</string>
+    <string name="SurnameEmpty">Introduce a surname please</string>
 
 
 </resources>

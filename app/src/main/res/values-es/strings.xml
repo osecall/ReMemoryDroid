@@ -38,4 +38,21 @@
     <string name="IntroducePassword">Introduce su contraseña como evaluador</string>
     <string name="CUName">"Nombre: %s "</string>
     <string name="CULastName">Apellido: %s</string>
+    <string name="SignUpPacientTitleActivity">Alta usuario paciente</string>
+    <string name="Name">Nombre</string>
+    <string name="SurName">Apellido</string>
+    <string name="LastName">Segundo apellido</string>
+    <string name="NameFieldEmpty">Introduce el nombre del paciente</string>
+    <string name="IDFieldEmpty">Introduce un número de usuario para el paciente</string>
+    <string name="NameNotDigits">El nombre no puede contener numeros</string>
+    <string name="LastNameNotDigits">El apellido no puede contener numeros</string>
+    <string name="SurNameNotDigits">El segundo apellido no puede contener numeros</string>
+    <string name="IDonlyDigits">El ID del usuario del paciente solo acepta numeros</string>
+    <string name="IDlength4">El ID no puede ser mayor de 9999</string>
+    <string name="IDlength1">El ID tiene que ser como mínimo 1</string>
+    <string name="LastNameEmpty">Introduce el apellido del paciente</string>
+    <string name="NameLength">Por favor compruebe el nombre del paciente, deberia de ser de 2 a 30 caracteres como maximo</string>
+    <string name="LastNameLength">Por favor compruebe el segundo apellido del paciente, deberia de ser de 2 a 30 caracteres como maximo</string>
+    <string name="SurnameLength">Por favor compruebe el apellido del paciente, deberia de ser de 2 a 30 caracteres como maximo</string>
+    <string name="SurnameEmpty">Introduce un apellido por favor</string>
 </resources>

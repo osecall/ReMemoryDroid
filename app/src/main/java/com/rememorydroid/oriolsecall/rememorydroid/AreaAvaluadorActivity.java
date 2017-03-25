@@ -203,6 +203,17 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
         });
 
 
+        //Botó Crear nou usuari pacient
+
+        btCreateUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent SignUpUserIntent = new Intent(AreaAvaluadorActivity.this, PacientUserSignUpActivity.class);
+                startActivity(SignUpUserIntent);
+            }
+        });
+
+
     }
 
 

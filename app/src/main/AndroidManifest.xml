@@ -29,8 +29,12 @@
         <activity
             android:name=".IniciActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".AreaAvaluadorActivity"
-            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".AreaAvaluadorActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".PacientUserSignUpActivity"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>
