@@ -13,12 +13,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class PacientUserSignUpActivity extends AppCompatActivity {
 
 
-    Button btSavePacientSignUp;
-    EditText etIDPacientSignUp, etNamePacientSignUp, etSurNamePacientSignUp, etLastNamePacientSignUp;
+    private Button btSavePacientSignUp;
+    private EditText etIDPacientSignUp, etNamePacientSignUp, etSurNamePacientSignUp, etLastNamePacientSignUp;
+    private PacientUsuari pacient;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("pacients");
+
 
 
     private boolean controlFormulariSignUp(String ID, String Nom, String Cognom, String SeCognom){
@@ -140,6 +146,13 @@ public class PacientUserSignUpActivity extends AppCompatActivity {
 
                 if(controlFormulariSignUp(ID, Nom, Cognom, SegCognom)){
                     //Guardar a FireBase i passar a 'Tractaments'
+
+                    pacient = new PacientUsuari(ID,Nom,Cognom, SegCognom);
+
+                    myRef.push().setValue(pacient);
+
+
+
                 }
             }
         });
