@@ -13,7 +13,7 @@
     <string name="hint_password">Contrasenya Avaluador</string>
     <string name="sign_in">Entrar</string>
     <string name="create_account">Crear usuari Avaluador</string>
-    <string name="sign_out">Acabar sessió</string>
+    <string name="sign_out">Acabar sessió Avaluador</string>
     <string name="verify_email">Verificar email</string>
     <string name="emailpassword_status_fmt">Email usuari: %1$s (verificat: %2$b)</string>
     <string name="firebase_status_fmt">Usuari: %s</string>
@@ -31,4 +31,11 @@
     <string name="KO">Cancelar</string>
     <string name="UserSelectionDialago">Has sel·leccionat usuari número %s. És correcte?</string>
     <string name="NoNuserIDSelected">No has introduït cap ID de usuari</string>
+    <string name="MenuChangePacient">Aquí pots canviar de pacient</string>
+    <string name="UserDeleteMessage">Estàs a punt d\'eliminar l\'usuari amb ID %s. ESTÀS SEGUR?</string>
+    <string name="IncorrecPassword">Contrasenya incorrecte</string>
+    <string name="PasswordDialog">Contrasenya</string>
+    <string name="IntroducePassword">Introdueix la teva contrasenya com a Avaluador</string>
+    <string name="CUName">Nom: %s</string>
+    <string name="CULastName">Cognom: %s</string>
 </resources>

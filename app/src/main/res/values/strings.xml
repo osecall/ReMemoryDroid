@@ -20,7 +20,7 @@
     <string name="hint_password">Assesor\'s password</string>
     <string name="sign_in">Log in</string>
     <string name="create_account">Create Assesser\'s user</string>
-    <string name="sign_out">Sign out</string>
+    <string name="sign_out">Sign out Assesor</string>
     <string name="verify_email">Verify email</string>
     <string name="emailpassword_status_fmt">User\'s email: %1$s (verified: %2$b)</string>
     <string name="firebase_status_fmt">User: %s</string>
@@ -38,6 +38,13 @@
     <string name="KO">Cancel</string>
     <string name="UserSelectionDialago">You selected user number %s, is it correct?</string>
     <string name="NoNuserIDSelected">You didn\'t introduce any pacient ID</string>
+    <string name="MenuChangePacient">Here you can change the pacient user</string>
+    <string name="UserDeleteMessage">You are about to DELETE user number %s. ARE YOU SURE?</string>
+    <string name="IncorrecPassword">Password incorrecte</string>
+    <string name="PasswordDialog">Introduce your assesor\'s password</string>
+    <string name="IntroducePassword">Introduce your assesor password</string>
+    <string name="CUName">Name</string>
+    <string name="CULastName">Last Name</string>
 
 
 </resources>

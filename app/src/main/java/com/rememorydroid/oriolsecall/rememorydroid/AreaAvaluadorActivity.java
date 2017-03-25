@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class AreaAvaluadorActivity extends AppCompatActivity {
 
-    private TextView emailAvaluador;
+    private TextView emailAvaluador, tvCUid, tvCUname, tvCUlastName;
     private EditText IDuserSelected, IduserDelete;
     private Button btSelectUser, btCreateUser, btDeleteUser;
     private String MessageDialogFinal;
@@ -31,7 +31,10 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
 
         emailAvaluador = (TextView) findViewById(R.id.tvAssessersSessionEmail);
-        emailAvaluador.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+        tvCUid = (TextView) findViewById(R.id.tvCUid);
+        tvCUname = (TextView) findViewById(R.id.tvCUname);
+        tvCUlastName = (TextView) findViewById(R.id.tvCUlastName);
+
 
         IDuserSelected = (EditText) findViewById(R.id.etIDuserSelected);
         IduserDelete = (EditText) findViewById(R.id.etIDuserDelete);
@@ -40,12 +43,25 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
         btCreateUser = (Button) findViewById(R.id.btCreateUser);
         btDeleteUser = (Button) findViewById(R.id.btDeleteUser);
 
+
+        //Col·loquem actual usuari avaluador com a textview
+        emailAvaluador.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+
+        //Col·loquem usuari pacient actual a la pantalla amb textview si n'hi ha
+
+        //Fer consulta de l'usuari si n'hi ha a preferedsharing
+        tvCUid.setText("ID: ");
+        tvCUname.setText(R.string.CUName);
+        tvCUlastName.setText(R.string.CULastName);
+
+        //Botó sel·leccionar pacient usuari
+
         btSelectUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                //Diàleg
+                //Diàleg per sel·leccionar usuari pacient
 
                 if(IDuserSelected.getText().toString().matches("")){
                     MessageDialogFinal = getString(R.string.NoNuserIDSelected);
@@ -83,7 +99,114 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
         });
 
 
+
+
+        //Botó delete user
+
+        btDeleteUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Diàleg per eliminar usuari pacient
+
+                if(IduserDelete.getText().toString().matches("")){
+                    MessageDialogFinal = getString(R.string.NoNuserIDSelected);
+                }
+                else{
+                    MessageDialogFinal = getString(R.string.UserDeleteMessage,IduserDelete.getText());
+
+                }
+
+                final AlertDialog.Builder Dialeg = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+                        Dialeg
+                        .setIcon(R.drawable.warningdialogdeleteuser)
+                        .setTitle(getString(R.string.Attention))
+                        .setMessage(MessageDialogFinal)
+                        .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                // Some stuff to do when ok got clicked
+
+                                //Confirmar eliminació per contrasenya
+                                //-------------------------------------------------------------------
+                                EditText input = new EditText(getBaseContext());
+                                AlertDialog.Builder dialegPassword = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+                                        dialegPassword
+                                        .setIcon(R.drawable.passwordicon)
+                                        .setTitle(R.string.PasswordDialog)
+                                        .setMessage(R.string.IntroducePassword)
+                                        .setView(input)
+                                        .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface arg0, int arg1) {
+                                                // Some stuff to do when ok got clicked
+
+                                                //Confirmar eliminació per contrasenya
+
+                                                //if(input.getText().toString()==Firebase password)
+
+                                               // else{
+                                                   // dialegPassword.setMessage(getString(R.string.IncorrectPassword))
+                                                //}
+
+
+
+                                            }
+                                        })
+                                        .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface arg0, int arg1) {
+                                                // Some stuff to do when cancel got clicked
+                                                //Cancelar diàleg
+
+
+
+                                            }
+                                        })
+                                        .show();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                //------------------------------------
+                                //Eliminar usuari a FireBase i quedar-se a la mateixa pantalla
+
+
+
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                // Some stuff to do when cancel got clicked
+
+
+
+                            }
+                        })
+                        .show();
+
+
+
+            }
+        });
+
+
     }
+
+
+//Part del menú 'action bar'
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,6 +230,17 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
             Toast.makeText(AreaAvaluadorActivity.this, R.string.signed_out,
                   Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(AreaAvaluadorActivity.this, IniciActivity.class);
+            startActivity(areaAvaluador);
+
+        }
+
+        if (id == R.id.btSignOutPacient) {
+
+            //Retorna a la pantalla 'Area Avaluador'
+
+            Toast.makeText(AreaAvaluadorActivity.this, R.string.MenuChangePacient,
+                    Toast.LENGTH_LONG).show();
+            Intent areaAvaluador = new Intent(AreaAvaluadorActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
 
         }

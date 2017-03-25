@@ -13,7 +13,7 @@
     <string name="hint_password">Contraseña Evaluador</string>
     <string name="sign_in">Logearse</string>
     <string name="create_account">Crear usuario Evaluador</string>
-    <string name="sign_out">Deslogearse</string>
+    <string name="sign_out">Deslogearse Evaluador</string>
     <string name="verify_email">Verificar email</string>
     <string name="emailpassword_status_fmt">Email usuario: %1$s (verificado: %2$b)</string>
     <string name="firebase_status_fmt">Usuario: %s</string>
@@ -31,4 +31,11 @@
     <string name="OK">De acuerdo</string>
     <string name="UserSelectionDialago">Ha Has seeleccionado usuario numero %s. Es correcto?</string>
     <string name="NoNuserIDSelected">No has introducido ningun ID de usuario.</string>
+    <string name="MenuChangePacient">Aquí puedes cambiar de paciente</string>
+    <string name="UserDeleteMessage">Estas a punto de eliminar usuario con ID %s. ESTAS SEGURO?</string>
+    <string name="IncorrecPassword">Contraseña incorrecta</string>
+    <string name="PasswordDialog">Contraseña</string>
+    <string name="IntroducePassword">Introduce su contraseña como evaluador</string>
+    <string name="CUName">"Nombre: %s "</string>
+    <string name="CULastName">Apellido: %s</string>
 </resources>
