@@ -165,7 +165,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                                  public void onDataChange(DataSnapshot snapshot) {
                                                      for (DataSnapshot node : snapshot.getChildren()) {
                                                          tvtest.setText(node.toString());
-                                                         if (node.child("id").getValue().equals("45")) {
+                                                         if (node.child("id").getValue().equals("50")) {
                                                              node.getRef().removeValue();
                                                          }
                                                      }
@@ -174,7 +174,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                                  }
                                                  @Override
                                                  public void onCancelled(DatabaseError E) {
-
+                                                    //RES a fer
                                                  }
 
 
