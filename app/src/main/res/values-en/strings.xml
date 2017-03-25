@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Next">Next</string>
-    <string name="Save">SAve</string>
+    <string name="Save">Save</string>
     <string name="auth_failed">Failed in Auth</string>
     <string name="loading">Loading</string>
     <string name="signed_out">You just signed out</string>
@@ -29,4 +29,6 @@
     <string name="Attention">Attention</string>
     <string name="OK">OK</string>
     <string name="KO">Cancel</string>
+    <string name="UserSelectionDialago">You selected user %s. Is it correct?</string>
+    <string name="NoNuserIDSelected">You didn\'t introduce any user ID</string>
 </resources>

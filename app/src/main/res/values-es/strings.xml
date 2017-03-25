@@ -29,4 +29,6 @@
     <string name="Attention">Atención</string>
     <string name="KO">Cancelar</string>
     <string name="OK">De acuerdo</string>
+    <string name="UserSelectionDialago">Ha Has seeleccionado usuario numero %s. Es correcto?</string>
+    <string name="NoNuserIDSelected">No has introducido ningun ID de usuario.</string>
 </resources>

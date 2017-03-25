@@ -29,4 +29,6 @@
     <string name="Attention">Atenció</string>
     <string name="OK">D\'acord</string>
     <string name="KO">Cancelar</string>
+    <string name="UserSelectionDialago">Has sel·leccionat usuari número %s. És correcte?</string>
+    <string name="NoNuserIDSelected">No has introduït cap ID de usuari</string>
 </resources>

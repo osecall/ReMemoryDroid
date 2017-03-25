@@ -36,6 +36,8 @@
     <string name="Attention">Attention</string>
     <string name="OK">OK</string>
     <string name="KO">Cancel</string>
+    <string name="UserSelectionDialago">You selected user number %s, is it correct?</string>
+    <string name="NoNuserIDSelected">You didn\'t introduce any pacient ID</string>
 
 
 </resources>

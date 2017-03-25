@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class AreaAvaluadorActivity extends AppCompatActivity {
 
     private TextView emailAvaluador;
+    private EditText IDuserSelected, IduserDelete;
+    private Button btSelectUser, btCreateUser, btDeleteUser;
+    private String MessageDialogFinal;
 
 
     @Override
@@ -24,32 +30,58 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_area_avaluador);
 
 
-
         emailAvaluador = (TextView) findViewById(R.id.tvAssessersSessionEmail);
         emailAvaluador.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
 
+        IDuserSelected = (EditText) findViewById(R.id.etIDuserSelected);
+        IduserDelete = (EditText) findViewById(R.id.etIDuserDelete);
+
+        btSelectUser = (Button) findViewById(R.id.btSelectUser);
+        btCreateUser = (Button) findViewById(R.id.btCreateUser);
+        btDeleteUser = (Button) findViewById(R.id.btDeleteUser);
+
+        btSelectUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
 
-        //Diàleg
+                //Diàleg
 
-        new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.Attention))
-                .setMessage("some message")
-                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        // Some stuff to do when ok got clicked
-                    }
-                })
-                .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        // Some stuff to do when cancel got clicked
-                    }
-                })
-                .show();
+                if(IDuserSelected.getText().toString().matches("")){
+                    MessageDialogFinal = getString(R.string.NoNuserIDSelected);
+                }
+                else{
+                    MessageDialogFinal = getString(R.string.UserSelectionDialago,IDuserSelected.getText());
+
+                }
+
+                new AlertDialog.Builder(AreaAvaluadorActivity.this)
+                        .setTitle(getString(R.string.Attention))
+                        .setMessage(MessageDialogFinal)
+                        .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                // Some stuff to do when ok got clicked
+
+
+
+
+
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                // Some stuff to do when cancel got clicked
+                            }
+                        })
+                        .show();
+
+
+
+            }
+        });
 
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
