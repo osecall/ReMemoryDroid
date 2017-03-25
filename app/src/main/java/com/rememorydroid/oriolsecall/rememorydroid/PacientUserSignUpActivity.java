@@ -149,7 +149,17 @@ public class PacientUserSignUpActivity extends AppCompatActivity {
 
                     pacient = new PacientUsuari(ID,Nom,Cognom, SegCognom);
 
-                    myRef.push().setValue(pacient);
+                    if(myRef.push().setValue(pacient).isSuccessful()){
+                        Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, TractamentsActivity.class);
+                        //Grabar a SharedPreferences user
+                        // Col·locar objecte pacient amb llibrerio GSON PacientUserSUintent.set
+                        startActivity(PacientUserSUintent);
+
+
+                    }
+                    else {
+                        //Dialeg amb error que no s'ha pogut donar d'alta pacient
+                    }
 
 
 

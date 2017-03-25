@@ -15,13 +15,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AreaAvaluadorActivity extends AppCompatActivity {
 
-    private TextView emailAvaluador, tvCUid, tvCUname, tvCUlastName;
+    private TextView emailAvaluador, tvCUid, tvCUname, tvCUlastName, tvtest;
     private EditText IDuserSelected, IduserDelete;
     private Button btSelectUser, btCreateUser, btDeleteUser;
     private String MessageDialogFinal;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("pacients");
 
 
     @Override
@@ -38,6 +47,9 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
         IDuserSelected = (EditText) findViewById(R.id.etIDuserSelected);
         IduserDelete = (EditText) findViewById(R.id.etIDuserDelete);
+
+        //Test a borrar
+        tvtest = (TextView) findViewById(R.id.tvtest);
 
         btSelectUser = (Button) findViewById(R.id.btSelectUser);
         btCreateUser = (Button) findViewById(R.id.btCreateUser);
@@ -143,7 +155,33 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
                                                 //if(input.getText().toString()==Firebase password)
 
-                                               // else{
+                                                //Buscar el id
+
+                                                //myRef.child("id").equals("45");
+
+
+                                             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                 @Override
+                                                 public void onDataChange(DataSnapshot snapshot) {
+                                                     for (DataSnapshot node : snapshot.getChildren()) {
+                                                         tvtest.setText(node.toString());
+                                                         if (node.child("id").getValue().equals("45")) {
+                                                             node.getRef().removeValue();
+                                                         }
+                                                     }
+
+
+                                                 }
+                                                 @Override
+                                                 public void onCancelled(DatabaseError E) {
+
+                                                 }
+
+
+                                             });
+
+
+                                                // else{
                                                    // dialegPassword.setMessage(getString(R.string.IncorrectPassword))
                                                 //}
 

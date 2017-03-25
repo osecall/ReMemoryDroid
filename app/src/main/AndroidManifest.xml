@@ -32,9 +32,10 @@
         <activity
             android:name=".AreaAvaluadorActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".PacientUserSignUpActivity"
-            android:screenOrientation="landscape">
-        </activity>
+        <activity
+            android:name=".PacientUserSignUpActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity android:name=".TractamentsActivity"></activity>
     </application>
 
 </manifest>
