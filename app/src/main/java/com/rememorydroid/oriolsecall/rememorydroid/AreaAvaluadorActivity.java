@@ -62,7 +62,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                             public void onClick(DialogInterface arg0, int arg1) {
                                 // Some stuff to do when ok got clicked
 
-
+                                //Fer sel·lecció usuari a FireBase i anar a la pantalla 'Tractaments'
 
 
 
@@ -71,6 +71,8 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                         .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0, int arg1) {
                                 // Some stuff to do when cancel got clicked
+
+                                //Fer res
                             }
                         })
                         .show();
