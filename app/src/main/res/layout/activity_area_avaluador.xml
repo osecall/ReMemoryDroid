@@ -30,7 +30,7 @@
 
     <Button
         android:id="@+id/btSelectUser"
-        android:layout_width="425dp"
+        android:layout_width="450dp"
         android:layout_height="80dp"
         android:layout_alignEnd="@+id/textView"
         android:layout_alignTop="@+id/ivIconRememoryAreaAva"
@@ -75,7 +75,7 @@
 
     <Button
         android:id="@+id/btCreateUser"
-        android:layout_width="425dp"
+        android:layout_width="450dp"
         android:layout_height="80dp"
         android:layout_alignBottom="@+id/ivIconRememoryAreaAva"
         android:layout_alignStart="@+id/btSelectUser"
@@ -132,5 +132,24 @@
         android:layout_below="@+id/tvCUname"
         android:visibility="invisible"
         android:textSize="36sp" />
+
+    <ImageView
+        android:id="@+id/ivIDerrorSelect"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tvCurrentUser"
+        android:layout_marginStart="22dp"
+        android:layout_toEndOf="@+id/etIDuserSelected"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/signodeadmiracion" />
+
+    <ImageView
+        android:id="@+id/ivIDerrorDelete"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/etIDuserDelete"
+        android:layout_toEndOf="@+id/etIDuserDelete"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/signodeadmiracion" />
 
 </RelativeLayout>

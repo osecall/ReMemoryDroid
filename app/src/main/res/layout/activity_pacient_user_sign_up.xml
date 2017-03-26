@@ -7,6 +7,16 @@
     android:layout_height="match_parent">
 
 
+    <ImageView
+        android:id="@+id/ivIDerror"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/tvPacientIDSignUp"
+        android:layout_alignTop="@+id/etIDPacientSignUp"
+        android:layout_toEndOf="@+id/tvSignUpTitle"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/signodeadmiracion" />
+
     <Button
         android:id="@+id/btSavePacientSignUp"
         android:layout_width="400dp"
@@ -121,7 +131,37 @@
         android:layout_width="225dp"
         android:layout_height="225dp"
         android:layout_marginEnd="62dp"
-        app:srcCompat="@drawable/useradding"
+        app:srcCompat="@drawable/usersnew"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:id="@+id/ivNameError"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/tvPacientSurnameSignUp"
+        android:layout_alignStart="@+id/ivIDerror"
+        android:layout_alignTop="@+id/etNamePacientSignUp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/signodeadmiracion" />
+
+    <ImageView
+        android:id="@+id/ivSurError"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/tvPacientLastNameSignUp"
+        android:layout_alignStart="@+id/ivNameError"
+        android:layout_alignTop="@+id/etSurNamePacientSignUp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/signodeadmiracion" />
+
+    <ImageView
+        android:id="@+id/ivLastError"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_alignStart="@+id/ivSurError"
+        android:layout_alignTop="@+id/etLastNamePacientSignUp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/signodeadmiracion" />
 </RelativeLayout>

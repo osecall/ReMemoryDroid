@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 public class AreaAvaluadorActivity extends AppCompatActivity {
 
@@ -32,6 +35,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
     private EditText IDuserSelected, IduserDelete;
     private Button btSelectUser, btCreateUser, btDeleteUser;
     private String MessageDialogFinal;
+    private ImageView ivIDerrorSelect, ivIDerrorDelete;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("pacients");
@@ -48,6 +52,8 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
         tvCUname = (TextView) findViewById(R.id.tvCUname);
         tvCUlastName = (TextView) findViewById(R.id.tvCUlastName);
 
+        ivIDerrorSelect = (ImageView) findViewById(R.id.ivIDerrorSelect);
+        ivIDerrorDelete = (ImageView) findViewById(R.id.ivIDerrorDelete);
 
         IDuserSelected = (EditText) findViewById(R.id.etIDuserSelected);
         IduserDelete = (EditText) findViewById(R.id.etIDuserDelete);
@@ -72,17 +78,25 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
         //Botó sel·leccionar pacient usuari
 
         btSelectUser.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
+                //Treiem visibilitat al botó quan es prem
+                if(ivIDerrorSelect.getVisibility()==View.VISIBLE){
+                    ivIDerrorSelect.setVisibility(View.INVISIBLE);
+                }
 
                 //Diàleg per sel·leccionar usuari pacient
 
                 if(IDuserSelected.getText().toString().matches("")){
                     MessageDialogFinal = getString(R.string.NoNuserIDSelected);
+                    ivIDerrorSelect.setVisibility(View.VISIBLE);
                 }
                 else if(!TextUtils.isDigitsOnly(IDuserSelected.getText())){
                     MessageDialogFinal = getString(R.string.IDonlyDigits);
+                    ivIDerrorSelect.setVisibility(View.VISIBLE);
+
                 }
                 else{
                     MessageDialogFinal = getString(R.string.UserSelectionDialago,IDuserSelected.getText());
@@ -114,19 +128,21 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                                             Toast.LENGTH_LONG).show();
 
                                                     //Agreguem la informació a la pantalla
-                                                tvCUid.setText(pacient.getID());
+                                                tvCUid.setText("ID "+ pacient.getID());
                                                 tvCUname.setText(pacient.getName());
                                                 tvCUlastName.setText(pacient.getLastName());
                                                 tvCUid.setVisibility(View.VISIBLE);
                                                 tvCUname.setVisibility(View.VISIBLE);
                                                 tvCUlastName.setVisibility(View.VISIBLE);
 
-                                                //Guardem la informació del pacient a la memòria "pacient_cu"
-/*
-                                                SharedPreferences prefs = getSharedPreferences("pacient_cu", Context.MODE_PRIVATE);
+                                                //Guardem la informació del pacient a la memòria "pacient"
+
+                                                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                                                 SharedPreferences.Editor editor = prefs.edit();
-                                                editor.putString("ID",pacient_cu.getID());
-                                                editor.putString("Name", pacient_cu.getName());*/
+                                                Gson gson = new Gson();
+                                                String pacient_obj = gson.toJson(pacient);
+                                                editor.putString("pacient", pacient_obj);
+                                                editor.commit();
 
 
                                                 //Anem a la pantalla tractaments
@@ -134,7 +150,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
                                                 //Li passem l'objecte qua conté la informació usuari sel·leccionat, s'ha fet 'Seriazable' la classe
 
-                                                //TractamentsIntent.putExtra("pacient_cu",pacient_cu);
+                                                TractamentsIntent.putExtra("pacient",pacient);
                                                 startActivity(TractamentsIntent);
 
 
@@ -145,9 +161,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
                                     }
                                     @Override
-                                    public void onCancelled(DatabaseError E) {
-                                        //RES a fer
-                                    }
+                                    public void onCancelled(DatabaseError E) { }
 
 
                                 });
@@ -180,13 +194,21 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                //Treiem la imatge d'exclamació si es torna a premer el botó, es podria posar un listener onfocus a edittext també
+                if(ivIDerrorDelete.getVisibility()==View.VISIBLE){
+                    ivIDerrorDelete.setVisibility(View.INVISIBLE);
+                }
+
+
                 //Diàleg per eliminar usuari pacient
 
                 if(IduserDelete.getText().toString().matches("")){
                     MessageDialogFinal = getString(R.string.NoNuserIDSelected);
+                    ivIDerrorDelete.setVisibility(View.VISIBLE);
                 }
                 else if(!TextUtils.isDigitsOnly(IduserDelete.getText())){
                     MessageDialogFinal = getString(R.string.IDonlyDigits);
+                    ivIDerrorDelete.setVisibility(View.VISIBLE);
                 }
                 else{
                     MessageDialogFinal = getString(R.string.UserDeleteMessage,IduserDelete.getText());

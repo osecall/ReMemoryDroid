@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +25,7 @@ public class PacientUserSignUpActivity extends AppCompatActivity {
 
     private Button btSavePacientSignUp;
     private EditText etIDPacientSignUp, etNamePacientSignUp, etSurNamePacientSignUp, etLastNamePacientSignUp;
+    private ImageView ivIDerror, ivNameError, ivSurError, ivLastError;
     private PacientUsuari pacient;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("pacients");
@@ -51,23 +54,27 @@ public class PacientUserSignUpActivity extends AppCompatActivity {
             if(ID.isEmpty()){
                 DialegFormControl.setMessage(R.string.IDFieldEmpty);
                 DialegFormControl.show();
+                ivIDerror.setVisibility(View.VISIBLE);
                 return false;
 
             }
             if(!android.text.TextUtils.isDigitsOnly(ID)){
                 DialegFormControl.setMessage(R.string.IDonlyDigits);
                 DialegFormControl.show();
+                ivIDerror.setVisibility(View.VISIBLE);
                 return false;
             }
             if(ID.length()>4){
                 DialegFormControl.setMessage(R.string.IDlength4);
                 DialegFormControl.show();
+                ivIDerror.setVisibility(View.VISIBLE);
                 return false;
 
             }
             if(ID.length()<1){
                 DialegFormControl.setMessage(R.string.IDlength1);
                 DialegFormControl.show();
+                ivIDerror.setVisibility(View.VISIBLE);
                 return false;
 
             }
@@ -75,47 +82,56 @@ public class PacientUserSignUpActivity extends AppCompatActivity {
             if(Nom.isEmpty()){
                 DialegFormControl.setMessage(R.string.NameFieldEmpty);
                 DialegFormControl.show();
+                ivNameError.setVisibility(View.VISIBLE);
                 return false;
             }
             if(Nom.length()>30 || Nom.length()<2){
                 DialegFormControl.setMessage(R.string.NameLength);
                 DialegFormControl.show();
+                ivNameError.setVisibility(View.VISIBLE);
                 return false;
             }
 
             if(!Nom.matches("^[a-zA-Z]+$")){
                 DialegFormControl.setMessage(R.string.NameNotDigits);
                 DialegFormControl.show();
+                ivNameError.setVisibility(View.VISIBLE);
                 return false;
             }
             if(Cognom.isEmpty()){
                 DialegFormControl.setMessage(R.string.SurnameEmpty);
                 DialegFormControl.show();
+                ivSurError.setVisibility(View.VISIBLE);
                 return false;
             }
             if(!Cognom.matches("^[a-zA-Z]+$")){
                 DialegFormControl.setMessage(R.string.SurNameNotDigits);
                 DialegFormControl.show();
+                ivSurError.setVisibility(View.VISIBLE);
                 return false;
             }
             if(Cognom.length()>30 || Cognom.length()<2){
                 DialegFormControl.setMessage(R.string.SurnameLength);
                 DialegFormControl.show();
+                ivSurError.setVisibility(View.VISIBLE);
                 return false;
             }
             if(SeCognom.isEmpty()) {
                 DialegFormControl.setMessage(R.string.LastNameEmpty);
                 DialegFormControl.show();
+                ivLastError.setVisibility(View.VISIBLE);
                 return false;
             }
             if(!SeCognom.matches("^[a-zA-Z]+$")){
                 DialegFormControl.setMessage(R.string.LastNameNotDigits);
                 DialegFormControl.show();
+                ivLastError.setVisibility(View.VISIBLE);
                 return false;
             }
             if(SeCognom.length()>30 || SeCognom.length()<2){
                 DialegFormControl.setMessage(R.string.LastNameLength);
                 DialegFormControl.show();
+                ivLastError.setVisibility(View.VISIBLE);
                 return false;
             }
 
@@ -136,6 +152,12 @@ public class PacientUserSignUpActivity extends AppCompatActivity {
         etNamePacientSignUp = (EditText) findViewById(R.id.etNamePacientSignUp);
         etSurNamePacientSignUp = (EditText) findViewById(R.id.etSurNamePacientSignUp);
         etLastNamePacientSignUp = (EditText) findViewById(R.id.etLastNamePacientSignUp);
+
+        ivIDerror = (ImageView) findViewById(R.id.ivIDerror);
+        ivNameError = (ImageView) findViewById(R.id.ivNameError);
+        ivSurError = (ImageView) findViewById(R.id.ivSurError);
+        ivLastError = (ImageView) findViewById(R.id.ivLastError);
+
 
         btSavePacientSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
