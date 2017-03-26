@@ -1,13 +1,17 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import java.io.Serializable;
+
 /**
  * Created by Oriol on 25/03/2017.
  */
 
-public class PacientUsuari {
+public class PacientUsuari implements Serializable {
 
 
     private String IDPacient, Name, SurName, LastName;
+
+    public PacientUsuari(){}
 
     public PacientUsuari(String ID, String name, String surName, String lastName) {
         IDPacient = ID;

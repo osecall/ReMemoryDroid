@@ -1,11 +1,14 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,8 +17,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,8 +52,6 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
         IDuserSelected = (EditText) findViewById(R.id.etIDuserSelected);
         IduserDelete = (EditText) findViewById(R.id.etIDuserDelete);
 
-        //Test a borrar
-        tvtest = (TextView) findViewById(R.id.tvtest);
 
         btSelectUser = (Button) findViewById(R.id.btSelectUser);
         btCreateUser = (Button) findViewById(R.id.btCreateUser);
@@ -58,6 +60,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
         //Col·loquem actual usuari avaluador com a textview
         emailAvaluador.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+
 
         //Col·loquem usuari pacient actual a la pantalla amb textview si n'hi ha
 
@@ -78,19 +81,77 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                 if(IDuserSelected.getText().toString().matches("")){
                     MessageDialogFinal = getString(R.string.NoNuserIDSelected);
                 }
+                else if(!TextUtils.isDigitsOnly(IDuserSelected.getText())){
+                    MessageDialogFinal = getString(R.string.IDonlyDigits);
+                }
                 else{
                     MessageDialogFinal = getString(R.string.UserSelectionDialago,IDuserSelected.getText());
 
                 }
+                final String user_selected = IDuserSelected.getText().toString();
 
                 new AlertDialog.Builder(AreaAvaluadorActivity.this)
                         .setTitle(getString(R.string.Attention))
                         .setMessage(MessageDialogFinal)
                         .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0, int arg1) {
-                                // Some stuff to do when ok got clicked
 
-                                //Fer sel·lecció usuari a FireBase i anar a la pantalla 'Tractaments'
+
+                                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot snapshot) {
+                                        for (DataSnapshot node : snapshot.getChildren()) {
+
+
+
+                                            if (node.child("id").getValue().equals(user_selected)) {
+
+                                                //Creem un pacient que s'usarà com a variable per els tractaments per tal de guardar la informació
+
+                                                PacientUsuari pacient = node.getValue(PacientUsuari.class);
+
+                                                    Toast.makeText(AreaAvaluadorActivity.this,user_selected ,
+                                                            Toast.LENGTH_LONG).show();
+
+                                                    //Agreguem la informació a la pantalla
+                                                tvCUid.setText(pacient.getID());
+                                                tvCUname.setText(pacient.getName());
+                                                tvCUlastName.setText(pacient.getLastName());
+                                                tvCUid.setVisibility(View.VISIBLE);
+                                                tvCUname.setVisibility(View.VISIBLE);
+                                                tvCUlastName.setVisibility(View.VISIBLE);
+
+                                                //Guardem la informació del pacient a la memòria "pacient_cu"
+/*
+                                                SharedPreferences prefs = getSharedPreferences("pacient_cu", Context.MODE_PRIVATE);
+                                                SharedPreferences.Editor editor = prefs.edit();
+                                                editor.putString("ID",pacient_cu.getID());
+                                                editor.putString("Name", pacient_cu.getName());*/
+
+
+                                                //Anem a la pantalla tractaments
+                                                Intent TractamentsIntent = new Intent(AreaAvaluadorActivity.this, TractamentsActivity.class);
+
+                                                //Li passem l'objecte qua conté la informació usuari sel·leccionat, s'ha fet 'Seriazable' la classe
+
+                                                //TractamentsIntent.putExtra("pacient_cu",pacient_cu);
+                                                startActivity(TractamentsIntent);
+
+
+                                            }
+                                        }
+
+
+
+                                    }
+                                    @Override
+                                    public void onCancelled(DatabaseError E) {
+                                        //RES a fer
+                                    }
+
+
+                                });
+
 
 
 
@@ -124,10 +185,13 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                 if(IduserDelete.getText().toString().matches("")){
                     MessageDialogFinal = getString(R.string.NoNuserIDSelected);
                 }
+                else if(!TextUtils.isDigitsOnly(IduserDelete.getText())){
+                    MessageDialogFinal = getString(R.string.IDonlyDigits);
+                }
                 else{
                     MessageDialogFinal = getString(R.string.UserDeleteMessage,IduserDelete.getText());
-
                 }
+                final String ID_to_delete = IduserDelete.getText().toString();
 
                 final AlertDialog.Builder Dialeg = new AlertDialog.Builder(AreaAvaluadorActivity.this);
                         Dialeg
@@ -140,7 +204,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
                                 //Confirmar eliminació per contrasenya
                                 //-------------------------------------------------------------------
-                                EditText input = new EditText(getBaseContext());
+                                final EditText input = new EditText(getBaseContext());
                                 AlertDialog.Builder dialegPassword = new AlertDialog.Builder(AreaAvaluadorActivity.this);
                                         dialegPassword
                                         .setIcon(R.drawable.passwordicon)
@@ -149,41 +213,46 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                         .setView(input)
                                         .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface arg0, int arg1) {
-                                                // Some stuff to do when ok got clicked
+                                                // Recuperem el email del avaluador i el reautentiquem
+                                                String email_user= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                                                String pass_user = input.getText().toString();
 
-                                                //Confirmar eliminació per contrasenya
-
-                                                //if(input.getText().toString()==Firebase password)
-
-                                                //Buscar el id
-
-                                                //myRef.child("id").equals("45");
+                                                AuthCredential credential = EmailAuthProvider.getCredential(email_user,pass_user);
 
 
-                                             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                 @Override
-                                                 public void onDataChange(DataSnapshot snapshot) {
-                                                     for (DataSnapshot node : snapshot.getChildren()) {
-                                                         tvtest.setText(node.toString());
-                                                         if (node.child("id").getValue().equals("50")) {
-                                                             node.getRef().removeValue();
-                                                         }
-                                                     }
+                                                if(FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).isSuccessful()) {
+
+                                                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(DataSnapshot snapshot) {
+                                                            for (DataSnapshot node : snapshot.getChildren()) {
+
+                                                                if (node.child("id").getValue().equals(ID_to_delete)) {
+                                                                    if (node.getRef().removeValue().isSuccessful()) {
+                                                                        Toast.makeText(AreaAvaluadorActivity.this, ID_to_delete,
+                                                                                Toast.LENGTH_LONG).show();
+
+                                                                    }
 
 
-                                                 }
-                                                 @Override
-                                                 public void onCancelled(DatabaseError E) {
-                                                    //RES a fer
-                                                 }
+                                                                }
+                                                            }
 
 
-                                             });
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(DatabaseError E) {
+                                                            //RES a fer
+                                                        }
 
 
-                                                // else{
-                                                   // dialegPassword.setMessage(getString(R.string.IncorrectPassword))
-                                                //}
+                                                    });
+                                                }
+                                                else{
+                                                   Toast.makeText(AreaAvaluadorActivity.this,"Wrong password" ,
+                                                     Toast.LENGTH_LONG).show();
+                                                }
 
 
 
@@ -199,28 +268,6 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                             }
                                         })
                                         .show();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                //------------------------------------
-                                //Eliminar usuari a FireBase i quedar-se a la mateixa pantalla
-
 
 
                             }

@@ -1,7 +1,9 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -153,6 +155,13 @@ public class PacientUserSignUpActivity extends AppCompatActivity {
                         Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, TractamentsActivity.class);
                         //Grabar a SharedPreferences user
                         // Col·locar objecte pacient amb llibrerio GSON PacientUserSUintent.set
+
+                        SharedPreferences prefs = getSharedPreferences("pacient_cu", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+
+                        editor.putString("ID",pacient.getID());
+                        editor.putString("Name", pacient.getName());
+
                         startActivity(PacientUserSUintent);
 
 
