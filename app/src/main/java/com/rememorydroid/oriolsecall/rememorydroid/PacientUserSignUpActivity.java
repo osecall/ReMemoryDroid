@@ -175,7 +175,8 @@ public class PacientUserSignUpActivity extends AppCompatActivity {
 
                     if(myRef.push().setValue(pacient).isSuccessful()){
                         Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, TractamentsActivity.class);
-                        //Grabar a SharedPreferences user
+
+                        // Grabar a SharedPreferences user
                         // Col·locar objecte pacient amb llibrerio GSON PacientUserSUintent.set
 
                         SharedPreferences prefs = getSharedPreferences("pacient_cu", Context.MODE_PRIVATE);

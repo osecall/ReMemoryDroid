@@ -62,6 +62,18 @@
     <string name="LastNameLength">Check the lastname length please, it should be from 2 to 30 characters maximum</string>
     <string name="SurnameLength">Check the surname length please, it should be from 2 to 30 characters maximum</string>
     <string name="SurnameEmpty">Introduce a surname please</string>
+    <string name="Episodes">Episodes</string>
+    <string name="Version">Version</string>
+    <string name="EpisodeSelection">Episode Selection</string>
+    <string name="LongVersion">Long version</string>
+    <string name="ShortVersion">Short version</string>
+    <string name="TreatmentsArea">Treatments Area</string>
+    <string name="Backwards">Back</string>
+    <string name="SelectionVersionEpisode">You have to select a version and episode</string>
+    <string name="Games">Memory and focusing games</string>
+    <string name="Movie">Episode movie</string>
+    <string name="Album">Pictures album</string>
+    <string name="Memory">Memory improvment guide</string>
 
 
 </resources>

@@ -1,9 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.rememorydroid.oriolsecall.rememorydroid.TractamentsActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.rememorydroid.oriolsecall.rememorydroid.TractamentsActivity">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btPelicula"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="130dp"
+        android:text="@string/Movie"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btAlbum"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:text="Àlbum de fotos"
+        android:textSize="30sp"
+        android:layout_centerVertical="true"
+        android:layout_alignBottom="@+id/btPelicula"
+        android:layout_alignStart="@+id/btJocs" />
+
+    <Button
+        android:id="@+id/btGuia"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_alignStart="@+id/btPelicula"
+        android:layout_below="@+id/btPelicula"
+        android:text="@string/Memory"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btJocs"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:text="@string/Games"
+        android:textSize="30sp"
+        android:layout_below="@+id/btPelicula"
+        android:layout_toEndOf="@+id/btPelicula"
+        android:layout_marginStart="282dp" />
+
+    <TextView
+        style="@style/Titol_Pantalles"
+        android:id="@+id/tvTreatmenttitol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:text="@string/TreatmentsArea" />
+
+    <TextView
+        android:id="@+id/tvIDTreatment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/btPelicula"
+        android:layout_below="@+id/tvTreatmenttitol"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:id="@+id/tvNameTreatment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvIDTreatment"
+        android:layout_below="@+id/tvIDTreatment"
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:id="@+id/tvSurTreatment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvNameTreatment"
+        android:layout_below="@+id/tvNameTreatment"
+        android:layout_marginTop="28dp" />
+
+    <Button
+        android:id="@+id/btBackTreatment"
+        style="@style/Back_button"
+        android:layout_marginStart="22dp"
+        android:layout_alignBottom="@+id/btGuia"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

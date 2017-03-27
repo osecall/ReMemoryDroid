@@ -82,26 +82,10 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //Treiem visibilitat al botó quan es prem
-                if(ivIDerrorSelect.getVisibility()==View.VISIBLE){
-                    ivIDerrorSelect.setVisibility(View.INVISIBLE);
-                }
+            if(CheckSelectUserField()){
 
-                //Diàleg per sel·leccionar usuari pacient
+                MessageDialogFinal = getString(R.string.UserSelectionDialago,IDuserSelected.getText());
 
-                if(IDuserSelected.getText().toString().matches("")){
-                    MessageDialogFinal = getString(R.string.NoNuserIDSelected);
-                    ivIDerrorSelect.setVisibility(View.VISIBLE);
-                }
-                else if(!TextUtils.isDigitsOnly(IDuserSelected.getText())){
-                    MessageDialogFinal = getString(R.string.IDonlyDigits);
-                    ivIDerrorSelect.setVisibility(View.VISIBLE);
-
-                }
-                else{
-                    MessageDialogFinal = getString(R.string.UserSelectionDialago,IDuserSelected.getText());
-
-                }
                 final String user_selected = IDuserSelected.getText().toString();
 
                 new AlertDialog.Builder(AreaAvaluadorActivity.this)
@@ -110,13 +94,10 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                         .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0, int arg1) {
 
-
                                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot snapshot) {
                                         for (DataSnapshot node : snapshot.getChildren()) {
-
-
 
                                             if (node.child("id").getValue().equals(user_selected)) {
 
@@ -146,12 +127,12 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
 
                                                 //Anem a la pantalla tractaments
-                                                Intent TractamentsIntent = new Intent(AreaAvaluadorActivity.this, TractamentsActivity.class);
+                                                Intent EpisodiIntent = new Intent(AreaAvaluadorActivity.this, EpisodiActivity.class);
 
                                                 //Li passem l'objecte qua conté la informació usuari sel·leccionat, s'ha fet 'Seriazable' la classe
 
-                                                TractamentsIntent.putExtra("pacient",pacient);
-                                                startActivity(TractamentsIntent);
+                                                EpisodiIntent.putExtra("pacient",pacient);
+                                                startActivity(EpisodiIntent);
 
 
                                             }
@@ -182,8 +163,9 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
 
 
-            }
+            }}
         });
+
 
 
 
@@ -194,117 +176,92 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //Treiem la imatge d'exclamació si es torna a premer el botó, es podria posar un listener onfocus a edittext també
-                if(ivIDerrorDelete.getVisibility()==View.VISIBLE){
-                    ivIDerrorDelete.setVisibility(View.INVISIBLE);
-                }
 
-
-                //Diàleg per eliminar usuari pacient
-
-                if(IduserDelete.getText().toString().matches("")){
-                    MessageDialogFinal = getString(R.string.NoNuserIDSelected);
-                    ivIDerrorDelete.setVisibility(View.VISIBLE);
-                }
-                else if(!TextUtils.isDigitsOnly(IduserDelete.getText())){
-                    MessageDialogFinal = getString(R.string.IDonlyDigits);
-                    ivIDerrorDelete.setVisibility(View.VISIBLE);
-                }
-                else{
+                if(CheckDeleteUserField()){
                     MessageDialogFinal = getString(R.string.UserDeleteMessage,IduserDelete.getText());
-                }
-                final String ID_to_delete = IduserDelete.getText().toString();
 
-                final AlertDialog.Builder Dialeg = new AlertDialog.Builder(AreaAvaluadorActivity.this);
-                        Dialeg
-                        .setIcon(R.drawable.warningdialogdeleteuser)
-                        .setTitle(getString(R.string.Attention))
-                        .setMessage(MessageDialogFinal)
-                        .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                // Some stuff to do when ok got clicked
+                    final String ID_to_delete = IduserDelete.getText().toString();
+                    final AlertDialog.Builder Dialeg = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+                    Dialeg
+                            .setIcon(R.drawable.warningdialogdeleteuser)
+                            .setTitle(getString(R.string.Attention))
+                            .setMessage(MessageDialogFinal)
+                            .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    // Some stuff to do when ok got clicked
 
-                                //Confirmar eliminació per contrasenya
-                                //-------------------------------------------------------------------
-                                final EditText input = new EditText(getBaseContext());
-                                AlertDialog.Builder dialegPassword = new AlertDialog.Builder(AreaAvaluadorActivity.this);
-                                        dialegPassword
-                                        .setIcon(R.drawable.passwordicon)
-                                        .setTitle(R.string.PasswordDialog)
-                                        .setMessage(R.string.IntroducePassword)
-                                        .setView(input)
-                                        .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface arg0, int arg1) {
-                                                // Recuperem el email del avaluador i el reautentiquem
-                                                String email_user= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
-                                                String pass_user = input.getText().toString();
+                                    //Confirmar eliminació per contrasenya
+                                    //-------------------------------------------------------------------
+                                    final EditText input = new EditText(getBaseContext());
+                                    AlertDialog.Builder dialegPassword = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+                                    dialegPassword
+                                            .setIcon(R.drawable.passwordicon)
+                                            .setTitle(R.string.PasswordDialog)
+                                            .setMessage(R.string.IntroducePassword)
+                                            .setView(input)
+                                            .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface arg0, int arg1) {
+                                                    // Recuperem el email del avaluador i el reautentiquem
+                                                    String email_user= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                                                    String pass_user = input.getText().toString();
 
-                                                AuthCredential credential = EmailAuthProvider.getCredential(email_user,pass_user);
+                                                    AuthCredential credential = EmailAuthProvider.getCredential(email_user,pass_user);
 
 
-                                                if(FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).isSuccessful()) {
+                                                    if(FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).isSuccessful()) {
 
-                                                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                        @Override
-                                                        public void onDataChange(DataSnapshot snapshot) {
-                                                            for (DataSnapshot node : snapshot.getChildren()) {
+                                                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(DataSnapshot snapshot) {
+                                                                for (DataSnapshot node : snapshot.getChildren()) {
 
-                                                                if (node.child("id").getValue().equals(ID_to_delete)) {
-                                                                    if (node.getRef().removeValue().isSuccessful()) {
-                                                                        Toast.makeText(AreaAvaluadorActivity.this, ID_to_delete,
-                                                                                Toast.LENGTH_LONG).show();
+                                                                    if (node.child("id").getValue().equals(ID_to_delete)) {
+                                                                        if (node.getRef().removeValue().isSuccessful()) {
+                                                                            Toast.makeText(AreaAvaluadorActivity.this, ID_to_delete,
+                                                                                    Toast.LENGTH_LONG).show();
+
+                                                                        }
+
 
                                                                     }
-
-
                                                                 }
+
+
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(DatabaseError E) {
+                                                                //RES a fer
                                                             }
 
 
-                                                        }
+                                                        });
+                                                    }
+                                                    else{
+                                                        Toast.makeText(AreaAvaluadorActivity.this,"Wrong password" ,
+                                                                Toast.LENGTH_LONG).show();
+                                                    }
 
-                                                        @Override
-                                                        public void onCancelled(DatabaseError E) {
-                                                            //RES a fer
-                                                        }
 
-
-                                                    });
                                                 }
-                                                else{
-                                                   Toast.makeText(AreaAvaluadorActivity.this,"Wrong password" ,
-                                                     Toast.LENGTH_LONG).show();
+                                            })
+                                            .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface arg0, int arg1) {
+
                                                 }
+                                            })
+                                            .show();
 
+                                }
+                            })
+                            .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
 
+                                }
+                            })
+                            .show();
 
-                                            }
-                                        })
-                                        .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface arg0, int arg1) {
-                                                // Some stuff to do when cancel got clicked
-                                                //Cancelar diàleg
-
-
-
-                                            }
-                                        })
-                                        .show();
-
-
-                            }
-                        })
-                        .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                // Some stuff to do when cancel got clicked
-
-
-
-                            }
-                        })
-                        .show();
-
-
+                }
 
             }
         });
@@ -322,6 +279,90 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
 
     }
+
+
+
+    //Mètode per controlar el camp de delete user
+    private boolean CheckDeleteUserField(){
+        final AlertDialog.Builder DialegErrorDelete = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+        DialegErrorDelete.setIcon(R.drawable.warningdialogdeleteuser).setTitle(getString(R.string.Attention));
+
+        //Treiem la imatge d'exclamació si es torna a premer el botó, es podria posar un listener onfocus a edittext també
+        if(ivIDerrorDelete.getVisibility()==View.VISIBLE){
+            ivIDerrorDelete.setVisibility(View.INVISIBLE);
+        }
+
+        //Diàleg per eliminar usuari pacient
+
+        if(IduserDelete.getText().toString().isEmpty()){
+            MessageDialogFinal = getString(R.string.NoNuserIDSelected);
+            ivIDerrorDelete.setVisibility(View.VISIBLE);
+            DialegErrorDelete.setMessage(MessageDialogFinal);
+            DialegErrorDelete.setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+                    //
+                }
+            });
+            DialegErrorDelete.show();
+            return false;
+
+        }
+        if(!TextUtils.isDigitsOnly(IduserDelete.getText())){
+            MessageDialogFinal = getString(R.string.IDonlyDigits);
+            ivIDerrorDelete.setVisibility(View.VISIBLE);
+            DialegErrorDelete.setMessage(MessageDialogFinal);
+            DialegErrorDelete.setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+
+                }
+            });
+            DialegErrorDelete.show();
+            return false;
+        }
+        return true;
+    }
+
+    //Mètode per controlar el camp de select user
+    private boolean CheckSelectUserField(){
+        final AlertDialog.Builder DialegErrorDelete = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+        DialegErrorDelete.setIcon(R.drawable.warningdialogdeleteuser).setTitle(getString(R.string.Attention));
+
+        //Treiem la imatge d'exclamació si es torna a premer el botó, es podria posar un listener onfocus a edittext també
+        if(ivIDerrorSelect.getVisibility()==View.VISIBLE){
+            ivIDerrorSelect.setVisibility(View.INVISIBLE);
+        }
+
+        //Diàleg per eliminar usuari pacient
+
+        if(IDuserSelected.getText().toString().isEmpty()){
+            MessageDialogFinal = getString(R.string.NoNuserIDSelected);
+            ivIDerrorSelect.setVisibility(View.VISIBLE);
+            DialegErrorDelete.setMessage(MessageDialogFinal);
+            DialegErrorDelete.setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+                    //
+                }
+            });
+            DialegErrorDelete.show();
+            return false;
+
+        }
+        if(!TextUtils.isDigitsOnly(IDuserSelected.getText())){
+            MessageDialogFinal = getString(R.string.IDonlyDigits);
+            ivIDerrorSelect.setVisibility(View.VISIBLE);
+            DialegErrorDelete.setMessage(MessageDialogFinal);
+            DialegErrorDelete.setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+
+                }
+            });
+            DialegErrorDelete.show();
+            return false;
+        }
+        return true;
+    }
+
+
 
 
 //Part del menú 'action bar'

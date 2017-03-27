@@ -55,4 +55,16 @@
     <string name="LastNameLength">Por favor compruebe el segundo apellido del paciente, deberia de ser de 2 a 30 caracteres como maximo</string>
     <string name="SurnameLength">Por favor compruebe el apellido del paciente, deberia de ser de 2 a 30 caracteres como maximo</string>
     <string name="SurnameEmpty">Introduce un apellido por favor</string>
+    <string name="Episodes">Episodios</string>
+    <string name="Version">Versión</string>
+    <string name="EpisodeSelection">Selección del episodio</string>
+    <string name="LongVersion">Versión larga</string>
+    <string name="ShortVersion">Versión corta</string>
+    <string name="TreatmentsArea">Tratamientos</string>
+    <string name="Backwards">Atras</string>
+    <string name="SelectionVersionEpisode">Tienes que seleccionar un episodio y una versión</string>
+    <string name="Games">Juegos de atención y memoria</string>
+    <string name="Movie">Película sobre el episodio</string>
+    <string name="Album">Àlbum de fotos</string>
+    <string name="Memory">Guía para mejorar la memoria</string>
 </resources>
