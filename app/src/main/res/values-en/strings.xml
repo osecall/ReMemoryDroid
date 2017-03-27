@@ -67,4 +67,6 @@
     <string name="Movie">Episode movie</string>
     <string name="Album">Pcitures album</string>
     <string name="Memory">improvment</string>
+    <string name="EpisodeSelected">Episode Selected: %s</string>
+    <string name="VersionSelected">Version selected: %s</string>
 </resources>

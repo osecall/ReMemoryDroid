@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 public class TractamentsActivity extends AppCompatActivity {
 
     private TextView idCuUserTreatment, NomCuUserTreatment, CognomCuUserTreatment;
-    private Button btPelicula, btAlbum, btGuia, btJocs;
+    private Button btPelicula, btAlbum, btGuia, btJocs, btBackEpisodiActivity;
     private Intent intentParent;
 
 
@@ -31,10 +31,12 @@ public class TractamentsActivity extends AppCompatActivity {
         NomCuUserTreatment = (TextView) findViewById(R.id.tvNameTreatment);
         CognomCuUserTreatment = (TextView) findViewById(R.id.tvSurTreatment);
 
+
         btPelicula= (Button) findViewById(R.id.btPelicula);
         btAlbum = (Button) findViewById(R.id.btAlbum);
         btGuia = (Button) findViewById(R.id.btGuia);
         btJocs = (Button) findViewById(R.id.btJocs);
+        btBackEpisodiActivity = (Button) findViewById(R.id.btBackEpisode);
 
         //Llegim informació de l'usuari
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
@@ -54,11 +56,19 @@ public class TractamentsActivity extends AppCompatActivity {
         String version = prefs.getString("versio",null);
 
 
-        if(version.equalsIgnoreCase("Long version")){
+        if(version.contains("Long version")){
             btAlbum.setEnabled(false);
             btGuia.setEnabled(false);
             btJocs.setEnabled(false);
         }
+
+        btBackEpisodiActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backIntent = new Intent(TractamentsActivity.this, EpisodiActivity.class);
+                startActivity(backIntent);
+            }
+        });
 
 
 

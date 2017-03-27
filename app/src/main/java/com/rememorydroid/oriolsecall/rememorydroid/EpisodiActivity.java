@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class EpisodiActivity extends AppCompatActivity {
     private TextView tvVersioSelected, tvEpisodiSelected;
     private ListView lista, listaVersio;
     private Button btNextEpisode;
+    private ImageView ivDrawableLlarga, ivDrawableCurta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,9 @@ public class EpisodiActivity extends AppCompatActivity {
         tvVersioSelected = (TextView) findViewById(R.id.tvVersioSelected);
         tvEpisodiSelected = (TextView) findViewById(R.id.tvEpisodiSelected);
         btNextEpisode = (Button) findViewById(R.id.btNextEpisode);
+
+        ivDrawableLlarga = (ImageView) findViewById(R.id.ivDrawableLlarga);
+        ivDrawableCurta = (ImageView) findViewById(R.id.ivDrawableCurta);
 
 
         ArrayAdapter<String> adaptador;
@@ -48,22 +53,31 @@ public class EpisodiActivity extends AppCompatActivity {
         adaptadorVersio.add(getString(R.string.ShortVersion));
 
 
-        adaptador.add("holaaaaa");
-        adaptador.add("asd");
-        adaptador.add("dsfsdfsdf");
-        adaptador.add("dddddd");        adaptador.add("dddddd");
-        adaptador.add("dddddd");
-        adaptador.add("eee");
-        adaptador.add("ddd445ddd");
-        adaptador.add("ddd45454322ddd");
-        adaptador.add("ddd32423234ddd");
-        adaptador.add("dddddd");
+        ColorGenerator generator = ColorGenerator.DEFAULT;
+        TextDrawable drawableL = TextDrawable.builder().beginConfig().width(75).height(75).endConfig().buildRound("L",generator.getRandomColor());
+        TextDrawable drawableS = TextDrawable.builder().beginConfig().width(75).height(75).endConfig().buildRound("S",generator.getRandomColor());
 
-        adaptador.add("reter");
+        ivDrawableLlarga.setImageDrawable(drawableS);
+        ivDrawableCurta.setImageDrawable(drawableL);
 
-        adaptador.add("hghfh");
 
-        adaptador.add("7878");
+
+        adaptador.add("0");
+        adaptador.add("1");
+        adaptador.add("2");
+        adaptador.add("3");
+        adaptador.add("4");
+        adaptador.add("5");
+        adaptador.add("6");
+        adaptador.add("7");
+        adaptador.add("8");
+        adaptador.add("9");
+
+        adaptador.add("10");
+
+        adaptador.add("11");
+
+        adaptador.add("12");
 
 
 
@@ -77,8 +91,7 @@ public class EpisodiActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedFromList = (String) lista.getItemAtPosition(i);
 
-                tvEpisodiSelected.setText(selectedFromList);
-
+                tvEpisodiSelected.setText(getString(R.string.EpisodeSelected,selectedFromList));
 
                 Toast.makeText(EpisodiActivity.this,selectedFromList ,
                         Toast.LENGTH_LONG).show();
@@ -91,7 +104,7 @@ public class EpisodiActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedFromList = (String) listaVersio.getItemAtPosition(i);
 
-                tvVersioSelected.setText(selectedFromList);
+                tvVersioSelected.setText(getString(R.string.VersionSelected,selectedFromList));
 
 
                 Toast.makeText(EpisodiActivity.this,selectedFromList ,

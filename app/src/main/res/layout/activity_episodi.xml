@@ -7,6 +7,16 @@
     android:layout_height="match_parent">
 
 
+    <ImageView
+        android:id="@+id/ivDrawableCurta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/lvVersio"
+        android:layout_marginTop="5dp"
+        android:layout_alignTop="@+id/lvVersio"
+        android:layout_centerHorizontal="true"
+         />
+
     <ListView
         android:id="@+id/lvEpisodis"
         android:layout_width="400dp"
@@ -65,6 +75,7 @@
     <TextView
         android:id="@+id/tvEpisodiSelected"
         android:layout_width="wrap_content"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/tvVersio"
         android:layout_alignTop="@+id/btNextEpisode" />
@@ -72,8 +83,19 @@
     <TextView
         android:id="@+id/tvVersioSelected"
         android:layout_width="wrap_content"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lvEpisodis"
         android:layout_alignEnd="@+id/tvEpisodiSelected" />
+
+    <ImageView
+        android:id="@+id/ivDrawableLlarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/lvVersio"
+        android:layout_marginTop="14dp"
+        android:layout_alignStart="@+id/ivDrawableCurta"
+        android:layout_below="@+id/ivDrawableCurta"
+         />
 
 </RelativeLayout>

@@ -67,4 +67,6 @@
     <string name="Movie">Película sobre el episodio</string>
     <string name="Album">Àlbum de fotos</string>
     <string name="Memory">Guía para mejorar la memoria</string>
+    <string name="EpisodeSelected">Episodio seleccionado: %s</string>
+    <string name="VersionSelected">Versión seleccionada: %s</string>
 </resources>
