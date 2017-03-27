@@ -124,11 +124,12 @@ public class EpisodiActivity extends AppCompatActivity {
                     TractamentIntent.putExtra("versio",tvVersioSelected.getText().toString());
                     TractamentIntent.putExtra("episodi",tvEpisodiSelected.getText().toString());
 
-                    SharedPreferences prefs = getSharedPreferences("pacient_cu", Context.MODE_PRIVATE);
+                    SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
 
-                    editor.putString("versio",tvVersioSelected.getText().toString());
+                    editor.putString("versio", tvVersioSelected.getText().toString());
                     editor.putString("episodi", tvEpisodiSelected.getText().toString());
+                    editor.commit();
 
                     startActivity(TractamentIntent);
 
