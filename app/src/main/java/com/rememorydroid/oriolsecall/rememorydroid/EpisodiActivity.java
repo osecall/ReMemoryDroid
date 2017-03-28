@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +19,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
 
 public class EpisodiActivity extends AppCompatActivity {
 
@@ -26,6 +32,9 @@ public class EpisodiActivity extends AppCompatActivity {
     private ListView lista, listaVersio;
     private Button btNextEpisode;
     private ImageView ivDrawableLlarga, ivDrawableCurta;
+    private StorageReference mStorageRef;
+    private int i=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +49,7 @@ public class EpisodiActivity extends AppCompatActivity {
         ivDrawableCurta = (ImageView) findViewById(R.id.ivDrawableCurta);
 
 
-        ArrayAdapter<String> adaptador;
+        final ArrayAdapter<String> adaptador;
         ArrayAdapter<String> adaptadorVersio;
 
         lista = (ListView) findViewById(R.id.lvEpisodis);
@@ -62,23 +71,12 @@ public class EpisodiActivity extends AppCompatActivity {
 
 
 
-        adaptador.add("0");
         adaptador.add("1");
         adaptador.add("2");
         adaptador.add("3");
-        adaptador.add("4");
-        adaptador.add("5");
+        adaptador.add("4");adaptador.add("5");
         adaptador.add("6");
         adaptador.add("7");
-        adaptador.add("8");
-        adaptador.add("9");
-
-        adaptador.add("10");
-
-        adaptador.add("11");
-
-        adaptador.add("12");
-
 
 
 
