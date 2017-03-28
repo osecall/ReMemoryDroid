@@ -19,7 +19,7 @@ public class TractamentsActivity extends AppCompatActivity {
 
     private TextView idCuUserTreatment, NomCuUserTreatment, CognomCuUserTreatment;
     private Button btPelicula, btAlbum, btGuia, btJocs, btBackEpisodiActivity;
-    private Intent intentParent;
+    private Intent intentParent, IntentToTreatment;
 
 
     @Override
@@ -50,6 +50,7 @@ public class TractamentsActivity extends AppCompatActivity {
 
         //Deshabilitar alguns botons si s'ha escollit versió llarga
 
+        //Alternativa a SharedPreferences
         //intentParent = getIntent();
         //String version = intentParent.getStringExtra("versio").toString();
 
@@ -67,6 +68,23 @@ public class TractamentsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent backIntent = new Intent(TractamentsActivity.this, EpisodiActivity.class);
                 startActivity(backIntent);
+            }
+        });
+
+
+        btGuia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentToTreatment = new Intent(TractamentsActivity.this, GuiaActivity.class);
+                startActivity(IntentToTreatment);
+            }
+        });
+
+        btPelicula.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentToTreatment = new Intent(TractamentsActivity.this, PeliculaActivity.class);
+                startActivity(IntentToTreatment);
             }
         });
 

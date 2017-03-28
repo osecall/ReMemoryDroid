@@ -69,4 +69,5 @@
     <string name="Memory">Guía per millorar la memòria</string>
     <string name="EpisodeSelected">Episodi sel·leccionat: %s</string>
     <string name="VersionSelected">Versió sel·leccionada: %s</string>
+    <string name="From">de</string>
 </resources>

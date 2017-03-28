@@ -7,5 +7,34 @@
     android:layout_height="match_parent">
 
 
+    <ImageView
+        android:id="@+id/ivToPage1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/common_google_signin_btn_icon_dark"
+        android:layout_marginStart="22dp"
+        android:layout_alignTop="@+id/ivFromPage1"
+        android:layout_toEndOf="@+id/tvFromTo" />
 
+    <ImageView
+        android:id="@+id/ivFromPage1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/common_google_signin_btn_icon_dark"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="23dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/tvFromTo" />
+
+    <TextView
+        android:id="@+id/tvFromTo"
+        android:text="@string/From"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignTop="@+id/ivToPage1"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
+
+

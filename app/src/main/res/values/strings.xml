@@ -77,5 +77,8 @@
     <string name="EpisodeSelected">Episode Selected: %s</string>
     <string name="VersionSelected">Version selected: %s</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="From">from</string>
+
 
 </resources>

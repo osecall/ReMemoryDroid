@@ -22,6 +22,7 @@ public class GuiaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 GuideIntent = new Intent(GuiaActivity.this, TractamentsActivity.class);
+                startActivity(GuideIntent);
             }
         });
 

@@ -69,4 +69,5 @@
     <string name="Memory">Memory improvment guide</string>
     <string name="EpisodeSelected">Episode Selected: %s</string>
     <string name="VersionSelected">Version selected: %s</string>
+    <string name="From">from</string>
 </resources>
