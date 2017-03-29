@@ -121,6 +121,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                                 SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                                                 SharedPreferences.Editor editor = prefs.edit();
                                                 Gson gson = new Gson();
+                                                //Passem objecte pacient a JSON
                                                 String pacient_obj = gson.toJson(pacient);
                                                 editor.putString("pacient", pacient_obj);
                                                 editor.commit();
@@ -131,7 +132,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
                                                 //Li passem l'objecte qua conté la informació usuari sel·leccionat, s'ha fet 'Seriazable' la classe
 
-                                                EpisodiIntent.putExtra("pacient",pacient);
+                                                EpisodiIntent.putExtra("pacient",pacient_obj);
                                                 startActivity(EpisodiIntent);
 
 

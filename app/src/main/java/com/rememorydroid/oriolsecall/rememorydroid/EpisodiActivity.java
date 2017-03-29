@@ -22,11 +22,18 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class EpisodiActivity extends AppCompatActivity {
 
@@ -35,14 +42,75 @@ public class EpisodiActivity extends AppCompatActivity {
     private Button btNextEpisode;
     private ImageView ivDrawableLlarga, ivDrawableCurta;
     private StorageReference mStorageRef;
-
-
+    private Intent parentIntent;
+    private Gson gson;
+    private long i=0;
+    private long j=0;
+    private ArrayAdapter<String> adaptadorEpisodis;
+    EpisodiLlista obj_episodi;
+    //ArrayList<EpisodiLlista> episodis = new ArrayList<EpisodiLlista>();
+    ArrayList<String> episodis = new ArrayList<String>();
+    String ID_pacient = new String();
+    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episodi);
+
+        //Obtenim la referència al pacient actual passat per l'intent
+        parentIntent = getIntent();
+        String pacient_obj = parentIntent.getStringExtra("pacient");
+        gson = new Gson();
+        PacientUsuari pacient = gson.fromJson(pacient_obj,PacientUsuari.class);
+        ID_pacient = pacient.getID().toString(); //ID del pacient per recuperar episodis i posar-los a la llista
+        //Ara ja tenim l'objecte PacientUsuari
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot node: dataSnapshot.getChildren()){
+                    if (node.child("id").getValue(String.class).equals(ID_pacient)){
+                        i= node.child("episodis").getChildrenCount(); //Guardem el número d'episodis
+
+
+                        while(j<i){
+                            String valor_de_j_string = String.valueOf(j).toString();
+
+                            //Seria més eficient usar getValue(EpisodiLlista.class) pero app crashes
+
+                            /*
+                            obj_episodi.setName(node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class));
+                            obj_episodi.setFecha(node.child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class));
+                            obj_episodi.setHora(node.child("episodis").child(valor_de_j_string).child("Hora").getValue(String.class));
+                            */
+
+                            episodis.add(node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class));
+                            adaptadorEpisodis.add(node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class));
+                            //obj_episodi= node.child("episodis").child(valor_de_j_string).child("Name").getValue(EpisodiLlista.class);
+
+                            //episodis.add(node.child("episodis").child(valor_de_j_string).child("Name").getValue(EpisodiLlista.class));
+
+                            j++;
+
+
+                        }
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(EpisodiActivity.this,"Error en connectar base de dades" ,
+                        Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
 
         tvVersioSelected = (TextView) findViewById(R.id.tvVersioSelected);
         tvEpisodiSelected = (TextView) findViewById(R.id.tvEpisodiSelected);
@@ -51,18 +119,18 @@ public class EpisodiActivity extends AppCompatActivity {
         ivDrawableLlarga = (ImageView) findViewById(R.id.ivDrawableLlarga);
         ivDrawableCurta = (ImageView) findViewById(R.id.ivDrawableCurta);
 
-
-        final ArrayAdapter<String> adaptador;
         ArrayAdapter<String> adaptadorVersio;
 
         lista = (ListView) findViewById(R.id.lvEpisodis);
         listaVersio = (ListView) findViewById(R.id.lvVersio);
 
-        adaptador = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
+
         adaptadorVersio = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
 
         adaptadorVersio.add(getString(R.string.LongVersion));
         adaptadorVersio.add(getString(R.string.ShortVersion));
+
+        adaptadorEpisodis = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
 
 
         ColorGenerator generator = ColorGenerator.DEFAULT;
@@ -74,23 +142,10 @@ public class EpisodiActivity extends AppCompatActivity {
 
 
 
-
-
-        adaptador.add("1");
-        adaptador.add("2");
-        adaptador.add("3");
-        adaptador.add("4");adaptador.add("5");
-        adaptador.add("6");
-        adaptador.add("7");
-
-
-
-
-
-        lista.setAdapter(adaptador);
+        lista.setAdapter(adaptadorEpisodis);
         listaVersio.setAdapter(adaptadorVersio);
 
-
+/*
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -103,7 +158,7 @@ public class EpisodiActivity extends AppCompatActivity {
             }
         });
 
-
+*/
         listaVersio.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -146,7 +201,7 @@ public class EpisodiActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = prefs.edit();
 
                     editor.putString("versio", tvVersioSelected.getText().toString());
-                    editor.putString("episodi", tvEpisodiSelected.getText().toString());
+                    //editor.putString("episodi", tvEpisodiSelected.getText().toString());
                     editor.commit();
 
                     startActivity(TractamentIntent);
@@ -159,8 +214,11 @@ public class EpisodiActivity extends AppCompatActivity {
 
 
 
+        Toast.makeText(EpisodiActivity.this,String.valueOf(episodis.size()) ,
+                Toast.LENGTH_LONG).show();
 
     }
+
 
     //Part del menú 'action bar'
 
