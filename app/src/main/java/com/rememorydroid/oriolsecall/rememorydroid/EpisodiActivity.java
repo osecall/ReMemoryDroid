@@ -47,9 +47,6 @@ public class EpisodiActivity extends AppCompatActivity {
     private long i=0;
     private long j=0;
     private ArrayAdapter<String> adaptadorEpisodis;
-    EpisodiLlista obj_episodi;
-    //ArrayList<EpisodiLlista> episodis = new ArrayList<EpisodiLlista>();
-    ArrayList<String> episodis = new ArrayList<String>();
     String ID_pacient = new String();
     DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
 
@@ -74,27 +71,10 @@ public class EpisodiActivity extends AppCompatActivity {
                     if (node.child("id").getValue(String.class).equals(ID_pacient)){
                         i= node.child("episodis").getChildrenCount(); //Guardem el número d'episodis
 
-
                         while(j<i){
                             String valor_de_j_string = String.valueOf(j).toString();
-
-                            //Seria més eficient usar getValue(EpisodiLlista.class) pero app crashes
-
-                            /*
-                            obj_episodi.setName(node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class));
-                            obj_episodi.setFecha(node.child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class));
-                            obj_episodi.setHora(node.child("episodis").child(valor_de_j_string).child("Hora").getValue(String.class));
-                            */
-
-                            episodis.add(node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class));
-                            adaptadorEpisodis.add(node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class));
-                            //obj_episodi= node.child("episodis").child(valor_de_j_string).child("Name").getValue(EpisodiLlista.class);
-
-                            //episodis.add(node.child("episodis").child(valor_de_j_string).child("Name").getValue(EpisodiLlista.class));
-
+                            adaptadorEpisodis.add(String.valueOf(j)+": "+node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class) +" ("+node.child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class)+")");
                             j++;
-
-
                         }
 
                     }
@@ -145,20 +125,22 @@ public class EpisodiActivity extends AppCompatActivity {
         lista.setAdapter(adaptadorEpisodis);
         listaVersio.setAdapter(adaptadorVersio);
 
-/*
+
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedFromList = (String) lista.getItemAtPosition(i);
 
+
+
                 tvEpisodiSelected.setText(getString(R.string.EpisodeSelected,selectedFromList));
 
                 Toast.makeText(EpisodiActivity.this,selectedFromList ,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
-*/
+
         listaVersio.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -168,7 +150,7 @@ public class EpisodiActivity extends AppCompatActivity {
 
 
                 Toast.makeText(EpisodiActivity.this,selectedFromList ,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -201,7 +183,7 @@ public class EpisodiActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = prefs.edit();
 
                     editor.putString("versio", tvVersioSelected.getText().toString());
-                    //editor.putString("episodi", tvEpisodiSelected.getText().toString());
+                    editor.putString("episodi", tvEpisodiSelected.getText().toString());
                     editor.commit();
 
                     startActivity(TractamentIntent);
@@ -212,10 +194,6 @@ public class EpisodiActivity extends AppCompatActivity {
             }
         });
 
-
-
-        Toast.makeText(EpisodiActivity.this,String.valueOf(episodis.size()) ,
-                Toast.LENGTH_LONG).show();
 
     }
 

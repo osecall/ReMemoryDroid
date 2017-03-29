@@ -77,16 +77,17 @@
         android:layout_width="wrap_content"
         android:textStyle="bold"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvVersio"
-        android:layout_alignTop="@+id/btNextEpisode" />
+        android:layout_alignTop="@+id/btNextEpisode"
+        android:layout_alignStart="@+id/lvVersio" />
 
     <TextView
         android:id="@+id/tvVersioSelected"
         android:layout_width="wrap_content"
         android:textStyle="bold"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/lvEpisodis"
-        android:layout_alignEnd="@+id/tvEpisodiSelected" />
+        android:layout_alignBaseline="@+id/btNextEpisode"
+        android:layout_alignBottom="@+id/btNextEpisode"
+        android:layout_alignStart="@+id/tvEpisodiSelected" />
 
     <ImageView
         android:id="@+id/ivDrawableLlarga"
