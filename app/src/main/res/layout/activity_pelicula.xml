@@ -7,6 +7,12 @@
     android:layout_height="match_parent">
 
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
     <ImageView
         android:id="@+id/ivToPage1"
         android:layout_width="wrap_content"
@@ -78,71 +84,61 @@
             android:id="@+id/ivOpcio1Pel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/ivOpcio2Pel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/ivOpcio3Pel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/ivOpcio4Pel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/ivOpcio5Pel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/ivOpcio6Pel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/ivOpcio7Pel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/ivOpcio8Pel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/ivOpcio9Pel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/ivOpcio10Pel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
@@ -150,9 +146,10 @@
         android:id="@+id/tvGensPel1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/AtAll"
+        android:layout_alignStart="@+id/btBackPel1"
         android:layout_below="@+id/tvQuestionPel1"
-        android:layout_alignStart="@+id/btBackPel1" />
+        android:text="@string/AtAll"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvMoltPel1"
@@ -160,7 +157,8 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/btNextPel1"
         android:layout_below="@+id/tvQuestionPel1"
-        android:text="@string/Very" />
+        android:text="@string/Very"
+        android:textStyle="bold" />
 
 
     <!--sddddddddddddddddddddddddddddddddddddddddddddddddd-->
