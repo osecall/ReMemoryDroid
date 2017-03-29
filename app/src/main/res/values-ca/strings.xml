@@ -73,4 +73,7 @@
     <string name="Question1Pel1">Em sento normalment despert</string>
     <string name="Very">Molt</string>
     <string name="AtAll">Gens</string>
+    <string name="NameOfEpisode">Nom del episodi</string>
+    <string name="TimeEpisode">Franja horària</string>
+    <string name="DateEpisode">Data</string>
 </resources>

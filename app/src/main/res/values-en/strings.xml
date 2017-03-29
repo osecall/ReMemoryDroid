@@ -73,4 +73,7 @@
     <string name="Question1Pel1">I\'m often feeling quite awaken</string>
     <string name="Very">Very</string>
     <string name="AtAll">At all</string>
+    <string name="NameOfEpisode">Episode\'s name</string>
+    <string name="TimeEpisode">Time</string>
+    <string name="DateEpisode">Date</string>
 </resources>

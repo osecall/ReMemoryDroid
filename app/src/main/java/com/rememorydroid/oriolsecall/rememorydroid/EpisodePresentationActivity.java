@@ -1,6 +1,7 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -53,7 +54,13 @@ public class EpisodePresentationActivity extends AppCompatActivity {
             }
         });
 
-
+        new Handler().postDelayed(new Runnable(){
+            public void run(){
+                Intent intent = new Intent(EpisodePresentationActivity.this, PeliculaActivity.class);
+                startActivity(intent);
+                finish();
+            };
+        }, 5000);
 
 
     }

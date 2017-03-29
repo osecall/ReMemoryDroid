@@ -72,4 +72,7 @@
     <string name="From">de</string>
     <string name="Question1Pel1">Me siento normalmente despierto</string>
     <string name="AtAll">Nada</string>
+    <string name="NameOfEpisode">Nombre del episodio</string>
+    <string name="TimeEpisode">Franja horaria</string>
+    <string name="DateEpisode">Fecha</string>
 </resources>
