@@ -43,6 +43,7 @@ public class EpisodiActivity extends AppCompatActivity {
     private ImageView ivDrawableLlarga, ivDrawableCurta;
     private StorageReference mStorageRef;
     private Intent parentIntent;
+    private String episodiSeleccionat;
     private Gson gson;
     private long i=0;
     private long j=0;
@@ -73,12 +74,10 @@ public class EpisodiActivity extends AppCompatActivity {
 
                         while(j<i){
                             String valor_de_j_string = String.valueOf(j).toString();
-                            adaptadorEpisodis.add(String.valueOf(j)+": "+node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class) +" ("+node.child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class)+")");
+                            adaptadorEpisodis.add(String.valueOf(j)+"\t\t\t"+node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class) +" ("+node.child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class)+")");
                             j++;
                         }
-
                     }
-
                 }
             }
 
@@ -131,9 +130,9 @@ public class EpisodiActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedFromList = (String) lista.getItemAtPosition(i);
 
-
-
                 tvEpisodiSelected.setText(getString(R.string.EpisodeSelected,selectedFromList));
+                episodiSeleccionat=String.valueOf(i);
+
 
                 Toast.makeText(EpisodiActivity.this,selectedFromList ,
                         Toast.LENGTH_SHORT).show();
@@ -148,7 +147,6 @@ public class EpisodiActivity extends AppCompatActivity {
 
                 tvVersioSelected.setText(getString(R.string.VersionSelected,selectedFromList));
 
-
                 Toast.makeText(EpisodiActivity.this,selectedFromList ,
                         Toast.LENGTH_SHORT).show();
             }
@@ -161,7 +159,6 @@ public class EpisodiActivity extends AppCompatActivity {
         btNextEpisode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 if(tvVersioSelected.getText().toString().isEmpty() || tvEpisodiSelected.getText().toString().isEmpty()){
                     new AlertDialog.Builder(EpisodiActivity.this)
@@ -177,13 +174,13 @@ public class EpisodiActivity extends AppCompatActivity {
                 else{
                     Intent TractamentIntent = new Intent(EpisodiActivity.this, TractamentsActivity.class);
                     TractamentIntent.putExtra("versio",tvVersioSelected.getText().toString());
-                    TractamentIntent.putExtra("episodi",tvEpisodiSelected.getText().toString());
+                    TractamentIntent.putExtra("episodi",episodiSeleccionat);
 
                     SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
 
                     editor.putString("versio", tvVersioSelected.getText().toString());
-                    editor.putString("episodi", tvEpisodiSelected.getText().toString());
+                    editor.putString("episodi", episodiSeleccionat);
                     editor.commit();
 
                     startActivity(TractamentIntent);

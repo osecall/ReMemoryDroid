@@ -83,7 +83,12 @@ public class TractamentsActivity extends AppCompatActivity {
         btPelicula.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IntentToTreatment = new Intent(TractamentsActivity.this, PeliculaActivity.class);
+                IntentToTreatment = new Intent(TractamentsActivity.this, EpisodePresentationActivity.class);
+                //Es podria obtenir episodi seleccionat prèviament amb getExtra i posar-lo de nou
+                //Com alternativa usarem posteriorment getSharedPreferences
+
+                IntentToTreatment.putExtra("ID",idCuUserTreatment.getText().toString());
+                IntentToTreatment.putExtra("episodi",getIntent().getStringExtra("episodi"));
                 startActivity(IntentToTreatment);
             }
         });
