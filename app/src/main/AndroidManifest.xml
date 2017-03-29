@@ -34,15 +34,20 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".EpisodiActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".GuiaActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".PeliculaActivity"
-            android:screenOrientation="landscape"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <activity
+            android:name=".PeliculaActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PeliculaActivity2"></activity>
     </application>
 
 </manifest>

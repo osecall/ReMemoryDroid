@@ -92,4 +92,11 @@
 
     </style>
 
+    <style name="QuestionsTestPel">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+
+
 </resources>

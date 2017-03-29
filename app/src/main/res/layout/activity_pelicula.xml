@@ -33,6 +33,143 @@
 
         android:layout_alignTop="@+id/ivToPage1"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tvQuestionPel1"
+        style="@style/QuestionsTestPel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="@string/Question1Pel1"
+        android:textAlignment="viewStart"
+        android:layout_below="@+id/tvFromTo"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btBackPel1"
+        style="@style/Back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="26dp" />
+
+    <Button
+        android:id="@+id/btNextPel1"
+        style="@style/Next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btBackPel1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvFromTo"
+        android:layout_marginTop="136dp"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
+
+        <ImageView
+            android:id="@+id/ivOpcio1Pel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+        <ImageView
+            android:id="@+id/ivOpcio2Pel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+        <ImageView
+            android:id="@+id/ivOpcio3Pel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+        <ImageView
+            android:id="@+id/ivOpcio4Pel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+        <ImageView
+            android:id="@+id/ivOpcio5Pel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+        <ImageView
+            android:id="@+id/ivOpcio6Pel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+        <ImageView
+            android:id="@+id/ivOpcio7Pel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+        <ImageView
+            android:id="@+id/ivOpcio8Pel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+        <ImageView
+            android:id="@+id/ivOpcio9Pel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+        <ImageView
+            android:id="@+id/ivOpcio10Pel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvGensPel1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AtAll"
+        android:layout_below="@+id/tvQuestionPel1"
+        android:layout_alignStart="@+id/btBackPel1" />
+
+    <TextView
+        android:id="@+id/tvMoltPel1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/btNextPel1"
+        android:layout_below="@+id/tvQuestionPel1"
+        android:text="@string/Very" />
+
+
+    <!--sddddddddddddddddddddddddddddddddddddddddddddddddd-->
+
+
+
+
+
 </RelativeLayout>
+
 
 

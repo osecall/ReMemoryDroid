@@ -26,6 +26,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+
 public class EpisodiActivity extends AppCompatActivity {
 
     private TextView tvVersioSelected, tvEpisodiSelected;
@@ -33,7 +35,8 @@ public class EpisodiActivity extends AppCompatActivity {
     private Button btNextEpisode;
     private ImageView ivDrawableLlarga, ivDrawableCurta;
     private StorageReference mStorageRef;
-    private int i=0;
+
+
 
 
     @Override
@@ -71,12 +74,16 @@ public class EpisodiActivity extends AppCompatActivity {
 
 
 
+
+
         adaptador.add("1");
         adaptador.add("2");
         adaptador.add("3");
         adaptador.add("4");adaptador.add("5");
         adaptador.add("6");
         adaptador.add("7");
+
+
 
 
 

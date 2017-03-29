@@ -70,4 +70,7 @@
     <string name="EpisodeSelected">Episodi sel·leccionat: %s</string>
     <string name="VersionSelected">Versió sel·leccionada: %s</string>
     <string name="From">de</string>
+    <string name="Question1Pel1">Em sento normalment despert</string>
+    <string name="Very">Molt</string>
+    <string name="AtAll">Gens</string>
 </resources>

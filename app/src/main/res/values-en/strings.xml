@@ -70,4 +70,7 @@
     <string name="EpisodeSelected">Episode Selected: %s</string>
     <string name="VersionSelected">Version selected: %s</string>
     <string name="From">from</string>
+    <string name="Question1Pel1">I\'m often feeling quite awaken</string>
+    <string name="Very">Very</string>
+    <string name="AtAll">At all</string>
 </resources>
