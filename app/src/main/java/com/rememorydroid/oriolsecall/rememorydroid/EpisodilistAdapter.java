@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class EpisodilistAdapter extends ArrayAdapter<EpisodiList> {
 
     private Activity activity;
     ArrayList<EpisodiList> datos;
+    private TextDrawable draws;
 
     public EpisodilistAdapter(Activity activity, ArrayList<EpisodiList> datos) {
         super(activity, R.layout.listviewepisodis);
@@ -28,7 +30,8 @@ public class EpisodilistAdapter extends ArrayAdapter<EpisodiList> {
     }
 
     static class ViewHolder {
-        TextView tvLayOutNum, tvLayOutEpisodi,tvLayOutFecha;
+        TextView tvLayOutEpisodi,tvLayOutFecha;
+        ImageView tvLayOutNum;
 
     }
 
@@ -49,15 +52,19 @@ public class EpisodilistAdapter extends ArrayAdapter<EpisodiList> {
         final ViewHolder viewHolder = new ViewHolder();
 
         // *** instanciamos a los recursos
-        viewHolder.tvLayOutNum = (TextView) view
+        viewHolder.tvLayOutNum = (ImageView) view
                 .findViewById(R.id.tvLayOutNum);
         viewHolder.tvLayOutEpisodi = (TextView) view
                 .findViewById(R.id.tvLayOutEpisodi);
         viewHolder.tvLayOutFecha = (TextView) view
                 .findViewById(R.id.tvLayOutFecha);
 
+        //Construim el TextDrawable que anirà a cada número de la llista
+        draws = TextDrawable.builder().beginConfig().width(60).height(60).endConfig().buildRound(datos.get(position).getNumero(),ColorGenerator.DEFAULT.getRandomColor());
 
-        viewHolder.tvLayOutNum.setText(datos.get(position).getNumero());
+
+        //viewHolder.tvLayOutNum.setText(datos.get(position).getNumero());
+        viewHolder.tvLayOutNum.setImageDrawable(draws);
         viewHolder.tvLayOutEpisodi.setText(datos.get(position).getName());
         viewHolder.tvLayOutFecha.setText(datos.get(position).getFecha());
 

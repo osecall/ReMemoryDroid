@@ -42,7 +42,6 @@ public class EpisodiActivity extends AppCompatActivity {
     private Button btNextEpisode;
     private ImageView ivDrawableLlarga, ivDrawableCurta;
     private StorageReference mStorageRef;
-    private Intent parentIntent;
     private String episodiSeleccionat;
     private Gson gson;
     private long i=0;

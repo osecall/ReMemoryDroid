@@ -27,12 +27,11 @@ import java.util.ArrayList;
 public class PeliculaActivity extends AppCompatActivity {
 
     private TextDrawable FromPage, ToPage;
-    private ArrayList<TextDrawable> botons = new ArrayList<TextDrawable>();
-    private ImageView ivFromPage, ivToPage,ivOpcio1,ivOpcio2,ivOpcio3,ivOpcio4,ivOpcio5,ivOpcio6,ivOpcio7,ivOpcio8,ivOpcio9,ivOpcio10;
+    private ImageView ivFromPage, ivToPage;
     private Button btBack, btNext;
     private Intent intentPel1;
     private RadioGroup rbGroup;
-    private TestAnswers respostes;
+    protected TestAnswers respostes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
