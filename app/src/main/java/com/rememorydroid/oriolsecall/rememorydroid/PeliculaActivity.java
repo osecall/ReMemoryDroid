@@ -33,7 +33,8 @@ public class PeliculaActivity extends AppCompatActivity {
     private Button btBack, btNext;
     private Intent intentPel1;
     private RadioGroup rbGroup;
-    protected TestAnswers respostes;
+    private String RadioSelected;
+    protected TestAnswers respostes = new TestAnswers();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,14 +66,10 @@ public class PeliculaActivity extends AppCompatActivity {
                 //Busquem quin radioButton s'ha seleccionat
                 int radioButtonID = rbGroup.getCheckedRadioButtonId();
                 //Recuperem l'element ara que tenim el identificador per a la classe R (id)
-                RadioButton hola = (RadioButton) findViewById(radioButtonID);
-                String RadioSelected= hola.getText().toString();
-
-
+                RadioButton rb = (RadioButton) findViewById(radioButtonID);
+                RadioSelected= rb.getText().toString();
 
                 btNext.setEnabled(true);
-
-
 
                 NumeroSeleccionat = TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(RadioSelected,ColorGenerator.DEFAULT.getRandomColor());
                 ivNumSeleccionat.setImageDrawable(NumeroSeleccionat);
@@ -95,18 +92,37 @@ public class PeliculaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //Guardem dada sel·leccionada a la classe TestAnswers
-                //respostes.setValorRadius...
-                rbGroup.getCheckedRadioButtonId();
-
-                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                Gson gson = new Gson();
-                String respostes_json = gson.toJson(respostes,TestAnswers.class);
-                editor.putString("resposta",respostes_json);
-                editor.commit();
-
                 intentPel1 = new Intent (PeliculaActivity.this, PeliculaActivity2.class);
+
+                //Per controlar si es segona vegada el test
+                if(getIntent().hasExtra("SegonTest")){
+                    //Guardar els valors a Test2 i col·locar indicar al INTENT
+                    //Guardem dada sel·leccionada a la classe TestAnswers
+
+                    SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    Gson gson = new Gson();
+                    //Passem valor sel·leccionat com Integer
+                    respostes.setTest2Pregunta1(Integer.parseInt(RadioSelected));
+                    String respostes_json = gson.toJson(respostes,TestAnswers.class);
+                    editor.putString("respostes",respostes_json);
+                    editor.commit();
+                    intentPel1.putExtra("SegonTest","true");
+
+                }
+                else{
+                    //Guardem dada sel·leccionada a la classe TestAnswers
+
+                    SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    Gson gson = new Gson();
+                    //Passem valor sel·leccionat com Integer
+                    respostes.setTest1Pregunta1(Integer.parseInt(RadioSelected));
+                    String respostes_json = gson.toJson(respostes,TestAnswers.class);
+                    editor.putString("respostes",respostes_json);
+                    editor.commit();
+                }
+
                 startActivity(intentPel1);
 
             }
