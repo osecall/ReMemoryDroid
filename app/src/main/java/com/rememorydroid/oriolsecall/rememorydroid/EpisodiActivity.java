@@ -42,8 +42,7 @@ public class EpisodiActivity extends AppCompatActivity {
     private Button btNextEpisode;
     private ImageView ivDrawableLlarga, ivDrawableCurta;
     private StorageReference mStorageRef;
-    private String episodiSeleccionat;
-    private Gson gson;
+    private String episodiSeleccionat, versioSeleccionat;
     private long i=0;
     private long j=0;
     private EpisodilistAdapter adaptadorPersonalitzat;
@@ -63,16 +62,11 @@ public class EpisodiActivity extends AppCompatActivity {
         episodi = new EpisodiList("","","");
 
 
-
-
-
-
         //Recuperem pacient
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         String pacient_json = prefs.getString("pacient",null);
         Gson temp = new Gson();
         PacientUsuari pacient = temp.fromJson(pacient_json, PacientUsuari.class);
-
 
         ID_pacient = pacient.getID().toString(); //ID del pacient per recuperar episodis i posar-los a la llista
         //Ara ja tenim l'objecte PacientUsuari
@@ -111,7 +105,6 @@ public class EpisodiActivity extends AppCompatActivity {
 
 
         tvVersioSelected = (TextView) findViewById(R.id.tvVersioSelected);
-        tvEpisodiSelected = (TextView) findViewById(R.id.tvEpisodiSelected);
         btNextEpisode = (Button) findViewById(R.id.btNextEpisode);
 
         ivDrawableLlarga = (ImageView) findViewById(R.id.ivDrawableLlarga);
@@ -148,26 +141,21 @@ public class EpisodiActivity extends AppCompatActivity {
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedFromList = (String) lista.getItemAtPosition(i);
-
-                tvEpisodiSelected.setText(getString(R.string.EpisodeSelected,selectedFromList));
-                episodiSeleccionat=String.valueOf(i);
-
-
-                Toast.makeText(EpisodiActivity.this,selectedFromList ,
-                        Toast.LENGTH_SHORT).show();
-            }
+                lista.setItemChecked(i,true);
+                episodiSeleccionat= String.valueOf(i);
+           }
         });
 
 
         listaVersio.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedFromList = (String) listaVersio.getItemAtPosition(i);
+                versioSeleccionat = (String) listaVersio.getItemAtPosition(i);
 
-                tvVersioSelected.setText(getString(R.string.VersionSelected,selectedFromList));
+                tvVersioSelected.setText(getString(R.string.VersionSelected,versioSeleccionat));
+                lista.setItemChecked(i,true);
 
-                Toast.makeText(EpisodiActivity.this,selectedFromList ,
+                Toast.makeText(EpisodiActivity.this,versioSeleccionat ,
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -180,7 +168,7 @@ public class EpisodiActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(tvVersioSelected.getText().toString().isEmpty() || tvEpisodiSelected.getText().toString().isEmpty()){
+                if(versioSeleccionat.isEmpty() || episodiSeleccionat.isEmpty()){
                     new AlertDialog.Builder(EpisodiActivity.this)
                             .setTitle(getString(R.string.Attention))
                             .setMessage(getString(R.string.SelectionVersionEpisode))
@@ -203,12 +191,9 @@ public class EpisodiActivity extends AppCompatActivity {
 
                     startActivity(TractamentIntent);
 
-
-
                 }
             }
         });
-
 
     }
 

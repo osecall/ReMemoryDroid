@@ -21,6 +21,8 @@
         android:id="@+id/lvEpisodis"
         android:layout_width="400dp"
         android:layout_height="400dp"
+        android:choiceMode="singleChoice"
+        android:listSelector="@color/grey_300"
         android:layout_marginStart="137dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
@@ -61,6 +63,8 @@
         android:id="@+id/lvVersio"
         android:layout_width="400dp"
         android:layout_height="250dp"
+        android:choiceMode="singleChoice"
+        android:listSelector="@color/grey_300"
         android:layout_marginStart="133dp"
         android:layout_alignTop="@+id/lvEpisodis"
         android:layout_toEndOf="@+id/lvEpisodis" />
@@ -73,21 +77,15 @@
         android:layout_marginEnd="44dp" />
 
     <TextView
-        android:id="@+id/tvEpisodiSelected"
-        android:layout_width="wrap_content"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btNextEpisode"
-        android:layout_alignStart="@+id/lvVersio" />
-
-    <TextView
         android:id="@+id/tvVersioSelected"
         android:layout_width="wrap_content"
         android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btNextEpisode"
         android:layout_alignBottom="@+id/btNextEpisode"
-        android:layout_alignStart="@+id/tvEpisodiSelected" />
+        android:layout_toLeftOf="@+id/btNextEpisode"
+        android:layout_margin="21dp"
+         />
 
     <ImageView
         android:id="@+id/ivDrawableLlarga"
