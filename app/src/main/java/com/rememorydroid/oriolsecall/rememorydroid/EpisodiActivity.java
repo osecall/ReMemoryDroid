@@ -57,11 +57,13 @@ public class EpisodiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episodi);
 
-        //Obtenim la referència al pacient actual passat per l'intent
-        parentIntent = getIntent();
-        String pacient_obj = parentIntent.getStringExtra("pacient");
-        gson = new Gson();
-        PacientUsuari pacient = gson.fromJson(pacient_obj,PacientUsuari.class);
+        //Recuperem pacient
+        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        String pacient_json = prefs.getString("pacient",null);
+        Gson temp = new Gson();
+        PacientUsuari pacient = temp.fromJson(pacient_json, PacientUsuari.class);
+
+
         ID_pacient = pacient.getID().toString(); //ID del pacient per recuperar episodis i posar-los a la llista
         //Ara ja tenim l'objecte PacientUsuari
 

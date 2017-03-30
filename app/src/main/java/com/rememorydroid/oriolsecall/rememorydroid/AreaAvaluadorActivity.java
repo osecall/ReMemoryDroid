@@ -124,10 +124,10 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
                                                 SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                                                 SharedPreferences.Editor editor = prefs.edit();
-                                                Gson gson = new Gson();
                                                 //Passem objecte pacient a JSON
-                                                String pacient_obj = gson.toJson(pacient);
-                                                editor.putString("pacient", pacient_obj);
+                                                Gson gson = new Gson();
+                                                String pacient_json = gson.toJson(pacient,PacientUsuari.class);
+                                                editor.putString("pacient", pacient_json);
                                                 editor.commit();
 
 
@@ -136,7 +136,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
                                                 //Li passem l'objecte qua conté la informació usuari sel·leccionat, s'ha fet 'Seriazable' la classe
 
-                                                EpisodiIntent.putExtra("pacient",pacient_obj);
+                                                //EpisodiIntent.putExtra("pacient",pacient_json);
                                                 startActivity(EpisodiIntent);
 
 
@@ -208,7 +208,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                                     // Recuperem el email del avaluador i el reautentiquem
                                                     String email_user= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
                                                     String pass_user = input.getText().toString();
-
+                                                    //Reautentiquem al avaluador per seguretat
                                                     AuthCredential credential = EmailAuthProvider.getCredential(email_user,pass_user);
 
                                                     FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -221,11 +221,28 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                                                     for (DataSnapshot node : snapshot.getChildren()) {
 
                                                                         if (node.child("id").getValue().equals(IduserDelete.getText().toString())) {
-                                                                            if (node.getRef().removeValue().isSuccessful()) {
-                                                                                Toast.makeText(AreaAvaluadorActivity.this, IduserDelete.getText().toString(),
-                                                                                        Toast.LENGTH_LONG).show();
+                                                                            node.getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                @Override
+                                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                                    Toast.makeText(AreaAvaluadorActivity.this, IduserDelete.getText().toString(),
+                                                                                            Toast.LENGTH_LONG).show();
 
-                                                                            }
+                                                                                    //Eliminem l'usuari de la memòria si és el mateix que està a la sessió
+                                                                                    SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                                                                                    String pacient_json = prefs.getString("pacient",null);
+                                                                                    Gson temp = new Gson();
+                                                                                    PacientUsuari pacient = temp.fromJson(pacient_json, PacientUsuari.class);
+                                                                                    if(pacient.getID().equalsIgnoreCase(IduserDelete.getText().toString())){
+                                                                                        SharedPreferences.Editor editor = prefs.edit();
+                                                                                        editor.remove("pacient");
+                                                                                        editor.commit();
+                                                                                        tvCUid.setVisibility(View.GONE);
+                                                                                        tvCUname.setVisibility(View.GONE);
+                                                                                        tvCUlastName.setVisibility(View.GONE);
+
+                                                                                    }
+                                                                                }
+                                                                            });
 
 
                                                                         }
