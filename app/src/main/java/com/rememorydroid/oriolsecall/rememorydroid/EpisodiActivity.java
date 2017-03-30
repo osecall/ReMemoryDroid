@@ -47,7 +47,10 @@ public class EpisodiActivity extends AppCompatActivity {
     private Gson gson;
     private long i=0;
     private long j=0;
-    private ArrayAdapter<String> adaptadorEpisodis;
+    private EpisodilistAdapter adaptadorPersonalitzat;
+    //private ArrayAdapter<String> adaptadorEpisodis;
+    private ArrayList<EpisodiList> episodis;
+    EpisodiList episodi;
     String ID_pacient = new String();
     DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
 
@@ -56,6 +59,14 @@ public class EpisodiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episodi);
+
+        episodis = new ArrayList<EpisodiList>();
+        episodi = new EpisodiList("","","");
+
+
+
+
+
 
         //Recuperem pacient
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
@@ -74,11 +85,18 @@ public class EpisodiActivity extends AppCompatActivity {
                     if (node.child("id").getValue(String.class).equals(ID_pacient)){
                         i= node.child("episodis").getChildrenCount(); //Guardem el número d'episodis
 
+
                         while(j<i){
                             String valor_de_j_string = String.valueOf(j).toString();
-                            adaptadorEpisodis.add(String.valueOf(j)+"\t\t\t"+node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class) +" ("+node.child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class)+")");
+                            episodi = new EpisodiList("","","");
+                            episodi.setName(node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class));
+                            episodi.setFecha(node.child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class));
+                            episodi.setNumero(String.valueOf(j));
+                            episodis.add(episodi);
+                            //adaptadorEpisodis.add(String.valueOf(j)+"\t\t\t"+node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class) +" ("+node.child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class)+")");
                             j++;
                         }
+
                     }
                 }
             }
@@ -111,8 +129,7 @@ public class EpisodiActivity extends AppCompatActivity {
         adaptadorVersio.add(getString(R.string.LongVersion));
         adaptadorVersio.add(getString(R.string.ShortVersion));
 
-        adaptadorEpisodis = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
-
+        //adaptadorEpisodis = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
 
         ColorGenerator generator = ColorGenerator.DEFAULT;
         TextDrawable drawableL = TextDrawable.builder().beginConfig().width(75).height(75).endConfig().buildRound("L",generator.getRandomColor());
@@ -123,8 +140,10 @@ public class EpisodiActivity extends AppCompatActivity {
 
 
 
-        lista.setAdapter(adaptadorEpisodis);
+        //lista.setAdapter(adaptadorEpisodis);
         listaVersio.setAdapter(adaptadorVersio);
+        adaptadorPersonalitzat = new EpisodilistAdapter(this,episodis);
+        lista.setAdapter(adaptadorPersonalitzat);
 
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {

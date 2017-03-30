@@ -72,6 +72,7 @@
         android:layout_alignStart="@+id/btBackPel1"
         android:layout_below="@+id/tvQuestionPel1"
         android:text="@string/AtAll"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
@@ -81,6 +82,7 @@
         android:layout_alignEnd="@+id/btNextPel1"
         android:layout_below="@+id/tvQuestionPel1"
         android:text="@string/Very"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <RadioGroup

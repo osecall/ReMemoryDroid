@@ -35,7 +35,7 @@ import com.google.gson.Gson;
 
 public class AreaAvaluadorActivity extends AppCompatActivity {
 
-    private TextView emailAvaluador, tvCUid, tvCUname, tvCUlastName, tvtest;
+    private TextView emailAvaluador, tvCUid, tvCUname, tvCUsurName, tvtest;
     private EditText IDuserSelected, IduserDelete;
     private Button btSelectUser, btCreateUser, btDeleteUser;
     private String MessageDialogFinal;
@@ -54,7 +54,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
         emailAvaluador = (TextView) findViewById(R.id.tvAssessersSessionEmail);
         tvCUid = (TextView) findViewById(R.id.tvCUid);
         tvCUname = (TextView) findViewById(R.id.tvCUname);
-        tvCUlastName = (TextView) findViewById(R.id.tvCUlastName);
+        tvCUsurName = (TextView) findViewById(R.id.tvCUlastName);
 
         ivIDerrorSelect = (ImageView) findViewById(R.id.ivIDerrorSelect);
         ivIDerrorDelete = (ImageView) findViewById(R.id.ivIDerrorDelete);
@@ -77,7 +77,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
         //Fer consulta de l'usuari si n'hi ha a preferedsharing
         tvCUid.setText("ID: ");
         tvCUname.setText(R.string.CUName);
-        tvCUlastName.setText(R.string.CULastName);
+        tvCUsurName.setText(R.string.CULastName);
 
         //Botó sel·leccionar pacient usuari
 
@@ -115,10 +115,10 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                                     //Agreguem la informació a la pantalla
                                                 tvCUid.setText("ID "+ pacient.getID());
                                                 tvCUname.setText(pacient.getName());
-                                                tvCUlastName.setText(pacient.getLastName());
+                                                tvCUsurName.setText(pacient.getSurName());
                                                 tvCUid.setVisibility(View.VISIBLE);
                                                 tvCUname.setVisibility(View.VISIBLE);
-                                                tvCUlastName.setVisibility(View.VISIBLE);
+                                                tvCUsurName.setVisibility(View.VISIBLE);
 
                                                 //Guardem la informació del pacient a la memòria "pacient"
 
@@ -231,7 +231,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                                                                         editor.commit();
                                                                                         tvCUid.setVisibility(View.GONE);
                                                                                         tvCUname.setVisibility(View.GONE);
-                                                                                        tvCUlastName.setVisibility(View.GONE);
+                                                                                        tvCUsurName.setVisibility(View.GONE);
 
                                                                                     }
                                                                                 }
