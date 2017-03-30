@@ -76,4 +76,5 @@
     <string name="TimeEpisode">Franja horaria</string>
     <string name="DateEpisode">Fecha</string>
     <string name="WrongPassword">Contraseña incorrecta</string>
+    <string name="UserDeleted">"Usuario paciente eliminado: "</string>
 </resources>

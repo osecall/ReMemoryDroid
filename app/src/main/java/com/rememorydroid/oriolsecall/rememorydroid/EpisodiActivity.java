@@ -175,13 +175,11 @@ public class EpisodiActivity extends AppCompatActivity {
                 }
                 else{
                     Intent TractamentIntent = new Intent(EpisodiActivity.this, TractamentsActivity.class);
+                    //Passem versió per intent ja que només s'usarà a la pròxima activity una vegada
                     TractamentIntent.putExtra("versio",tvVersioSelected.getText().toString());
-                    TractamentIntent.putExtra("episodi",episodiSeleccionat);
 
                     SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
-
-                    editor.putString("versio", tvVersioSelected.getText().toString());
                     editor.putString("episodi", episodiSeleccionat);
                     editor.commit();
 

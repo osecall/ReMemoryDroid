@@ -130,17 +130,10 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                                 editor.putString("pacient", pacient_json);
                                                 editor.commit();
 
-
                                                 //Anem a la pantalla tractaments
                                                 Intent EpisodiIntent = new Intent(AreaAvaluadorActivity.this, EpisodiActivity.class);
-
-                                                //Li passem l'objecte qua conté la informació usuari sel·leccionat, s'ha fet 'Seriazable' la classe
-
-                                                //EpisodiIntent.putExtra("pacient",pacient_json);
                                                 startActivity(EpisodiIntent);
-
-
-                                            }
+                                }
                                         }
 
 
@@ -224,7 +217,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                                                             node.getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                 @Override
                                                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                                                    Toast.makeText(AreaAvaluadorActivity.this, IduserDelete.getText().toString(),
+                                                                                    Toast.makeText(AreaAvaluadorActivity.this, R.string.UserDeleted+IduserDelete.getText().toString(),
                                                                                             Toast.LENGTH_LONG).show();
 
                                                                                     //Eliminem l'usuari de la memòria si és el mateix que està a la sessió

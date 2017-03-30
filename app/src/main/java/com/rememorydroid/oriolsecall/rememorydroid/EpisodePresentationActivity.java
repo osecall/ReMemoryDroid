@@ -1,6 +1,8 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 public class EpisodePresentationActivity extends AppCompatActivity {
 
@@ -30,9 +33,14 @@ public class EpisodePresentationActivity extends AppCompatActivity {
         tvEpisodePresenDate = (TextView) findViewById(R.id.tvEpisodePresenDate);
         tvEpisodePresenTime = (TextView) findViewById(R.id.tvEpisodePresenTime);
 
-        parentIntent= getIntent();
-        ID_pacient=parentIntent.getStringExtra("ID");
-        episodi=parentIntent.getStringExtra("episodi");
+        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        String pacient_json = prefs.getString("pacient",null);
+        episodi = prefs.getString("episodi",null);
+        Gson temp = new Gson();
+        PacientUsuari pacient = temp.fromJson(pacient_json, PacientUsuari.class);
+
+
+        ID_pacient=pacient.getID();
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -50,14 +50,7 @@ public class TractamentsActivity extends AppCompatActivity {
 
         //Deshabilitar alguns botons si s'ha escollit versió llarga
 
-        //Alternativa a SharedPreferences
-        //intentParent = getIntent();
-        //String version = intentParent.getStringExtra("versio").toString();
-
-        String version = prefs.getString("versio",null);
-
-
-        if(version.contains("Long version")){
+        if(getIntent().getStringExtra("versio").contains("Long version")){
             btAlbum.setEnabled(false);
             btGuia.setEnabled(false);
             btJocs.setEnabled(false);
@@ -84,11 +77,6 @@ public class TractamentsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 IntentToTreatment = new Intent(TractamentsActivity.this, EpisodePresentationActivity.class);
-                //Es podria obtenir episodi seleccionat prèviament amb getExtra i posar-lo de nou
-                //Com alternativa usarem posteriorment getSharedPreferences
-
-                IntentToTreatment.putExtra("ID",idCuUserTreatment.getText().toString());
-                IntentToTreatment.putExtra("episodi",getIntent().getStringExtra("episodi"));
                 startActivity(IntentToTreatment);
             }
         });

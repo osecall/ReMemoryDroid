@@ -77,4 +77,5 @@
     <string name="TimeEpisode">Time</string>
     <string name="DateEpisode">Date</string>
     <string name="WrongPassword">Wrong password</string>
+    <string name="UserDeleted">"Paient user deleted: "</string>
 </resources>
