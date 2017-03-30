@@ -40,54 +40,8 @@ public class PeliculaActivity extends AppCompatActivity {
         FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("1",generator.getRandomColor());
         ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("30",generator.getRandomColor());
 
-        for(int i=1; i<=10; i++){
-            botons.add(TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(String.valueOf(i),generator.getRandomColor()));
-        }
-
         ivFromPage = (ImageView) findViewById(R.id.ivFromPage1);
         ivToPage = (ImageView) findViewById(R.id.ivToPage1);
-
-        ivOpcio1 = (ImageView) findViewById(R.id.ivOpcio1Pel1);
-        ivOpcio2 = (ImageView) findViewById(R.id.ivOpcio2Pel1);
-        ivOpcio3 = (ImageView) findViewById(R.id.ivOpcio3Pel1);
-        ivOpcio4 = (ImageView) findViewById(R.id.ivOpcio4Pel1);
-        ivOpcio5 = (ImageView) findViewById(R.id.ivOpcio5Pel1);
-        ivOpcio6 = (ImageView) findViewById(R.id.ivOpcio6Pel1);
-        ivOpcio7 = (ImageView) findViewById(R.id.ivOpcio7Pel1);
-        ivOpcio8 = (ImageView) findViewById(R.id.ivOpcio8Pel1);
-        ivOpcio9 = (ImageView) findViewById(R.id.ivOpcio9Pel1);
-        ivOpcio10 = (ImageView) findViewById(R.id.ivOpcio10Pel1);
-
-        ivOpcio1.setImageDrawable(botons.get(0));
-        ivOpcio2.setImageDrawable(botons.get(1));
-        ivOpcio3.setImageDrawable(botons.get(2));
-        ivOpcio4.setImageDrawable(botons.get(3));
-        ivOpcio5.setImageDrawable(botons.get(4));
-        ivOpcio6.setImageDrawable(botons.get(5));
-        ivOpcio7.setImageDrawable(botons.get(6));
-        ivOpcio8.setImageDrawable(botons.get(7));
-        ivOpcio9.setImageDrawable(botons.get(8));
-        ivOpcio10.setImageDrawable(botons.get(9));
-
-        ivOpcio1.setClickable(true);
-        ivOpcio1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                btNext.setEnabled(true);
-
-
-
-            }
-        });
-        ivOpcio2.setImageDrawable(botons.get(1));
-        ivOpcio3.setImageDrawable(botons.get(2));
-        ivOpcio4.setImageDrawable(botons.get(3));
-        ivOpcio5.setImageDrawable(botons.get(4));
-        ivOpcio6.setImageDrawable(botons.get(5));
-        ivOpcio7.setImageDrawable(botons.get(6));
-        ivOpcio8.setImageDrawable(botons.get(7));
-        ivOpcio9.setImageDrawable(botons.get(8));
-        ivOpcio10.setImageDrawable(botons.get(9));
 
         ivFromPage.setImageDrawable(FromPage);
         ivToPage.setImageDrawable(ToPage);

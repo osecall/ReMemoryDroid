@@ -97,6 +97,18 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="radioGroupElements">
+        <item name="android:textSize">75sp</item>
+        <item name="android:layout_margin">40sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:drawableBottom">@android:drawable/btn_radio</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+
+
+    </style>
+
 
 
 </resources>
