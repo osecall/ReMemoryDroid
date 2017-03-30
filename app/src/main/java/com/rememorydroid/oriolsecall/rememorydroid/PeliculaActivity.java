@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +31,8 @@ public class PeliculaActivity extends AppCompatActivity {
     private ImageView ivFromPage, ivToPage,ivOpcio1,ivOpcio2,ivOpcio3,ivOpcio4,ivOpcio5,ivOpcio6,ivOpcio7,ivOpcio8,ivOpcio9,ivOpcio10;
     private Button btBack, btNext;
     private Intent intentPel1;
-    private TestAnswers respostes = new TestAnswers();
+    private RadioGroup rbGroup;
+    private TestAnswers respostes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,18 @@ public class PeliculaActivity extends AppCompatActivity {
 
         btNext.setEnabled(false);
 
+        rbGroup = (RadioGroup) findViewById(R.id.rbGroup1Pel1);
+
+        Toast.makeText(PeliculaActivity.this, String.valueOf(rbGroup.getCheckedRadioButtonId()),
+                Toast.LENGTH_LONG).show();
+
+        rbGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                btNext.setEnabled(true);
+            }
+        });
+
 
         //Enrere
         btBack.setOnClickListener(new View.OnClickListener() {
@@ -67,29 +82,21 @@ public class PeliculaActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Guardem dada sel·leccionada a la classe TestAnswers
+                //respostes.setValorRadius...
+                rbGroup.getCheckedRadioButtonId();
 
-
-                /* Alternativa
-                SharedPreferences prefs = getSharedPreferences("respostes", Context.MODE_PRIVATE);
+                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
-
-                editor.putString("resposta","resposta");
-
-                editor.commit();
-                */
                 Gson gson = new Gson();
-                //Passem objecte amb respostas a JSON "String"
-                String objJson = gson.toJson(respostes);
+                String respostes_json = gson.toJson(respostes,TestAnswers.class);
+                editor.putString("resposta",respostes_json);
+                editor.commit();
 
                 intentPel1 = new Intent (PeliculaActivity.this, PeliculaActivity2.class);
-
-                intentPel1.putExtra("TestAnswer",objJson);
                 startActivity(intentPel1);
 
             }
         });
-
-
 
 
     }
