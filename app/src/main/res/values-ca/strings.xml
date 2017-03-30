@@ -76,4 +76,5 @@
     <string name="NameOfEpisode">Nom del episodi</string>
     <string name="TimeEpisode">Franja horària</string>
     <string name="DateEpisode">Data</string>
+    <string name="WrongPassword">Contrasenya incorrecte</string>
 </resources>

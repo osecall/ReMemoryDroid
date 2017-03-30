@@ -76,4 +76,5 @@
     <string name="NameOfEpisode">Episode\'s name</string>
     <string name="TimeEpisode">Time</string>
     <string name="DateEpisode">Date</string>
+    <string name="WrongPassword">Wrong password</string>
 </resources>

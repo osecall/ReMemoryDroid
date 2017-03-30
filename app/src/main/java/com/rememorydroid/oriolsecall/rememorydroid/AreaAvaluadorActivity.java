@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -181,7 +185,6 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                 if(CheckDeleteUserField()){
                     MessageDialogFinal = getString(R.string.UserDeleteMessage,IduserDelete.getText());
 
-                    final String ID_to_delete = IduserDelete.getText().toString();
                     final AlertDialog.Builder Dialeg = new AlertDialog.Builder(AreaAvaluadorActivity.this);
                     Dialeg
                             .setIcon(R.drawable.warningdialogdeleteuser)
@@ -208,40 +211,47 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
                                                     AuthCredential credential = EmailAuthProvider.getCredential(email_user,pass_user);
 
+                                                    FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
 
-                                                    if(FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).isSuccessful()) {
+                                                            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                @Override
+                                                                public void onDataChange(DataSnapshot snapshot) {
+                                                                    for (DataSnapshot node : snapshot.getChildren()) {
 
-                                                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                            @Override
-                                                            public void onDataChange(DataSnapshot snapshot) {
-                                                                for (DataSnapshot node : snapshot.getChildren()) {
+                                                                        if (node.child("id").getValue().equals(IduserDelete.getText().toString())) {
+                                                                            if (node.getRef().removeValue().isSuccessful()) {
+                                                                                Toast.makeText(AreaAvaluadorActivity.this, IduserDelete.getText().toString(),
+                                                                                        Toast.LENGTH_LONG).show();
 
-                                                                    if (node.child("id").getValue().equals(ID_to_delete)) {
-                                                                        if (node.getRef().removeValue().isSuccessful()) {
-                                                                            Toast.makeText(AreaAvaluadorActivity.this, ID_to_delete,
-                                                                                    Toast.LENGTH_LONG).show();
+                                                                            }
+
 
                                                                         }
-
-
                                                                     }
+
+
                                                                 }
 
+                                                                @Override
+                                                                public void onCancelled(DatabaseError E) {
+                                                                    Toast.makeText(AreaAvaluadorActivity.this,"Database Error",
+                                                                            Toast.LENGTH_LONG).show();
+                                                                }
+                                                            });
+                                                        }
 
-                                                            }
 
-                                                            @Override
-                                                            public void onCancelled(DatabaseError E) {
-                                                                //RES a fer
-                                                            }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(AreaAvaluadorActivity.this,getString(R.string.WrongPassword),
+                                                                    Toast.LENGTH_LONG).show();
+                                                        }
+                                                    });
 
 
-                                                        });
-                                                    }
-                                                    else{
-                                                        Toast.makeText(AreaAvaluadorActivity.this,"Wrong password" ,
-                                                                Toast.LENGTH_LONG).show();
-                                                    }
 
 
                                                 }
