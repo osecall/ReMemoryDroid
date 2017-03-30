@@ -174,9 +174,9 @@
         android:layout_height="wrap_content"
         android:visibility="invisible"
         app:srcCompat="@drawable/common_google_signin_btn_icon_dark"
+        android:layout_marginBottom="22dp"
         android:layout_alignBottom="@+id/btNextPel1"
-        android:layout_alignStart="@+id/tvFromTo"
-        android:layout_marginBottom="22dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
 
