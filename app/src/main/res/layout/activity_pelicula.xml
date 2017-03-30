@@ -168,6 +168,16 @@
             android:text="10" />
     </RadioGroup>
 
+    <ImageView
+        android:id="@+id/ivNumSeleccionat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/common_google_signin_btn_icon_dark"
+        android:layout_alignBottom="@+id/btNextPel1"
+        android:layout_alignStart="@+id/tvFromTo"
+        android:layout_marginBottom="22dp" />
+
 </RelativeLayout>
 
 

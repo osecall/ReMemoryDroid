@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.provider.MediaStore;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -26,8 +28,8 @@ import java.util.ArrayList;
 
 public class PeliculaActivity extends AppCompatActivity {
 
-    private TextDrawable FromPage, ToPage;
-    private ImageView ivFromPage, ivToPage;
+    private TextDrawable FromPage, ToPage, NumeroSeleccionat;
+    private ImageView ivFromPage, ivToPage, ivNumSeleccionat;
     private Button btBack, btNext;
     private Intent intentPel1;
     private RadioGroup rbGroup;
@@ -44,6 +46,7 @@ public class PeliculaActivity extends AppCompatActivity {
 
         ivFromPage = (ImageView) findViewById(R.id.ivFromPage1);
         ivToPage = (ImageView) findViewById(R.id.ivToPage1);
+        ivNumSeleccionat= (ImageView) findViewById(R.id.ivNumSeleccionat);
 
         ivFromPage.setImageDrawable(FromPage);
         ivToPage.setImageDrawable(ToPage);
@@ -55,13 +58,25 @@ public class PeliculaActivity extends AppCompatActivity {
 
         rbGroup = (RadioGroup) findViewById(R.id.rbGroup1Pel1);
 
-        Toast.makeText(PeliculaActivity.this, String.valueOf(rbGroup.getCheckedRadioButtonId()),
-                Toast.LENGTH_LONG).show();
-
         rbGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
+                //Busquem quin radioButton s'ha seleccionat
+                int radioButtonID = rbGroup.getCheckedRadioButtonId();
+                //Recuperem l'element ara que tenim el identificador per a la classe R (id)
+                RadioButton hola = (RadioButton) findViewById(radioButtonID);
+                String RadioSelected= hola.getText().toString();
+
+
+
                 btNext.setEnabled(true);
+
+
+
+                NumeroSeleccionat = TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(RadioSelected,ColorGenerator.DEFAULT.getRandomColor());
+                ivNumSeleccionat.setImageDrawable(NumeroSeleccionat);
+                ivNumSeleccionat.setVisibility(View.VISIBLE);
             }
         });
 
