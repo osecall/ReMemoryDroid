@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -173,41 +177,35 @@ public class PacientUserSignUpActivity extends AppCompatActivity {
 
                     pacient = new PacientUsuari(ID,Nom,Cognom, SegCognom);
 
-                    if(myRef.push().setValue(pacient).isSuccessful()){
-                        Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, TractamentsActivity.class);
+                    myRef.push().setValue(pacient).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, TractamentsActivity.class);
 
-                        // Grabar a SharedPreferences user
-                        // Col·locar objecte pacient amb llibrerio GSON PacientUserSUintent.set
+                            // Grabar a SharedPreferences user
+                            // Col·locar objecte pacient amb llibrerio GSON PacientUserSUintent.set
 
-                        SharedPreferences prefs = getSharedPreferences("pacient_cu", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = prefs.edit();
+                            SharedPreferences prefs = getSharedPreferences("pacient_cu", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = prefs.edit();
 
-                        editor.putString("ID",pacient.getID());
-                        editor.putString("Name", pacient.getName());
+                            editor.putString("ID",pacient.getID());
+                            editor.putString("Name", pacient.getName());
 
-                        startActivity(PacientUserSUintent);
-
-
-                    }
-                    else {
-                        //Dialeg amb error que no s'ha pogut donar d'alta pacient
-                    }
-
-
+                            startActivity(PacientUserSUintent);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(PacientUserSignUpActivity.this, "Error!",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
 
                 }
             }
         });
 
-
-
-
     }
-
-
-
-
-
     //Part del menú 'action bar'
 
     @Override
