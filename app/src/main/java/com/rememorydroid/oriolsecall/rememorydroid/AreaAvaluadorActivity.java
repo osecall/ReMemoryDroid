@@ -33,7 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
-public class AreaAvaluadorActivity extends AppCompatActivity {
+public class AreaAvaluadorActivity extends BaseActivity {
 
     private TextView emailAvaluador, tvCUid, tvCUname, tvCUsurName, tvtest;
     private EditText IDuserSelected, IduserDelete;
@@ -98,6 +98,7 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                         .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0, int arg1) {
 
+                                showProgressDialog();
                                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot snapshot) {
@@ -141,14 +142,14 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                                     }
                                     @Override
                                     public void onCancelled(DatabaseError E) {
+                                        hideProgressDialog();
                                         Toast.makeText(AreaAvaluadorActivity.this, "Error database",
                                                 Toast.LENGTH_SHORT).show();
+
                                     }
 
                                 });
-
-
-
+                                hideProgressDialog();
 
                             }
                         })
@@ -161,14 +162,8 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
                         })
                         .show();
 
-
-
             }}
         });
-
-
-
-
 
         //Botó delete user
 

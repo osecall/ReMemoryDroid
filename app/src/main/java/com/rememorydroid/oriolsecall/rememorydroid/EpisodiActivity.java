@@ -35,7 +35,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class EpisodiActivity extends AppCompatActivity {
+public class EpisodiActivity extends BaseActivity {
 
     private TextView tvVersioSelected, tvEpisodiSelected;
     private ListView lista, listaVersio;
@@ -71,6 +71,8 @@ public class EpisodiActivity extends AppCompatActivity {
         ID_pacient = pacient.getID().toString(); //ID del pacient per recuperar episodis i posar-los a la llista
         //Ara ja tenim l'objecte PacientUsuari
 
+
+        showProgressDialog();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -92,12 +94,15 @@ public class EpisodiActivity extends AppCompatActivity {
 
                     }
                 }
+                hideProgressDialog();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                hideProgressDialog();
                 Toast.makeText(EpisodiActivity.this,"Error en connectar base de dades" ,
                         Toast.LENGTH_LONG).show();
+
 
             }
         });
@@ -106,6 +111,7 @@ public class EpisodiActivity extends AppCompatActivity {
 
         tvVersioSelected = (TextView) findViewById(R.id.tvVersioSelected);
         btNextEpisode = (Button) findViewById(R.id.btNextEpisode);
+
 
         ivDrawableLlarga = (ImageView) findViewById(R.id.ivDrawableLlarga);
         ivDrawableCurta = (ImageView) findViewById(R.id.ivDrawableCurta);
@@ -161,6 +167,7 @@ public class EpisodiActivity extends AppCompatActivity {
         });
 
 
+
         //Agregar passar informació episodi i versio quan s'apreta botó
 
 
@@ -168,12 +175,13 @@ public class EpisodiActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(versioSeleccionat.isEmpty() || episodiSeleccionat.isEmpty()){
+                if(versioSeleccionat.matches("") || episodiSeleccionat.matches("")){
                     new AlertDialog.Builder(EpisodiActivity.this)
                             .setTitle(getString(R.string.Attention))
                             .setMessage(getString(R.string.SelectionVersionEpisode))
-                            .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                            .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
+
                                 }
 
                             })

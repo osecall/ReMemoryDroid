@@ -41,12 +41,12 @@ public class TractamentsActivity extends AppCompatActivity {
         //Llegim informació de l'usuari
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json= prefs.getString("pacient","");
-        PacientUsuari obj = gson.fromJson(json, PacientUsuari.class);
+        String pacient_json= prefs.getString("pacient",null);
+        PacientUsuari pacient = gson.fromJson(pacient_json, PacientUsuari.class);
 
-        idCuUserTreatment.setText(obj.getID());
-        NomCuUserTreatment.setText(obj.getName());
-        CognomCuUserTreatment.setText(obj.getSurName());
+        idCuUserTreatment.setText(pacient.getID());
+        NomCuUserTreatment.setText(pacient.getName());
+        CognomCuUserTreatment.setText(pacient.getSurName());
 
         //Deshabilitar alguns botons si s'ha escollit versió llarga
 

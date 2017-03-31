@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
-public class EpisodePresentationActivity extends AppCompatActivity {
+public class EpisodePresentationActivity extends BaseActivity {
 
     private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
     private String ID_pacient, episodi;
@@ -42,6 +42,7 @@ public class EpisodePresentationActivity extends AppCompatActivity {
 
         ID_pacient=pacient.getID();
 
+        showProgressDialog();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -52,10 +53,12 @@ public class EpisodePresentationActivity extends AppCompatActivity {
                         tvEpisodePresenDate.setText(node.child("episodis").child(episodi).child("Fecha").getValue(String.class));
                   }
                 }
+            hideProgressDialog();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                hideProgressDialog();
                 Toast.makeText(EpisodePresentationActivity.this,"Error en connectar base de dades" ,
                         Toast.LENGTH_LONG).show();
 

@@ -23,8 +23,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 
-public class PacientUserSignUpActivity extends AppCompatActivity {
+public class PacientUserSignUpActivity extends BaseActivity{
 
 
     private Button btSavePacientSignUp;
@@ -163,6 +164,7 @@ public class PacientUserSignUpActivity extends AppCompatActivity {
         ivLastError = (ImageView) findViewById(R.id.ivLastError);
 
 
+
         btSavePacientSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -176,28 +178,34 @@ public class PacientUserSignUpActivity extends AppCompatActivity {
                     //Guardar a FireBase i passar a 'Tractaments'
 
                     pacient = new PacientUsuari(ID,Nom,Cognom, SegCognom);
-
+                    showProgressDialog();
                     myRef.push().setValue(pacient).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
+
                         public void onComplete(@NonNull Task<Void> task) {
-                            Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, TractamentsActivity.class);
+                            Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class);
 
                             // Grabar a SharedPreferences user
-                            // Col·locar objecte pacient amb llibrerio GSON PacientUserSUintent.set
+                            // Col·locar objecte pacient amb llibreria GSON PacientUserSUintent.set
 
-                            SharedPreferences prefs = getSharedPreferences("pacient_cu", Context.MODE_PRIVATE);
+                            SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
-
-                            editor.putString("ID",pacient.getID());
-                            editor.putString("Name", pacient.getName());
-
+                            Gson gson = new Gson();
+                            String pacient_json = gson.toJson(pacient,PacientUsuari.class);
+                            editor.putString("pacient",pacient_json);
+                            editor.commit();
+                            hideProgressDialog();
                             startActivity(PacientUserSUintent);
+
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            hideProgressDialog();
                             Toast.makeText(PacientUserSignUpActivity.this, "Error!",
                                     Toast.LENGTH_LONG).show();
+
                         }
                     });
 
