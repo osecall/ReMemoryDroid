@@ -52,7 +52,7 @@
     <string name="NameFieldEmpty">Introduce pacient\'s name</string>
     <string name="IDFieldEmpty">Introduce an user\'s pacient ID</string>
     <string name="NameNotDigits">Name field can\'t contain numbers</string>
-    <string name="LastNameNotDigits">Lastname can\'t contain numbers</string>
+    <string name="LastNameNotDigits">Lastname can\'t contain numbers nor special characters</string>
     <string name="SurNameNotDigits">Surname can\'t contain numbers</string>
     <string name="IDonlyDigits">ID\'s user pacient only accepts numbers</string>
     <string name="IDlength4">ID can\'t be greater than 9999</string>

@@ -45,7 +45,7 @@
     <string name="NameFieldEmpty">Introduce el nombre del paciente</string>
     <string name="IDFieldEmpty">Introduce un número de usuario para el paciente</string>
     <string name="NameNotDigits">El nombre no puede contener numeros</string>
-    <string name="LastNameNotDigits">El apellido no puede contener numeros</string>
+    <string name="LastNameNotDigits">El apellido no puede contener numeros ni caracteres especiales</string>
     <string name="SurNameNotDigits">El segundo apellido no puede contener numeros</string>
     <string name="IDonlyDigits">El ID del usuario del paciente solo acepta numeros</string>
     <string name="IDlength4">El ID no puede ser mayor de 9999</string>

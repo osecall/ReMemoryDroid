@@ -97,7 +97,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
                 return false;
             }
 
-            if(!Nom.matches("^[a-zA-Z]+$")){
+            if(!Nom.matches("^[a-z A-Z]+$")){
                 DialegFormControl.setMessage(R.string.NameNotDigits);
                 DialegFormControl.show();
                 ivNameError.setVisibility(View.VISIBLE);
@@ -109,7 +109,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
                 ivSurError.setVisibility(View.VISIBLE);
                 return false;
             }
-            if(!Cognom.matches("^[a-zA-Z]+$")){
+            if(!Cognom.matches("^[a-z A-Z]+$")){
                 DialegFormControl.setMessage(R.string.SurNameNotDigits);
                 DialegFormControl.show();
                 ivSurError.setVisibility(View.VISIBLE);
@@ -127,7 +127,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
                 ivLastError.setVisibility(View.VISIBLE);
                 return false;
             }
-            if(!SeCognom.matches("^[a-zA-Z]+$")){
+            if(!SeCognom.matches("^[a-z A-Z]+$")){
                 DialegFormControl.setMessage(R.string.LastNameNotDigits);
                 DialegFormControl.show();
                 ivLastError.setVisibility(View.VISIBLE);

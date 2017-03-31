@@ -45,7 +45,7 @@
     <string name="NameFieldEmpty">Introdueix el nom del pacient</string>
     <string name="IDFieldEmpty">Introdueix un número d\'usuari pel pacient</string>
     <string name="NameNotDigits">El nom no pot contenir números</string>
-    <string name="LastNameNotDigits">El cognom no pot contenir números</string>
+    <string name="LastNameNotDigits">El cognom no pot contenir números ni caràcters especials</string>
     <string name="SurNameNotDigits">El segon cognom no pot contenir números</string>
     <string name="IDonlyDigits">El ID de l\'usuari del pacient només accepta números</string>
     <string name="IDlength4">El ID no pot ser major de 9999</string>
