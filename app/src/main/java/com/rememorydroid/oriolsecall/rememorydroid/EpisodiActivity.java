@@ -37,20 +37,20 @@ import java.util.Arrays;
 
 public class EpisodiActivity extends BaseActivity {
 
-    private TextView tvVersioSelected, tvEpisodiSelected;
+    private TextView tvVersioSelected;
     private ListView lista, listaVersio;
     private Button btNextEpisode;
     private ImageView ivDrawableLlarga, ivDrawableCurta;
-    private StorageReference mStorageRef;
+    //private StorageReference mStorageRef;
     private String episodiSeleccionat, versioSeleccionat;
     private long i=0;
     private long j=0;
     private EpisodilistAdapter adaptadorPersonalitzat;
     //private ArrayAdapter<String> adaptadorEpisodis;
     private ArrayList<EpisodiList> episodis;
-    EpisodiList episodi;
-    String ID_pacient = new String();
-    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
+    private EpisodiList episodi;
+    private String ID_pacient = new String();
+    private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
 
 
     @Override
@@ -60,6 +60,9 @@ public class EpisodiActivity extends BaseActivity {
 
         episodis = new ArrayList<EpisodiList>();
         episodi = new EpisodiList("","","");
+
+        episodiSeleccionat = new String();
+        versioSeleccionat = new String();
 
 
         //Recuperem pacient
@@ -175,7 +178,7 @@ public class EpisodiActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                if(versioSeleccionat.matches("") || episodiSeleccionat.matches("")){
+                if(versioSeleccionat.isEmpty() || episodiSeleccionat.isEmpty()){
                     new AlertDialog.Builder(EpisodiActivity.this)
                             .setTitle(getString(R.string.Attention))
                             .setMessage(getString(R.string.SelectionVersionEpisode))
