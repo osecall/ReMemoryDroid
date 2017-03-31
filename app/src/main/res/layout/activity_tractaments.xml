@@ -63,6 +63,7 @@
         android:layout_alignStart="@+id/btPelicula"
         android:layout_below="@+id/tvTreatmenttitol"
         android:layout_marginTop="25dp"
+        android:text="asd"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -73,6 +74,7 @@
         android:layout_alignStart="@+id/tvIDTreatment"
         android:layout_below="@+id/tvIDTreatment"
         android:layout_marginTop="24dp"
+        android:text="asd"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -80,11 +82,15 @@
         android:id="@+id/tvSurTreatment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvNameTreatment"
-        android:layout_below="@+id/tvNameTreatment"
-        android:layout_marginTop="28dp"
+        android:text="asd"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_alignBaseline="@+id/tvNameTreatment"
+        android:layout_alignBottom="@+id/tvNameTreatment"
+        android:layout_toEndOf="@+id/tvNameTreatment"
+        android:layout_marginStart="29dp" />
 
     <Button
         android:id="@+id/btBackEpisode"

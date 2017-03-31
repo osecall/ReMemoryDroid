@@ -140,8 +140,10 @@ public class AreaAvaluadorActivity extends AppCompatActivity {
 
                                     }
                                     @Override
-                                    public void onCancelled(DatabaseError E) { }
-
+                                    public void onCancelled(DatabaseError E) {
+                                        Toast.makeText(AreaAvaluadorActivity.this, "Error database",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
 
                                 });
 
