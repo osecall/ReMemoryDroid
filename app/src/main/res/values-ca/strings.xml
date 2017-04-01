@@ -85,4 +85,5 @@
     <string name="Question5Pel1">Em sento capaç de fer les taqsuqes que em proposo</string>
     <string name="Question6Pel1">Em sento capaç de trobar solucions a un problema</string>
     <string name="DialogResting">Recordi que pot descansar i continuar més tard</string>
+    <string name="InstructonsBreathing">Segueix les instruccions que escoltarà a continuació. \\n\n\\n\nSi ho desitja pot tancar els ulls.</string>
 </resources>

@@ -6,4 +6,16 @@
     android:layout_height="match_parent"
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.RespirarActivity1">
 
+    <FrameLayout
+        android:layout_width="1264dp"
+        android:layout_height="647dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/abstracte1" />
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

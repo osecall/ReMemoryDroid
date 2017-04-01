@@ -59,12 +59,16 @@
         <activity
             android:name=".PeliculaActivity4"
             android:screenOrientation="landscape" />
-        <activity android:name=".PeliculaActivity5"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".PeliculaActivity6"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".RespirarActivity1"
-            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".PeliculaActivity5"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".PeliculaActivity6"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".RespirarActivity1"
+            android:screenOrientation="landscape" />
+        <activity android:name=".VisualitzarActivity1"></activity>
     </application>
 
 </manifest>
