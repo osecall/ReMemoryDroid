@@ -77,4 +77,11 @@
     <string name="DateEpisode">Fecha</string>
     <string name="WrongPassword">Contraseña incorrecta</string>
     <string name="UserDeleted">"Usuario paciente eliminado: "</string>
+    <string name="AlertDialaogTest">Por favor, señale la opción que más se aproxime a cómo se siente usted ahora mismo</string>
+    <string name="Very">Mucho</string>
+    <string name="Question2Pel1">Me siento capaz de recordar cosa importantes para mi</string>
+    <string name="Question3Pel1">Me siento capaz de recordar cosas que hago durante el dia</string>
+    <string name="Question4Pel1">Me sient capaz d\'esforzarme para superar las dificultades</string>
+    <string name="Question5Pel1">Me siento capaz de hacer las tareas que me propongo</string>
+    <string name="Question6Pel1">Me siento capaz de encontrar soluciones a un problema</string>
 </resources>

@@ -78,4 +78,10 @@
     <string name="DateEpisode">Data</string>
     <string name="WrongPassword">Contrasenya incorrecte</string>
     <string name="UserDeleted">"Usuari paient eliminat: "</string>
+    <string name="AlertDialaogTest">Si us plau, senyali l\'opció que més s\'aproximi a com vosté se sent ara mateix</string>
+    <string name="Question2Pel1">Em sento capaç de recordar coses importants per mi</string>
+    <string name="Question3Pel1">Em sento capaç de recordar coses que faig durant el dia</string>
+    <string name="Question4Pel1">Em sento capaç d\'esforçar-me per superar les dificultats</string>
+    <string name="Question5Pel1">Em sento capaç de fer les taqsuqes que em proposo</string>
+    <string name="Question6Pel1">Em sento capaç de trobar solucions a un problema</string>
 </resources>

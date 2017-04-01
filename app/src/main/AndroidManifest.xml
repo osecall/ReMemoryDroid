@@ -53,7 +53,10 @@
         <activity
             android:name=".EpisodePresentationActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".PeliculaActivity3"
+        <activity
+            android:name=".PeliculaActivity3"
+            android:screenOrientation="landscape" />
+        <activity android:name=".PeliculaActivity4"
             android:screenOrientation="landscape"></activity>
     </application>
 

@@ -125,6 +125,8 @@ public class AreaAvaluadorActivity extends BaseActivity {
 
                                                 SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                                                 SharedPreferences.Editor editor = prefs.edit();
+                                                editor.clear();
+                                                editor.apply();
                                                 //Passem objecte pacient a JSON
                                                 Gson gson = new Gson();
                                                 String pacient_json = gson.toJson(pacient,PacientUsuari.class);
@@ -226,6 +228,8 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                                         SharedPreferences.Editor editor = prefs.edit();
                                                                                         editor.remove("pacient");
                                                                                         editor.commit();
+                                                                                        editor.clear();
+                                                                                        editor.apply();
                                                                                         tvCUid.setVisibility(View.GONE);
                                                                                         tvCUname.setVisibility(View.GONE);
                                                                                         tvCUsurName.setVisibility(View.GONE);

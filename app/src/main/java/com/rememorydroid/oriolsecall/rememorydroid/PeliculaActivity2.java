@@ -26,7 +26,6 @@ public class PeliculaActivity2 extends AppCompatActivity {
     private Intent intentPel1;
     private RadioGroup rbGroup;
     private String RadioSelected;
-    protected TestAnswers respostes = new TestAnswers();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +90,15 @@ public class PeliculaActivity2 extends AppCompatActivity {
                     //Guardar els valors a Test2 i col·locar indicar al INTENT
                     //Guardem dada sel·leccionada a la classe TestAnswers
 
+                    Gson gson = new Gson();
                     SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
-                    Gson gson = new Gson();
+                    String respostes_json = prefs.getString("respostes",null);
+                    TestAnswers respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
+
                     //Passem valor sel·leccionat com Integer
-                    respostes.setTest2Pregunta2(Integer.parseInt(RadioSelected));
-                    String respostes_json = gson.toJson(respostes,TestAnswers.class);
+                    respostes_recuperades.setTest2Pregunta2(Integer.parseInt(RadioSelected));
+                    respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                     editor.putString("respostes",respostes_json);
                     editor.commit();
                     intentPel1.putExtra("SegonTest","true");
@@ -105,16 +107,15 @@ public class PeliculaActivity2 extends AppCompatActivity {
                 else{
                     //Guardem dada sel·leccionada a la classe TestAnswers
 
-                    //Primer recuperem l'objecte que es va guardar en l'anterior activity TestAnswer
                     Gson gson = new Gson();
                     SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
                     String respostes_json = prefs.getString("respostes",null);
                     TestAnswers respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
 
-                    //Ara actualitzem l'objecte i el tornem a posar a SharedPreferences
+                    //Passem valor sel·leccionat com Integer
                     respostes_recuperades.setTest1Pregunta2(Integer.parseInt(RadioSelected));
                     respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
-                    SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("respostes",respostes_json);
                     editor.commit();
                 }

@@ -38,11 +38,11 @@
         style="@style/QuestionsTestPel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="@string/Question1Pel1"
-        android:textAlignment="viewStart"
         android:layout_below="@+id/tvFromTo"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:text="@string/Question2Pel1"
+        android:textAlignment="viewStart" />
 
     <Button
         android:id="@+id/btBackPel1"
@@ -86,15 +86,14 @@
 
     <RadioGroup
         android:id="@+id/rbGroup1Pel1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvMoltPel1"
-        android:layout_centerHorizontal="true"
         android:layout_column="0"
-        android:layout_marginTop="88dp"
         android:layout_span="50"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_below="@+id/tvGensPel1"
+        android:layout_alignParentStart="true">
 
         <RadioButton
             android:id="@+id/rb1Pel1"

@@ -87,6 +87,12 @@
     <string name="DateEpisode">Date</string>
     <string name="WrongPassword">Wrong Password</string>
     <string name="UserDeleted">Pacient user deleted:</string>
+    <string name="AlertDialaogTest">Please, mark up the option which is the closest how you are feeling right now</string>
+    <string name="Question2Pel1">I\'m feeling capable of recalling important things to me</string>
+    <string name="Question3Pel1">I\'m feeling capable of recalling things I do along the day</string>
+    <string name="Question4Pel1">I\'m feeling capable to make an effort to get over the difficulties</string>
+    <string name="Question5Pel1">I\'m feeling capable of doing tasks which I propose to myself</string>
+    <string name="Question6Pel1">I\'m feeling capable of finding slution to a problem</string>
 
 
 </resources>

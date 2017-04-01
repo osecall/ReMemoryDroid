@@ -3,6 +3,7 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.provider.MediaStore;
@@ -41,6 +42,8 @@ public class PeliculaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pelicula);
 
+        mostrarAlertaPelicula();
+
         ColorGenerator generator = ColorGenerator.DEFAULT;
         FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("1",generator.getRandomColor());
         ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("30",generator.getRandomColor());
@@ -56,6 +59,7 @@ public class PeliculaActivity extends AppCompatActivity {
         btNext = (Button) findViewById(R.id.btNextPel1);
 
         btNext.setEnabled(false);
+
 
         rbGroup = (RadioGroup) findViewById(R.id.rbGroup1Pel1);
 
@@ -130,6 +134,21 @@ public class PeliculaActivity extends AppCompatActivity {
 
 
     }
+
+    private void mostrarAlertaPelicula(){
+        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PeliculaActivity.this);
+        DialegFormControl
+                .setTitle(getString(R.string.Attention))
+                .setMessage(R.string.AlertDialaogTest)
+                .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                })
+                .show();
+
+    }
+
 
     //Part del menú 'action bar'
 

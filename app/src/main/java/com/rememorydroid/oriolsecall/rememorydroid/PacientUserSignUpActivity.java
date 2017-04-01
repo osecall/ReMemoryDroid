@@ -190,6 +190,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
                             SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
+                            editor.clear();
+                            editor.apply();
                             Gson gson = new Gson();
                             String pacient_json = gson.toJson(pacient,PacientUsuari.class);
                             editor.putString("pacient",pacient_json);
