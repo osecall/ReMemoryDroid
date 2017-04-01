@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
-public class PeliculaActivity4 extends AppCompatActivity {
+public class PeliculaActivity5 extends AppCompatActivity {
 
     private TextDrawable FromPage, ToPage, NumeroSeleccionat;
     private ImageView ivFromPage, ivToPage, ivNumSeleccionat;
@@ -30,10 +30,10 @@ public class PeliculaActivity4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pelicula4);
+        setContentView(R.layout.activity_pelicula5);
 
         ColorGenerator generator = ColorGenerator.DEFAULT;
-        FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("4",generator.getRandomColor());
+        FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("5",generator.getRandomColor());
         ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("30",generator.getRandomColor());
 
         ivFromPage = (ImageView) findViewById(R.id.ivFromPage1);
@@ -73,7 +73,7 @@ public class PeliculaActivity4 extends AppCompatActivity {
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intentPel1 = new Intent (PeliculaActivity4.this, PeliculaActivity.class);
+                intentPel1 = new Intent (PeliculaActivity5.this, PeliculaActivity.class);
                 startActivity(intentPel1);
             }
         });
@@ -83,7 +83,7 @@ public class PeliculaActivity4 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                intentPel1 = new Intent (PeliculaActivity4.this, PeliculaActivity5.class);
+                intentPel1 = new Intent (PeliculaActivity5.this, PeliculaActivity6.class);
 
                 //Per controlar si es segona vegada el test
                 if(getIntent().hasExtra("SegonTest")){
@@ -94,7 +94,7 @@ public class PeliculaActivity4 extends AppCompatActivity {
                     TestAnswers respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
 
                     //Passem valor sel·leccionat com Integer
-                    respostes_recuperades.setTest1Pregunta4(Integer.parseInt(RadioSelected));
+                    respostes_recuperades.setTest1Pregunta5(Integer.parseInt(RadioSelected));
                     respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                     editor.putString("respostes",respostes_json);
                     editor.commit();
@@ -111,7 +111,7 @@ public class PeliculaActivity4 extends AppCompatActivity {
                     TestAnswers respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
 
                     //Passem valor sel·leccionat com Integer
-                    respostes_recuperades.setTest1Pregunta4(Integer.parseInt(RadioSelected));
+                    respostes_recuperades.setTest1Pregunta5(Integer.parseInt(RadioSelected));
                     respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                     editor.putString("respostes",respostes_json);
                     editor.commit();
@@ -146,9 +146,9 @@ public class PeliculaActivity4 extends AppCompatActivity {
 
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(PeliculaActivity4.this, R.string.signed_out,
+            Toast.makeText(PeliculaActivity5.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(PeliculaActivity4.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(PeliculaActivity5.this, IniciActivity.class);
             startActivity(areaAvaluador);
 
         }
@@ -157,9 +157,9 @@ public class PeliculaActivity4 extends AppCompatActivity {
 
             //Retorna a la pantalla 'Area Avaluador'
 
-            Toast.makeText(PeliculaActivity4.this, R.string.MenuChangePacient,
+            Toast.makeText(PeliculaActivity5.this, R.string.MenuChangePacient,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(PeliculaActivity4.this, AreaAvaluadorActivity.class);
+            Intent areaAvaluador = new Intent(PeliculaActivity5.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
 
         }

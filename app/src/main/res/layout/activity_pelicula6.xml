@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.rememorydroid.oriolsecall.rememorydroid.PeliculaActivity4"
+    tools:context="com.rememorydroid.oriolsecall.rememorydroid.PeliculaActivity6"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -40,7 +40,7 @@
         android:layout_below="@+id/tvFromTo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="56dp"
-        android:text="@string/Question4Pel1"
+        android:text="@string/Question6Pel1"
         android:textAlignment="viewStart" />
 
     <Button
@@ -176,3 +176,4 @@
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
+

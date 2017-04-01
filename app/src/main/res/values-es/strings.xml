@@ -84,4 +84,5 @@
     <string name="Question4Pel1">Me sient capaz d\'esforzarme para superar las dificultades</string>
     <string name="Question5Pel1">Me siento capaz de hacer las tareas que me propongo</string>
     <string name="Question6Pel1">Me siento capaz de encontrar soluciones a un problema</string>
+    <string name="DialogResting">Recuerde que puede descansar y continuar más tarde</string>
 </resources>

@@ -1,9 +1,11 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.IdRes;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +20,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
-public class PeliculaActivity4 extends AppCompatActivity {
+public class PeliculaActivity6 extends AppCompatActivity {
 
     private TextDrawable FromPage, ToPage, NumeroSeleccionat;
     private ImageView ivFromPage, ivToPage, ivNumSeleccionat;
@@ -30,10 +32,10 @@ public class PeliculaActivity4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pelicula4);
+        setContentView(R.layout.activity_pelicula6);
 
         ColorGenerator generator = ColorGenerator.DEFAULT;
-        FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("4",generator.getRandomColor());
+        FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("6",generator.getRandomColor());
         ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("30",generator.getRandomColor());
 
         ivFromPage = (ImageView) findViewById(R.id.ivFromPage1);
@@ -73,7 +75,7 @@ public class PeliculaActivity4 extends AppCompatActivity {
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intentPel1 = new Intent (PeliculaActivity4.this, PeliculaActivity.class);
+                intentPel1 = new Intent (PeliculaActivity6.this, PeliculaActivity.class);
                 startActivity(intentPel1);
             }
         });
@@ -83,10 +85,11 @@ public class PeliculaActivity4 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                intentPel1 = new Intent (PeliculaActivity4.this, PeliculaActivity5.class);
+                intentPel1 = new Intent (PeliculaActivity6.this, RespirarActivity1.class);
 
                 //Per controlar si es segona vegada el test
                 if(getIntent().hasExtra("SegonTest")){
+                    mostrarAlertaDescans();
                     Gson gson = new Gson();
                     SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
@@ -94,7 +97,7 @@ public class PeliculaActivity4 extends AppCompatActivity {
                     TestAnswers respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
 
                     //Passem valor sel·leccionat com Integer
-                    respostes_recuperades.setTest1Pregunta4(Integer.parseInt(RadioSelected));
+                    respostes_recuperades.setTest1Pregunta6(Integer.parseInt(RadioSelected));
                     respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                     editor.putString("respostes",respostes_json);
                     editor.commit();
@@ -102,6 +105,7 @@ public class PeliculaActivity4 extends AppCompatActivity {
 
                 }
                 else{
+                    mostrarAlertaDescans();
                     //Guardem dada sel·leccionada a la classe TestAnswers
 
                     Gson gson = new Gson();
@@ -111,7 +115,7 @@ public class PeliculaActivity4 extends AppCompatActivity {
                     TestAnswers respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
 
                     //Passem valor sel·leccionat com Integer
-                    respostes_recuperades.setTest1Pregunta4(Integer.parseInt(RadioSelected));
+                    respostes_recuperades.setTest1Pregunta6(Integer.parseInt(RadioSelected));
                     respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                     editor.putString("respostes",respostes_json);
                     editor.commit();
@@ -122,6 +126,21 @@ public class PeliculaActivity4 extends AppCompatActivity {
             }
         });
 
+
+    }
+
+
+    private void mostrarAlertaDescans(){
+        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PeliculaActivity6.this);
+        DialegFormControl
+                .setTitle(getString(R.string.Attention))
+                .setMessage(R.string.DialogResting)
+                .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                })
+                .show();
 
     }
 
@@ -146,9 +165,9 @@ public class PeliculaActivity4 extends AppCompatActivity {
 
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(PeliculaActivity4.this, R.string.signed_out,
+            Toast.makeText(PeliculaActivity6.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(PeliculaActivity4.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(PeliculaActivity6.this, IniciActivity.class);
             startActivity(areaAvaluador);
 
         }
@@ -157,9 +176,9 @@ public class PeliculaActivity4 extends AppCompatActivity {
 
             //Retorna a la pantalla 'Area Avaluador'
 
-            Toast.makeText(PeliculaActivity4.this, R.string.MenuChangePacient,
+            Toast.makeText(PeliculaActivity6.this, R.string.MenuChangePacient,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(PeliculaActivity4.this, AreaAvaluadorActivity.class);
+            Intent areaAvaluador = new Intent(PeliculaActivity6.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
 
         }
