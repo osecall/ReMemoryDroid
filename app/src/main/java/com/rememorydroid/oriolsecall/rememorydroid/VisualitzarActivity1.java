@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -18,6 +20,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
 
     private MediaPlayer mp;
     private VideoView vv;
+    private ImageButton ibPlay, ibStop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +28,41 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         setContentView(R.layout.activity_visualitzar1);
 
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
+        ibPlay = (ImageButton) findViewById(R.id.ibPlay);
+        ibStop = (ImageButton) findViewById(R.id.ibStop);
+        //Quan acabi les instruccions per veu s'habilitaran els botons de reproducció
+        ibPlay.setEnabled(false);
+        ibStop.setEnabled(false);
+        ibPlay.setVisibility(View.INVISIBLE);
+        ibStop.setVisibility(View.INVISIBLE);
 
-        //Per les instrucions
+        //Per les instruccions
         mp = MediaPlayer.create(this, R.raw.test);
 
         DialogInstruccionsVisualitzar(mp);
 
         //Vídeo
         vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.androidvideo));
-        vv.start();
 
-        vv.getDuration(); //Obtenim duració video per anivellar-ho amb la pista de so de fons
+        ibPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                if(vv.isPlaying()){
+                    vv.resume();
+                }
+                if(!vv.isPlaying()){
+                    vv.start();
+                }
+            }
+        });
 
-
-
+        ibStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vv.pause();
+            }
+        });
 
     }
 
@@ -56,6 +79,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                 .setMessage(R.string.DialogVideo1)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
+                        arg0.cancel();
                         try{
                             mp.prepare();
                         }catch (Exception e){
@@ -63,11 +87,15 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();e.toString();
                         }
                         mp.start();
-
                         while(mp.isPlaying()){
                         }
                         mp.stop();
                         mp.release();
+                        ibPlay.setVisibility(View.VISIBLE);
+                        ibStop.setVisibility(View.VISIBLE);
+                        ibPlay.setEnabled(true);
+                        ibStop.setEnabled(true);
+
                     }
                 })
                 .show();

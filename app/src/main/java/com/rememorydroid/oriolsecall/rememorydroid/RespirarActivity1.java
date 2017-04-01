@@ -4,7 +4,6 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,14 +26,9 @@ public class RespirarActivity1 extends AppCompatActivity {
 
         DialogInstruccionsRespirar();
 
-        startActivity(intentRespirar);
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 
     private void DialogInstruccionsRespirar(){
         final AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(RespirarActivity1.this);
@@ -43,27 +37,27 @@ public class RespirarActivity1 extends AppCompatActivity {
                 .setMessage(R.string.InstructonsBreathing)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
+                        arg0.cancel();
                         ReproduirMissatge();
                     }
                 })
                 .show();
     }
 
-    private boolean ReproduirMissatge(){
+    private void ReproduirMissatge(){
         MediaPlayer mp = MediaPlayer.create(this,R.raw.test);
         try{
             mp.prepare();
         }catch (Exception e){
             Toast.makeText(RespirarActivity1.this, e.toString(),
                     Toast.LENGTH_LONG).show();e.toString();
-            return false;
         }
         mp.start();
         while(mp.isPlaying()){
         }
         mp.stop();
         mp.release();
-        return true;
+        startActivity(intentRespirar);
     };
 
     //Part del menú 'action bar'

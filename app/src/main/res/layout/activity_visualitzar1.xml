@@ -1,59 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.rememorydroid.oriolsecall.rememorydroid.VisualitzarActivity1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.rememorydroid.oriolsecall.rememorydroid.VisualitzarActivity1">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="1264dp"
-        android:layout_height="647dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
-        android:weightSum="1">
+    <VideoView
+        android:id="@+id/vvVisualitzar1"
+        android:layout_width="1000dp"
+        android:layout_height="400dp"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="79dp"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.28"
-            android:text="Visualitzar"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+    <ImageButton
+        android:id="@+id/ibPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vvVisualitzar1"
+        android:layout_marginEnd="209dp"
+        android:layout_marginTop="21dp"
+        android:layout_toStartOf="@+id/ibStop"
+        app:srcCompat="@drawable/playreduit"
+        tools:layout_editor_absoluteX="745dp"
+        tools:layout_editor_absoluteY="522dp" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="323dp"
-            android:layout_weight="0.28">
+    <ImageButton
+        android:id="@+id/ibStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="190dp"
+        app:srcCompat="@drawable/stopreduit"
+        android:layout_alignTop="@+id/ibPlay"
+        android:layout_toStartOf="@+id/btNext" />
 
-            <VideoView
-                android:id="@+id/vvVisualitzar1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </FrameLayout>
+    <Button
+        android:id="@+id/btNext"
+        style="@style/Next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="583dp"
+        android:layout_alignBaseline="@+id/btBack"
+        android:layout_alignBottom="@+id/btBack"
+        android:layout_toEndOf="@+id/vvVisualitzar1" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/btBack"
+        style="@style/Back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1140dp"
+        tools:layout_editor_absoluteY="583dp"
+        android:layout_marginBottom="29dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/vvVisualitzar1"
+        android:layout_marginEnd="15dp" />
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
-
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
