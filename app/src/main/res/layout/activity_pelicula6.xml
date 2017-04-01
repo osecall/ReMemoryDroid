@@ -40,8 +40,7 @@
         android:layout_below="@+id/tvFromTo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="56dp"
-        android:text="@string/Question6Pel1"
-        android:textAlignment="viewStart" />
+        android:text="@string/Question6Pel1" />
 
     <Button
         android:id="@+id/btBackPel1"

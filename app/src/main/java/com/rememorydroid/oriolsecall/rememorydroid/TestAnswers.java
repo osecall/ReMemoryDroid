@@ -14,6 +14,7 @@ public class TestAnswers implements Serializable {
     int Test1Pregunta4;
     int Test1Pregunta5;
     int Test1Pregunta6;
+    int Test1Sumatori;
 
     int Test2Pregunta1;
     int Test2Pregunta2;
@@ -21,6 +22,7 @@ public class TestAnswers implements Serializable {
     int Test2Pregunta4;
     int Test2Pregunta5;
     int Test2Pregunta6;
+    int Test2Sumatori;
 
     String PreguntesPersones_Relacio;
     String PreguntesPersones_Grups;
@@ -54,6 +56,24 @@ public class TestAnswers implements Serializable {
     String PreguntesQuan_Temps;
 
     public TestAnswers() {
+    }
+
+    public int getTest1Sumatori() {
+        return Test1Sumatori;
+    }
+
+    public void setTest1Sumatori() {
+        Test1Sumatori = this.Test1Pregunta1+this.Test1Pregunta2+this.Test1Pregunta3
+                +this.Test1Pregunta4+this.Test1Pregunta5+this.Test1Pregunta6;
+    }
+
+    public int getTest2Sumatori() {
+        return Test2Sumatori;
+    }
+
+    public void setTest2Sumatori() {
+        Test2Sumatori = this.Test2Pregunta1+this.Test2Pregunta2+this.Test2Pregunta3
+                +this.Test2Pregunta4+this.Test2Pregunta5+this.Test2Pregunta6;
     }
 
     public int getTest1Pregunta1() {
@@ -336,18 +356,8 @@ public class TestAnswers implements Serializable {
         PreguntesQuan_Temps = preguntesQuan_Temps;
     }
 
-    int GetSumatoriTest1(){
-       return this.Test1Pregunta1+this.Test1Pregunta2+this.Test1Pregunta3
-               +this.Test1Pregunta4+this.Test1Pregunta5+this.Test1Pregunta6;
-    }
-
-    int GetSumatoriTest2(){
-        return this.Test2Pregunta1+this.Test2Pregunta2+this.Test2Pregunta3
-                +this.Test2Pregunta4+this.Test2Pregunta5+this.Test2Pregunta6;
-    }
-
-    int getDifferencesTests(){
-        return GetSumatoriTest1()-GetSumatoriTest2();
+     public int getDifferencesTests(){
+        return Math.abs(Test1Sumatori-Test2Sumatori);
     }
 
 

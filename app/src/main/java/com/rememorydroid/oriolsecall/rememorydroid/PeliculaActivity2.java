@@ -47,6 +47,7 @@ public class PeliculaActivity2 extends AppCompatActivity {
         btNext = (Button) findViewById(R.id.btNextPel1);
 
         btNext.setEnabled(false);
+        btNext.setVisibility(View.INVISIBLE);
 
         rbGroup = (RadioGroup) findViewById(R.id.rbGroup1Pel1);
 
@@ -60,6 +61,7 @@ public class PeliculaActivity2 extends AppCompatActivity {
                 RadioButton rb = (RadioButton) findViewById(radioButtonID);
                 RadioSelected= rb.getText().toString();
 
+                btNext.setVisibility(View.VISIBLE);
                 btNext.setEnabled(true);
 
                 NumeroSeleccionat = TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(RadioSelected,ColorGenerator.DEFAULT.getRandomColor());

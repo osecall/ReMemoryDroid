@@ -47,6 +47,7 @@ public class PeliculaActivity4 extends AppCompatActivity {
         btNext = (Button) findViewById(R.id.btNextPel1);
 
         btNext.setEnabled(false);
+        btNext.setVisibility(View.INVISIBLE);
 
         rbGroup = (RadioGroup) findViewById(R.id.rbGroup1Pel1);
 
@@ -60,6 +61,7 @@ public class PeliculaActivity4 extends AppCompatActivity {
                 RadioButton rb = (RadioButton) findViewById(radioButtonID);
                 RadioSelected= rb.getText().toString();
 
+                btNext.setVisibility(View.VISIBLE);
                 btNext.setEnabled(true);
 
                 NumeroSeleccionat = TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(RadioSelected,ColorGenerator.DEFAULT.getRandomColor());
@@ -94,7 +96,7 @@ public class PeliculaActivity4 extends AppCompatActivity {
                     TestAnswers respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
 
                     //Passem valor sel·leccionat com Integer
-                    respostes_recuperades.setTest1Pregunta4(Integer.parseInt(RadioSelected));
+                    respostes_recuperades.setTest2Pregunta4(Integer.parseInt(RadioSelected));
                     respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                     editor.putString("respostes",respostes_json);
                     editor.commit();

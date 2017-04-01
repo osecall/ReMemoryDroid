@@ -4,6 +4,7 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RespirarActivity1 extends AppCompatActivity {
 
-    private MediaPlayer mp;
     private Intent intentRespirar;
 
     @Override
@@ -25,41 +25,46 @@ public class RespirarActivity1 extends AppCompatActivity {
         setContentView(R.layout.activity_respirar1);
         intentRespirar = new Intent(RespirarActivity1.this, VisualitzarActivity1.class);
 
-        MediaPlayer mp = MediaPlayer.create(this,R.raw.test);
-        DialogInstruccionsRespirar(mp);
+        DialogInstruccionsRespirar();
+
+        startActivity(intentRespirar);
 
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        mp.release();
     }
 
-    private void DialogInstruccionsRespirar(final MediaPlayer mp){
-        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(RespirarActivity1.this);
+    private void DialogInstruccionsRespirar(){
+        final AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(RespirarActivity1.this);
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
                 .setMessage(R.string.InstructonsBreathing)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        try{
-                            mp.prepare();
-                        }catch (Exception e){
-                            Toast.makeText(RespirarActivity1.this, e.toString(),
-                                    Toast.LENGTH_LONG).show();e.toString();
-                        }
-                        mp.start();
-
-                        while(mp.isPlaying()){
-                        }
-                        mp.stop();
-                        startActivity(intentRespirar);
+                        ReproduirMissatge();
                     }
                 })
                 .show();
     }
+
+    private boolean ReproduirMissatge(){
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.test);
+        try{
+            mp.prepare();
+        }catch (Exception e){
+            Toast.makeText(RespirarActivity1.this, e.toString(),
+                    Toast.LENGTH_LONG).show();e.toString();
+            return false;
+        }
+        mp.start();
+        while(mp.isPlaying()){
+        }
+        mp.stop();
+        mp.release();
+        return true;
+    };
 
     //Part del menú 'action bar'
 
