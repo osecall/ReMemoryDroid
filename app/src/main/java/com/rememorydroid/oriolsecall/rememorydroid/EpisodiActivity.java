@@ -41,13 +41,11 @@ public class EpisodiActivity extends BaseActivity {
     private ListView lista, listaVersio;
     private Button btNextEpisode;
     private ImageView ivDrawableLlarga, ivDrawableCurta;
-    //private StorageReference mStorageRef;
     private long i=0;
     private long j=0;
     private boolean Curta;
     private String episodiSeleccionat;
     private EpisodilistAdapter adaptadorPersonalitzat;
-    //private ArrayAdapter<String> adaptadorEpisodis;
     private ArrayList<EpisodiList> episodis;
     private EpisodiList episodi;
     private String ID_pacient = new String();
