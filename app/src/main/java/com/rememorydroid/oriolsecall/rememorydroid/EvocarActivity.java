@@ -1,22 +1,142 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 
-public class EvocarActivity extends AppCompatActivity {
+import java.io.File;
+import java.io.IOException;
+
+public class EvocarActivity extends AppCompatActivity implements View.OnClickListener{
+
+    private ImageButton ibRecordEvocar, ibStopPlayEvocar, ibPlayRecordEvocar, ibStopAudioEvocar;
+    private MediaPlayer mp;
+    private MediaRecorder mr;
+    private String outputFile = null;
+    private Button btBack, btNext;
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i==R.id.ibRecordEvocar){
+            grabar(outputFile);
+        }
+        if (i==R.id.ibStopPlayEvocar){
+            pararGrabar();
+        }
+        if (i==R.id.ibPlayRecordEvocar){
+            reproduir();
+        }
+        if (i==R.id.ibStopAudioEvocar){
+            pararReproduccio();
+        }
+        if (i==R.id.btBack){
+            startActivity(new Intent(EvocarActivity.this,VisualitzarActivity1.class));
+        }
+        if (i==R.id.btNext){
+            //Enviar so a FireBase
+            startActivity(new Intent(EvocarActivity.this,VisualitzarActivity1.class));
+        }
+    }
+
+    private void grabar(String outputFile){
+        mr=new MediaRecorder();
+        mr.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mr.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mr.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+
+        mr.setOutputFile(outputFile);
+
+        try {
+            mr.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mr.start();
+        ibPlayRecordEvocar.setEnabled(false);
+        Toast.makeText(EvocarActivity.this,"Grabant" ,
+                Toast.LENGTH_LONG).show();
+
+    }
+    private void pararGrabar(){
+        mr.stop();
+        mr.release();
+        mr=null;
+        ibPlayRecordEvocar.setEnabled(true);
+        Toast.makeText(EvocarActivity.this,"S'ha parat de grabar" ,
+                Toast.LENGTH_LONG).show();
+    }
+    private void reproduir(){
+        mp = new MediaPlayer();
+        try {
+            mp.setDataSource(outputFile);
+            mp.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mp.start();
+        while(mp.isPlaying()){
+            ibRecordEvocar.setEnabled(false);
+        }
+        ibRecordEvocar.setEnabled(true);
+
+    }
+    private void pararReproduccio(){
+        mp.stop();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evocar);
+
+        //Extreure dades pacient
+        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String pacient = prefs.getString("pacient",null);
+        PacientUsuari pacientusuari = gson.fromJson(pacient, PacientUsuari.class);
+
+        outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarA.3gp";
+
+        ibRecordEvocar = (ImageButton) findViewById(R.id.ibRecordEvocar);
+        ibStopPlayEvocar = (ImageButton) findViewById(R.id.ibStopPlayEvocar);
+        ibPlayRecordEvocar = (ImageButton) findViewById(R.id.ibPlayRecordEvocar);
+        ibStopAudioEvocar = (ImageButton) findViewById(R.id.ibStopAudioEvocar);
+
+        btBack = (Button) findViewById(R.id.btBack);
+        btNext = (Button) findViewById(R.id.btNext);
+
+        ibRecordEvocar.setOnClickListener(this);
+        ibStopPlayEvocar.setOnClickListener(this);
+        ibPlayRecordEvocar.setOnClickListener(this);
+        ibStopAudioEvocar.setOnClickListener(this);
+
+
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mr.release();
+        mp.release();
+    }
 
     //Part del menú 'action bar'
 
