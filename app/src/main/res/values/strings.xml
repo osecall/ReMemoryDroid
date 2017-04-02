@@ -101,6 +101,7 @@
     <string name="EpisodeNameIntroduce">Introduce episode\'s name</string>
     <string name="EpisodeTimeIntroduce">Introduce episode\'s time scope</string>
     <string name="AddNewEpisode">Add a new episode (Name, Date, Time)</string>
+    <string name="EpisodeAdded">Episode\'s number is</string>
 
 
 </resources>

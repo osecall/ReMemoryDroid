@@ -6,22 +6,26 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 
 public class Episodi {
 
-    String Nombre, Fecha, Hora;
+    public String Name, Fecha, Hora;
 
     public Episodi() {
     }
 
-    public String getNombre() {
-        return Nombre;
+    public Episodi(String nombre, String fecha, String hora) {
+        Name = nombre;
+        Fecha = fecha;
+        Hora = hora;
+    }
+
+    public String getName() {
+        return Name;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        Name = nombre;
     }
 
-    public String getFecha() {
-        return Fecha;
-    }
+    public String getFecha() {return Fecha; }
 
     public void setFecha(String fecha) {
         Fecha = fecha;

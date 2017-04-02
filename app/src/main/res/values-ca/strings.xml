@@ -92,4 +92,5 @@
     <string name="EpisodeNameIntroduce">Introdueix el nom del episodi</string>
     <string name="EpisodeTimeIntroduce">Introdueix la franja horària de l\'episodi</string>
     <string name="AddNewEpisode">Afegeix un episodi nou (Nom, data i franja horària)</string>
+    <string name="EpisodeAdded">"Número episodi és "</string>
 </resources>

@@ -44,7 +44,7 @@ public class EpisodiActivity extends BaseActivity {
     private Button btNextEpisode;
     private ImageView ivDrawableLlarga, ivDrawableCurta;
     private long i=0;
-    private long j=0;
+    private long j=1;
     private boolean Curta;
     private EpisodiList NewEpisodi;
     private String episodiSeleccionat;
@@ -86,7 +86,7 @@ public class EpisodiActivity extends BaseActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot node: dataSnapshot.getChildren()){
                     if (node.child("id").getValue(String.class).equals(ID_pacient)){
-                        i= node.child("episodis").getChildrenCount(); //Guardem el número d'episodis
+                        i= node.child("episodis").getChildrenCount()+1; //Guardem el número d'episodis
 
 
                         while(j<i){
@@ -227,7 +227,12 @@ public class EpisodiActivity extends BaseActivity {
     private void testDialeg(){
         LayoutInflater factory = LayoutInflater.from(this);
         View textEntryView = factory.inflate(R.layout.dialegepisodis, null);
-        AlertDialog.Builder adName =new AlertDialog.Builder(EpisodiActivity.this);
+        //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+        final EditText NameEpisode = (EditText) textEntryView.findViewById(R.id.etDialegEpisodeName);
+        final EditText FechaEpisode = (EditText) textEntryView.findViewById(R.id.etDialegEpisodeFecha);
+        final EditText HoraEpisode = (EditText) textEntryView.findViewById(R.id.etDialegEpisodeHora);
+
+        final AlertDialog.Builder adName =new AlertDialog.Builder(EpisodiActivity.this);
         adName
 
                 .setTitle(getString(R.string.Attention))
@@ -236,21 +241,23 @@ public class EpisodiActivity extends BaseActivity {
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 
-
                         //Afegim episodi a la base de dades
 
                         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 for (DataSnapshot node: dataSnapshot.getChildren()) {
-                                    if (node.child("id").equals("54") && !node.child("episodes").hasChild("7")) {
-                                        //Controlem que no el tingui ja
-                                        //Usar classe Episodi en contes d'aixo
-                                        node.child("episodes").child("7").child("Name").getRef().setValue("Oriooool");
-                                        node.child("episodes").child("7").child("Fecha").getRef().setValue("Oriooool");
-                                        node.child("episodes").child("7").child("Hora").getRef().setValue("Oriooool");
+                                    if (node.child("id").getValue().equals(ID_pacient)) {
+                                        //Analitzem quants episodis hi ha
+                                        String numero_episodi= String.valueOf(node.child("episodis").getChildrenCount()+1);
 
+                                        Episodi episodi_tmp = new Episodi(NameEpisode.getText().toString(),FechaEpisode.getText().toString(),HoraEpisode.getText().toString());
+                                        node.child("episodis").child(numero_episodi).child("Name").getRef().setValue(episodi_tmp.getName());
+                                        node.child("episodis").child(numero_episodi).child("Fecha").getRef().setValue(episodi_tmp.getFecha());
+                                        node.child("episodis").child(numero_episodi).child("Hora").getRef().setValue(episodi_tmp.getHora());
 
+                                        Toast.makeText(EpisodiActivity.this,
+                                                getString(R.string.EpisodeAdded)+" "+numero_episodi, Toast.LENGTH_LONG).show();
                                     }
 
                                 }
@@ -258,7 +265,8 @@ public class EpisodiActivity extends BaseActivity {
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
-                                //Error en afegir dada
+                                Toast.makeText(EpisodiActivity.this,
+                                        "Error", Toast.LENGTH_LONG).show();
                             }
                         });
 

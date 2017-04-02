@@ -92,4 +92,5 @@
     <string name="EpisodeNameIntroduce">Introduce el nombre del episodio</string>
     <string name="EpisodeTimeIntroduce">Introduce la franja horaria del episodio</string>
     <string name="AddNewEpisode">Añade un nuevo episodio (Nombre, Fecha y franja horaria)</string>
+    <string name="EpisodeAdded">"El número de episodio es "</string>
 </resources>
