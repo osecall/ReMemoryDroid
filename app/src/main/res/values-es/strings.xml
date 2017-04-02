@@ -87,4 +87,9 @@
     <string name="DialogResting">Recuerde que puede descansar y continuar más tarde</string>
     <string name="InstructonsBreathing">Siga las instrucciones ue va a oir a continuación. \n\nSi lo desea, puede cerrar los ojos.</string>
     <string name="DialogVideo1">A continuación vera una película formada con las imagenes formadas por usted con la camara portatil. Le pedimos que observe atentamente toda la secuencia de imagenes, prestando la maxima atención a todo lo que se muestra.</string>
+    <string name="AddingEpisode">Añadir episodio</string>
+    <string name="EpisodeIntroduceDate">Introduce la fecha del episodio</string>
+    <string name="EpisodeNameIntroduce">Introduce el nombre del episodio</string>
+    <string name="EpisodeTimeIntroduce">Introduce la franja horaria del episodio</string>
+    <string name="AddNewEpisode">Añade un nuevo episodio (Nombre, Fecha y franja horaria)</string>
 </resources>

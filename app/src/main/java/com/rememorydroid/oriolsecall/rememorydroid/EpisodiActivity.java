@@ -8,12 +8,14 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,6 +46,7 @@ public class EpisodiActivity extends BaseActivity {
     private long i=0;
     private long j=0;
     private boolean Curta;
+    private EpisodiList NewEpisodi;
     private String episodiSeleccionat;
     private EpisodilistAdapter adaptadorPersonalitzat;
     private ArrayList<EpisodiList> episodis;
@@ -56,6 +59,8 @@ public class EpisodiActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episodi);
+
+        NewEpisodi = new EpisodiList("","","");
 
         Curta= false; //per saber si s'ha escollit versió curta o llarga
 
@@ -219,12 +224,59 @@ public class EpisodiActivity extends BaseActivity {
     }
 
 
+    private void testDialeg(){
+        LayoutInflater factory = LayoutInflater.from(this);
+        View textEntryView = factory.inflate(R.layout.dialegepisodis, null);
+        AlertDialog.Builder adName =new AlertDialog.Builder(EpisodiActivity.this);
+        adName
+
+                .setTitle(getString(R.string.Attention))
+                .setView(textEntryView)
+                .setMessage(R.string.AddNewEpisode)
+                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+
+                        //Afegim episodi a la base de dades
+
+                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot node: dataSnapshot.getChildren()) {
+                                    if (node.child("id").equals("54") && !node.child("episodes").hasChild("7")) {
+                                        //Controlem que no el tingui ja
+                                        //Usar classe Episodi en contes d'aixo
+                                        node.child("episodes").child("7").child("Name").getRef().setValue("Oriooool");
+                                        node.child("episodes").child("7").child("Fecha").getRef().setValue("Oriooool");
+                                        node.child("episodes").child("7").child("Hora").getRef().setValue("Oriooool");
+
+
+                                    }
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                //Error en afegir dada
+                            }
+                        });
+
+
+                        arg0.cancel();
+
+
+                }})
+                .show();
+    }
+
+
     //Part del menú 'action bar'
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menuavaluadors, menu);
+        getMenuInflater().inflate(R.menu.menuepisodis, menu);
         return true;
     }
 
@@ -255,6 +307,11 @@ public class EpisodiActivity extends BaseActivity {
                     Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(EpisodiActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
+
+        }
+
+        if(id==R.id.btAfegirEpisodi){
+            testDialeg();
 
         }
 

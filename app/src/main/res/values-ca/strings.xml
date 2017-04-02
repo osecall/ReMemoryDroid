@@ -87,4 +87,9 @@
     <string name="DialogResting">Recordi que pot descansar i continuar més tard</string>
     <string name="InstructonsBreathing">Segueix les instruccions que escoltarà a continuació.\n\nSi ho desitja pot tancar els ulls.</string>
     <string name="DialogVideo1">A continuació veurà una pel·lícula formada amb les images formades per vosté amb la càmera portàtil. Li demanem que observi atentament tota la seqüència d\'imatges, prestant la màxima atenció a tot el que es mostra.</string>
+    <string name="AddingEpisode">Afegir episodi</string>
+    <string name="EpisodeIntroduceDate">Introdueix la data del episodi</string>
+    <string name="EpisodeNameIntroduce">Introdueix el nom del episodi</string>
+    <string name="EpisodeTimeIntroduce">Introdueix la franja horària de l\'episodi</string>
+    <string name="AddNewEpisode">Afegeix un episodi nou (Nom, data i franja horària)</string>
 </resources>

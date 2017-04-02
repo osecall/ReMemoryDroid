@@ -5,4 +5,10 @@ package com.rememorydroid.oriolsecall.rememorydroid;
  */
 
 public class ConvertToCSV {
+
+
+    public ConvertToCSV(){
+    }
+
+    private boolean Convert(String f){return true;};
 }

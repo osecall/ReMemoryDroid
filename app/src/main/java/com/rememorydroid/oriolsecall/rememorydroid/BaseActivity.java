@@ -1,7 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.app.ProgressDialog;
-import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
 
 /**
@@ -11,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
 
 
-    @VisibleForTesting
     public ProgressDialog mProgressDialog;
 
     public void showProgressDialog() {
