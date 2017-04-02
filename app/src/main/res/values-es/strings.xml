@@ -93,4 +93,6 @@
     <string name="EpisodeTimeIntroduce">Introduce la franja horaria del episodio</string>
     <string name="AddNewEpisode">Añade un nuevo episodio (Nombre, Fecha y franja horaria)</string>
     <string name="EpisodeAdded">"El número de episodio es "</string>
+    <string name="UserDoesNotExist">Este paciente no existe en la base de datos</string>
+    <string name="UserAlreadyExist">ID usuario ya existe, escoje otro</string>
 </resources>

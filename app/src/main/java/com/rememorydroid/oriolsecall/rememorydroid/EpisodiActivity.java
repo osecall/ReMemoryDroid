@@ -81,7 +81,7 @@ public class EpisodiActivity extends BaseActivity {
 
 
         showProgressDialog();
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot node: dataSnapshot.getChildren()){
@@ -96,7 +96,6 @@ public class EpisodiActivity extends BaseActivity {
                             episodi.setFecha(node.child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class));
                             episodi.setNumero(String.valueOf(j));
                             episodis.add(episodi);
-                            //adaptadorEpisodis.add(String.valueOf(j)+"\t\t\t"+node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class) +" ("+node.child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class)+")");
                             j++;
                         }
 
@@ -272,10 +271,13 @@ public class EpisodiActivity extends BaseActivity {
 
 
                         arg0.cancel();
+                        startActivity(new Intent (EpisodiActivity.this,EpisodiActivity.class));
 
 
-                }})
+
+                    }})
                 .show();
+
     }
 
 

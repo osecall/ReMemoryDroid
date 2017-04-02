@@ -38,16 +38,14 @@ public class AreaAvaluadorActivity extends BaseActivity {
     private Button btSelectUser, btCreateUser, btDeleteUser;
     private String MessageDialogFinal;
     private ImageView ivIDerrorSelect, ivIDerrorDelete;
-
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("pacients");
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("pacients");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area_avaluador);
-
 
         emailAvaluador = (TextView) findViewById(R.id.tvAssessersSessionEmail);
         tvCUid = (TextView) findViewById(R.id.tvCUid);
@@ -134,10 +132,8 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                 //Anem a la pantalla tractaments
                                                 Intent EpisodiIntent = new Intent(AreaAvaluadorActivity.this, EpisodiActivity.class);
                                                 startActivity(EpisodiIntent);
-                                }
+                                            }
                                         }
-
-
 
                                     }
                                     @Override
@@ -149,15 +145,14 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                     }
 
                                 });
+
                                 hideProgressDialog();
 
                             }
                         })
                         .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0, int arg1) {
-                                // Some stuff to do when cancel got clicked
-
-                                //Fer res
+                                arg0.cancel();
                             }
                         })
                         .show();

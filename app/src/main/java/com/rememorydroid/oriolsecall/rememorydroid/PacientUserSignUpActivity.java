@@ -19,8 +19,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 public class PacientUserSignUpActivity extends BaseActivity{
@@ -30,9 +33,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
     private EditText etIDPacientSignUp, etNamePacientSignUp, etSurNamePacientSignUp, etLastNamePacientSignUp;
     private ImageView ivIDerror, ivNameError, ivSurError, ivLastError;
     private PacientUsuari pacient;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("pacients");
-
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("pacients");
 
 
     private boolean controlFormulariSignUp(String ID, String Nom, String Cognom, String SeCognom){
@@ -167,52 +169,53 @@ public class PacientUserSignUpActivity extends BaseActivity{
             @Override
             public void onClick(View view) {
                 //Passem el contingut dels edittext a Strings per controlar-lo si es correcte
-                String ID = etIDPacientSignUp.getText().toString();
-                String Nom = etNamePacientSignUp.getText().toString();
-                String Cognom = etSurNamePacientSignUp.getText().toString();
-                String SegCognom = etLastNamePacientSignUp.getText().toString();
+                final String ID = etIDPacientSignUp.getText().toString();
+                final String Nom = etNamePacientSignUp.getText().toString();
+                final String Cognom = etSurNamePacientSignUp.getText().toString();
+                final String SegCognom = etLastNamePacientSignUp.getText().toString();
+
+
+
 
                 if(controlFormulariSignUp(ID, Nom, Cognom, SegCognom)){
                     //Guardar a FireBase i passar a 'Tractaments'
 
-                    pacient = new PacientUsuari(ID,Nom,Cognom, SegCognom);
-                    showProgressDialog();
-                    myRef.push().setValue(pacient).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
+                        pacient = new PacientUsuari(ID,Nom,Cognom, SegCognom);
+                        showProgressDialog();
+                        myRef.push().setValue(pacient).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
 
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class);
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class);
 
-                            // Grabar a SharedPreferences user
-                            // Col·locar objecte pacient amb llibreria GSON PacientUserSUintent.set
+                                // Grabar a SharedPreferences user
+                                // Col·locar objecte pacient amb llibreria GSON PacientUserSUintent.set
 
-                            SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = prefs.edit();
-                            editor.clear();
-                            editor.apply();
-                            Gson gson = new Gson();
-                            String pacient_json = gson.toJson(pacient,PacientUsuari.class);
-                            editor.putString("pacient",pacient_json);
-                            editor.commit();
-                            hideProgressDialog();
-                            startActivity(PacientUserSUintent);
+                                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = prefs.edit();
+                                editor.clear();
+                                editor.apply();
+                                Gson gson = new Gson();
+                                String pacient_json = gson.toJson(pacient,PacientUsuari.class);
+                                editor.putString("pacient",pacient_json);
+                                editor.commit();
+                                hideProgressDialog();
+                                startActivity(PacientUserSUintent);
 
 
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            hideProgressDialog();
-                            Toast.makeText(PacientUserSignUpActivity.this, "Error!",
-                                    Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                hideProgressDialog();
+                                Toast.makeText(PacientUserSignUpActivity.this, "Error!",
+                                        Toast.LENGTH_LONG).show();
 
-                        }
-                    });
-
+                            }
+                        });
                 }
             }
         });
-
     }
     //Part del menú 'action bar'
 
