@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -21,6 +22,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
     private MediaPlayer mp;
     private VideoView vv;
     private ImageButton ibPlay, ibStop;
+    private Button btBack, btNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,9 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
         ibPlay = (ImageButton) findViewById(R.id.ibPlay);
         ibStop = (ImageButton) findViewById(R.id.ibStop);
+        btBack = (Button) findViewById(R.id.btBack);
+        btNext = (Button) findViewById(R.id.btNext);
+
         //Quan acabi les instruccions per veu s'habilitaran els botons de reproducció
         ibPlay.setEnabled(false);
         ibStop.setEnabled(false);
@@ -61,6 +66,20 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 vv.pause();
+            }
+        });
+
+        btBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent (VisualitzarActivity1.this, RespirarActivity1.class));
+            }
+        });
+
+        btNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent (VisualitzarActivity1.this, EvocarActivity.class));
             }
         });
 

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.rememorydroid.oriolsecall.rememorydroid.VisualitzarActivity1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibRecordEvocar"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:layout_width="275dp"
+                android:layout_height="275dp"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                app:srcCompat="@drawable/microphone" />
+
+            <ImageButton
+                android:id="@+id/ibStopPlayEvocar"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:layout_width="275dp"
+                android:layout_height="275dp"
+                app:srcCompat="@drawable/stopmicrophone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibPlayRecordEvocar"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:layout_width="275dp"
+                android:layout_height="275dp"
+                app:srcCompat="@drawable/audio" />
+
+            <ImageButton
+                android:id="@+id/ibStopAudioEvocar"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:layout_width="275dp"
+                android:layout_height="275dp"
+                app:srcCompat="@drawable/stopaudio" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btNext"
+        style="@style/Next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btBack"
+        android:layout_marginEnd="41dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/btBack"
+        style="@style/Back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="42dp"
+        android:layout_marginStart="50dp"
+        android:text="Button" />
+
+</RelativeLayout>

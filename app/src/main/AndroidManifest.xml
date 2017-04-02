@@ -67,9 +67,12 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".RespirarActivity1"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".VisualitzarActivity1"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".VisualitzarActivity1"
+            android:screenOrientation="landscape" />
+        <activity android:name=".EvocarActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
