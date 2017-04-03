@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -180,39 +181,85 @@ public class PacientUserSignUpActivity extends BaseActivity{
                 if(controlFormulariSignUp(ID, Nom, Cognom, SegCognom)){
                     //Guardar a FireBase i passar a 'Tractaments'
 
-                        pacient = new PacientUsuari(ID,Nom,Cognom, SegCognom);
-                        showProgressDialog();
-                        myRef.push().setValue(pacient).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
+                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for(DataSnapshot node: dataSnapshot.getChildren()){
+                                if(node.child("id").getValue(String.class).equals(ID)){
 
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class);
+                                    AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PacientUserSignUpActivity.this);
+                                    LayoutInflater factory = LayoutInflater.from(PacientUserSignUpActivity.this);
+                                    View textEntryView = factory.inflate(R.layout.dialegpacientexistent, null);
 
-                                // Grabar a SharedPreferences user
-                                // Col·locar objecte pacient amb llibreria GSON PacientUserSUintent.set
+                                    //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+                                    final EditText IDnouDialeg = (EditText) textEntryView.findViewById(R.id.etIDnouDialeg);
 
-                                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = prefs.edit();
-                                editor.clear();
-                                editor.apply();
-                                Gson gson = new Gson();
-                                String pacient_json = gson.toJson(pacient,PacientUsuari.class);
-                                editor.putString("pacient",pacient_json);
-                                editor.commit();
-                                hideProgressDialog();
-                                startActivity(PacientUserSUintent);
+                                    DialegFormControl
+                                            .setTitle(getString(R.string.Attention))
+                                            .setView(textEntryView)
+                                            .setMessage(R.string.IDalreadyExists)
+                                            .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface arg0, int arg1) {
+                                                    pacient = new PacientUsuari(IDnouDialeg.getText().toString(), Nom, Cognom, SegCognom);
+                                                    if(!IDnouDialeg.getText().toString().equals(ID)) {
 
+                                                        showProgressDialog();
+                                                        myRef.push().setValue(pacient).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
 
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class);
+
+                                                                // Grabar a SharedPreferences user
+                                                                // Col·locar objecte pacient amb llibreria GSON PacientUserSUintent.set
+
+                                                                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                                                                SharedPreferences.Editor editor = prefs.edit();
+                                                                editor.clear();
+                                                                editor.apply();
+                                                                Gson gson = new Gson();
+                                                                String pacient_json = gson.toJson(pacient, PacientUsuari.class);
+                                                                editor.putString("pacient", pacient_json);
+                                                                editor.commit();
+                                                                hideProgressDialog();
+                                                                startActivity(PacientUserSUintent);
+
+                                                            }
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception e) {
+                                                                hideProgressDialog();
+                                                                Toast.makeText(PacientUserSignUpActivity.this, "Error!",
+                                                                        Toast.LENGTH_LONG).show();
+
+                                                            }
+
+                                                        });
+                                                    }
+                                                    else{
+                                                        arg0.cancel();
+                                                        arg0.dismiss();
+                                                    }
+                                                }
+                                            })
+                                            .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    dialogInterface.cancel();
+                                                }
+                                            })
+                                            .show();
+
+                                }
                             }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                hideProgressDialog();
-                                Toast.makeText(PacientUserSignUpActivity.this, "Error!",
-                                        Toast.LENGTH_LONG).show();
+                        }
 
-                            }
-                        });
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Toast.makeText(PacientUserSignUpActivity.this, "Error!",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             }
         });

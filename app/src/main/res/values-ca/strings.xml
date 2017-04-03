@@ -95,4 +95,5 @@
     <string name="EpisodeAdded">"Número episodi és "</string>
     <string name="UserDoesNotExist">Aquest pacient no existeix a la base de dades</string>
     <string name="UserAlreadyExist">ID usuari ja existeix, escull un altre ID</string>
+    <string name="IDalreadyExists">Aquest ID ja existeix, escull un altre si us plau</string>
 </resources>

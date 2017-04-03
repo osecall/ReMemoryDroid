@@ -104,6 +104,7 @@
     <string name="EpisodeAdded">Episode\'s number is</string>
     <string name="UserDoesNotExist">User does not exist in the database</string>
     <string name="UserAlreadyExist">User already exists</string>
+    <string name="IDalreadyExists">This ID already exists, write a different one</string>
 
 
 </resources>
