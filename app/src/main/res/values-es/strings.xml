@@ -98,4 +98,7 @@
     <string name="IDalreadyExists">Este ID ya existe, elige otro por favor.</string>
     <string name="StopRecording">Se ha parado de grabar</string>
     <string name="Recording">Grabando</string>
+    <string name="Congratulations">Felicidades!</string>
+    <string name="DoingGreat">Lo estas haciendo muy bien!</string>
+    <string name="ThankYou">Gracias!</string>
 </resources>

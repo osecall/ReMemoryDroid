@@ -2,6 +2,7 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -13,6 +14,7 @@ import android.os.SystemClock;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -42,6 +44,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     private ImageButton ibRecordEvocar, ibStopRecordEvocar, ibPlayEvocar, ibStopPlayEvocar;
     private MediaPlayer mp;
     private MediaRecorder mr;
+    private Intent intent;
     private String outputFile = null;
     private Button btBack, btNext;
     private TextView tvRecording;
@@ -71,12 +74,24 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             showProgressDialog();
 
             Uri file = Uri.fromFile(new File(outputFile));
-            StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child("54/musica.3gp");
+            //Col·locar-ho en l'episodi corresponent
+            StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child("54/EvocarA.3gp");
             soRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     hideProgressDialog();
-                    startActivity(new Intent(EvocarActivity.this,VisualitzarActivity1.class));
+                    new AlertDialog.Builder(EvocarActivity.this)
+                            .setMessage(R.string.DoingGreat)
+                            .setTitle(R.string.Congratulations)
+                            .setNeutralButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    intent = new Intent(EvocarActivity.this,RespirarActivity1.class);
+                                    intent.putExtra("Segon","Segon");
+                                    startActivity(intent);
+                                }
+                            })
+                            .show();
                 }
             })
             .addOnFailureListener(new OnFailureListener() {

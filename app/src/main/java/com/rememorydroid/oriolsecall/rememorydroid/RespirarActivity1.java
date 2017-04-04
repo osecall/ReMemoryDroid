@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,14 +18,30 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RespirarActivity1 extends AppCompatActivity {
 
     private Intent intentRespirar;
+    private ImageView ivRespirar;
+    private int Reproduccio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_respirar1);
+
+        ImageView ivRespirar = (ImageView) findViewById(R.id.ivRespirar);
         intentRespirar = new Intent(RespirarActivity1.this, VisualitzarActivity1.class);
 
-        DialogInstruccionsRespirar();
+        //Configurem els elements que apareixeran i es reproduiran en funció si és la segona vegada que es crida la activity
+        //d'aquesta forma ens evitem duplicar classes (activities)
+        if(getIntent().hasExtra("Segon")){
+            ivRespirar.setImageResource(R.drawable.abstracte2);
+            Reproduccio = R.raw.test2;
+            intentRespirar.putExtra("Segon","Segon");
+            DialogInstruccionsRespirar();
+
+        }
+        else{
+            Reproduccio = R.raw.test1;
+            DialogInstruccionsRespirar();
+        }
 
 
     }
@@ -38,14 +55,14 @@ public class RespirarActivity1 extends AppCompatActivity {
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         arg0.cancel();
-                        ReproduirMissatge();
+                        ReproduirMissatge(Reproduccio);
                     }
                 })
                 .show();
     }
 
-    private void ReproduirMissatge(){
-        MediaPlayer mp = MediaPlayer.create(this,R.raw.test);
+    private void ReproduirMissatge(int Reproduccio){
+        MediaPlayer mp = MediaPlayer.create(this,Reproduccio);
         try{
             mp.prepare();
         }catch (Exception e){

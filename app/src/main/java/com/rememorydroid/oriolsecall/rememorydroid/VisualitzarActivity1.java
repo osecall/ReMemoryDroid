@@ -43,7 +43,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         ibStop.setVisibility(View.INVISIBLE);
 
         //Per les instruccions
-        mp = MediaPlayer.create(this, R.raw.test);
+        mp = MediaPlayer.create(this, R.raw.test1);
 
         DialogInstruccionsVisualitzar(mp);
 

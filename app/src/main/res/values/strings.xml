@@ -107,6 +107,9 @@
     <string name="IDalreadyExists">This ID already exists, write a different one</string>
     <string name="StopRecording">Stop recording</string>
     <string name="Recording">Recording</string>
+    <string name="Congratulations">Congratulations!</string>
+    <string name="DoingGreat">You are doing it great!</string>
+    <string name="ThankYou">Thank you!</string>
 
 
 </resources>
