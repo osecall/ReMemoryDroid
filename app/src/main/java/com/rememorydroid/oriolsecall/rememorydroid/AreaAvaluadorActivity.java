@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -171,6 +172,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
                     MessageDialogFinal = getString(R.string.UserDeleteMessage,IduserDelete.getText());
 
                     final AlertDialog.Builder Dialeg = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+
                     Dialeg
                             .setIcon(R.drawable.warningdialogdeleteuser)
                             .setTitle(getString(R.string.Attention))
@@ -181,13 +183,16 @@ public class AreaAvaluadorActivity extends BaseActivity {
 
                                     //Confirmar eliminació per contrasenya
                                     //-------------------------------------------------------------------
-                                    final EditText input = new EditText(getBaseContext());
                                     AlertDialog.Builder dialegPassword = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+                                    LayoutInflater factory = LayoutInflater.from(AreaAvaluadorActivity.this);
+                                    View textEntryView = factory.inflate(R.layout.dialegdeleteuser, null);
+                                    //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+                                    final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
                                     dialegPassword
+                                            .setView(textEntryView)
                                             .setIcon(R.drawable.passwordicon)
                                             .setTitle(R.string.PasswordDialog)
                                             .setMessage(R.string.IntroducePassword)
-                                            .setView(input)
                                             .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface arg0, int arg1) {
                                                     // Recuperem el email del avaluador i el reautentiquem
