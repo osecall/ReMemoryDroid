@@ -66,8 +66,7 @@ public class EpisodePresentationActivity extends BaseActivity {
 
         new Handler().postDelayed(new Runnable(){
             public void run(){
-                Intent intent = new Intent(EpisodePresentationActivity.this, PeliculaActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(EpisodePresentationActivity.this, PeliculaActivity.class));
                 finish();
             };
         }, 5000);

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Environment;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ import java.io.IOException;
 
 public class EvocarActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ImageButton ibRecordEvocar, ibStopPlayEvocar, ibPlayRecordEvocar, ibStopAudioEvocar;
+    private ImageButton ibRecordEvocar, ibStopRecordEvocar, ibPlayEvocar, ibStopPlayEvocar;
     private MediaPlayer mp;
     private MediaRecorder mr;
     private String outputFile = null;
@@ -37,13 +38,13 @@ public class EvocarActivity extends AppCompatActivity implements View.OnClickLis
         if (i==R.id.ibRecordEvocar){
             grabar(outputFile);
         }
-        if (i==R.id.ibStopPlayEvocar){
+        if (i==R.id.ibStopRecordEvocar){
             pararGrabar();
         }
-        if (i==R.id.ibPlayRecordEvocar){
+        if (i==R.id.ibPlayEvocar){
             reproduir();
         }
-        if (i==R.id.ibStopAudioEvocar){
+        if (i==R.id.ibStopPlayEvocar){
             pararReproduccio();
         }
         if (i==R.id.btBack){
@@ -69,7 +70,9 @@ public class EvocarActivity extends AppCompatActivity implements View.OnClickLis
             e.printStackTrace();
         }
         mr.start();
-        ibPlayRecordEvocar.setEnabled(false);
+        ibRecordEvocar.setEnabled(false);
+        int image = R.drawable.audiof;
+        ibPlayEvocar.setImageResource(image);
         Toast.makeText(EvocarActivity.this,"Grabant" ,
                 Toast.LENGTH_LONG).show();
 
@@ -78,7 +81,7 @@ public class EvocarActivity extends AppCompatActivity implements View.OnClickLis
         mr.stop();
         mr.release();
         mr=null;
-        ibPlayRecordEvocar.setEnabled(true);
+        ibPlayEvocar.setEnabled(true);
         Toast.makeText(EvocarActivity.this,"S'ha parat de grabar" ,
                 Toast.LENGTH_LONG).show();
     }
@@ -116,16 +119,16 @@ public class EvocarActivity extends AppCompatActivity implements View.OnClickLis
 
         ibRecordEvocar = (ImageButton) findViewById(R.id.ibRecordEvocar);
         ibStopPlayEvocar = (ImageButton) findViewById(R.id.ibStopPlayEvocar);
-        ibPlayRecordEvocar = (ImageButton) findViewById(R.id.ibPlayRecordEvocar);
-        ibStopAudioEvocar = (ImageButton) findViewById(R.id.ibStopAudioEvocar);
+        ibPlayEvocar = (ImageButton) findViewById(R.id.ibPlayEvocar);
+        ibStopRecordEvocar = (ImageButton) findViewById(R.id.ibStopRecordEvocar);
 
         btBack = (Button) findViewById(R.id.btBack);
         btNext = (Button) findViewById(R.id.btNext);
 
         ibRecordEvocar.setOnClickListener(this);
         ibStopPlayEvocar.setOnClickListener(this);
-        ibPlayRecordEvocar.setOnClickListener(this);
-        ibStopAudioEvocar.setOnClickListener(this);
+        ibPlayEvocar.setOnClickListener(this);
+        ibStopRecordEvocar.setOnClickListener(this);
 
 
     }

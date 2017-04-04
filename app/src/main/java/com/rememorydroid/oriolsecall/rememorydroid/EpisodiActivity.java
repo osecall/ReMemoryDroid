@@ -155,7 +155,7 @@ public class EpisodiActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 lista.setItemChecked(i,true);
-                episodiSeleccionat= String.valueOf(i);
+                episodiSeleccionat= String.valueOf(i+1);
            }
         });
 
@@ -268,13 +268,8 @@ public class EpisodiActivity extends BaseActivity {
                                         "Error", Toast.LENGTH_LONG).show();
                             }
                         });
-
-
                         arg0.cancel();
                         startActivity(new Intent (EpisodiActivity.this,EpisodiActivity.class));
-
-
-
                     }})
                 .show();
 

@@ -175,9 +175,6 @@ public class PacientUserSignUpActivity extends BaseActivity{
                 final String Cognom = etSurNamePacientSignUp.getText().toString();
                 final String SegCognom = etLastNamePacientSignUp.getText().toString();
 
-
-
-
                 if(controlFormulariSignUp(ID, Nom, Cognom, SegCognom)){
                     //Guardar a FireBase i passar a 'Tractaments'
 
@@ -236,22 +233,21 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
                                                         });
                                                     }
-                                                    else{
-                                                        arg0.cancel();
-                                                        arg0.dismiss();
-                                                    }
+
                                                 }
                                             })
                                             .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
                                                     dialogInterface.cancel();
+                                                    dialogInterface.dismiss();
                                                 }
                                             })
                                             .show();
 
                                 }
                             }
+
                         }
 
                         @Override

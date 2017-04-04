@@ -228,11 +228,14 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                                         tvCUsurName.setVisibility(View.GONE);
 
                                                                                     }
+
                                                                                 }
                                                                             });
 
 
                                                                         }
+
+
                                                                     }
 
 
@@ -256,13 +259,15 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                     });
 
 
+                                            arg0.cancel();arg0.dismiss();
 
 
                                                 }
                                             })
                                             .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface arg0, int arg1) {
-
+                                                    arg0.dismiss();
+                                                    arg0.cancel();
                                                 }
                                             })
                                             .show();

@@ -29,7 +29,7 @@
                 app:srcCompat="@drawable/microphone" />
 
             <ImageButton
-                android:id="@+id/ibStopPlayEvocar"
+                android:id="@+id/ibStopRecordEvocar"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:layout_width="275dp"
                 android:layout_height="275dp"
@@ -43,14 +43,14 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/ibPlayRecordEvocar"
+                android:id="@+id/ibPlayEvocar"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:layout_width="275dp"
                 android:layout_height="275dp"
                 app:srcCompat="@drawable/audio" />
 
             <ImageButton
-                android:id="@+id/ibStopAudioEvocar"
+                android:id="@+id/ibStopPlayEvocar"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:layout_width="275dp"
                 android:layout_height="275dp"
