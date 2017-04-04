@@ -19,13 +19,7 @@
         <activity
             android:name=".Splash"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".IniciActivity"
             android:screenOrientation="landscape" />
@@ -72,7 +66,11 @@
             android:name=".VisualitzarActivity1"
             android:screenOrientation="landscape" />
         <activity android:name=".EvocarActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"><intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter></activity>
     </application>
 
 </manifest>

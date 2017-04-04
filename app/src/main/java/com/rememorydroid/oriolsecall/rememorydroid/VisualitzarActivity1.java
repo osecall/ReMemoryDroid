@@ -36,6 +36,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         btNext = (Button) findViewById(R.id.btNext);
 
         //Quan acabi les instruccions per veu s'habilitaran els botons de reproducció
+        btNext.setVisibility(View.INVISIBLE);
         ibPlay.setEnabled(false);
         ibStop.setEnabled(false);
         ibPlay.setVisibility(View.INVISIBLE);
@@ -110,6 +111,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                         }
                         mp.stop();
                         mp.release();
+                        btNext.setVisibility(View.VISIBLE);
                         ibPlay.setVisibility(View.VISIBLE);
                         ibStop.setVisibility(View.VISIBLE);
                         ibPlay.setEnabled(true);

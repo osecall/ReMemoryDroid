@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -65,7 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/btBack"
-        android:layout_marginEnd="41dp" />
+        android:layout_marginEnd="41dp"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/btBack"
@@ -76,5 +78,29 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="42dp"
         android:layout_marginStart="50dp" />
+
+    <TextView
+        android:id="@+id/tvRecordingEvocar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:text="@string/Recording"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_above="@+id/linearLayout"
+        android:layout_toEndOf="@+id/btBack"
+        android:layout_marginStart="355dp" />
+
+    <Chronometer
+        android:id="@+id/chronometerEvocar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvRecordingEvocar"
+        android:layout_marginStart="112dp"
+        android:layout_toEndOf="@+id/tvRecordingEvocar"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

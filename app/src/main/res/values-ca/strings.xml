@@ -96,4 +96,6 @@
     <string name="UserDoesNotExist">Aquest pacient no existeix a la base de dades</string>
     <string name="UserAlreadyExist">ID usuari ja existeix, escull un altre ID</string>
     <string name="IDalreadyExists">Aquest ID ja existeix, escull un altre si us plau</string>
+    <string name="StopRecording">S\'ha parat de grabar</string>
+    <string name="Recording">Grabant</string>
 </resources>
