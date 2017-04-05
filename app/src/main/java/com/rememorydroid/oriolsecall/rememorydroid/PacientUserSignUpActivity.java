@@ -24,6 +24,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
@@ -36,114 +38,6 @@ public class PacientUserSignUpActivity extends BaseActivity{
     private PacientUsuari pacient;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference("pacients");
-
-
-    private boolean controlFormulariSignUp(String ID, String Nom, String Cognom, String SeCognom){
-
-        //Diàleg que apareixerà si troba error
-        final AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PacientUserSignUpActivity.this);
-        DialegFormControl
-                .setIcon(R.drawable.warningdialogdeleteuser)
-                .setTitle(getString(R.string.Attention))
-                .setMessage(" ")
-                .setCancelable(true)
-                .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        //Fer res
-                    }
-                });
-
-
-            //Controls
-
-            //ID
-            if(ID.isEmpty()){
-                DialegFormControl.setMessage(R.string.IDFieldEmpty);
-                DialegFormControl.show();
-                ivIDerror.setVisibility(View.VISIBLE);
-                return false;
-
-            }
-            if(!android.text.TextUtils.isDigitsOnly(ID)){
-                DialegFormControl.setMessage(R.string.IDonlyDigits);
-                DialegFormControl.show();
-                ivIDerror.setVisibility(View.VISIBLE);
-                return false;
-            }
-            if(ID.length()>4){
-                DialegFormControl.setMessage(R.string.IDlength4);
-                DialegFormControl.show();
-                ivIDerror.setVisibility(View.VISIBLE);
-                return false;
-
-            }
-            if(ID.length()<1){
-                DialegFormControl.setMessage(R.string.IDlength1);
-                DialegFormControl.show();
-                ivIDerror.setVisibility(View.VISIBLE);
-                return false;
-
-            }
-            //Nom
-            if(Nom.isEmpty()){
-                DialegFormControl.setMessage(R.string.NameFieldEmpty);
-                DialegFormControl.show();
-                ivNameError.setVisibility(View.VISIBLE);
-                return false;
-            }
-            if(Nom.length()>30 || Nom.length()<2){
-                DialegFormControl.setMessage(R.string.NameLength);
-                DialegFormControl.show();
-                ivNameError.setVisibility(View.VISIBLE);
-                return false;
-            }
-
-            if(!Nom.matches("^[a-z A-Z]+$")){
-                DialegFormControl.setMessage(R.string.NameNotDigits);
-                DialegFormControl.show();
-                ivNameError.setVisibility(View.VISIBLE);
-                return false;
-            }
-            if(Cognom.isEmpty()){
-                DialegFormControl.setMessage(R.string.SurnameEmpty);
-                DialegFormControl.show();
-                ivSurError.setVisibility(View.VISIBLE);
-                return false;
-            }
-            if(!Cognom.matches("^[a-z A-Z]+$")){
-                DialegFormControl.setMessage(R.string.SurNameNotDigits);
-                DialegFormControl.show();
-                ivSurError.setVisibility(View.VISIBLE);
-                return false;
-            }
-            if(Cognom.length()>30 || Cognom.length()<2){
-                DialegFormControl.setMessage(R.string.SurnameLength);
-                DialegFormControl.show();
-                ivSurError.setVisibility(View.VISIBLE);
-                return false;
-            }
-            if(SeCognom.isEmpty()) {
-                DialegFormControl.setMessage(R.string.LastNameEmpty);
-                DialegFormControl.show();
-                ivLastError.setVisibility(View.VISIBLE);
-                return false;
-            }
-            if(!SeCognom.matches("^[a-z A-Z]+$")){
-                DialegFormControl.setMessage(R.string.LastNameNotDigits);
-                DialegFormControl.show();
-                ivLastError.setVisibility(View.VISIBLE);
-                return false;
-            }
-            if(SeCognom.length()>30 || SeCognom.length()<2){
-                DialegFormControl.setMessage(R.string.LastNameLength);
-                DialegFormControl.show();
-                ivLastError.setVisibility(View.VISIBLE);
-                return false;
-            }
-
-
-        return true;
-    }
 
 
     @Override
@@ -177,78 +71,105 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
                 if(controlFormulariSignUp(ID, Nom, Cognom, SegCognom)){
                     //Guardar a FireBase i passar a 'Tractaments'
-
                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            for(DataSnapshot node: dataSnapshot.getChildren()){
-                                if(node.child("id").getValue(String.class).equals(ID)){
+                            //En cas que existeixi ja l'usuari
+                            if(dataSnapshot.hasChild(ID)){
+                                AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PacientUserSignUpActivity.this);
+                                LayoutInflater factory = LayoutInflater.from(PacientUserSignUpActivity.this);
+                                View textEntryView = factory.inflate(R.layout.dialegpacientexistent, null);
 
-                                    AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PacientUserSignUpActivity.this);
-                                    LayoutInflater factory = LayoutInflater.from(PacientUserSignUpActivity.this);
-                                    View textEntryView = factory.inflate(R.layout.dialegpacientexistent, null);
+                                //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+                                final EditText IDnouDialeg = (EditText) textEntryView.findViewById(R.id.etIDnouDialeg);
 
-                                    //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
-                                    final EditText IDnouDialeg = (EditText) textEntryView.findViewById(R.id.etIDnouDialeg);
+                                DialegFormControl
+                                        .setTitle(getString(R.string.Attention))
+                                        .setView(textEntryView)
+                                        .setMessage(R.string.IDalreadyExists)
+                                        .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface arg0, int arg1) {
+                                                pacient = new PacientUsuari(IDnouDialeg.getText().toString(), Nom, Cognom, SegCognom);
+                                                if(!IDnouDialeg.getText().toString().equals(ID)) {
 
-                                    DialegFormControl
-                                            .setTitle(getString(R.string.Attention))
-                                            .setView(textEntryView)
-                                            .setMessage(R.string.IDalreadyExists)
-                                            .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface arg0, int arg1) {
-                                                    pacient = new PacientUsuari(IDnouDialeg.getText().toString(), Nom, Cognom, SegCognom);
-                                                    if(!IDnouDialeg.getText().toString().equals(ID)) {
+                                                    showProgressDialog();
+                                                    myRef.child(IDnouDialeg.getText().toString()).setValue(pacient).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
 
-                                                        showProgressDialog();
-                                                        myRef.push().setValue(pacient).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            // Grabar a SharedPreferences user
 
-                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class);
+                                                            SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                                                            SharedPreferences.Editor editor = prefs.edit();
+                                                            editor.clear();
+                                                            editor.apply();
+                                                            Gson gson = new Gson();
+                                                            String pacient_json = gson.toJson(pacient, PacientUsuari.class);
+                                                            editor.putString("pacient", pacient_json);
+                                                            editor.commit();
+                                                            hideProgressDialog();
+                                                            startActivity(new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class));
 
-                                                                // Grabar a SharedPreferences user
-                                                                // Col·locar objecte pacient amb llibreria GSON PacientUserSUintent.set
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            hideProgressDialog();
+                                                            Toast.makeText(PacientUserSignUpActivity.this, "Error!",
+                                                                    Toast.LENGTH_LONG).show();
 
-                                                                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                                                                SharedPreferences.Editor editor = prefs.edit();
-                                                                editor.clear();
-                                                                editor.apply();
-                                                                Gson gson = new Gson();
-                                                                String pacient_json = gson.toJson(pacient, PacientUsuari.class);
-                                                                editor.putString("pacient", pacient_json);
-                                                                editor.commit();
-                                                                hideProgressDialog();
-                                                                startActivity(PacientUserSUintent);
+                                                        }
 
-                                                            }
-                                                        }).addOnFailureListener(new OnFailureListener() {
-                                                            @Override
-                                                            public void onFailure(@NonNull Exception e) {
-                                                                hideProgressDialog();
-                                                                Toast.makeText(PacientUserSignUpActivity.this, "Error!",
-                                                                        Toast.LENGTH_LONG).show();
-
-                                                            }
-
-                                                        });
-                                                    }
-
+                                                    });
                                                 }
-                                            })
-                                            .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                    dialogInterface.cancel();
-                                                    dialogInterface.dismiss();
-                                                }
-                                            })
-                                            .show();
 
-                                }
+                                            }
+                                        })
+                                        .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                dialogInterface.cancel();
+                                                dialogInterface.dismiss();
+                                            }
+                                        })
+                                        .show();
+
                             }
+                            else{
+                                showProgressDialog();
 
-                        }
+                                pacient = new PacientUsuari(ID, Nom, Cognom, SegCognom);
+
+                                myRef.child(ID).setValue(pacient).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        // Grabar a SharedPreferences user
+
+                                        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = prefs.edit();
+                                        editor.clear();
+                                        editor.apply();
+                                        Gson gson = new Gson();
+                                        String pacient_json = gson.toJson(pacient, PacientUsuari.class);
+                                        editor.putString("pacient", pacient_json);
+                                        editor.commit();
+                                        hideProgressDialog();
+                                        startActivity(new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class));
+
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        hideProgressDialog();
+                                        Toast.makeText(PacientUserSignUpActivity.this, "Error!",
+                                                Toast.LENGTH_LONG).show();
+
+                                    }
+
+                                });
+                            }
+                         }
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
@@ -257,9 +178,39 @@ public class PacientUserSignUpActivity extends BaseActivity{
                         }
                     });
                 }
+
             }
         });
     }
+
+
+
+    private void introduirPacientNou(final PacientUsuari pacient){
+
+        myRef.push().setValue(pacient).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class);
+
+                // Grabar a SharedPreferences user
+                // Col·locar objecte pacient amb llibreria GSON PacientUserSUintent.set
+
+                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.clear();
+                editor.apply();
+                Gson gson = new Gson();
+                String pacient_json = gson.toJson(pacient, PacientUsuari.class);
+                editor.putString("pacient", pacient_json);
+                editor.commit();
+                hideProgressDialog();
+                startActivity(PacientUserSUintent);
+                finish();
+            }
+        });
+    }
+
+
     //Part del menú 'action bar'
 
     @Override
@@ -300,5 +251,113 @@ public class PacientUserSignUpActivity extends BaseActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private boolean controlFormulariSignUp(String ID, String Nom, String Cognom, String SeCognom){
+
+        //Diàleg que apareixerà si troba error
+        final AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PacientUserSignUpActivity.this);
+        DialegFormControl
+                .setIcon(R.drawable.warningdialogdeleteuser)
+                .setTitle(getString(R.string.Attention))
+                .setMessage(" ")
+                .setCancelable(true)
+                .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        //Fer res
+                    }
+                });
+
+
+        //Controls
+
+        //ID
+        if(ID.isEmpty()){
+            DialegFormControl.setMessage(R.string.IDFieldEmpty);
+            DialegFormControl.show();
+            ivIDerror.setVisibility(View.VISIBLE);
+            return false;
+
+        }
+        if(!android.text.TextUtils.isDigitsOnly(ID)){
+            DialegFormControl.setMessage(R.string.IDonlyDigits);
+            DialegFormControl.show();
+            ivIDerror.setVisibility(View.VISIBLE);
+            return false;
+        }
+        if(ID.length()>4){
+            DialegFormControl.setMessage(R.string.IDlength4);
+            DialegFormControl.show();
+            ivIDerror.setVisibility(View.VISIBLE);
+            return false;
+
+        }
+        if(ID.length()<1){
+            DialegFormControl.setMessage(R.string.IDlength1);
+            DialegFormControl.show();
+            ivIDerror.setVisibility(View.VISIBLE);
+            return false;
+
+        }
+        //Nom
+        if(Nom.isEmpty()){
+            DialegFormControl.setMessage(R.string.NameFieldEmpty);
+            DialegFormControl.show();
+            ivNameError.setVisibility(View.VISIBLE);
+            return false;
+        }
+        if(Nom.length()>30 || Nom.length()<2){
+            DialegFormControl.setMessage(R.string.NameLength);
+            DialegFormControl.show();
+            ivNameError.setVisibility(View.VISIBLE);
+            return false;
+        }
+
+        if(!Nom.matches("^[a-z A-Z]+$")){
+            DialegFormControl.setMessage(R.string.NameNotDigits);
+            DialegFormControl.show();
+            ivNameError.setVisibility(View.VISIBLE);
+            return false;
+        }
+        if(Cognom.isEmpty()){
+            DialegFormControl.setMessage(R.string.SurnameEmpty);
+            DialegFormControl.show();
+            ivSurError.setVisibility(View.VISIBLE);
+            return false;
+        }
+        if(!Cognom.matches("^[a-z A-Z]+$")){
+            DialegFormControl.setMessage(R.string.SurNameNotDigits);
+            DialegFormControl.show();
+            ivSurError.setVisibility(View.VISIBLE);
+            return false;
+        }
+        if(Cognom.length()>30 || Cognom.length()<2){
+            DialegFormControl.setMessage(R.string.SurnameLength);
+            DialegFormControl.show();
+            ivSurError.setVisibility(View.VISIBLE);
+            return false;
+        }
+        if(SeCognom.isEmpty()) {
+            DialegFormControl.setMessage(R.string.LastNameEmpty);
+            DialegFormControl.show();
+            ivLastError.setVisibility(View.VISIBLE);
+            return false;
+        }
+        if(!SeCognom.matches("^[a-z A-Z]+$")){
+            DialegFormControl.setMessage(R.string.LastNameNotDigits);
+            DialegFormControl.show();
+            ivLastError.setVisibility(View.VISIBLE);
+            return false;
+        }
+        if(SeCognom.length()>30 || SeCognom.length()<2){
+            DialegFormControl.setMessage(R.string.LastNameLength);
+            DialegFormControl.show();
+            ivLastError.setVisibility(View.VISIBLE);
+            return false;
+        }
+
+
+        return true;
     }
 }

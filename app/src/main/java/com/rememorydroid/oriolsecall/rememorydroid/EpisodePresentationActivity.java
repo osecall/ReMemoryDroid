@@ -45,13 +45,9 @@ public class EpisodePresentationActivity extends BaseActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot node: dataSnapshot.getChildren()){
-                    if (node.child("id").getValue(String.class).equals(ID_pacient)){
-                        tvEpisodePresenName.setText(node.child("episodis").child(episodi).child("Name").getValue(String.class));
-                        tvEpisodePresenTime.setText(node.child("episodis").child(episodi).child("Hora").getValue(String.class));
-                        tvEpisodePresenDate.setText(node.child("episodis").child(episodi).child("Fecha").getValue(String.class));
-                  }
-                }
+                        tvEpisodePresenName.setText(dataSnapshot.child(ID_pacient).child("episodis").child(episodi).child("Name").getValue(String.class));
+                        tvEpisodePresenTime.setText(dataSnapshot.child(ID_pacient).child("episodis").child(episodi).child("Hora").getValue(String.class));
+                        tvEpisodePresenDate.setText(dataSnapshot.child(ID_pacient).child("episodis").child(episodi).child("Fecha").getValue(String.class));
             hideProgressDialog();
             }
 

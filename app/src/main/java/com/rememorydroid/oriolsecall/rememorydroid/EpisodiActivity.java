@@ -21,8 +21,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +33,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class EpisodiActivity extends BaseActivity {
 
@@ -46,11 +43,9 @@ public class EpisodiActivity extends BaseActivity {
     private long i=0;
     private long j=1;
     private boolean Curta;
-    private EpisodiList NewEpisodi;
     private String episodiSeleccionat;
     private EpisodilistAdapter adaptadorPersonalitzat;
     private ArrayList<EpisodiList> episodis;
-    private EpisodiList episodi;
     private String ID_pacient = new String();
     private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
 
@@ -60,12 +55,9 @@ public class EpisodiActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episodi);
 
-        NewEpisodi = new EpisodiList("","","");
-
         Curta= false; //per saber si s'ha escollit versió curta o llarga
 
         episodis = new ArrayList<EpisodiList>();
-        episodi = new EpisodiList("","","");
 
         episodiSeleccionat = new String();
 
@@ -84,24 +76,20 @@ public class EpisodiActivity extends BaseActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot node: dataSnapshot.getChildren()){
-                    if (node.child("id").getValue(String.class).equals(ID_pacient)){
-                        i= node.child("episodis").getChildrenCount()+1; //Guardem el número d'episodis
 
+                        i= dataSnapshot.child(ID_pacient).child("episodis").getChildrenCount()+1;//Guardem el número d'episodis
 
                         while(j<i){
+                            EpisodiList episodi=new EpisodiList("","","");
                             String valor_de_j_string = String.valueOf(j).toString();
-                            episodi = new EpisodiList("","","");
-                            episodi.setName(node.child("episodis").child(valor_de_j_string).child("Name").getValue(String.class));
-                            episodi.setFecha(node.child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class));
+
+                            episodi.setName(dataSnapshot.child(ID_pacient).child("episodis").child(valor_de_j_string).child("Name").getValue(String.class));
+                            episodi.setFecha(dataSnapshot.child(ID_pacient).child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class));
                             episodi.setNumero(String.valueOf(j));
                             episodis.add(episodi);
                             j++;
                         }
-
-                    }
-                }
-                hideProgressDialog();
+                        hideProgressDialog();
             }
 
             @Override
@@ -113,7 +101,6 @@ public class EpisodiActivity extends BaseActivity {
 
             }
         });
-
 
 
         tvVersioSelected = (TextView) findViewById(R.id.tvVersioSelected);
@@ -143,13 +130,9 @@ public class EpisodiActivity extends BaseActivity {
         ivDrawableLlarga.setImageDrawable(drawableS);
         ivDrawableCurta.setImageDrawable(drawableL);
 
-
-
-        //lista.setAdapter(adaptadorEpisodis);
         listaVersio.setAdapter(adaptadorVersio);
         adaptadorPersonalitzat = new EpisodilistAdapter(this,episodis);
         lista.setAdapter(adaptadorPersonalitzat);
-
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -203,14 +186,18 @@ public class EpisodiActivity extends BaseActivity {
                     //Passem versió per intent ja que només s'usarà a la pròxima activity una vegada
                     //Com que hi ha 3 idiomes passem alguna dada per indica que s'ha escollit la versió llarga a la següent activity
 
+                    SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+
                     if(Curta==false){
                         TractamentIntent.putExtra("versio","Long");
+                        editor.putString("versio", "Long");
+
                     }
                     else{
                         TractamentIntent.putExtra("versio","Short");
+                        editor.putString("versio", "Short");
                     }
-                    SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("episodi", episodiSeleccionat);
                     editor.commit();
 
@@ -242,24 +229,18 @@ public class EpisodiActivity extends BaseActivity {
 
                         //Afegim episodi a la base de dades
 
+                        showProgressDialog();
                         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                for (DataSnapshot node: dataSnapshot.getChildren()) {
-                                    if (node.child("id").getValue().equals(ID_pacient)) {
                                         //Analitzem quants episodis hi ha
-                                        String numero_episodi= String.valueOf(node.child("episodis").getChildrenCount()+1);
+                                        String numero_episodi= String.valueOf(dataSnapshot.child(ID_pacient).child("episodis").getChildrenCount()+1);
 
-                                        Episodi episodi_tmp = new Episodi(NameEpisode.getText().toString(),FechaEpisode.getText().toString(),HoraEpisode.getText().toString());
-                                        node.child("episodis").child(numero_episodi).child("Name").getRef().setValue(episodi_tmp.getName());
-                                        node.child("episodis").child(numero_episodi).child("Fecha").getRef().setValue(episodi_tmp.getFecha());
-                                        node.child("episodis").child(numero_episodi).child("Hora").getRef().setValue(episodi_tmp.getHora());
-
+                                        dataSnapshot.child(ID_pacient).child("episodis").child(numero_episodi).child("Name").getRef().setValue(NameEpisode.getText().toString());
+                                        dataSnapshot.child(ID_pacient).child("episodis").child(numero_episodi).child("Fecha").getRef().setValue(FechaEpisode.getText().toString());
+                                        dataSnapshot.child(ID_pacient).child("episodis").child(numero_episodi).child("Hora").getRef().setValue(HoraEpisode.getText().toString());
                                         Toast.makeText(EpisodiActivity.this,
-                                                getString(R.string.EpisodeAdded)+" "+numero_episodi, Toast.LENGTH_LONG).show();
-                                    }
-
-                                }
+                                                getString(R.string.EpisodeAdded) + " " + numero_episodi, Toast.LENGTH_LONG).show();
                             }
 
                             @Override
@@ -268,8 +249,10 @@ public class EpisodiActivity extends BaseActivity {
                                         "Error", Toast.LENGTH_LONG).show();
                             }
                         });
+                        hideProgressDialog();
                         arg0.cancel();
                         startActivity(new Intent (EpisodiActivity.this,EpisodiActivity.class));
+                        finish();
                     }})
                 .show();
 
