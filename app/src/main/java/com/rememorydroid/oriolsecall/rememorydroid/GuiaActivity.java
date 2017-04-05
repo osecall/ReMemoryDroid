@@ -9,7 +9,6 @@ import android.widget.Button;
 public class GuiaActivity extends AppCompatActivity {
 
     private Button btBackGuide;
-    private Intent GuideIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +20,7 @@ public class GuiaActivity extends AppCompatActivity {
         btBackGuide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GuideIntent = new Intent(GuiaActivity.this, TractamentsActivity.class);
-                startActivity(GuideIntent);
+                startActivity(new Intent(GuiaActivity.this, TractamentsActivity.class));
             }
         });
 

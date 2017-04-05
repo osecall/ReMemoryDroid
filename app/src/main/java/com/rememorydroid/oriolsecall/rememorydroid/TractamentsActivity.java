@@ -50,12 +50,12 @@ public class TractamentsActivity extends AppCompatActivity {
 
         //Deshabilitar alguns botons si s'ha escollit versió llarga
 
-        if(getIntent().getStringExtra("versio").matches("Long")){
+        if(prefs.getString("Versio",null).matches("Long")){
             btAlbum.setEnabled(false);
             btGuia.setEnabled(false);
             btJocs.setEnabled(false);
         }
-        else if(getIntent().getStringExtra("versio").matches("Short")){
+        else if(prefs.getString("Versio",null).matches("Short")){
             btPelicula.setEnabled(false);
         }
 

@@ -191,12 +191,12 @@ public class EpisodiActivity extends BaseActivity {
 
                     if(Curta==false){
                         TractamentIntent.putExtra("versio","Long");
-                        editor.putString("versio", "Long");
+                        editor.putString("Versio", "Long");
 
                     }
                     else{
                         TractamentIntent.putExtra("versio","Short");
-                        editor.putString("versio", "Short");
+                        editor.putString("Versio", "Short");
                     }
                     editor.putString("episodi", episodiSeleccionat);
                     editor.commit();
@@ -251,7 +251,7 @@ public class EpisodiActivity extends BaseActivity {
                         });
                         hideProgressDialog();
                         arg0.cancel();
-                        startActivity(new Intent (EpisodiActivity.this,EpisodiActivity.class));
+                        startActivity(getIntent());
                         finish();
                     }})
                 .show();

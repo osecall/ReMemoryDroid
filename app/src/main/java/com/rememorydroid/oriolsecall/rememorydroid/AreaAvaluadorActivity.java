@@ -323,7 +323,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                             snapshot.child(IduserDelete.getText().toString()).getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                 @Override
                                                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                                                    Toast.makeText(AreaAvaluadorActivity.this, R.string.UserDeleted+IduserDelete.getText().toString(),
+                                                                                    Toast.makeText(AreaAvaluadorActivity.this, getString(R.string.UserDeleted)+IduserDelete.getText().toString(),
                                                                                             Toast.LENGTH_LONG).show();
 
                                                                                     //Eliminem l'usuari de la memòria si és el mateix que està a la sessió
