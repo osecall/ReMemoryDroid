@@ -1,21 +1,16 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.SystemClock;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,10 +21,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -66,10 +59,10 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         if (i==R.id.ibStopPlayEvocar){
             pararReproduccio();
         }
-        if (i==R.id.btBack){
+        if (i==R.id.btBackWeather){
             startActivity(new Intent(EvocarActivity.this,VisualitzarActivity1.class));
         }
-        if (i==R.id.btNext){
+        if (i==R.id.btNextWeather){
             //Enviar fitxer so a FireBase
             showProgressDialog();
 
@@ -194,8 +187,8 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         tvRecording.setVisibility(View.INVISIBLE);
 
 
-        btBack = (Button) findViewById(R.id.btBack);
-        btNext = (Button) findViewById(R.id.btNext);
+        btBack = (Button) findViewById(R.id.btBackWeather);
+        btNext = (Button) findViewById(R.id.btNextWeather);
 
         chronometer = (Chronometer) findViewById(R.id.chronometerEvocar);
         chronometer.setVisibility(View.INVISIBLE);

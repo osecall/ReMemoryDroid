@@ -101,4 +101,20 @@
     <string name="Congratulations">Felicidades!</string>
     <string name="DoingGreat">Lo estas haciendo muy bien!</string>
     <string name="ThankYou">Gracias!</string>
+    <string name="WhenItHappened">Cuando sucedió?</string>
+    <string name="EpisodeSeasonTime">Epoca del año del episodio</string>
+    <string name="Summer">Verano</string>
+    <string name="Spring">Primavera</string>
+    <string name="Winter">Invierno</string>
+    <string name="Autumn">Otoño</string>
+    <string name="WhatWasTheWeather">Que tiempo hacia?</string>
+    <string name="SunnyDay">Día soleado</string>
+    <string name="Rainy">Lluvioso</string>
+    <string name="Cloudly">Día enuvlado</string>
+    <string name="FoggyDay">Neblina</string>
+    <string name="HowLongItLast">Cuanto duró?</string>
+    <string name="LessThan2Hours">Menos de 2 horas</string>
+    <string name="action_settings">Configuración</string>
+    <string name="Between2and4">Entre 2 y 4 horas</string>
+    <string name="MoreThan4Hours">Más de 4 horas</string>
 </resources>

@@ -23,17 +23,19 @@ public class VisualitzarActivity1 extends AppCompatActivity {
     private VideoView vv;
     private ImageButton ibPlay, ibStop;
     private Button btBack, btNext;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualitzar1);
 
+
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
         ibPlay = (ImageButton) findViewById(R.id.ibPlay);
         ibStop = (ImageButton) findViewById(R.id.ibStop);
-        btBack = (Button) findViewById(R.id.btBack);
-        btNext = (Button) findViewById(R.id.btNext);
+        btBack = (Button) findViewById(R.id.btBackWeather);
+        btNext = (Button) findViewById(R.id.btNextWeather);
 
         //Quan acabi les instruccions per veu s'habilitaran els botons de reproducció
         btNext.setVisibility(View.INVISIBLE);
@@ -47,8 +49,17 @@ public class VisualitzarActivity1 extends AppCompatActivity {
 
         DialogInstruccionsVisualitzar(mp);
 
-        //Vídeo
-        vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.androidvideo));
+        if(getIntent().hasExtra("Segon")){
+            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.androidvideo2));
+            intent=new Intent(VisualitzarActivity1.this,WhenItHappenedActivity.class);
+        }
+        else{
+            //Vídeo
+            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.androidvideo));
+            intent=new Intent(VisualitzarActivity1.this,EvocarActivity.class);
+        }
+
+
 
         ibPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +91,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent (VisualitzarActivity1.this, EvocarActivity.class));
+                startActivity(intent);
             }
         });
 

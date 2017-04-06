@@ -101,4 +101,20 @@
     <string name="Congratulations">Felicitats!</string>
     <string name="DoingGreat">Ho estàs fent molt bé!</string>
     <string name="ThankYou">Gràcies!</string>
+    <string name="WhenItHappened">Quan va passar?</string>
+    <string name="EpisodeSeasonTime">Època de l\'any de l\'episodi</string>
+    <string name="Summer">Estiu</string>
+    <string name="Spring">Primavera</string>
+    <string name="Winter">Hivern</string>
+    <string name="Autumn">Tardor</string>
+    <string name="WhatWasTheWeather">Quin temps feia?</string>
+    <string name="SunnyDay">Dia solejat</string>
+    <string name="Rainy">Pluja</string>
+    <string name="Cloudly">Dia amb núvols</string>
+    <string name="FoggyDay">Boira</string>
+    <string name="HowLongItLast">Quant va durar?</string>
+    <string name="LessThan2Hours">Menys de 2 hores</string>
+    <string name="action_settings">Configuració</string>
+    <string name="Between2and4">Entre 2 i 4 hores</string>
+    <string name="MoreThan4Hours">Més de 4 hores</string>
 </resources>

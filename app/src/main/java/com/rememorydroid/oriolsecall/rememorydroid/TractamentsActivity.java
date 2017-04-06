@@ -19,7 +19,7 @@ public class TractamentsActivity extends AppCompatActivity {
 
     private TextView idCuUserTreatment, NomCuUserTreatment, CognomCuUserTreatment;
     private Button btPelicula, btAlbum, btGuia, btJocs, btBackEpisodiActivity;
-    private Intent intentParent, IntentToTreatment;
+    private Intent IntentToTreatment;
 
 
     @Override

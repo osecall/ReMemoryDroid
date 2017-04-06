@@ -35,21 +35,21 @@
         android:layout_marginEnd="190dp"
         app:srcCompat="@drawable/stopreduit"
         android:layout_alignTop="@+id/ibPlay"
-        android:layout_toStartOf="@+id/btNext" />
+        android:layout_toStartOf="@+id/btNextWeather" />
 
     <Button
-        android:id="@+id/btNext"
+        android:id="@+id/btNextWeather"
         style="@style/Next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="52dp"
         tools:layout_editor_absoluteY="583dp"
-        android:layout_alignBaseline="@+id/btBack"
-        android:layout_alignBottom="@+id/btBack"
+        android:layout_alignBaseline="@+id/btBackWeather"
+        android:layout_alignBottom="@+id/btBackWeather"
         android:layout_toEndOf="@+id/vvVisualitzar1" />
 
     <Button
-        android:id="@+id/btBack"
+        android:id="@+id/btBackWeather"
         style="@style/Back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
