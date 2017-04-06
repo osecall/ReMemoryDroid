@@ -8,7 +8,7 @@
 
     <FrameLayout
         android:layout_width="1264dp"
-        android:layout_height="647dp"
+        android:layout_height="711dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical|center_horizontal|center"
+            android:scaleType="fitXY"
             app:srcCompat="@drawable/abstracte1" />
     </FrameLayout>
 </android.support.constraint.ConstraintLayout>

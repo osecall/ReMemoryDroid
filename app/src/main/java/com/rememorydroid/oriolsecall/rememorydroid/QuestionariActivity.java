@@ -287,6 +287,74 @@ public class QuestionariActivity extends AppCompatActivity {
             btNextLong.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    mViewPager.setCurrentItem(3);
+                }
+            });
+
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
+                    //Busquem quin radioButton s'ha seleccionat
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    //Recuperem l'element ara que tenim el identificador per a la classe R (id)
+                    RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
+
+                    Toast.makeText(getContext(), rb.getText().toString(),
+                            Toast.LENGTH_LONG).show();
+
+                    respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
+
+
+                }
+
+            });
+
+
+            return rootView;
+        }
+
+    }
+
+
+    //---------------------------------------------------------------------------------------------
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class Fragment4 extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public Fragment4() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static Fragment4 newInstance(int sectionNumber) {
+            Fragment4 fragment = new Fragment4();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            final View rootView = inflater.inflate(R.layout.when_it_happened4, container, false);
+
+            final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1Month);
+
+            Button btNextMonth = (Button) rootView.findViewById(R.id.btNextMonth);
+
+            btNextMonth.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     mViewPager.setCurrentItem(0);
                 }
             });
@@ -339,14 +407,17 @@ public class QuestionariActivity extends AppCompatActivity {
             if(position==2){
                 return Fragment3.newInstance(position + 1);
             }
+            if(position==3){
+                return Fragment4.newInstance(position + 1);
+            }
 
             return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 4 total pages.
+            return 4;
         }
 
         @Override
@@ -358,6 +429,8 @@ public class QuestionariActivity extends AppCompatActivity {
                     return getString(R.string.WhatWasTheWeather);
                 case 2:
                     return getString(R.string.HowLongItLast);
+                case 3:
+                    return getString(R.string.Month);
             }
             return null;
         }

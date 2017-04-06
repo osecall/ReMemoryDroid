@@ -117,4 +117,16 @@
     <string name="action_settings">Configuración</string>
     <string name="Between2and4">Entre 2 y 4 horas</string>
     <string name="MoreThan4Hours">Más de 4 horas</string>
+    <string name="Month">Mes</string>
+    <string name="January">Enero</string>
+    <string name="July">Juliol</string>
+    <string name="June">Junio</string>
+    <string name="March">Marzo</string>
+    <string name="May">Maig</string>
+    <string name="title_activity_questionari">Cuando pasó?</string>
+    <string name="April">Abril</string>
+    <string name="August">Agosto</string>
+    <string name="September">Septiembre</string>
+    <string name="Desember">Diciembre</string>
+    <string name="November">Noviembre</string>
 </resources>
