@@ -32,7 +32,7 @@ public class QuestionariActivity extends AppCompatActivity {
 
     private static ViewPager mViewPager;
 
-    //private static SharedPreferences prefs;
+    public static SharedPreferences prefs;
 
     public static TestAnswers respostes_recuperades;
 
@@ -55,15 +55,16 @@ public class QuestionariActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        //prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
 
-        //SharedPreferences.Editor editor = prefs.edit();
+        SharedPreferences.Editor editor = prefs.edit();
 
-        //String respostes_json = prefs.getString("respostes", null);
+        String respostes_json = prefs.getString("respostes", null);
         //Guardem a TestAnswers
-        //Gson gson = new Gson();
-        //TestAnswers respostes_recuperades = gson.fromJson(respostes_json, TestAnswers.class);
+        Gson gson = new Gson();
         respostes_recuperades= new TestAnswers();
+        respostes_recuperades = gson.fromJson(respostes_json, TestAnswers.class);
+
 
     }
 
@@ -159,9 +160,10 @@ public class QuestionariActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_LONG).show();
 
-                    //respostes_recuperades.setPreguntesQuan_Temps(rb.getText().toString());
+                    //Guardem resposta obteniguda
+                    respostes_recuperades.setPreguntesQuan_Temps(rb.getText().toString());
 
-                    //guardar(rb.getText().toString(),1);
+
 
                 }
 
@@ -234,9 +236,7 @@ public class QuestionariActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_LONG).show();
 
-                    //respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
-
-                    //guardar(rb.getText().toString(),1);
+                    respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
 
 
                 }
@@ -303,9 +303,7 @@ public class QuestionariActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_LONG).show();
 
-                    //respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
-
-                    //guardar(rb.getText().toString(),1);
+                    respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
 
 
                 }

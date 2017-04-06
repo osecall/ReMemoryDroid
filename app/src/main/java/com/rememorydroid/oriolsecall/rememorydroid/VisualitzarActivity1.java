@@ -51,7 +51,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
 
         if(getIntent().hasExtra("Segon")){
             vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.androidvideo2));
-            intent=new Intent(VisualitzarActivity1.this,WhenItHappenedActivity.class);
+            intent=new Intent(VisualitzarActivity1.this,QuestionariActivity.class);
         }
         else{
             //Vídeo
