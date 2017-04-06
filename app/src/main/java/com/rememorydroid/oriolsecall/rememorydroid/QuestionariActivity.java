@@ -374,7 +374,7 @@ public class QuestionariActivity extends AppCompatActivity {
             btNextMonth.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(0);
+                    mViewPager.setCurrentItem(4);
                 }
             });
 
@@ -394,6 +394,74 @@ public class QuestionariActivity extends AppCompatActivity {
         }
 
     }
+
+    //---------------------------------------------------------------------------------------------
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class Fragment5 extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public Fragment5() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static Fragment5 newInstance(int sectionNumber) {
+            Fragment5 fragment = new Fragment5();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            final View rootView = inflater.inflate(R.layout.when_it_happened5, container, false);
+
+            final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1DayTime);
+
+            Button btNextDayTime = (Button) rootView.findViewById(R.id.btNextDayTime);
+
+            btNextDayTime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(4);
+                }
+            });
+
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
+                    //Busquem quin radioButton s'ha seleccionat
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    //Recuperem l'element ara que tenim el identificador per a la classe R (id)
+                    RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
+
+                    Toast.makeText(getContext(), rb.getText().toString(),
+                            Toast.LENGTH_LONG).show();
+
+                    respostes_recuperades.setPreguntesQuan_FranjaDia(rb.getText().toString());
+
+
+                }
+
+            });
+
+
+            return rootView;
+        }
+
+    }
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -421,6 +489,9 @@ public class QuestionariActivity extends AppCompatActivity {
             if(position==3){
                 return Fragment4.newInstance(position + 1);
             }
+            if(position==4){
+                return Fragment5.newInstance(position + 1);
+            }
 
             return PlaceholderFragment.newInstance(position + 1);
         }
@@ -428,7 +499,7 @@ public class QuestionariActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 4 total pages.
-            return 4;
+            return 5;
         }
 
         @Override
@@ -442,6 +513,8 @@ public class QuestionariActivity extends AppCompatActivity {
                     return getString(R.string.HowLongItLast);
                 case 3:
                     return getString(R.string.Month);
+                case 4:
+                    return getString(R.string.DayTime);
             }
             return null;
         }

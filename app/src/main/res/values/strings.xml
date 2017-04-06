@@ -142,6 +142,10 @@
     <string name="November">November</string>
     <string name="Desember">Desember</string>
     <string name="October">October</string>
+    <string name="DayTime">Day time</string>
+    <string name="Morning">Morning</string>
+    <string name="Night">Night</string>
+    <string name="Afternoon">Afternoon</string>
 
 
 </resources>

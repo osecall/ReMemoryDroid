@@ -130,4 +130,9 @@
     <string name="Desember">Desember</string>
     <string name="November">November</string>
     <string name="October">October</string>
+    <string name="Afternoon">Afternoon</string>
+    <string name="DayTime">Day time</string>
+    <string name="February">February</string>
+    <string name="Night">Night</string>
+    <string name="Morning">Morning</string>
 </resources>
