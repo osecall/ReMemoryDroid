@@ -17,6 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical|center_horizontal|center"
+            android:cropToPadding="true"
+            android:foregroundGravity="center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/abstracte1" />
     </FrameLayout>

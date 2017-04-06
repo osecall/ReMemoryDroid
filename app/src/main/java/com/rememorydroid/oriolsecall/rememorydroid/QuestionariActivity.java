@@ -18,7 +18,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -348,7 +351,23 @@ public class QuestionariActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.when_it_happened4, container, false);
 
-            final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1Month);
+            final ListView listView = (ListView) rootView.findViewById(R.id.lvMonths);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item);
+
+            adapter.add(getString(R.string.January));
+            adapter.add(getString(R.string.February));
+            adapter.add(getString(R.string.March));
+            adapter.add(getString(R.string.April));
+            adapter.add(getString(R.string.May));
+            adapter.add(getString(R.string.June));
+            adapter.add(getString(R.string.July));
+            adapter.add(getString(R.string.August));
+            adapter.add(getString(R.string.September));
+            adapter.add(getString(R.string.October));
+            adapter.add(getString(R.string.November));
+            adapter.add(getString(R.string.Desember));
+
+            listView.setAdapter(adapter);
 
             Button btNextMonth = (Button) rootView.findViewById(R.id.btNextMonth);
 
@@ -359,23 +378,15 @@ public class QuestionariActivity extends AppCompatActivity {
                 }
             });
 
-            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-
-                    //Busquem quin radioButton s'ha seleccionat
-                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
-                    //Recuperem l'element ara que tenim el identificador per a la classe R (id)
-                    RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
-
-                    Toast.makeText(getContext(), rb.getText().toString(),
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    String seleccionat = listView.getItemAtPosition(i).toString();
+                    listView.setItemChecked(i,true);
+                    Toast.makeText(getContext(), seleccionat,
                             Toast.LENGTH_LONG).show();
-
-                    respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
-
-
+                    respostes_recuperades.setPreguntesQuan_Mes(seleccionat);
                 }
-
             });
 
 
