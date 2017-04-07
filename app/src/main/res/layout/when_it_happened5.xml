@@ -39,7 +39,8 @@
             android:id="@+id/rgWhen1DayTime"
             style="@style/radioGroupElementsWhen"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
 
             <RadioButton
                 android:id="@+id/rb1WhenDayTime"

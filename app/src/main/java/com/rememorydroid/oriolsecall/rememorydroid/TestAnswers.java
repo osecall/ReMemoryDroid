@@ -45,9 +45,7 @@ public class TestAnswers implements Serializable {
     String PreguntesEmocionsEscena3_Emocio;
     String PreguntesEmocionsEscena3_Intentistat;
 
-    String PreguntesOn_Localitzacio1;
-    String PreguntesOn_Localitzacio2;
-
+    String PreguntesOn_Localitzacio;
     String PreguntesOn_Ubicacio;
     String PreguntesOn_Entorns;
 
@@ -294,20 +292,12 @@ public class TestAnswers implements Serializable {
         PreguntesEmocionsEscena3_Intentistat = preguntesEmocionsEscena3_Intentistat;
     }
 
-    public String getPreguntesOn_Localitzacio1() {
-        return PreguntesOn_Localitzacio1;
+    public String getPreguntesOn_Localitzacio() {
+        return PreguntesOn_Localitzacio;
     }
 
-    public void setPreguntesOn_Localitzacio1(String preguntesOn_Localitzacio1) {
-        PreguntesOn_Localitzacio1 = preguntesOn_Localitzacio1;
-    }
-
-    public String getPreguntesOn_Localitzacio2() {
-        return PreguntesOn_Localitzacio2;
-    }
-
-    public void setPreguntesOn_Localitzacio2(String preguntesOn_Localitzacio2) {
-        PreguntesOn_Localitzacio2 = preguntesOn_Localitzacio2;
+    public void setPreguntesOn_Localitzacio(String preguntesOn_Localitzacio) {
+        PreguntesOn_Localitzacio = preguntesOn_Localitzacio;
     }
 
     public String getPreguntesOn_Ubicacio() {

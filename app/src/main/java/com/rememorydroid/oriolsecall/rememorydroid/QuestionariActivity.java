@@ -229,7 +229,7 @@ public class QuestionariActivity extends AppCompatActivity {
             btBackWeather.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(1);
+                    mViewPager.setCurrentItem(0);
                 }
             });
             btNextWeather.setOnClickListener(new View.OnClickListener() {
@@ -399,13 +399,13 @@ public class QuestionariActivity extends AppCompatActivity {
             btBackMonth.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(2);
+                    mViewPager.setCurrentItem(3);
                 }
             });
             btNextMonth.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(4);
+                    mViewPager.setCurrentItem(5);
                 }
             });
 
@@ -616,14 +616,14 @@ public class QuestionariActivity extends AppCompatActivity {
             btBackEnv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(4);
+                    mViewPager.setCurrentItem(6);
 
                 }
             });
             btNextEnv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(6);
+                    mViewPager.setCurrentItem(8);
                 }
             });
 
@@ -683,38 +683,38 @@ public class QuestionariActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.where_it_happened3, container, false);
 
-            final CheckBox checkBox1 = (CheckBox) rootView.findViewById(R.id.cbLocation1);
-            final CheckBox checkBox2 = (CheckBox) rootView.findViewById(R.id.cbLocation2);
 
-            checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    String text = compoundButton.getText().toString();
-                    Toast.makeText(getContext(), text,
-                        Toast.LENGTH_LONG).show();
-                    respostes_recuperades.setPreguntesOn_Localitzacio1(text);
-                }
-            });
-            checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1Loc);
+
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    String text = compoundButton.getText().toString();
-                    Toast.makeText(getContext(), text,
+                public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
+                    //Busquem quin radioButton s'ha seleccionat
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    //Recuperem l'element ara que tenim el identificador per a la classe R (id)
+                    RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
+
+                    Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_LONG).show();
-                    respostes_recuperades.setPreguntesOn_Localitzacio2(text);
+
+                    respostes_recuperades.setPreguntesOn_Localitzacio(rb.getText().toString());
+
+
                 }
+
             });
 
-            Button btNextLocation = (Button) rootView.findViewById(R.id.btNextLocation);
-            Button btBackLocation = (Button) rootView.findViewById(R.id.btBackLocation);
+            Button btNextLocation = (Button) rootView.findViewById(R.id.btNextLoc);
+            Button btBackLocation = (Button) rootView.findViewById(R.id.btBackLoc);
 
-            btNextLocation.setOnClickListener(new View.OnClickListener() {
+            btBackLocation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(7);
                 }
             });
-            btBackLocation.setOnClickListener(new View.OnClickListener() {
+            btNextLocation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                    // startActivity(new Intent(getContext(),Questionari2Activity.class));
