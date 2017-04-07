@@ -172,18 +172,18 @@ public class QuestionariActivity extends AppCompatActivity {
 
             });
 
-            btNextTime.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mViewPager.setCurrentItem(1);
-                }
-            });
             btBackTime.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getContext(),VisualitzarActivity1.class);
                     intent.putExtra("Segon","Segon");
                     startActivity(intent);
+                }
+            });
+            btNextTime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(1);
                 }
             });
             return rootView;
@@ -399,13 +399,13 @@ public class QuestionariActivity extends AppCompatActivity {
             btBackMonth.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(3);
+                    mViewPager.setCurrentItem(2);
                 }
             });
             btNextMonth.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(5);
+                    mViewPager.setCurrentItem(4);
                 }
             });
 
@@ -466,13 +466,13 @@ public class QuestionariActivity extends AppCompatActivity {
             btBackDayTime.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(4);
+                    mViewPager.setCurrentItem(3);
                 }
             });
             btNextDayTime.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(6);
+                    mViewPager.setCurrentItem(5);
                 }
             });
 
@@ -537,17 +537,18 @@ public class QuestionariActivity extends AppCompatActivity {
             Button btNextGeo = (Button) rootView.findViewById(R.id.btNextGeo);
             Button btBackGeo = (Button) rootView.findViewById(R.id.btBackGeo);
 
-            btNextGeo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mViewPager.setCurrentItem(5);
-                }
-            });
+
             btBackGeo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(7);
+                    mViewPager.setCurrentItem(4);
 
+                }
+            });
+            btNextGeo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(6);
                 }
             });
 
@@ -616,14 +617,14 @@ public class QuestionariActivity extends AppCompatActivity {
             btBackEnv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(6);
+                    mViewPager.setCurrentItem(5);
 
                 }
             });
             btNextEnv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(8);
+                    mViewPager.setCurrentItem(7);
                 }
             });
 
@@ -705,16 +706,16 @@ public class QuestionariActivity extends AppCompatActivity {
 
             });
 
-            Button btNextLocation = (Button) rootView.findViewById(R.id.btNextLoc);
-            Button btBackLocation = (Button) rootView.findViewById(R.id.btBackLoc);
+            Button btNextLoc = (Button) rootView.findViewById(R.id.btNextLoc);
+            Button btBackLoc = (Button) rootView.findViewById(R.id.btBackLoc);
 
-            btBackLocation.setOnClickListener(new View.OnClickListener() {
+            btBackLoc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(7);
+                    mViewPager.setCurrentItem(6);
                 }
             });
-            btNextLocation.setOnClickListener(new View.OnClickListener() {
+            btNextLoc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                    // startActivity(new Intent(getContext(),Questionari2Activity.class));
