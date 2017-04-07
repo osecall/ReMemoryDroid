@@ -135,4 +135,16 @@
     <string name="February">Febrer</string>
     <string name="Night">Nit</string>
     <string name="Morning">Matí</string>
+    <string name="WhereItHappened">On va ser?</string>
+    <string name="GeographicLocalization">Localització geogràfica</string>
+    <string name="InTheCity">En la ciutat/poble on visc</string>
+    <string name="OutOfCity">Fora de la ciutat/poble on visc</string>
+    <string name="ThreeEnviroments">Apareixen 3 entorns diferents</string>
+    <string name="TwoEnviroments">Apareixen 2 entorns diferents</string>
+    <string name="MoreThan3Enviroments">En més de 3 entorns diferents</string>
+    <string name="EverythingHappens">Tot passa en un mateix lloc</string>
+    <string name="OutSide">En un espai exterior</string>
+    <string name="InSide">En un espai interior</string>
+    <string name="HowManyEnviroments">Quants entorns diferents hi ha?</string>
+    <string name="Location">Ubicació</string>
 </resources>

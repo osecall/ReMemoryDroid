@@ -21,6 +21,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -142,14 +144,12 @@ public class QuestionariActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            final View rootView = inflater.inflate(R.layout.activity_when_it_happened, container, false);
+            final View rootView = inflater.inflate(R.layout.when_it_happened, container, false);
 
             Button btNextTime = (Button) rootView.findViewById(R.id.btNextTime);
+            Button btBackTime = (Button) rootView.findViewById(R.id.btBackTime);
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhenTime);
-
-
-
 
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
@@ -178,8 +178,14 @@ public class QuestionariActivity extends AppCompatActivity {
                     mViewPager.setCurrentItem(1);
                 }
             });
-
-
+            btBackTime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(),VisualitzarActivity1.class);
+                    intent.putExtra("Segon","Segon");
+                    startActivity(intent);
+                }
+            });
             return rootView;
         }
     }
@@ -217,13 +223,22 @@ public class QuestionariActivity extends AppCompatActivity {
             final View rootView = inflater.inflate(R.layout.when_it_happened2, container, false);
 
             Button btNextWeather = (Button) rootView.findViewById(R.id.btNextWeather);
+            Button btBackWeather = (Button) rootView.findViewById(R.id.btBackWeather);
 
+
+            btBackWeather.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(1);
+                }
+            });
             btNextWeather.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(2);
                 }
             });
+
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1Weather);
 
@@ -286,7 +301,15 @@ public class QuestionariActivity extends AppCompatActivity {
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1Long);
 
             Button btNextLong = (Button) rootView.findViewById(R.id.btNextLong);
+            Button btBackLong = (Button) rootView.findViewById(R.id.btBackLong);
 
+
+            btBackLong.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(1);
+                }
+            });
             btNextLong.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -370,7 +393,15 @@ public class QuestionariActivity extends AppCompatActivity {
             listView.setAdapter(adapter);
 
             Button btNextMonth = (Button) rootView.findViewById(R.id.btNextMonth);
+            Button btBackMonth = (Button) rootView.findViewById(R.id.btBackMonth);
 
+
+            btBackMonth.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(2);
+                }
+            });
             btNextMonth.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -429,11 +460,19 @@ public class QuestionariActivity extends AppCompatActivity {
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1DayTime);
 
             Button btNextDayTime = (Button) rootView.findViewById(R.id.btNextDayTime);
+            Button btBackDayTime = (Button) rootView.findViewById(R.id.btBackDayTime);
 
-            btNextDayTime.setOnClickListener(new View.OnClickListener() {
+
+            btBackDayTime.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(4);
+                }
+            });
+            btNextDayTime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(6);
                 }
             });
 
@@ -461,6 +500,233 @@ public class QuestionariActivity extends AppCompatActivity {
         }
 
     }
+
+    //---------------------------------------------------------------------------------------------
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class Fragment6 extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public Fragment6() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static Fragment6 newInstance(int sectionNumber) {
+            Fragment6 fragment = new Fragment6();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            final View rootView = inflater.inflate(R.layout.where_it_happened, container, false);
+
+            final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1Location);
+
+            Button btNextGeo = (Button) rootView.findViewById(R.id.btNextGeo);
+            Button btBackGeo = (Button) rootView.findViewById(R.id.btBackGeo);
+
+            btNextGeo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(5);
+                }
+            });
+            btBackGeo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(7);
+
+                }
+            });
+
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
+                    //Busquem quin radioButton s'ha seleccionat
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    //Recuperem l'element ara que tenim el identificador per a la classe R (id)
+                    RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
+
+                    Toast.makeText(getContext(), rb.getText().toString(),
+                            Toast.LENGTH_LONG).show();
+
+                    respostes_recuperades.setPreguntesOn_Entorns(rb.getText().toString());
+
+
+                }
+
+            });
+
+
+            return rootView;
+        }
+
+    }
+
+
+    //---------------------------------------------------------------------------------------------
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class Fragment7 extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public Fragment7() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static Fragment7 newInstance(int sectionNumber) {
+            Fragment7 fragment = new Fragment7();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            final View rootView = inflater.inflate(R.layout.where_it_happened2, container, false);
+
+            final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1Enviroments);
+
+            Button btNextEnv = (Button) rootView.findViewById(R.id.btNextEnv);
+            Button btBackEnv = (Button) rootView.findViewById(R.id.btBackEnv);
+
+            btBackEnv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(4);
+
+                }
+            });
+            btNextEnv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(6);
+                }
+            });
+
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
+                    //Busquem quin radioButton s'ha seleccionat
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    //Recuperem l'element ara que tenim el identificador per a la classe R (id)
+                    RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
+
+                    Toast.makeText(getContext(), rb.getText().toString(),
+                            Toast.LENGTH_LONG).show();
+
+                    respostes_recuperades.setPreguntesOn_Entorns(rb.getText().toString());
+
+
+                }
+
+            });
+
+
+            return rootView;
+        }
+
+    }
+
+    //---------------------------------------------------------------------------------------------
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class Fragment8 extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public Fragment8() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static Fragment8 newInstance(int sectionNumber) {
+            Fragment8 fragment = new Fragment8();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            final View rootView = inflater.inflate(R.layout.where_it_happened3, container, false);
+
+            final CheckBox checkBox1 = (CheckBox) rootView.findViewById(R.id.cbLocation1);
+            final CheckBox checkBox2 = (CheckBox) rootView.findViewById(R.id.cbLocation2);
+
+            checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    String text = compoundButton.getText().toString();
+                    Toast.makeText(getContext(), text,
+                        Toast.LENGTH_LONG).show();
+                    respostes_recuperades.setPreguntesOn_Localitzacio1(text);
+                }
+            });
+            checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    String text = compoundButton.getText().toString();
+                    Toast.makeText(getContext(), text,
+                            Toast.LENGTH_LONG).show();
+                    respostes_recuperades.setPreguntesOn_Localitzacio2(text);
+                }
+            });
+
+            Button btNextLocation = (Button) rootView.findViewById(R.id.btNextLocation);
+            Button btBackLocation = (Button) rootView.findViewById(R.id.btBackLocation);
+
+            btNextLocation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(7);
+                }
+            });
+            btBackLocation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                   // startActivity(new Intent(getContext(),Questionari2Activity.class));
+
+                }
+            });
+
+            return rootView;
+        }
+
+    }
+
 
 
     /**
@@ -492,14 +758,24 @@ public class QuestionariActivity extends AppCompatActivity {
             if(position==4){
                 return Fragment5.newInstance(position + 1);
             }
+            if(position==5){
+                return Fragment6.newInstance(position + 1);
+            }
+            if(position==6){
+                return Fragment7.newInstance(position + 1);
+            }
+            if(position==7){
+                return Fragment8.newInstance(position + 1);
+            }
+
 
             return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
-            // Show 4 total pages.
-            return 5;
+            // Show 8 total pages.
+            return 8;
         }
 
         @Override
@@ -515,6 +791,12 @@ public class QuestionariActivity extends AppCompatActivity {
                     return getString(R.string.Month);
                 case 4:
                     return getString(R.string.DayTime);
+                case 5:
+                    return getString(R.string.GeographicLocalization);
+                case 6:
+                    return getString(R.string.HowManyEnviroments);
+                case 7:
+                    return getString(R.string.Location);
             }
             return null;
         }
