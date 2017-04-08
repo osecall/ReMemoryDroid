@@ -147,4 +147,6 @@
     <string name="InSide">In an inner space</string>
     <string name="HowManyEnviroments">How many different environments are there?</string>
     <string name="Location">Location</string>
+    <string name="Monday">Monday</string>
+    <string name="Wednesday">Wednesday</string>
 </resources>

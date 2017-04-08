@@ -32,19 +32,21 @@ import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class EpisodiActivity extends BaseActivity {
 
-    private TextView tvVersioSelected;
     private ListView lista, listaVersio;
     private Button btNextEpisode;
-    private ImageView ivDrawableLlarga, ivDrawableCurta;
     private long i=0;
     private long j=1;
     private boolean Curta;
     private String episodiSeleccionat;
     private EpisodilistAdapter adaptadorPersonalitzat;
+    private VersioListAdapter adaptadorVersio;
+    private ArrayList<VersioList> versions;
     private ArrayList<EpisodiList> episodis;
     private String ID_pacient = new String();
     private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
@@ -55,12 +57,17 @@ public class EpisodiActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episodi);
 
+        btNextEpisode = (Button) findViewById(R.id.btNextEpisode);
+
+        lista = (ListView) findViewById(R.id.lvEpisodis);
+        listaVersio = (ListView) findViewById(R.id.lvVersio);
+
         Curta= false; //per saber si s'ha escollit versió curta o llarga
 
         episodis = new ArrayList<EpisodiList>();
+        versions = new ArrayList<VersioList>();
 
         episodiSeleccionat = new String();
-
 
         //Recuperem pacient
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
@@ -102,35 +109,16 @@ public class EpisodiActivity extends BaseActivity {
             }
         });
 
+        VersioList versioLong = new VersioList(getString(R.string.Monday),getString(R.string.LongVersion));
+        VersioList versioShort = new VersioList(getString(R.string.Wednesday),getString(R.string.ShortVersion));
 
-        tvVersioSelected = (TextView) findViewById(R.id.tvVersioSelected);
-        btNextEpisode = (Button) findViewById(R.id.btNextEpisode);
+        versions.add(versioLong);
+        versions.add(versioShort);
 
-
-        ivDrawableLlarga = (ImageView) findViewById(R.id.ivDrawableLlarga);
-        ivDrawableCurta = (ImageView) findViewById(R.id.ivDrawableCurta);
-
-        ArrayAdapter<String> adaptadorVersio;
-
-        lista = (ListView) findViewById(R.id.lvEpisodis);
-        listaVersio = (ListView) findViewById(R.id.lvVersio);
-
-
-        adaptadorVersio = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
-
-        adaptadorVersio.add(getString(R.string.LongVersion));
-        adaptadorVersio.add(getString(R.string.ShortVersion));
-
-        //adaptadorEpisodis = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
-
-        ColorGenerator generator = ColorGenerator.DEFAULT;
-        TextDrawable drawableL = TextDrawable.builder().beginConfig().width(75).height(75).endConfig().buildRound("L",generator.getRandomColor());
-        TextDrawable drawableS = TextDrawable.builder().beginConfig().width(75).height(75).endConfig().buildRound("S",generator.getRandomColor());
-
-        ivDrawableLlarga.setImageDrawable(drawableS);
-        ivDrawableCurta.setImageDrawable(drawableL);
+        adaptadorVersio = new VersioListAdapter(this, versions);
 
         listaVersio.setAdapter(adaptadorVersio);
+
         adaptadorPersonalitzat = new EpisodilistAdapter(this,episodis);
         lista.setAdapter(adaptadorPersonalitzat);
 
@@ -139,6 +127,10 @@ public class EpisodiActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 lista.setItemChecked(i,true);
                 episodiSeleccionat= String.valueOf(i+1);
+
+                TextView episodiTmp = (TextView) view.findViewById(R.id.tvLayOutEpisodi);
+                Toast.makeText(EpisodiActivity.this,episodiTmp.getText().toString()  ,
+                        Toast.LENGTH_SHORT).show();
            }
         });
 
@@ -146,21 +138,20 @@ public class EpisodiActivity extends BaseActivity {
         listaVersio.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                tvVersioSelected.setText(getString(R.string.VersionSelected,(String) listaVersio.getItemAtPosition(i)));
                 if(i==1){
                     Curta=true;
                 }
                 if(i==0){
                     Curta=false;
                 }
-                lista.setItemChecked(i,true);
+                listaVersio.setItemChecked(i,true);
+                TextView versioSeleccionada = (TextView) view.findViewById(R.id.tvVersio);
 
-                Toast.makeText(EpisodiActivity.this,(String) listaVersio.getItemAtPosition(i) ,
-                        Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(EpisodiActivity.this, versioSeleccionada.getText().toString() ,
+                       Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
         //Agregar passar informació episodi i versio quan s'apreta botó
 

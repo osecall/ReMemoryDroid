@@ -147,4 +147,6 @@
     <string name="InSide">En un espai interior</string>
     <string name="HowManyEnviroments">Quants entorns diferents hi ha?</string>
     <string name="Location">Ubicació</string>
+    <string name="Monday">Dilluns</string>
+    <string name="Wednesday">Dimecres</string>
 </resources>

@@ -158,6 +158,8 @@
     <string name="OutSide">In an outter space</string>
     <string name="InSide">In an inner space</string>
     <string name="Location">Location</string>
+    <string name="Monday">Monday</string>
+    <string name="Wednesday">Wednesday</string>
 
 
 </resources>
