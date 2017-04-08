@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 public class TractamentsActivity extends AppCompatActivity {
 
     private TextView idCuUserTreatment, NomCuUserTreatment, CognomCuUserTreatment;
-    private Button btPelicula, btAlbum, btGuia, btJocs, btBackEpisodiActivity;
+    private Button btPelicula, btAlbum, btGuia, btBackEpisodiActivity;
     private Intent IntentToTreatment;
 
 
@@ -35,7 +35,6 @@ public class TractamentsActivity extends AppCompatActivity {
         btPelicula= (Button) findViewById(R.id.btPelicula);
         btAlbum = (Button) findViewById(R.id.btAlbum);
         btGuia = (Button) findViewById(R.id.btGuia);
-        btJocs = (Button) findViewById(R.id.btJocs);
         btBackEpisodiActivity = (Button) findViewById(R.id.btBackEpisode);
 
         //Llegim informació de l'usuari
@@ -53,10 +52,12 @@ public class TractamentsActivity extends AppCompatActivity {
         if(prefs.getString("Versio",null).matches("Long")){
             btAlbum.setEnabled(false);
             btGuia.setEnabled(false);
-            btJocs.setEnabled(false);
+            btPelicula.setEnabled(true);
         }
         else if(prefs.getString("Versio",null).matches("Short")){
             btPelicula.setEnabled(false);
+            btAlbum.setEnabled(true);
+            btGuia.setEnabled(true);
         }
 
         btBackEpisodiActivity.setOnClickListener(new View.OnClickListener() {

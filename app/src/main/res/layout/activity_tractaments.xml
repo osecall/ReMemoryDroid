@@ -7,44 +7,81 @@
     android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/btPelicula"
-        android:layout_width="400dp"
-        android:layout_height="200dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="130dp"
-        android:text="@string/Movie"
-        android:textSize="30sp" />
+        android:id="@+id/linearLayout4">
 
-    <Button
-        android:id="@+id/btAlbum"
-        android:layout_width="400dp"
-        android:layout_height="200dp"
-        android:text="Àlbum de fotos"
-        android:textSize="30sp"
-        android:layout_centerVertical="true"
-        android:layout_alignBottom="@+id/btPelicula"
-        android:layout_alignStart="@+id/btJocs" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="50dp"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btGuia"
-        android:layout_width="400dp"
-        android:layout_height="200dp"
-        android:layout_alignStart="@+id/btPelicula"
-        android:layout_below="@+id/btPelicula"
-        android:text="@string/Memory"
-        android:textSize="30sp" />
+            <TextView
+                android:id="@+id/tvIDTreatment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25sp"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btJocs"
-        android:layout_width="400dp"
-        android:layout_height="200dp"
-        android:text="@string/Games"
-        android:textSize="30sp"
-        android:layout_below="@+id/btPelicula"
-        android:layout_toEndOf="@+id/btPelicula"
-        android:layout_marginStart="282dp" />
+            <TextView
+                android:id="@+id/tvNameTreatment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25sp"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSurTreatment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25sp"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btPelicula"
+            android:layout_width="match_parent"
+            android:layout_height="216dp"
+            android:text="@string/Movie"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btGuia"
+                android:layout_width="400dp"
+                android:layout_height="200dp"
+                android:layout_alignStart="@+id/btPelicula"
+                android:layout_below="@+id/btPelicula"
+                android:layout_weight="1"
+                android:text="@string/Memory"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/btAlbum"
+                android:layout_width="400dp"
+                android:layout_height="200dp"
+                android:layout_alignBottom="@+id/btPelicula"
+                android:layout_alignStart="@+id/btJocs"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:text="Àlbum de fotos"
+                android:textSize="30sp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         style="@style/Titol_Pantalles"
@@ -56,46 +93,10 @@
         android:layout_marginTop="41dp"
         android:text="@string/TreatmentsArea" />
 
-    <TextView
-        android:id="@+id/tvIDTreatment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/btPelicula"
-        android:layout_below="@+id/tvTreatmenttitol"
-        android:layout_marginTop="25dp"
-        android:text="asd"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvNameTreatment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvIDTreatment"
-        android:layout_below="@+id/tvIDTreatment"
-        android:layout_marginTop="24dp"
-        android:text="asd"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvSurTreatment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="asd"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_alignBaseline="@+id/tvNameTreatment"
-        android:layout_alignBottom="@+id/tvNameTreatment"
-        android:layout_toEndOf="@+id/tvNameTreatment"
-        android:layout_marginStart="29dp" />
-
     <Button
         android:id="@+id/btBackEpisode"
         style="@style/Back_button"
-        android:layout_alignBottom="@+id/btGuia"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="22dp" />
+        android:layout_marginStart="65dp"
+        android:layout_above="@+id/linearLayout4"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

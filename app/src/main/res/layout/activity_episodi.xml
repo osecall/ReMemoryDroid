@@ -11,12 +11,12 @@
         android:id="@+id/lvEpisodis"
         android:layout_width="550dp"
         android:layout_height="400dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
         android:layout_marginBottom="45dp"
-        android:layout_marginStart="49dp"
+        android:layout_marginStart="74dp"
         android:choiceMode="singleChoice"
-        android:listSelector="@color/grey_300" />
+        android:listSelector="@color/grey_300"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/tvEpisodis"
@@ -34,7 +34,6 @@
         android:id="@+id/tvVersio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
         android:text="@string/Version"
         android:textAlignment="center"
         android:textSize="45sp"
@@ -61,9 +60,9 @@
         android:layout_height="250dp"
         android:choiceMode="singleChoice"
         android:listSelector="@color/grey_300"
-        android:layout_marginStart="133dp"
         android:layout_alignTop="@+id/lvEpisodis"
-        android:layout_toEndOf="@+id/lvEpisodis" />
+        android:layout_alignEnd="@+id/btNextEpisode"
+        android:layout_marginEnd="105dp" />
 
     <Button
         android:id="@+id/btNextEpisode"
