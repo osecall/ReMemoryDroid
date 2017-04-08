@@ -22,25 +22,25 @@
         android:id="@+id/tvEpisodis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="@string/Episodes"
-        android:textSize="45sp"
-        android:textStyle="bold"
         android:layout_above="@+id/lvVersio"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="55dp"
         android:layout_toStartOf="@+id/btNextEpisode"
-        android:layout_marginEnd="55dp" />
+        android:text="@string/Version"
+        android:textSize="45sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvVersio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Version"
-        android:textAlignment="center"
-        android:textSize="45sp"
-        android:textStyle="bold"
         android:layout_alignBaseline="@+id/tvEpisodis"
         android:layout_alignBottom="@+id/tvEpisodis"
-        android:layout_toStartOf="@+id/tvEpisodiTitol" />
+        android:layout_toStartOf="@+id/tvEpisodiTitol"
+        android:text="@string/Episodes"
+        android:textAlignment="center"
+        android:textSize="45sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvEpisodiTitol"

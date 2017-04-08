@@ -26,6 +26,5 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
         android:text="TextView"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textSize="32sp" />
 </RelativeLayout>

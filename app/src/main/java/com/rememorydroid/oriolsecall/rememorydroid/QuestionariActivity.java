@@ -922,7 +922,7 @@ public class QuestionariActivity extends AppCompatActivity {
                     prefs.edit().commit();
 
                     Intent intent = new Intent(getContext(),RespirarActivity1.class);
-                    intent.putExtra("tercer","tercer");
+                    intent.putExtra("Tercer","Tercer");
                     startActivity(intent);
                 }
             });

@@ -1,6 +1,7 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class VersioListAdapter extends ArrayAdapter<VersioList> {
 
     static class ViewHolder {
         TextView tvWeekDay,tvVersio;
+        ImageView ivDrawVersio;
     }
 
     public int getCount() {
@@ -50,9 +52,16 @@ public class VersioListAdapter extends ArrayAdapter<VersioList> {
                 .findViewById(R.id.tvWeekDay);
         viewHolder.tvVersio = (TextView) view
                 .findViewById(R.id.tvVersio);
+        viewHolder.ivDrawVersio = (ImageView) view.findViewById(R.id.ivDrawVersio);
 
         viewHolder.tvWeekDay.setText(datos.get(position).getWeekDay());
         viewHolder.tvVersio.setText(datos.get(position).getVersio());
+
+        //La primera lletra del text per dibuixar-lo
+        String inicial = Character.toString(datos.get(position).getWeekDay().toString().charAt(0));
+
+        viewHolder.ivDrawVersio.setImageDrawable(TextDrawable.builder().beginConfig().width(100).height(100).endConfig().buildRound(inicial, Color.RED));
+
 
         return view;
     }

@@ -38,6 +38,13 @@ public class RespirarActivity1 extends AppCompatActivity {
             DialogInstruccionsRespirar();
 
         }
+        else if(getIntent().hasExtra("Tercer")){
+            ivRespirar.setImageResource(R.drawable.abstracte2);
+            Reproduccio = R.raw.test2;
+            intentRespirar.putExtra("Tercer","Tercer");
+            DialogInstruccionsRespirar();
+
+        }
         else{
             Reproduccio = R.raw.test1;
             DialogInstruccionsRespirar();
