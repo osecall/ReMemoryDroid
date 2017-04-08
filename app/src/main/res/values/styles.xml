@@ -116,7 +116,7 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textStyle">bold</item>
         <item name="android:drawableLeft">@android:drawable/btn_radio</item>
-        <item name="android:gravity">center_vertical</item>
+        <item name="android:gravity">center_horizontal</item>
         <item name="android:button">@null</item>
     </style>
 
@@ -127,7 +127,7 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textStyle">bold</item>
         <item name="android:drawableLeft">@android:drawable/btn_radio</item>
-        <item name="android:gravity">center_vertical</item>
+        <item name="android:gravity">center_horizontal</item>
         <item name="android:button">@null</item>
     </style>
 </resources>

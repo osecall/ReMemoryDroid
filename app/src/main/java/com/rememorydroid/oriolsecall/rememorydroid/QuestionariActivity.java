@@ -67,8 +67,6 @@ public class QuestionariActivity extends AppCompatActivity {
         Gson gson = new Gson();
         respostes_recuperades= new TestAnswers();
         respostes_recuperades = gson.fromJson(respostes_json, TestAnswers.class);
-
-
     }
 
 
@@ -162,7 +160,7 @@ public class QuestionariActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                     //Guardem resposta obteniguda
-                    respostes_recuperades.setPreguntesQuan_Temps(rb.getText().toString());
+                    respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
 
 
 
@@ -252,8 +250,7 @@ public class QuestionariActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_LONG).show();
 
-                    respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
-
+                    respostes_recuperades.setPreguntesQuan_Temps(rb.getText().toString());
 
                 }
 
@@ -327,7 +324,7 @@ public class QuestionariActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_LONG).show();
 
-                    respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
+                    respostes_recuperades.setPreguntesQuan_Duracio(rb.getText().toString());
 
 
                 }
@@ -562,7 +559,7 @@ public class QuestionariActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_LONG).show();
 
-                    respostes_recuperades.setPreguntesOn_Entorns(rb.getText().toString());
+                    respostes_recuperades.setPreguntesOn_Localitzacio(rb.getText().toString());
 
 
                 }
@@ -697,7 +694,7 @@ public class QuestionariActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_LONG).show();
 
-                    respostes_recuperades.setPreguntesOn_Localitzacio(rb.getText().toString());
+                    respostes_recuperades.setPreguntesOn_Ubicacio(rb.getText().toString());
 
 
                 }
@@ -717,8 +714,6 @@ public class QuestionariActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(8);
-                    // startActivity(new Intent(getContext(),Questionari2Activity.class));
-
                 }
             });
 
@@ -791,8 +786,6 @@ public class QuestionariActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                     respostes_recuperades.setPreguntesPerceptius_Sons(rb.getText().toString());
-
-
                 }
 
             });
@@ -922,12 +915,11 @@ public class QuestionariActivity extends AppCompatActivity {
             btNextDetails3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-
-
+                    Intent intent = new Intent(getContext(),RespirarActivity1.class);
+                    intent.putExtra("tercer","tercer");
+                    startActivity(intent);
                 }
             });
-
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgDetails3);
 

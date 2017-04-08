@@ -74,20 +74,20 @@
     <Button
         android:id="@+id/btNextDetails3"
         style="@style/Next_button"
-        android:layout_alignBottom="@+id/btBackDetails"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="54dp"
+        android:layout_marginEnd="13dp"
         tools:layout_editor_absoluteX="1114dp"
-        tools:layout_editor_absoluteY="557dp" />
+        tools:layout_editor_absoluteY="557dp"
+        android:layout_alignBottom="@+id/btBackDetails3"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/btBackDetails3"
         style="@style/Back_button"
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="568dp"
-        android:layout_marginStart="75dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="43dp"
         android:layout_alignBottom="@+id/linearLayout2"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="34dp" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
