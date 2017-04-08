@@ -30,7 +30,6 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualitzar1);
 
-
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
         ibPlay = (ImageButton) findViewById(R.id.ibPlay);
         ibStop = (ImageButton) findViewById(R.id.ibStop);

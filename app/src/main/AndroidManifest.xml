@@ -20,9 +20,10 @@
             android:name=".Splash"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter></activity>
         <activity
             android:name=".IniciActivity"
             android:screenOrientation="landscape" />
@@ -65,7 +66,7 @@
         <activity
             android:name=".RespirarActivity1"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".VisualitzarActivity1"
             android:screenOrientation="landscape" />
@@ -75,8 +76,9 @@
         <activity
             android:name=".QuestionariActivity"
             android:label="@string/title_activity_questionari"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>

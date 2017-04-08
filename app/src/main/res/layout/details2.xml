@@ -1,78 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.rememorydroid.oriolsecall.rememorydroid.QuestionariActivity$Fragment8"
+    tools:context="com.rememorydroid.oriolsecall.rememorydroid.QuestionariActivity$Fragment10"
     android:screenOrientation="landscape"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="700dp"
+        android:layout_width="900dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        tools:layout_editor_absoluteY="8dp">
 
         <TextView
-            android:id="@+id/tvWhereItHappened"
+            android:id="@+id/tvDetail2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/WhereItHappened"
+            android:text="@string/PerceptiveDetails"
             android:textAlignment="center"
             android:textSize="60sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvWhenSubLocation"
+            android:id="@+id/tvSounds2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Location"
+            android:text="@string/Temperature"
             android:textAlignment="center"
             android:textSize="39sp"
             android:textStyle="bold" />
 
         <RadioGroup
-            android:id="@+id/rgWhen1Loc"
+            android:id="@+id/rgDetails2"
             style="@style/radioGroupElementsWhen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
             <RadioButton
-                android:id="@+id/rb1Loc"
+                android:id="@+id/rbDetail2_1"
                 style="@style/radioGroupElementsWhen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/InSide" />
+                android:text="@string/Cold" />
 
             <RadioButton
-                android:id="@+id/rb2Loc"
+                android:id="@+id/rbDetails2_2"
                 style="@style/radioGroupElementsWhen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/OutSide" />
+                android:text="@string/Warm" />
+
+            <RadioButton
+                android:id="@+id/rbDetails2_3"
+                style="@style/radioGroupElementsWhen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/NeitherColdWarm" />
+
         </RadioGroup>
 
     </LinearLayout>
 
 
     <Button
-        android:id="@+id/btNextLoc"
+        android:id="@+id/btNextDetails2"
         style="@style/Next_button"
-        tools:layout_editor_absoluteX="1114dp"
-        tools:layout_editor_absoluteY="557dp"
-        android:layout_marginEnd="54dp"
         android:layout_alignBottom="@+id/btBackDetails"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="54dp"
+        tools:layout_editor_absoluteX="1114dp"
+        tools:layout_editor_absoluteY="557dp" />
 
     <Button
-        android:id="@+id/btBackDetails"
+        android:id="@+id/btBackDetails2"
         style="@style/Back_button"
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="568dp"

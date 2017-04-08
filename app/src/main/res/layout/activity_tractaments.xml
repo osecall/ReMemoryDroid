@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="216dp"
             android:text="@string/Movie"
-            android:textSize="30sp" />
+            android:textSize="55sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                 android:layout_below="@+id/btPelicula"
                 android:layout_weight="1"
                 android:text="@string/Memory"
-                android:textSize="30sp" />
+                android:textSize="36sp" />
 
             <Button
                 android:id="@+id/btAlbum"
@@ -79,7 +79,7 @@
                 android:layout_centerVertical="true"
                 android:layout_weight="1"
                 android:text="Àlbum de fotos"
-                android:textSize="30sp" />
+                android:textSize="36sp" />
         </LinearLayout>
     </LinearLayout>
 

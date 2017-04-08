@@ -149,4 +149,18 @@
     <string name="Location">Ubicació</string>
     <string name="Monday">Dilluns</string>
     <string name="Wednesday">Dimecres</string>
+    <string name="PerceptiveDetails">Detalls perceptius i sensorials</string>
+    <string name="HowManySounds">Quina sons hi havia al voltant?</string>
+    <string name="Silence">Silenci</string>
+    <string name="PeopleTalking">Gent parlant</string>
+    <string name="Music">Música</string>
+    <string name="NatureSounds">Sons de la natura (ocells, aigua)</string>
+    <string name="Temperature">Quina temperatura feia?</string>
+    <string name="Cold">Fred</string>
+    <string name="Warm">Calor</string>
+    <string name="NeitherColdWarm">Ni fred ni calor</string>
+    <string name="Odor">Olors agradables</string>
+    <string name="UnPleasentOdor">Olors desagradables</string>
+    <string name="NoOdors">No es sentia cap mena d\'olor</string>
+    <string name="WhatOdors">Quines olors se sentien?</string>
 </resources>

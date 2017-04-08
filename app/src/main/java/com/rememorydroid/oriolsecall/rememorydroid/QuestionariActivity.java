@@ -21,8 +21,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -124,7 +122,7 @@ public class QuestionariActivity extends AppCompatActivity {
          * The fragment argument representing the section number for this
          * fragment.
          */
-        private static final String ARG_SECTION_NUMBER = "section_number"; //Es podrà borrar
+        private static final String ARG_SECTION_NUMBER = "section_number";
 
         public PlaceholderFragment() {
         }
@@ -707,7 +705,7 @@ public class QuestionariActivity extends AppCompatActivity {
             });
 
             Button btNextLoc = (Button) rootView.findViewById(R.id.btNextLoc);
-            Button btBackLoc = (Button) rootView.findViewById(R.id.btBackLoc);
+            Button btBackLoc = (Button) rootView.findViewById(R.id.btBackDetails);
 
             btBackLoc.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -718,7 +716,8 @@ public class QuestionariActivity extends AppCompatActivity {
             btNextLoc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                   // startActivity(new Intent(getContext(),Questionari2Activity.class));
+                    mViewPager.setCurrentItem(8);
+                    // startActivity(new Intent(getContext(),Questionari2Activity.class));
 
                 }
             });
@@ -728,7 +727,231 @@ public class QuestionariActivity extends AppCompatActivity {
 
     }
 
+//---------------------------------------------------------------------------------------------
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class Fragment9 extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
 
+        public Fragment9() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static Fragment9 newInstance(int sectionNumber) {
+            Fragment9 fragment = new Fragment9();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            final View rootView = inflater.inflate(R.layout.details, container, false);
+
+            Button btNextDetails = (Button) rootView.findViewById(R.id.btNextDetails);
+            Button btBackDetails = (Button) rootView.findViewById(R.id.btBackDetails);
+
+
+            btBackDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(7);
+                }
+            });
+            btNextDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(9);
+                }
+            });
+
+
+            final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgDetails1);
+
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
+                    //Busquem quin radioButton s'ha seleccionat
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    //Recuperem l'element ara que tenim el identificador per a la classe R (id)
+                    RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
+
+                    Toast.makeText(getContext(), rb.getText().toString(),
+                            Toast.LENGTH_LONG).show();
+
+                    respostes_recuperades.setPreguntesPerceptius_Sons(rb.getText().toString());
+
+
+                }
+
+            });
+
+
+            return rootView;
+        }
+
+    }
+
+
+    //---------------------------------------------------------------------------------------------
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class Fragment10 extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public Fragment10() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static Fragment10 newInstance(int sectionNumber) {
+            Fragment10 fragment = new Fragment10();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            final View rootView = inflater.inflate(R.layout.details2, container, false);
+
+            Button btNextDetails2 = (Button) rootView.findViewById(R.id.btNextDetails2);
+            Button btBackDetails2 = (Button) rootView.findViewById(R.id.btBackDetails2);
+
+
+            btBackDetails2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(8);
+                }
+            });
+            btNextDetails2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(10);
+                }
+            });
+
+
+            final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgDetails2);
+
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
+                    //Busquem quin radioButton s'ha seleccionat
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    //Recuperem l'element ara que tenim el identificador per a la classe R (id)
+                    RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
+
+                    Toast.makeText(getContext(), rb.getText().toString(),
+                            Toast.LENGTH_LONG).show();
+
+                    respostes_recuperades.setPreguntesPerceptius_Temperatura(rb.getText().toString());
+
+                }
+
+            });
+            return rootView;
+        }
+
+    }
+
+
+    //---------------------------------------------------------------------------------------------
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class Fragment11 extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public Fragment11() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static Fragment11 newInstance(int sectionNumber) {
+            Fragment11 fragment = new Fragment11();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            final View rootView = inflater.inflate(R.layout.details3, container, false);
+
+            Button btNextDetails3 = (Button) rootView.findViewById(R.id.btNextDetails3);
+            Button btBackDetails3 = (Button) rootView.findViewById(R.id.btBackDetails3);
+
+
+            btBackDetails3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(9);
+                }
+            });
+            btNextDetails3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+
+                }
+            });
+
+
+            final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgDetails3);
+
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+
+                    //Busquem quin radioButton s'ha seleccionat
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    //Recuperem l'element ara que tenim el identificador per a la classe R (id)
+                    RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
+
+                    Toast.makeText(getContext(), rb.getText().toString(),
+                            Toast.LENGTH_LONG).show();
+
+                    respostes_recuperades.setPreguntesPerceptius_Olors(rb.getText().toString());
+
+                }
+
+            });
+            return rootView;
+        }
+
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -768,6 +991,15 @@ public class QuestionariActivity extends AppCompatActivity {
             if(position==7){
                 return Fragment8.newInstance(position + 1);
             }
+            if(position==8){
+                return Fragment9.newInstance(position + 1);
+            }
+            if(position==9){
+                return Fragment10.newInstance(position + 1);
+            }
+            if(position==10){
+                return Fragment11.newInstance(position + 1);
+            }
 
 
             return PlaceholderFragment.newInstance(position + 1);
@@ -775,8 +1007,7 @@ public class QuestionariActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 8 total pages.
-            return 8;
+             return 10;
         }
 
         @Override
@@ -798,6 +1029,12 @@ public class QuestionariActivity extends AppCompatActivity {
                     return getString(R.string.HowManyEnviroments);
                 case 7:
                     return getString(R.string.Location);
+                case 8:
+                    return getString(R.string.HowManySounds);
+                case 9:
+                    return getString(R.string.Temperature);
+                case 10:
+                    return getString(R.string.WhatOdors);
             }
             return null;
         }

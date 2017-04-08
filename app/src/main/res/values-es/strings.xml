@@ -149,4 +149,18 @@
     <string name="Location">Ubicación</string>
     <string name="Monday">Lunes</string>
     <string name="Wednesday">Miercoles</string>
+    <string name="PerceptiveDetails">Detalles percetivos y sensoriales</string>
+    <string name="HowManySounds">Que sonidos habia?</string>
+    <string name="Silence">Silencio</string>
+    <string name="PeopleTalking">Gente hablando</string>
+    <string name="Music">Musica</string>
+    <string name="NatureSounds">Sonidos de la naturaleza (pajaros, agua)</string>
+    <string name="Temperature">Que temperatura hacia?</string>
+    <string name="Cold">Frío</string>
+    <string name="Warm">Calor</string>
+    <string name="NeitherColdWarm">Ni frio ni calor</string>
+    <string name="Odor">Olores agradables</string>
+    <string name="UnPleasentOdor">Olores desagradables</string>
+    <string name="NoOdors">No se sentia ningun olor</string>
+    <string name="WhatOdors">Que olores se sentian?</string>
 </resources>

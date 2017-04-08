@@ -149,4 +149,18 @@
     <string name="Location">Location</string>
     <string name="Monday">Monday</string>
     <string name="Wednesday">Wednesday</string>
+    <string name="PerceptiveDetails">Percetive details and sensorials</string>
+    <string name="HowManySounds">Which sounds were there?</string>
+    <string name="Silence">Silence</string>
+    <string name="PeopleTalking">People talking</string>
+    <string name="Music">Music</string>
+    <string name="NatureSounds">Sounds of the nature (birds, water)</string>
+    <string name="Temperature">What was the temperature?</string>
+    <string name="Cold">Cold</string>
+    <string name="Warm">Warm</string>
+    <string name="NeitherColdWarm">Neither cold nor warm</string>
+    <string name="Odor">Pleasent odors</string>
+    <string name="UnPleasentOdor">Unpleasent odors</string>
+    <string name="NoOdors">I couldn\'t appreciate any odor</string>
+    <string name="WhatOdors">What odors did you feel?</string>
 </resources>

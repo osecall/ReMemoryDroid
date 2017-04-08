@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.rememorydroid.oriolsecall.rememorydroid.QuestionariActivity"
+    tools:context="com.rememorydroid.oriolsecall.rememorydroid.QuestionariActivity$Fragment7"
     android:screenOrientation="landscape"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -37,7 +37,6 @@
 
         <RadioGroup
             android:id="@+id/rgWhen1Enviroments"
-            style="@style/radioGroupElementsWhen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal|center"
@@ -46,28 +45,28 @@
 
             <RadioButton
                 android:id="@+id/rb1WhenEnviroments"
-                style="@style/radioGroupElementsWhen"
+                style="@style/radioGroupElementsWhere"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/EverythingHappens" />
 
             <RadioButton
                 android:id="@+id/rb2WhenEnviroments"
-                style="@style/radioGroupElementsWhen"
+                style="@style/radioGroupElementsWhere"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/TwoEnviroments" />
 
             <RadioButton
                 android:id="@+id/rb3WhenEnviroments"
-                style="@style/radioGroupElementsWhen"
+                style="@style/radioGroupElementsWhere"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ThreeEnviroments" />
 
             <RadioButton
                 android:id="@+id/rb4WhenEnviroments"
-                style="@style/radioGroupElementsWhen"
+                style="@style/radioGroupElementsWhere"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/MoreThan3Enviroments"

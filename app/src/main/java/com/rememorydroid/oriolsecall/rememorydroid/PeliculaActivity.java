@@ -40,7 +40,7 @@ public class PeliculaActivity extends AppCompatActivity {
 
         ColorGenerator generator = ColorGenerator.DEFAULT;
         FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("1",generator.getRandomColor());
-        ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("30",generator.getRandomColor());
+        ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("6",generator.getRandomColor());
 
         ivFromPage = (ImageView) findViewById(R.id.ivFromPage1);
         ivToPage = (ImageView) findViewById(R.id.ivToPage1);
