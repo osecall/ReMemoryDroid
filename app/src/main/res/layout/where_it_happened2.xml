@@ -37,9 +37,9 @@
 
         <RadioGroup
             android:id="@+id/rgWhen1Enviroments"
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal|center"
             android:layout_margin="10sp"
             android:gravity="center">
 

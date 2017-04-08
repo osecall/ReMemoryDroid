@@ -38,6 +38,7 @@
         <RadioGroup
             android:id="@+id/rgWhen1Location"
             style="@style/radioGroupElementsWhen"
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 

@@ -915,6 +915,12 @@ public class QuestionariActivity extends AppCompatActivity {
             btNextDetails3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //Ho guardem a SharedPreferences
+                    Gson gson= new Gson();
+                    String respostes_json = gson.toJson(respostes_recuperades);
+                    prefs.edit().putString("respostes",respostes_json);
+                    prefs.edit().commit();
+
                     Intent intent = new Intent(getContext(),RespirarActivity1.class);
                     intent.putExtra("tercer","tercer");
                     startActivity(intent);
@@ -999,7 +1005,7 @@ public class QuestionariActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-             return 10;
+             return 11;
         }
 
         @Override
