@@ -52,12 +52,16 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.androidvideo2));
             intent=new Intent(VisualitzarActivity1.this,QuestionariActivity.class);
         }
+        else if(getIntent().hasExtra("Tercer")){
+            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.androidvideo2));
+            intent=new Intent(VisualitzarActivity1.this,QuestionariActivity2.class);
+        }
+
         else{
             //Vídeo
             vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.androidvideo));
             intent=new Intent(VisualitzarActivity1.this,EvocarActivity.class);
         }
-
 
 
         ibPlay.setOnClickListener(new View.OnClickListener() {

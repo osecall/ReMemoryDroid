@@ -163,4 +163,17 @@
     <string name="UnPleasentOdor">Unpleasent odors</string>
     <string name="NoOdors">I couldn\'t appreciate any odor</string>
     <string name="WhatOdors">What odors did you feel?</string>
+    <string name="PeopleAppearing">People who appears</string>
+    <string name="PeopleActions">Actions which are being done by people who appears</string>
+    <string name="AntherAction">They do another action</string>
+    <string name="AgesPeople">Ages of people who appear</string>
+    <string name="Adults">Adults</string>
+    <string name="Dancing">Dancing</string>
+    <string name="Eating">Eating</string>
+    <string name="OldPeople">Old people</string>
+    <string name="Young">Young</string>
+    <string name="Youth">Youth</string>
+    <string name="Walking">Walking</string>
+    <string name="Talking">Talking</string>
+    <string name="Kids">Kids</string>
 </resources>

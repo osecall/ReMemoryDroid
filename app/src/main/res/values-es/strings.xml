@@ -163,4 +163,17 @@
     <string name="UnPleasentOdor">Olores desagradables</string>
     <string name="NoOdors">No se sentia ningun olor</string>
     <string name="WhatOdors">Que olores se sentian?</string>
+    <string name="PeopleAppearing">Personas que aparecen</string>
+    <string name="PeopleActions">Acciones que estan haciendo las personas que aparecen</string>
+    <string name="AntherAction">Hacen otra acción</string>
+    <string name="AgesPeople">Grupos de edades de las personas que aparecen</string>
+    <string name="Adults">Adultos</string>
+    <string name="Dancing">Bailando</string>
+    <string name="Eating">Comiendo</string>
+    <string name="OldPeople">Gente mayor</string>
+    <string name="Young">Joven</string>
+    <string name="Youth">Juventud</string>
+    <string name="Walking">Caminando</string>
+    <string name="Talking">Hablando</string>
+    <string name="Kids">Niños</string>
 </resources>

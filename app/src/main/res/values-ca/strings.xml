@@ -163,4 +163,18 @@
     <string name="UnPleasentOdor">Olors desagradables</string>
     <string name="NoOdors">No es sentia cap mena d\'olor</string>
     <string name="WhatOdors">Quines olors se sentien?</string>
+    <string name="PeopleAppearing">Persones que apareixen</string>
+    <string name="PeopleActions">Accions que estan fent les persones que apareixen</string>
+    <string name="AntherAction">Fan una altre acció</string>
+    <string name="AgesPeople">Grups d\'edats de les persones que apareixen</string>
+    <string name="Adults">Adults</string>
+    <string name="Dancing">Ballant</string>
+    <string name="Eating">Menjant</string>
+    <string name="OldPeople">Gent gran</string>
+    <string name="Young">Jove</string>
+    <string name="Youth">Juventut</string>
+    <string name="title_activity_questionari2"></string>
+    <string name="Walking">Caminant</string>
+    <string name="Talking">Parlant</string>
+    <string name="Kids">Nens</string>
 </resources>
