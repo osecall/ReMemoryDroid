@@ -125,13 +125,8 @@ public class PeliculaActivity6 extends AppCompatActivity {
                     editor.putString("respostes",respostes_json);
                     editor.commit();
                 }
-
-                startActivity(intentPel1);
-
             }
         });
-
-
     }
 
 
@@ -142,6 +137,8 @@ public class PeliculaActivity6 extends AppCompatActivity {
                 .setMessage(R.string.DialogResting)
                 .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
+                        arg0.dismiss();
+                        startActivity(intentPel1);
 
                     }
                 })

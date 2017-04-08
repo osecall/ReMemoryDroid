@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RespirarActivity1 extends AppCompatActivity {
 
     private Intent intentRespirar;
-    private ImageView ivRespirar;
     private int Reproduccio;
 
     @Override
@@ -33,20 +32,20 @@ public class RespirarActivity1 extends AppCompatActivity {
         //d'aquesta forma ens evitem duplicar classes (activities)
         if(getIntent().hasExtra("Segon")){
             ivRespirar.setImageResource(R.drawable.abstracte2);
-            Reproduccio = R.raw.test2;
+            Reproduccio = R.raw.respirar2;
             intentRespirar.putExtra("Segon","Segon");
             DialogInstruccionsRespirar();
 
         }
         else if(getIntent().hasExtra("Tercer")){
-            ivRespirar.setImageResource(R.drawable.abstracte2);
-            Reproduccio = R.raw.test2;
+            ivRespirar.setImageResource(R.drawable.abstracte3);
+            Reproduccio = R.raw.respirar3;
             intentRespirar.putExtra("Tercer","Tercer");
             DialogInstruccionsRespirar();
 
         }
         else{
-            Reproduccio = R.raw.test1;
+            Reproduccio = R.raw.respirar1;
             DialogInstruccionsRespirar();
         }
 

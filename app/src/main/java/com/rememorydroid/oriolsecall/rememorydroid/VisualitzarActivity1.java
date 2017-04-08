@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class VisualitzarActivity1 extends AppCompatActivity {
 
-    private MediaPlayer mp;
+    private MediaPlayer mp, mp2;
     private VideoView vv;
     private ImageButton ibPlay, ibStop;
     private Button btBack, btNext;
@@ -43,25 +43,27 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         ibPlay.setVisibility(View.INVISIBLE);
         ibStop.setVisibility(View.INVISIBLE);
 
-        //Per les instruccions
-        mp = MediaPlayer.create(this, R.raw.test1);
-
-        DialogInstruccionsVisualitzar(mp);
-
         if(getIntent().hasExtra("Segon")){
-            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.androidvideo2));
+            mp = MediaPlayer.create(this, R.raw.visualitzar2);
+            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
+            //Es ficarà en conjunt al vídeo, com a so
+            mp2 = MediaPlayer.create(this, R.raw.visualitzar2peliculabackground);
+
             intent=new Intent(VisualitzarActivity1.this,QuestionariActivity.class);
         }
         else if(getIntent().hasExtra("Tercer")){
-            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.androidvideo2));
+            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
             intent=new Intent(VisualitzarActivity1.this,QuestionariActivity2.class);
         }
 
         else{
+            //Per les instruccions
+            mp = MediaPlayer.create(this, R.raw.visualitzar1);
             //Vídeo
-            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.androidvideo));
+            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
             intent=new Intent(VisualitzarActivity1.this,EvocarActivity.class);
         }
+        DialogInstruccionsVisualitzar(mp);
 
 
         ibPlay.setOnClickListener(new View.OnClickListener() {

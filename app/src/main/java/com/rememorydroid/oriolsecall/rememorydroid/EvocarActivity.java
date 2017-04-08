@@ -35,7 +35,7 @@ import java.io.IOException;
 public class EvocarActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageButton ibRecordEvocar, ibStopRecordEvocar, ibPlayEvocar, ibStopPlayEvocar;
-    private MediaPlayer mp;
+    private MediaPlayer mp, mp2;
     private MediaRecorder mr;
     private Intent intent;
     private String outputFile = null;
@@ -169,6 +169,30 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evocar);
 
+        //mp2 = MediaPlayer.create(this,R.raw.evocara);
+        /*
+        try {
+            mp2.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mp2.start();
+        while(mp2.isPlaying());
+        mp2.release();*/
+        AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
+        dialeg
+                .setTitle(getString(R.string.Attention))
+                .setMessage("Ahora le pedimos que explique todo lo que pueda de lo que acaba de ver. Intente" +
+                        "dar detalles de dónde están, con quien está, qué estaban haciendo, etc." +
+                        "Cuando esté preparado seleccione el icono Grabar")
+                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                arg0.dismiss();
+                                arg0.cancel();
+                            }
+                })
+                .show();
 
         //Extreure dades pacient
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
@@ -202,12 +226,12 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mr.release();
         mp.release();
+        mp2.release();
     }
 
     //Part del menú 'action bar'
