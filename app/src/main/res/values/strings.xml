@@ -188,6 +188,9 @@
     <string name="Youth">Youth</string>
     <string name="Adults">Adults</string>
     <string name="OldPeople">OldPeople</string>
+    <string name="EvocarAdiaelg">"Now we ask you to tell everything you can about what you just have seen.\nTry to give details about where they are, with who, what they were doing, etc.\nWhen you are ready choose the icon \"Record\". "</string>
+    <string name="Listen">Listen</string>
+    <string name="NoListen">No listen</string>
 
 
 </resources>

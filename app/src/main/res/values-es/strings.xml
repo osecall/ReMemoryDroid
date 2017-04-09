@@ -176,4 +176,7 @@
     <string name="Walking">Caminando</string>
     <string name="Talking">Hablando</string>
     <string name="Kids">Niños</string>
+    <string name="EvocarAdiaelg">Ahora le pedimos que explique todo lo que pueda de lo que acaba de ver. \nIntente dar detalles de dónde están, con quien está, qué estaban haciendo, etc. \nCuando esté preparado seleccione el icono \"Grabar\".</string>
+    <string name="Listen">Escuchar</string>
+    <string name="NoListen">No escuchar</string>
 </resources>

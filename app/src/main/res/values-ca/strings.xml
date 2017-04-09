@@ -111,7 +111,7 @@
     <string name="SunnyDay">Dia solejat</string>
     <string name="Rainy">Pluja</string>
     <string name="Cloudly">Dia amb núvols</string>
-    <string name="FoggyDay">Boira</string>
+    <string name="FoggyDay">"When you are ready choose the icon \"Record\". "</string>
     <string name="HowLongItLast">Quant va durar?</string>
     <string name="LessThan2Hours">Menys de 2 hores</string>
     <string name="action_settings">Configuració</string>
@@ -132,7 +132,7 @@
     <string name="October">Octubre</string>
     <string name="Afternoon">Tarda</string>
     <string name="DayTime">Franja del dia</string>
-    <string name="February">Febrer</string>
+    <string name="February">Try to give details about where they are, with who, what they were doing, etc.</string>
     <string name="Night">Nit</string>
     <string name="Morning">Matí</string>
     <string name="WhereItHappened">On va ser?</string>
@@ -177,4 +177,7 @@
     <string name="Walking">Caminant</string>
     <string name="Talking">Parlant</string>
     <string name="Kids">Nens</string>
+    <string name="EvocarAdiaelg">Ara et demanem que expliquis tot el que puguis sobre el que acabes de veure. Intenta donar detalls sobre el on estan, amb qui, que estan fent, etc. Quan estiguis preparat apreta el botó \"Grabar\".</string>
+    <string name="Listen">Escoltar</string>
+    <string name="NoListen">No escoltar</string>
 </resources>

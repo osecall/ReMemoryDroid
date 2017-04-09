@@ -35,7 +35,7 @@ import java.io.IOException;
 public class EvocarActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageButton ibRecordEvocar, ibStopRecordEvocar, ibPlayEvocar, ibStopPlayEvocar;
-    private MediaPlayer mp, mp2;
+    private MediaPlayer mp;
     private MediaRecorder mr;
     private Intent intent;
     private String outputFile = null;
@@ -169,28 +169,23 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evocar);
 
-        //mp2 = MediaPlayer.create(this,R.raw.evocara);
-        /*
-        try {
-            mp2.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        mp2.start();
-        while(mp2.isPlaying());
-        mp2.release();*/
         AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
         dialeg
                 .setTitle(getString(R.string.Attention))
-                .setMessage("Ahora le pedimos que explique todo lo que pueda de lo que acaba de ver. Intente" +
-                        "dar detalles de dónde están, con quien está, qué estaban haciendo, etc." +
-                        "Cuando esté preparado seleccione el icono Grabar")
-                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                .setMessage(getString(R.string.EvocarAdiaelg))
+                .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0, int arg1) {
+                               reproduirMissatgeDialeg();
                                 arg0.dismiss();
                                 arg0.cancel();
                             }
+                })
+                .setNegativeButton(R.string.NoListen, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                        dialogInterface.dismiss();
+                    }
                 })
                 .show();
 
@@ -231,7 +226,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         super.onDestroy();
         mr.release();
         mp.release();
-        mp2.release();
     }
 
     //Part del menú 'action bar'
@@ -274,5 +268,21 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void reproduirMissatgeDialeg(){
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.evocara);
+        try{
+            mp.prepare();
+        }catch (Exception e){
+            Toast.makeText(EvocarActivity.this, e.toString(),
+                    Toast.LENGTH_LONG).show();e.toString();
+        }
+        mp.start();
+        while(mp.isPlaying()){
+        }
+        mp.stop();
+        mp.release();
     }
 }
