@@ -1,0 +1,203 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:screenOrientation="landscape"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.rememorydroid.oriolsecall.rememorydroid.QuestionariActivity2$Fragment4">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="900dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/PeopleAppearing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:gravity="center_horizontal"
+            android:text="@string/EmotionsDuringEpisode"
+            android:textAlignment="center"
+            android:textSize="60sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/borde"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/EmotionsLabel1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cbTheyScared"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/TheyAreScared" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cbTheySad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/TheyAreSad" />
+
+                <CheckBox
+                    android:id="@+id/cbTheySurprised"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/TheyAreSuprised" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cbTheyHappy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/TheyAreHappy" />
+
+                <CheckBox
+                    android:id="@+id/cbTheyAngry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/TheyAreAngry" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/borde"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/EmotionsLabel2"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/cbHappy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/WasHappy" />
+
+            <CheckBox
+                android:id="@+id/cbSad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/WasSad" />
+
+            <CheckBox
+                android:id="@+id/cbAngry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/wasAngry" />
+
+            <CheckBox
+                android:id="@+id/cbScared"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/WasScared" />
+
+            <CheckBox
+                android:id="@+id/cbSorprised"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/WasSorprised" />
+
+            <CheckBox
+                android:id="@+id/cbNoExperience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/NoEmotion" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btNextEmotions"
+        style="@style/Next_button"
+        tools:layout_editor_absoluteX="1114dp"
+        tools:layout_editor_absoluteY="557dp"
+        android:layout_marginBottom="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/btBackEmotions"
+        style="@style/Back_button"
+        android:layout_alignBaseline="@+id/btNextEmotions"
+        android:layout_alignBottom="@+id/btNextEmotions"
+        android:layout_alignParentStart="true"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="568dp" />
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

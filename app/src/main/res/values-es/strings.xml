@@ -179,4 +179,14 @@
     <string name="EvocarAdiaelg">Ahora le pedimos que explique todo lo que pueda de lo que acaba de ver. \nIntente dar detalles de dónde están, con quien está, qué estaban haciendo, etc. \nCuando esté preparado seleccione el icono \"Grabar\".</string>
     <string name="Listen">Escuchar</string>
     <string name="NoListen">No escuchar</string>
+    <string name="HowManyPeople">Número de personas que aparecen</string>
+    <string name="From1to4">De 1 a 4</string>
+    <string name="From5to9">de 5 a 9</string>
+    <string name="MorePeopleThan10">10 o más de 10 personas</string>
+    <string name="FamilyMembers">Membres de família</string>
+    <string name="Friends">Amigos</string>
+    <string name="Neighbours">Vecinos</string>
+    <string name="Strangers">Personas desconocidas</string>
+    <string name="KnownPeople">Conocidos pero sin relación entre ellos</string>
+    <string name="EmotionsDuringEpisode">Emociones durante el episodio</string>
 </resources>

@@ -180,4 +180,14 @@
     <string name="EvocarAdiaelg">Ara et demanem que expliquis tot el que puguis sobre el que acabes de veure. Intenta donar detalls sobre el on estan, amb qui, que estan fent, etc. Quan estiguis preparat apreta el botó \"Grabar\".</string>
     <string name="Listen">Escoltar</string>
     <string name="NoListen">No escoltar</string>
+    <string name="HowManyPeople">Numero de persones que apareixen</string>
+    <string name="From1to4">De 1 a 4</string>
+    <string name="From5to9">De 5 a 9</string>
+    <string name="MorePeopleThan10">10 o més de 10 persones</string>
+    <string name="FamilyMembers">Miembros de familia</string>
+    <string name="Friends">Amics</string>
+    <string name="Neighbours">Veïns</string>
+    <string name="Strangers">Persones desconegudes</string>
+    <string name="KnownPeople">Coneguts però sense relació amb ells</string>
+    <string name="EmotionsDuringEpisode">Emocions durant l\'episodi</string>
 </resources>

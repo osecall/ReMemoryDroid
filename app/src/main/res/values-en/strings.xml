@@ -179,4 +179,14 @@
     <string name="EvocarAdiaelg">Now we ask you to tell everything you can about what you just have seen.</string>
     <string name="Listen">Listen</string>
     <string name="NoListen">No listen</string>
+    <string name="HowManyPeople">Number of people who appears</string>
+    <string name="From1to4">From 1 to 4</string>
+    <string name="From5to9">From 5 to 9</string>
+    <string name="MorePeopleThan10">10 or more than 10 people</string>
+    <string name="FamilyMembers">Family members</string>
+    <string name="Friends">Friends</string>
+    <string name="Neighbours">Neighbours</string>
+    <string name="Strangers">Strangers</string>
+    <string name="KnownPeople">Known people but without relationship with them</string>
+    <string name="EmotionsDuringEpisode">Emotions during the episode</string>
 </resources>

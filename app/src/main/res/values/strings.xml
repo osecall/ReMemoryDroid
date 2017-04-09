@@ -191,6 +191,29 @@
     <string name="EvocarAdiaelg">"Now we ask you to tell everything you can about what you just have seen.\nTry to give details about where they are, with who, what they were doing, etc.\nWhen you are ready choose the icon \"Record\". "</string>
     <string name="Listen">Listen</string>
     <string name="NoListen">No listen</string>
+    <string name="HowManyPeople">Number of people who appears</string>
+    <string name="From1to4">From 1 to 4</string>
+    <string name="From5to9">From 5 to 9</string>
+    <string name="MorePeopleThan10">10 or more people</string>
+    <string name="FamilyMembers">Family members</string>
+    <string name="Friends">Friends</string>
+    <string name="Neighbours">Neighbours</string>
+    <string name="Strangers">Strangers</string>
+    <string name="KnownPeople">Known people but without relationship with them</string>
+    <string name="EmotionsDuringEpisode">Emotions during the episode</string>
+    <string name="TheyAreHappy">They are happy</string>
+    <string name="TheyAreAngry">They are angry</string>
+    <string name="TheyAreSad">They are sad</string>
+    <string name="TheyAreSuprised">They are surprised</string>
+    <string name="TheyAreScared">They are scared</string>
+    <string name="EmotionsLabel1">Emotions observed on the people who are interacted with</string>
+    <string name="EmotionsLabel2">Own expermimented emotions  during the episode</string>
+    <string name="WasHappy">I was happy</string>
+    <string name="WasSad">I was sad</string>
+    <string name="wasAngry">I was angry</string>
+    <string name="WasScared">I was scared</string>
+    <string name="WasSorprised">I was sorprised</string>
+    <string name="NoEmotion">I didn\'t experience any concret emotion</string>
 
 
 </resources>

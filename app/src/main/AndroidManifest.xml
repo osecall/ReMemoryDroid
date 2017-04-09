@@ -70,11 +70,7 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".EvocarActivity"
-            android:screenOrientation="landscape" ><intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter></activity>
+            android:screenOrientation="landscape" ></activity>
         <activity
             android:name=".QuestionariActivity"
             android:label="@string/title_activity_questionari"
@@ -84,7 +80,11 @@
             android:name=".QuestionariActivity2"
             android:label="@string/title_activity_questionari2"
             android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape"><intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
     </application>
 
 </manifest>
