@@ -41,48 +41,44 @@
 
         <RadioGroup
             android:id="@+id/rgPeople"
-            style="@style/radioGroupElementsWhen"
+            style="@style/radioGroupElementsActions"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center">
 
             <RadioButton
                 android:id="@+id/rbPeople1"
-                style="@style/radioGroupElementsWhen"
+                style="@style/radioGroupElementsActions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/Talking" />
 
             <RadioButton
                 android:id="@+id/rbPeople2"
-                style="@style/radioGroupElementsWhen"
+                style="@style/radioGroupElementsActions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/Eating" />
 
             <RadioButton
                 android:id="@+id/rbPeople3"
-                style="@style/radioGroupElementsWhen"
+                style="@style/radioGroupElementsActions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/Walking" />
+
             <RadioButton
                 android:id="@+id/rbPeople4"
-                style="@style/radioGroupElementsWhen"
+                style="@style/radioGroupElementsActions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/Dancing" />
 
             <RadioButton
                 android:id="@+id/rbPeople5"
-                style="@style/radioGroupElementsWhen"
+                style="@style/radioGroupElementsActions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/AntherAction" />
 
         </RadioGroup>

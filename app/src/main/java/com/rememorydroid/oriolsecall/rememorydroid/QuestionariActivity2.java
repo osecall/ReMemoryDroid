@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -365,12 +366,23 @@ public class QuestionariActivity2 extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.fragment4_questionari_activity2, container, false);
+
+            CheckBox cbTheyScared = (CheckBox) rootView.findViewById(R.id.cbTheyScared);
+            CheckBox cbTheyAngry = (CheckBox) rootView.findViewById(R.id.cbTheyAngry);
+            CheckBox cbTheyHappy = (CheckBox) rootView.findViewById(R.id.cbTheyHappy);
+            CheckBox cbTheySad = (CheckBox) rootView.findViewById(R.id.cbTheySad);
+            CheckBox cbTheySurprised = (CheckBox) rootView.findViewById(R.id.cbTheySurprised);
+
+            CheckBox cbHappy = (CheckBox) rootView.findViewById(R.id.cbHappy);
+            CheckBox cbSad = (CheckBox) rootView.findViewById(R.id.cbSad);
+            CheckBox cbScared = (CheckBox) rootView.findViewById(R.id.cbScared);
+            CheckBox cbSorprised = (CheckBox) rootView.findViewById(R.id.cbSorprised);
+            CheckBox cbAngry = (CheckBox) rootView.findViewById(R.id.cbAngry);
+            CheckBox cbNoExperience = (CheckBox) rootView.findViewById(R.id.cbNoExperience);
+
+
             Button btNextEmotions = (Button) rootView.findViewById(R.id.btNextEmotions);
             Button btBackEmotions = (Button) rootView.findViewById(R.id.btBackEmotions);
-
-
-
-
 
 
             //Guardem resposta obteniguda
@@ -388,7 +400,9 @@ public class QuestionariActivity2 extends AppCompatActivity {
             btNextEmotions.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(4);
+                    Intent intent = new Intent(getActivity(),RespirarActivity1.class);
+                    intent.putExtra("Quarta","Quarta");
+                    startActivity(intent);
                 }
             });
 

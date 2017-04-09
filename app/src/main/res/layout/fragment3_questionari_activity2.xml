@@ -51,7 +51,6 @@
                 style="@style/radioGroupElementsWhen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/FamilyMembers" />
 
             <RadioButton
@@ -59,7 +58,6 @@
                 style="@style/radioGroupElementsWhen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/Friends" />
 
             <RadioButton
@@ -67,7 +65,6 @@
                 style="@style/radioGroupElementsWhen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/Neighbours" />
 
             <RadioButton
@@ -75,7 +72,6 @@
                 style="@style/radioGroupElementsWhen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/Strangers" />
 
             <RadioButton
@@ -83,7 +79,6 @@
                 style="@style/radioGroupElementsWhen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/KnownPeople" />
 
         </RadioGroup>

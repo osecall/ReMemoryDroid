@@ -44,6 +44,13 @@ public class RespirarActivity1 extends AppCompatActivity {
             DialogInstruccionsRespirar();
 
         }
+        else if(getIntent().hasExtra("Quarta")){
+            ivRespirar.setImageResource(R.drawable.abstracte4);
+            Reproduccio = R.raw.respirar4;
+            intentRespirar.putExtra("Quarta","Quarta");
+            DialogInstruccionsRespirar();
+
+        }
         else{
             Reproduccio = R.raw.respirar1;
             DialogInstruccionsRespirar();

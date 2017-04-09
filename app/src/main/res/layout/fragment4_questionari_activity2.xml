@@ -10,6 +10,28 @@
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.QuestionariActivity2$Fragment4">
 
 
+    <Button
+        android:id="@+id/btBackEmotions"
+        style="@style/Back_button"
+
+
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="568dp"
+        android:layout_alignTop="@+id/btNextEmotions"
+        android:layout_toStartOf="@+id/linearLayout2"
+        android:layout_marginEnd="18dp" />
+
+    <Button
+        android:id="@+id/btNextEmotions"
+        style="@style/Next_button"
+
+        tools:layout_editor_absoluteX="1114dp"
+        tools:layout_editor_absoluteY="557dp"
+        android:layout_marginStart="13dp"
+        android:layout_alignBottom="@+id/linearLayout2"
+        android:layout_toEndOf="@+id/linearLayout2"
+        android:layout_marginBottom="71dp" />
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="900dp"
@@ -172,32 +194,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
-    <Button
-        android:id="@+id/btNextEmotions"
-        style="@style/Next_button"
-        tools:layout_editor_absoluteX="1114dp"
-        tools:layout_editor_absoluteY="557dp"
-        android:layout_marginBottom="48dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/btBackEmotions"
-        style="@style/Back_button"
-        android:layout_alignBaseline="@+id/btNextEmotions"
-        android:layout_alignBottom="@+id/btNextEmotions"
-        android:layout_alignParentStart="true"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="568dp" />
-
-
-
-
-
-
-
 
 
 </RelativeLayout>

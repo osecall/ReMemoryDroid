@@ -79,8 +79,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                             .setNeutralButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    intent = new Intent(EvocarActivity.this,RespirarActivity1.class);
-                                    intent.putExtra("Segon","Segon");
                                     startActivity(intent);
                                 }
                             })
@@ -169,25 +167,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evocar);
 
-        AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
-        dialeg
-                .setTitle(getString(R.string.Attention))
-                .setMessage(getString(R.string.EvocarAdiaelg))
-                .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface arg0, int arg1) {
-                               reproduirMissatgeDialeg();
-                                arg0.dismiss();
-                                arg0.cancel();
-                            }
-                })
-                .setNegativeButton(R.string.NoListen, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                        dialogInterface.dismiss();
-                    }
-                })
-                .show();
 
         //Extreure dades pacient
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
@@ -195,7 +174,20 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         String pacient = prefs.getString("pacient",null);
         PacientUsuari pacientusuari = gson.fromJson(pacient, PacientUsuari.class);
 
-        outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarA.3gp";
+
+        if(getIntent().hasExtra("Quarta")){
+            DialegCongrats(); //Felicitem a l'usuari
+            DialegSegon(); //Instruccions diferents a si es la primera vegada
+            outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarB.3gp";
+            intent = new Intent (EvocarActivity.this, EmocionsActivity.class);
+        }
+        else{
+            DialegPrimer();
+            outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarA.3gp";
+            intent = new Intent(EvocarActivity.this,RespirarActivity1.class);
+            intent.putExtra("Segon","Segon");
+        }
+
 
         ibRecordEvocar = (ImageButton) findViewById(R.id.ibRecordEvocar);
         ibStopPlayEvocar = (ImageButton) findViewById(R.id.ibStopPlayEvocar);
@@ -269,6 +261,65 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void DialegPrimer(){
+        AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
+        dialeg
+                .setTitle(getString(R.string.Attention))
+                .setMessage(getString(R.string.EvocarAdiaelg))
+                .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        reproduirMissatgeDialeg();
+                        arg0.dismiss();
+                        arg0.cancel();
+                    }
+                })
+                .setNegativeButton(R.string.NoListen, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    private void DialegSegon(){
+        AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
+        dialeg
+                .setTitle(getString(R.string.Attention))
+                .setMessage(getString(R.string.EvocarB))
+                .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        reproduirMissatgeDialeg();
+                        arg0.dismiss();
+                        arg0.cancel();
+                    }
+                })
+                .setNegativeButton(R.string.NoListen, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    private void DialegCongrats(){
+        AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
+        dialeg
+                .setTitle(getString(R.string.Congratulations))
+                .setMessage(getString(R.string.DoingGreat))
+                .setPositiveButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        arg0.dismiss();
+                        arg0.cancel();
+                    }
+                })
+                .show();
+    }
+
 
 
     private void reproduirMissatgeDialeg(){

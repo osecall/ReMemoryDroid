@@ -52,10 +52,16 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             intent=new Intent(VisualitzarActivity1.this,QuestionariActivity.class);
         }
         else if(getIntent().hasExtra("Tercer")){
+            mp = MediaPlayer.create(this, R.raw.visualitzar2);
             vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
             intent=new Intent(VisualitzarActivity1.this,QuestionariActivity2.class);
         }
-
+        else if(getIntent().hasExtra("Quarta")){
+            mp = MediaPlayer.create(this, R.raw.visualitzar2);
+            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
+            intent=new Intent(VisualitzarActivity1.this,EvocarActivity.class);
+            intent.putExtra("Quarta","Quarta");
+        }
         else{
             //Per les instruccions
             mp = MediaPlayer.create(this, R.raw.visualitzar1);
