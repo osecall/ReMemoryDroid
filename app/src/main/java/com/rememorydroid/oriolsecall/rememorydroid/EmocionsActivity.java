@@ -1,6 +1,9 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.v7.app.AlertDialog;
@@ -12,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 public class EmocionsActivity extends AppCompatActivity {
 
     private MediaPlayer mp;
@@ -19,13 +24,14 @@ public class EmocionsActivity extends AppCompatActivity {
     private ImageView happy,angry,sad;
     private SeekBar seekbar;
     private TextView tvValueSeekBar,tvAtAll,tvVery, tvHappy,tvSad,tvAngry;
-    private String CaraSeleccionada;
+    private String CaraSeleccionada, IntensitatSeleccionada;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emocions);
-        CaraSeleccionada=new String();
+
 
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(EmocionsActivity.this);
         DialegFormControl
@@ -73,6 +79,7 @@ public class EmocionsActivity extends AppCompatActivity {
                     tvAtAll.setTextColor(Color.BLACK);
                     tvVery.setTextColor(Color.BLACK);
                 }
+                IntensitatSeleccionada = String.valueOf(i);
             }
 
             @Override
@@ -140,7 +147,25 @@ public class EmocionsActivity extends AppCompatActivity {
             }
         });
 
+        btNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                Gson gson = new Gson();
+                //Passem valor sel·leccionat com Integer
+                String respostes_json = prefs.getString("respostes",null);
+                TestAnswers respostes = gson.fromJson(respostes_json,TestAnswers.class);
+                respostes.setPreguntesEmocionsEscena1_Emocio(CaraSeleccionada);
+                respostes.setPreguntesEmocionsEscena1_Intentistat(IntensitatSeleccionada);
+                respostes_json = gson.toJson(respostes);
+                editor.putString("respostes",respostes_json);
+                editor.commit();
+                startActivity(new Intent(EmocionsActivity.this,EmocionsActivity2.class));
+
+            }
+        });
 
 
 
