@@ -5,15 +5,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -22,9 +18,7 @@ import android.widget.VideoView;
 
 import com.google.gson.Gson;
 
-import java.io.IOException;
-
-public class EmocionsActivity extends AppCompatActivity {
+public class EmocionsActivity3 extends AppCompatActivity {
 
     private Button play,stop, btBack, btNext;
     private ImageView happy,angry,sad;
@@ -37,11 +31,10 @@ public class EmocionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emocions);
+        setContentView(R.layout.activity_emocions3);
 
 
-
-        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(EmocionsActivity.this);
+        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(EmocionsActivity3.this);
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
                 .setMessage(R.string.AssignEmotions)
@@ -188,12 +181,12 @@ public class EmocionsActivity extends AppCompatActivity {
                 //Passem valor sel·leccionat com Integer
                 String respostes_json = prefs.getString("respostes",null);
                 TestAnswers respostes = gson.fromJson(respostes_json,TestAnswers.class);
-                respostes.setPreguntesEmocionsEscena1_Emocio(CaraSeleccionada);
-                respostes.setPreguntesEmocionsEscena1_Intentistat(IntensitatSeleccionada);
+                respostes.setPreguntesEmocionsEscena3_Emocio(CaraSeleccionada);
+                respostes.setPreguntesEmocionsEscena3_Intentistat(IntensitatSeleccionada);
                 respostes_json = gson.toJson(respostes);
                 editor.putString("respostes",respostes_json);
                 editor.commit();
-                startActivity(new Intent(EmocionsActivity.this,EmocionsActivity2.class));
+                startActivity(new Intent(EmocionsActivity3.this,AlbumActivity.class));
 
             }
         });
@@ -209,10 +202,10 @@ public class EmocionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-            happy.setEnabled(true);
-            sad.setEnabled(true);
-            angry.setEnabled(true);
-            seekbar.setEnabled(true);
+                happy.setEnabled(true);
+                sad.setEnabled(true);
+                angry.setEnabled(true);
+                seekbar.setEnabled(true);
 
                 if(vvEmotions1.isPlaying()){
                     vvEmotions1.resume();
@@ -239,4 +232,5 @@ public class EmocionsActivity extends AppCompatActivity {
         super.onDestroy();
         vvEmotions1=null;
     }
+
 }
