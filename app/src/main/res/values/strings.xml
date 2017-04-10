@@ -173,7 +173,7 @@
     <string name="UnPleasentOdor">Unpleasent odors</string>
     <string name="NoOdors">I couldn\'t appreciate any odor</string>
     <string name="WhatOdors">What odors did you feel?</string>
-    <string name="title_activity_questionari2">QuestionariActivity2</string>
+    <string name="title_activity_questionari2" translatable="false">QuestionariActivity2</string>
     <string name="PeopleAppearing">People who appears</string>
     <string name="PeopleActions">Actions which are being done by people who appears</string>
     <string name="Talking">Talking</string>
@@ -206,7 +206,7 @@
     <string name="TheyAreSuprised">They are surprised</string>
     <string name="TheyAreScared">They are scared</string>
     <string name="EmotionsLabel1">Emotions observed on the people who are interacted with</string>
-    <string name="EmotionsLabel2">Own expermimented emotions  during the episode</string>
+    <string name="EmotionsLabel2">Own expermimented emotions during the episode</string>
     <string name="WasHappy">I was happy</string>
     <string name="WasSad">I was sad</string>
     <string name="wasAngry">I was angry</string>
@@ -225,6 +225,8 @@
     <string name="Angry">Angry</string>
     <string name="ChooseEmotion">Choose the emotion which best defines how you feel after watching the scene</string>
     <string name="IntensityEmotion">Select the intensity of the emotion</string>
+    <string name="ChooseImageFavourite">Choose the most significant image which is going to be saved in your memory album</string>
+    <string name="HereShowingImages">Here we are going to show you several images of that episode and ask you to choose the most positive and significant for you.\n\nThe image you choose is going to be saved in your memory album.</string>
 
 
 </resources>

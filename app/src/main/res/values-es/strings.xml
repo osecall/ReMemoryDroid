@@ -192,4 +192,17 @@
     <string name="EvocarB">Ahora le pedimos de nuevo que explique todo lo que pueda de lo que acaba de ver.  Intente dar detalles de dónde están, con quien está, qué estaban haciendo, etc.  Cuando esté preparado seleccione el icono \"Grabar\".</string>
     <string name="NoEmotion">No experimenté ninguna emoción en concreto</string>
     <string name="AssignEmotions">A continuación, assigne la emocion que sienta al ver cada una de las siguientes escenas, y su intensidad.</string>
+    <string name="Angry">Enfadado</string>
+    <string name="ChooseEmotion">Escoge la emoción que mejor define como te sientes después de ver la escena</string>
+    <string name="Emotions">Emociones</string>
+    <string name="EmotionsLabel1">Emociones observadas en la gente que has interectuado</string>
+    <string name="EmotionsLabel2">Emociones propias expermientadas durante el episodio</string>
+    <string name="Happy">Feliz</string>
+    <string name="IntensityEmotion">Seleccione la intensidad de la emoción</string>
+    <string name="Scene1">Escena 1</string>
+    <string name="Scene2">Escena 2</string>
+    <string name="Scene3">Escena 3</string>
+    <string name="Sad">Triste</string>
+    <string name="wasAngry">Estaba enfadado</string>
+    <string name="ChooseImageFavourite">Seleccione la imagen más significativa que será guardada en tu album de memoria</string>
 </resources>

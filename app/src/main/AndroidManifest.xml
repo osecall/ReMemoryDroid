@@ -82,16 +82,16 @@
         <activity
             android:name=".EmocionsActivity"
             android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".EmocionsActivity2" android:screenOrientation="landscape" />
         <activity android:name=".EmocionsActivity3" android:screenOrientation="landscape"/>
         <activity android:name=".AlbumActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape"><intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
     </application>
 
 </manifest>

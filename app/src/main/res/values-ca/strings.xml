@@ -193,4 +193,17 @@
     <string name="EvocarB">Ara et demanem de nou que expliquis tot el que puguis sobre el que acabes de veure. Intenta donar detalls sobre el on estan, amb qui, que estan fent, etc. Quan estiguis preparat apreta el botó \"Grabar\".</string>
     <string name="NoEmotion">No he experimentat cap emoció en concret</string>
     <string name="AssignEmotions">A continuació assigni l\'emoció que senti al veure cadascuna de les seguents escenes, i la seva intensitat.</string>
+    <string name="Angry">Enfadat</string>
+    <string name="ChooseEmotion">Escull l\'emoció que millor defineix com et sents després de veure l\'escena</string>
+    <string name="Emotions">Emocions</string>
+    <string name="EmotionsLabel1">Emociones observadas en la gente que has interactuado</string>
+    <string name="EmotionsLabel2">Emocions pròpies experimentades durant l\'episodi</string>
+    <string name="Happy">Feliç</string>
+    <string name="IntensityEmotion">Seleccioni la intensitat de l\'emoció</string>
+    <string name="Scene1">Escena 1</string>
+    <string name="Scene2">Escena 2</string>
+    <string name="Scene3">Escena 3</string>
+    <string name="Sad">Trist</string>
+    <string name="wasAngry">Estava enfadat</string>
+    <string name="ChooseImageFavourite">Seleccioni la imatge que et resulti més significativa per guardarla en el teu àlbum de memòria</string>
 </resources>
