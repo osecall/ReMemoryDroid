@@ -17,12 +17,12 @@
 
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="568dp"
-        android:layout_alignTop="@+id/btNextEmotions"
+        android:layout_alignTop="@+id/btNextEmotions1"
         android:layout_toStartOf="@+id/linearLayout2"
         android:layout_marginEnd="18dp" />
 
     <Button
-        android:id="@+id/btNextEmotions"
+        android:id="@+id/btNextEmotions1"
         style="@style/Next_button"
 
         tools:layout_editor_absoluteX="1114dp"

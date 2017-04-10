@@ -87,7 +87,7 @@
 
 
     <Button
-        android:id="@+id/btNextEmotions"
+        android:id="@+id/btNextEmotions1"
         style="@style/Next_button"
         tools:layout_editor_absoluteX="1114dp"
         tools:layout_editor_absoluteY="557dp"
@@ -100,8 +100,8 @@
         style="@style/Back_button"
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="568dp"
-        android:layout_alignBaseline="@+id/btNextEmotions"
-        android:layout_alignBottom="@+id/btNextEmotions"
+        android:layout_alignBaseline="@+id/btNextEmotions1"
+        android:layout_alignBottom="@+id/btNextEmotions1"
         android:layout_alignParentStart="true" />
 
 

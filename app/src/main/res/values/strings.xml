@@ -215,6 +215,16 @@
     <string name="NoEmotion">I didn\'t experience any concret emotion</string>
     <string name="EvocarB">Now we ask you again to tell everything you can about what you just have seen. Try to give details about where they are, with who, what they were doing, etc. When you are ready choose the icon \"Record\".</string>
     <string name="Movie">ReExperimentation</string>
+    <string name="AssignEmotions">Assign the emotion which you feel to see each of the next scenes, and its intensity.</string>
+    <string name="Emotions">Emotions</string>
+    <string name="Scene1">Scene 1</string>
+    <string name="Scene2">Scene 2</string>
+    <string name="Scene3">Scene 3</string>
+    <string name="Happy">Happy</string>
+    <string name="Sad">Sad</string>
+    <string name="Angry">Angry</string>
+    <string name="ChooseEmotion">Choose the emotion which best defines how you feel after watching the scene</string>
+    <string name="IntensityEmotion">Select the intensity of the emotion</string>
 
 
 </resources>

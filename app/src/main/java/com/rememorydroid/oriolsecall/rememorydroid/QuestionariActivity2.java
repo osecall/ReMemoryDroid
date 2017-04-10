@@ -296,7 +296,7 @@ public class QuestionariActivity2 extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.fragment3_questionari_activity2, container, false);
-            Button btNextPeople = (Button) rootView.findViewById(R.id.btNextEmotions);
+            Button btNextPeople = (Button) rootView.findViewById(R.id.btNextEmotions1);
             Button btBackPeople = (Button) rootView.findViewById(R.id.btBackPeople3);
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgPeople3);
@@ -381,7 +381,7 @@ public class QuestionariActivity2 extends AppCompatActivity {
             CheckBox cbNoExperience = (CheckBox) rootView.findViewById(R.id.cbNoExperience);
 
 
-            Button btNextEmotions = (Button) rootView.findViewById(R.id.btNextEmotions);
+            Button btNextEmotions = (Button) rootView.findViewById(R.id.btNextEmotions1);
             Button btBackEmotions = (Button) rootView.findViewById(R.id.btBackEmotions);
 
 

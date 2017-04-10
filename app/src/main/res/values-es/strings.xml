@@ -189,4 +189,7 @@
     <string name="Strangers">Personas desconocidas</string>
     <string name="KnownPeople">Conocidos pero sin relación entre ellos</string>
     <string name="EmotionsDuringEpisode">Emociones durante el episodio</string>
+    <string name="EvocarB">Ahora le pedimos de nuevo que explique todo lo que pueda de lo que acaba de ver.  Intente dar detalles de dónde están, con quien está, qué estaban haciendo, etc.  Cuando esté preparado seleccione el icono \"Grabar\".</string>
+    <string name="NoEmotion">No experimenté ninguna emoción en concreto</string>
+    <string name="AssignEmotions">A continuación, assigne la emocion que sienta al ver cada una de las siguientes escenas, y su intensidad.</string>
 </resources>
