@@ -6,31 +6,39 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.google.gson.Gson;
 
+import java.io.IOException;
+
 public class EmocionsActivity extends AppCompatActivity {
 
-    private MediaPlayer mp;
     private Button play,stop, btBack, btNext;
     private ImageView happy,angry,sad;
     private SeekBar seekbar;
     private TextView tvValueSeekBar,tvAtAll,tvVery, tvHappy,tvSad,tvAngry;
-    private String CaraSeleccionada, IntensitatSeleccionada;
-    private SharedPreferences prefs;
+    private String CaraSeleccionada=null;
+    private String IntensitatSeleccionada=null;
+    private VideoView vvEmotions1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emocions);
+
 
 
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(EmocionsActivity.this);
@@ -51,6 +59,8 @@ public class EmocionsActivity extends AppCompatActivity {
         sad = (ImageView) findViewById(R.id.ivSad);
         angry = (ImageView) findViewById(R.id.ivAngry);
 
+        vvEmotions1 = (VideoView) findViewById(R.id.vvEmotions1);
+
         play = (Button) findViewById(R.id.btPlayEmotions);
         stop = (Button) findViewById(R.id.btStopEmotions);
         btBack = (Button) findViewById(R.id.btBackEmotions1);
@@ -63,6 +73,13 @@ public class EmocionsActivity extends AppCompatActivity {
         tvSad = (TextView) findViewById(R.id.tvSad);
         tvAngry = (TextView) findViewById(R.id.tvAngry);
 
+        happy.setEnabled(false);
+        sad.setEnabled(false);
+        angry.setEnabled(false);
+        seekbar.setEnabled(false);
+
+
+        vvEmotions1.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -80,6 +97,11 @@ public class EmocionsActivity extends AppCompatActivity {
                     tvVery.setTextColor(Color.BLACK);
                 }
                 IntensitatSeleccionada = String.valueOf(i);
+                if(CaraSeleccionada!=null){
+                    btNext.setVisibility(View.VISIBLE);
+                }
+
+
             }
 
             @Override
@@ -96,6 +118,7 @@ public class EmocionsActivity extends AppCompatActivity {
         happy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 happy.setImageDrawable(getDrawable(R.drawable.checkgreensesentadp));
                 sad.setImageDrawable(getDrawable(R.drawable.iconsadface));
                 angry.setImageDrawable(getDrawable(R.drawable.iconangryface));
@@ -106,7 +129,10 @@ public class EmocionsActivity extends AppCompatActivity {
 
                 CaraSeleccionada = "Feliç";
 
-                btNext.setVisibility(View.VISIBLE);
+                if(IntensitatSeleccionada!=null){
+                    btNext.setVisibility(View.VISIBLE);
+
+                }
 
             }
         });
@@ -114,6 +140,7 @@ public class EmocionsActivity extends AppCompatActivity {
         sad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 sad.setImageDrawable(getDrawable(R.drawable.sadcheckedsesentadp));
                 happy.setImageDrawable(getDrawable(R.drawable.iconhappyface));
                 angry.setImageDrawable(getDrawable(R.drawable.iconangryface));
@@ -124,14 +151,17 @@ public class EmocionsActivity extends AppCompatActivity {
 
                 CaraSeleccionada = "Trist";
 
-                btNext.setVisibility(View.VISIBLE);
+                if(IntensitatSeleccionada!=null){
+                    btNext.setVisibility(View.VISIBLE);
 
+                }
             }
         });
 
         angry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 angry.setImageDrawable(getDrawable(R.drawable.angrychecksesentadp));
                 happy.setImageDrawable(getDrawable(R.drawable.iconhappyface));
                 sad.setImageDrawable(getDrawable(R.drawable.iconsadface));
@@ -142,8 +172,9 @@ public class EmocionsActivity extends AppCompatActivity {
 
                 CaraSeleccionada = "Enfadat";
 
-                btNext.setVisibility(View.VISIBLE);
-
+                if(IntensitatSeleccionada!=null){
+                    btNext.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -162,13 +193,50 @@ public class EmocionsActivity extends AppCompatActivity {
                 respostes_json = gson.toJson(respostes);
                 editor.putString("respostes",respostes_json);
                 editor.commit();
-                startActivity(new Intent(EmocionsActivity.this,EmocionsActivity2.class));
+                //startActivity(new Intent(EmocionsActivity.this,EmocionsActivity2.class));
 
             }
         });
 
+        btBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
 
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            happy.setEnabled(true);
+            sad.setEnabled(true);
+            angry.setEnabled(true);
+            seekbar.setEnabled(true);
+
+                if(vvEmotions1.isPlaying()){
+                    vvEmotions1.resume();
+                }
+                else{
+                    vvEmotions1.start();
+                }
+
+            }
+        });
+
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vvEmotions1.pause();
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        vvEmotions1=null;
     }
 }
