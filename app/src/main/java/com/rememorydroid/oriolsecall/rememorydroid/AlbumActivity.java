@@ -11,9 +11,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +55,9 @@ public class AlbumActivity extends BaseActivity {
         ID = new String();
         episodi = new String();
 
+        LayoutInflater factory = LayoutInflater.from(this);
+        View textEntryView = factory.inflate(R.layout.dialegs, null);
+
         prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
@@ -80,10 +85,13 @@ public class AlbumActivity extends BaseActivity {
 
         RefFavour = myRef.child(ID).child("episodi").child("Favorita").child("favorita.jpg");
 
-        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(AlbumActivity.this);
-        DialegFormControl
+        AlertDialog.Builder Dialeg = new AlertDialog.Builder(AlbumActivity.this);
+        TextView Missatge = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        Missatge.setText(getString(R.string.HereShowingImages));
+
+        Dialeg
                 .setTitle(getString(R.string.Attention))
-                .setMessage(R.string.HereShowingImages)
+                .setView(textEntryView)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         descargarImatges();
