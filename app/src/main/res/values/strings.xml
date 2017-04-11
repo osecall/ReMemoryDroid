@@ -227,6 +227,7 @@
     <string name="IntensityEmotion">Select the intensity of the emotion</string>
     <string name="ChooseImageFavourite">Choose the most significant image which is going to be saved in your memory album</string>
     <string name="HereShowingImages">Here we are going to show you several images of that episode and ask you to choose the most positive and significant for you.\n\nThe image you choose is going to be saved in your memory album.</string>
+    <string name="PictureUploaded">Your favourite picture is saved in your album memory</string>
 
 
 </resources>

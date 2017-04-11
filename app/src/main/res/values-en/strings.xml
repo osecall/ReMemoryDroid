@@ -210,4 +210,5 @@
     <string name="Sad">Sad</string>
     <string name="wasAngry">I was angry</string>
     <string name="ChooseImageFavourite">Choose the most significant image which is going to be saved in your memory album</string>
+    <string name="PictureUploaded">Your favourite picture is saved in your album memory</string>
 </resources>

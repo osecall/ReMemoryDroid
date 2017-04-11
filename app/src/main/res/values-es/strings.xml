@@ -205,4 +205,5 @@
     <string name="Sad">Triste</string>
     <string name="wasAngry">Estaba enfadado</string>
     <string name="ChooseImageFavourite">Seleccione la imagen más significativa que será guardada en tu album de memoria</string>
+    <string name="PictureUploaded">TU foto preferida se ha guardado en tu album de memoria</string>
 </resources>

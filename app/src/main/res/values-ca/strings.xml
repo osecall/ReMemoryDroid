@@ -206,4 +206,5 @@
     <string name="Sad">Trist</string>
     <string name="wasAngry">Estava enfadat</string>
     <string name="ChooseImageFavourite">Seleccioni la imatge que et resulti més significativa per guardarla en el teu àlbum de memòria</string>
+    <string name="PictureUploaded">La teva foto preferida s\'ha guardar en la teva memòria d\'àlbum</string>
 </resources>
