@@ -6,12 +6,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +27,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -37,6 +43,7 @@ public class AlbumActivity extends BaseActivity {
     private ArrayList<Uri> uris = new ArrayList<Uri>();
     private SharedPreferences prefs;
     private String ID, episodi;
+    private Animation aumentar, translate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,12 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum6 = (ImageView) findViewById(R.id.ivAlbum6);
         ivAlbum7 = (ImageView) findViewById(R.id.ivAlbum7);
 
+        //Per animar les imatges al clicar a sobre
+        aumentar = AnimationUtils.loadAnimation(getBaseContext(), R.anim.zoom);
+        aumentar.reset();
+        translate = AnimationUtils.loadAnimation(getBaseContext(), R.anim.translate);
+        translate.reset();
+
         RefFavour = myRef.child(ID).child("episodi").child("Favorita").child("favorita.jpg");
 
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(AlbumActivity.this);
@@ -79,11 +92,11 @@ public class AlbumActivity extends BaseActivity {
                 })
                 .show();
 
-
-
         ivAlbum0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ivAlbum0.setAnimation(aumentar);
+                ivAlbum0.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
                 ivAlbum0.setDrawingCacheEnabled(true);
@@ -102,8 +115,18 @@ public class AlbumActivity extends BaseActivity {
                             hideProgressDialog();
                             Toast.makeText(getApplicationContext(),
                                             R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                            intent.putExtra("favorita", uris.get(0).toString());
+                            ivAlbum0.setAnimation(translate);
+                            ivAlbum0.startAnimation(translate);
+
+
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita", uris.get(0).toString());
+                                    startActivity(intent);
+                                };
+                            }, 3000);
+
                         }
                         if(!task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),
@@ -116,11 +139,13 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ivAlbum1.setAnimation(aumentar);
+                ivAlbum1.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                ivAlbum0.setDrawingCacheEnabled(true);
-                ivAlbum0.buildDrawingCache();
-                Bitmap bitmap = ivAlbum0.getDrawingCache();
+                ivAlbum1.setDrawingCacheEnabled(true);
+                ivAlbum1.buildDrawingCache();
+                Bitmap bitmap = ivAlbum1.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] data = baos.toByteArray();
@@ -134,8 +159,18 @@ public class AlbumActivity extends BaseActivity {
                             hideProgressDialog();
                             Toast.makeText(getApplicationContext(),
                                     R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                            intent.putExtra("favorita", uris.get(1).toString());
+                            ivAlbum1.setAnimation(translate);
+                            ivAlbum1.startAnimation(translate);
+
+
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita", uris.get(1).toString());
+                                    startActivity(intent);
+                                };
+                            }, 3000);
+
                         }
                         if(!task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),
@@ -148,11 +183,13 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ivAlbum2.setAnimation(aumentar);
+                ivAlbum2.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                ivAlbum0.setDrawingCacheEnabled(true);
-                ivAlbum0.buildDrawingCache();
-                Bitmap bitmap = ivAlbum0.getDrawingCache();
+                ivAlbum2.setDrawingCacheEnabled(true);
+                ivAlbum2.buildDrawingCache();
+                Bitmap bitmap = ivAlbum2.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] data = baos.toByteArray();
@@ -166,8 +203,18 @@ public class AlbumActivity extends BaseActivity {
                             hideProgressDialog();
                             Toast.makeText(getApplicationContext(),
                                     R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                            intent.putExtra("favorita", uris.get(2).toString());
+                            ivAlbum2.setAnimation(translate);
+                            ivAlbum2.startAnimation(translate);
+
+
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita", uris.get(2).toString());
+                                    startActivity(intent);
+                                };
+                            }, 3000);
+
                         }
                         if(!task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),
@@ -180,11 +227,13 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ivAlbum3.setAnimation(aumentar);
+                ivAlbum3.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                ivAlbum0.setDrawingCacheEnabled(true);
-                ivAlbum0.buildDrawingCache();
-                Bitmap bitmap = ivAlbum0.getDrawingCache();
+                ivAlbum3.setDrawingCacheEnabled(true);
+                ivAlbum3.buildDrawingCache();
+                Bitmap bitmap = ivAlbum3.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] data = baos.toByteArray();
@@ -198,8 +247,18 @@ public class AlbumActivity extends BaseActivity {
                             hideProgressDialog();
                             Toast.makeText(getApplicationContext(),
                                     R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                            intent.putExtra("favorita", uris.get(3).toString());
+                            ivAlbum3.setAnimation(translate);
+                            ivAlbum3.startAnimation(translate);
+
+
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita", uris.get(3).toString());
+                                    startActivity(intent);
+                                };
+                            }, 3000);
+
                         }
                         if(!task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),
@@ -212,11 +271,13 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ivAlbum4.setAnimation(aumentar);
+                ivAlbum4.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                ivAlbum0.setDrawingCacheEnabled(true);
-                ivAlbum0.buildDrawingCache();
-                Bitmap bitmap = ivAlbum0.getDrawingCache();
+                ivAlbum4.setDrawingCacheEnabled(true);
+                ivAlbum4.buildDrawingCache();
+                Bitmap bitmap = ivAlbum4.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] data = baos.toByteArray();
@@ -230,8 +291,18 @@ public class AlbumActivity extends BaseActivity {
                             hideProgressDialog();
                             Toast.makeText(getApplicationContext(),
                                     R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                            intent.putExtra("favorita", uris.get(4).toString());
+                            ivAlbum4.setAnimation(translate);
+                            ivAlbum4.startAnimation(translate);
+
+
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita", uris.get(4).toString());
+                                    startActivity(intent);
+                                };
+                            }, 3000);
+
                         }
                         if(!task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),
@@ -244,11 +315,13 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ivAlbum5.setAnimation(aumentar);
+                ivAlbum5.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                ivAlbum0.setDrawingCacheEnabled(true);
-                ivAlbum0.buildDrawingCache();
-                Bitmap bitmap = ivAlbum0.getDrawingCache();
+                ivAlbum5.setDrawingCacheEnabled(true);
+                ivAlbum5.buildDrawingCache();
+                Bitmap bitmap = ivAlbum5.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] data = baos.toByteArray();
@@ -262,8 +335,18 @@ public class AlbumActivity extends BaseActivity {
                             hideProgressDialog();
                             Toast.makeText(getApplicationContext(),
                                     R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                            intent.putExtra("favorita", uris.get(5).toString());
+                            ivAlbum5.setAnimation(translate);
+                            ivAlbum5.startAnimation(translate);
+
+
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita", uris.get(5).toString());
+                                    startActivity(intent);
+                                };
+                            }, 3000);
+
                         }
                         if(!task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),
@@ -276,11 +359,13 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ivAlbum6.setAnimation(aumentar);
+                ivAlbum6.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                ivAlbum0.setDrawingCacheEnabled(true);
-                ivAlbum0.buildDrawingCache();
-                Bitmap bitmap = ivAlbum0.getDrawingCache();
+                ivAlbum6.setDrawingCacheEnabled(true);
+                ivAlbum6.buildDrawingCache();
+                Bitmap bitmap = ivAlbum6.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] data = baos.toByteArray();
@@ -294,8 +379,18 @@ public class AlbumActivity extends BaseActivity {
                             hideProgressDialog();
                             Toast.makeText(getApplicationContext(),
                                     R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                            intent.putExtra("favorita", uris.get(6).toString());
+                            ivAlbum6.setAnimation(translate);
+                            ivAlbum6.startAnimation(translate);
+
+
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita", uris.get(6).toString());
+                                    startActivity(intent);
+                                };
+                            }, 3000);
+
                         }
                         if(!task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),
@@ -308,11 +403,13 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ivAlbum7.setAnimation(aumentar);
+                ivAlbum7.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                ivAlbum0.setDrawingCacheEnabled(true);
-                ivAlbum0.buildDrawingCache();
-                Bitmap bitmap = ivAlbum0.getDrawingCache();
+                ivAlbum7.setDrawingCacheEnabled(true);
+                ivAlbum7.buildDrawingCache();
+                Bitmap bitmap = ivAlbum7.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] data = baos.toByteArray();
@@ -326,8 +423,18 @@ public class AlbumActivity extends BaseActivity {
                             hideProgressDialog();
                             Toast.makeText(getApplicationContext(),
                                     R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                            intent.putExtra("favorita", uris.get(7).toString());
+                            ivAlbum7.setAnimation(translate);
+                            ivAlbum7.startAnimation(translate);
+
+
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita", uris.get(7).toString());
+                                    startActivity(intent);
+                                };
+                            }, 3000);
+
                         }
                         if(!task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),
