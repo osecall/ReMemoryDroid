@@ -8,7 +8,9 @@
         android:layout_height="match_parent"
         android:background="@color/grey_100"
         android:orientation="vertical"
-        android:weightSum="4">
+        android:weightSum="4"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true" >
 
         <LinearLayout
             android:layout_width="match_parent"

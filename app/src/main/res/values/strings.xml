@@ -4,10 +4,16 @@
     <string name="str_cat">Catala</string>
     <string name="str_es">Español</string>
     <string name="str_en">English</string>
-    <string-array name="languages">
-        <item>@string/str_cat</item>
-        <item>@string/str_es</item>
-        <item>@string/str_en</item>
+
+    <string-array name="emocions">
+        <item>Selecciona una emoció aqui</item>
+        <item>Happy</item>
+        <item>Orgulloso</item>
+        <item>Felix</item>
+        <item>Satisfecho</item>
+        <item>Lleno de amor</item>
+        <item>Eufórico</item>
+        <item>Entusiasmado</item>
     </string-array>
     <string name="auth_failed">Failed in Auth</string>
     <string name="loading">Loading</string>
@@ -228,6 +234,16 @@
     <string name="ChooseImageFavourite">Choose the most significant image which is going to be saved in your memory album</string>
     <string name="HereShowingImages">Here we are going to show you several images of that episode and ask you to choose the most positive and significant for you.\n\nThe image you choose is going to be saved in your memory album.</string>
     <string name="PictureUploaded">Your favourite picture is saved in your album memory</string>
+    <string name="HereWriteAnswers">Here write the answers regarding to the questions:</string>
+    <string name="WhoAreYouWith">"Who are you with? "</string>
+    <string name="WhereAreThey">"Where are they? "</string>
+    <string name="WhatMonth">In what month and year was the picture taken?</string>
+    <string name="WhatTheyAreDoing">"What were they doing? "</string>
+    <string name="IamWith">I am with</string>
+    <string name="WeAreIn">We are in</string>
+    <string name="WeWere">We were</string>
+    <string name="ChooseSpinner">You have to choose an emotion from the list!</string>
+    <string name="ThisSouvenir">This is your choosen memory for your memory album</string>
 
 
 </resources>

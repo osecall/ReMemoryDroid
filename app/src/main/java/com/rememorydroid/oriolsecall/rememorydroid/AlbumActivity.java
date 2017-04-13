@@ -42,7 +42,7 @@ public class AlbumActivity extends BaseActivity {
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private StorageReference RefFavour;
     private ImageView ivAlbum0, ivAlbum1,ivAlbum2,ivAlbum3,ivAlbum4,ivAlbum5,ivAlbum6,ivAlbum7;
-    private ArrayList<Uri> uris = new ArrayList<Uri>();
+    private ArrayList<Uri> uris;
     private SharedPreferences prefs;
     private String ID, episodi;
     private Animation aumentar, translate;
@@ -54,6 +54,7 @@ public class AlbumActivity extends BaseActivity {
 
         ID = new String();
         episodi = new String();
+        uris=new ArrayList<Uri>();
 
         LayoutInflater factory = LayoutInflater.from(this);
         View textEntryView = factory.inflate(R.layout.dialegs, null);
@@ -64,7 +65,6 @@ public class AlbumActivity extends BaseActivity {
         String pacient_json = prefs.getString("pacient",null);
         PacientUsuari pacient = gson.fromJson(pacient_json,PacientUsuari.class);
         episodi = prefs.getString("episodi",null);
-
 
         ID = pacient.getID();
 
@@ -465,6 +465,7 @@ public class AlbumActivity extends BaseActivity {
         StorageReference Ref7 = myRef.child(ID).child(episodi).child("7.jpg");
 
         showProgressDialog();
+        uris.clear();
         Ref0.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
