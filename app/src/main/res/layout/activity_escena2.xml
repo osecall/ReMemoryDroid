@@ -44,9 +44,9 @@
                     android:id="@+id/ivEscena2"
                     android:layout_width="575dp"
                     android:layout_height="375dp"
-                    android:layout_margin="20dp"
-                    android:layout_marginTop="20dp"
-                    android:scaleType="fitXY" />
+                    android:layout_margin="35dp"
+                    android:layout_marginTop="50dp"
+                    android:scaleType="fitCenter" />
 
                 <ImageView
                     android:id="@+id/imageView6"
