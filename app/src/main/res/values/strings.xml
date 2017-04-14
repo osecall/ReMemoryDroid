@@ -245,9 +245,9 @@
     <string name="ChooseSpinner">You have to choose an emotion from the list!</string>
     <string name="ThisSouvenir">This is your choosen memory for your memory album</string>
     <string name="ImFeeling">I am feeling %s, </string>
-    <string name="BeingWith">being with %s\n</string>
+    <string name="BeingWith">being with %s</string>
     <string name="InSub">in %s, </string>
-    <string name="InTheSub">in the %s.\n\n</string>
+    <string name="InTheSub">in the %s.\n</string>
     <string name="WeAreSub">We are %s.</string>
 
 </resources>

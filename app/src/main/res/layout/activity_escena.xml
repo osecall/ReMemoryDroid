@@ -109,9 +109,9 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/et1"
             android:layout_alignStart="@+id/ivPicturePreferred"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="5dp"
             android:text="@string/HereWriteAnswers"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -120,19 +120,66 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvQuestion4Escena"
+                android:id="@+id/tvQuestion1Escena"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/WhatTheyAreDoing"
+                android:text="@string/WhoAreYouWith"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et4"
+                android:id="@+id/et1"
+                android:clickable="false"
+                android:focusable="false"
+                android:cursorVisible="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="@string/WeWere"
+                android:text="@string/IamWith"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvQuestion2Escena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/WhereAreThey"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et2"
+                android:clickable="false"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="@string/WeAreIn"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
                 android:textSize="24sp" />
 
         </LinearLayout>
@@ -154,8 +201,8 @@
                 android:id="@+id/et3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
                 android:ems="15"
+                android:inputType="textPersonName"
                 android:textSize="24sp" />
 
         </LinearLayout>
@@ -166,42 +213,31 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvQuestion2Escena"
+                android:id="@+id/tvQuestion4Escena"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/WhereAreThey"
+                android:text="@string/WhatTheyAreDoing"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et2"
+                android:id="@+id/et4"
+                android:clickable="false"
+                android:focusable="false"
+                android:cursorVisible="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="@string/WeAreIn"
+                android:text="@string/WeWere"
                 android:textSize="24sp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvQuestion1Escena"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/WhoAreYouWith"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
             <EditText
-                android:id="@+id/et1"
+                android:id="@+id/editText4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/IamWith"
                 android:textSize="24sp" />
 
         </LinearLayout>

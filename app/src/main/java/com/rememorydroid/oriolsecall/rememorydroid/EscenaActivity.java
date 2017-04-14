@@ -46,18 +46,18 @@ public class EscenaActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escena);
 
-        etQuestion1Escena = (EditText) findViewById(R.id.et1);
-        etQuestion2Escena = (EditText) findViewById(R.id.et2);
+        etQuestion1Escena = (EditText) findViewById(R.id.editText1);
+        etQuestion2Escena = (EditText) findViewById(R.id.editText2);
         etQuestion3Escena = (EditText) findViewById(R.id.et3);
-        etQuestion4Escena = (EditText) findViewById(R.id.et4);
+        etQuestion4Escena = (EditText) findViewById(R.id.editText4);
+
 
         seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
         btNextEscena = (Button) findViewById(R.id.btNextEscena);
         imatgeEscena = (ImageView) findViewById(R.id.ivPicturePreferred);
         eLvEmocions = (Spinner) findViewById(R.id.eLvEmocions);
 
-        uri = Uri.parse(getIntent().getStringExtra("favorita"));
-
+        uri = Uri.parse(getIntent().getStringExtra("favorita").toString());
         showProgressDialog();
         Picasso.with(EscenaActivity.this).load(uri).into(imatgeEscena);
         hideProgressDialog();
