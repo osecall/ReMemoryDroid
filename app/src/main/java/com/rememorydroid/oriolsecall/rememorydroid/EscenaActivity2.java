@@ -3,10 +3,13 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,13 +20,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 public class EscenaActivity2 extends BaseActivity {
 
     private String A,B,C,D,E, episodi;
-    private TextView tvNomEpisodiEscena2, tvAEscena2, tvBEscena2, tvCEscena2;
+    private TextView tvNomEpisodiEscena2, tvAEscena2,tvBEscena2,tvCEscena2,tvDEscena2,tvEEscena2;
     private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
     private PacientUsuari pacient;
+    private Uri uri;
+    private ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +41,22 @@ public class EscenaActivity2 extends BaseActivity {
         C= getIntent().getStringExtra("C");
         D= getIntent().getStringExtra("D");
         E= getIntent().getStringExtra("E");
+        uri= Uri.parse(getIntent().getStringExtra("favorita"));
 
         tvNomEpisodiEscena2 = (TextView) findViewById(R.id.tvNomEpisodiEscena2);
         tvAEscena2 = (TextView) findViewById(R.id.tvAEscena2);
         tvBEscena2 = (TextView) findViewById(R.id.tvBEscena2);
         tvCEscena2 = (TextView) findViewById(R.id.tvCEscena2);
+        tvDEscena2 = (TextView) findViewById(R.id.tvDEscena2);
+        tvEEscena2 = (TextView) findViewById(R.id.tvEEscena2);
 
+
+
+        image = (ImageView) findViewById(R.id.ivEscena2);
+
+        showProgressDialog();
+        Picasso.with(EscenaActivity2.this).load(uri).into(image);
+        hideProgressDialog();
 
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         String pacient_json = prefs.getString("pacient",null);
@@ -65,6 +81,11 @@ public class EscenaActivity2 extends BaseActivity {
             }
         });
 
+        tvAEscena2.setText(getString(R.string.ImFeeling,A));
+        tvBEscena2.setText(getString(R.string.BeingWith,B));
+        tvCEscena2.setText(getString(R.string.InSub,C));
+        tvDEscena2.setText(getString(R.string.InTheSub,D));
+        tvEEscena2.setText(getString(R.string.WeAreSub,E));
 
 
     }

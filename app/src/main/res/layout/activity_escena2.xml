@@ -19,8 +19,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/ThisSouvenir"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+            android:textSize="36sp" />
 
         <TextView
             android:id="@+id/tvNomEpisodiEscena2"
@@ -28,37 +27,76 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:gravity="center_horizontal"
-            android:textSize="30sp" />
+            android:textSize="75sp"
+            android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/ivEscena2"
-            android:layout_width="400dp"
-            android:layout_height="350dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="25dp"
-            android:layout_marginTop="25dp"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/angrychecksesentadp" />
-
-        <TextView
-            android:id="@+id/tvAEscena2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal|center"
-            android:text="TextView" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvBEscena2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="TextView" />
+            <ImageView
+                android:id="@+id/ivEscena2"
+                android:layout_width="400dp"
+                android:layout_height="350dp"
+                android:layout_margin="20dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY" />
 
-        <TextView
-            android:id="@+id/tvCEscena2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="TextView" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAEscena2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="sadas"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/tvBEscena2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="asdasd"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/tvCEscena2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="asdsa"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/tvDEscena2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="asdsa"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/tvEEscena2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="asd"
+                    android:textSize="36sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

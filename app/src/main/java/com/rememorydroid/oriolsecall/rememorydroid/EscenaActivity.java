@@ -3,6 +3,7 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,12 +34,12 @@ public class EscenaActivity extends BaseActivity {
 
     private EditText etQuestion1Escena, etQuestion2Escena,etQuestion3Escena,etQuestion4Escena;
     private ImageView imatgeEscena;
-    private String favorita;
     private Spinner eLvEmocions;
     private Button btNextEscena;
     private SeekBar seekBar2;
     private String A;
     private Intent intent;
+    private Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +56,10 @@ public class EscenaActivity extends BaseActivity {
         imatgeEscena = (ImageView) findViewById(R.id.ivPicturePreferred);
         eLvEmocions = (Spinner) findViewById(R.id.eLvEmocions);
 
-        favorita = getIntent().getStringExtra("favorita");
+        uri = Uri.parse(getIntent().getStringExtra("favorita"));
 
         showProgressDialog();
-        Picasso.with(EscenaActivity.this).load(favorita).into(imatgeEscena);
+        Picasso.with(EscenaActivity.this).load(uri).into(imatgeEscena);
         hideProgressDialog();
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -139,7 +140,14 @@ public class EscenaActivity extends BaseActivity {
                 intent.putExtra("C",etQuestion2Escena.getText().toString());
                 intent.putExtra("D",etQuestion3Escena.getText().toString());
                 intent.putExtra("E",etQuestion4Escena.getText().toString());
-                startActivity(intent);
+                intent.putExtra("favorita",uri.toString());
+                if(eLvEmocions.getSelectedItemPosition()==0){
+                    Toast.makeText(EscenaActivity.this, R.string.ChooseEmotion,
+                            Toast.LENGTH_LONG).show();
+                }
+                else{
+                    startActivity(intent);
+                }
             }
         });
     }

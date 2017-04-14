@@ -11,24 +11,34 @@
 
     <ImageView
         android:id="@+id/ivPicturePreferred"
-        android:layout_width="380dp"
+        android:layout_width="370dp"
         android:layout_height="280dp"
-        android:layout_alignParentStart="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="45dp"
+        android:scaleType="fitXY"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:scaleType="fitXY" />
+        android:layout_alignStart="@+id/linearLayout5" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="460dp"
+        android:layout_height="380dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="5dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/marcofoto" />
 
     <TextView
         android:id="@+id/tvEscenaInstruccio1"
         android:layout_width="300sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
         android:text="@string/ChooseEmotion"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_alignTop="@+id/ivPicturePreferred"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp" />
 
     <Spinner
         android:id="@+id/eLvEmocions"
@@ -85,123 +95,127 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvEscenaInstruccions3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/et1"
-        android:layout_alignStart="@+id/ivPicturePreferred"
-        android:layout_marginBottom="16dp"
-        android:text="@string/HereWriteAnswers"
-        android:textSize="36sp"
-        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageView5"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout5">
 
-    <TextView
-        android:id="@+id/tvQuestion1Escena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/WhoAreYouWith"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="17dp"
-        android:layout_above="@+id/et2"
-        android:layout_alignStart="@+id/tvEscenaInstruccions3" />
+        <TextView
+            android:id="@+id/tvEscenaInstruccions3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/et1"
+            android:layout_alignStart="@+id/ivPicturePreferred"
+            android:layout_marginBottom="16dp"
+            android:text="@string/HereWriteAnswers"
+            android:textSize="36sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvQuestion2Escena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/WhereAreThey"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="19dp"
-        android:layout_above="@+id/et3"
-        android:layout_alignStart="@+id/tvQuestion1Escena" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvQuestion3Escena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/WhatMonth"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_alignBaseline="@+id/et3"
-        android:layout_alignBottom="@+id/et3"
-        android:layout_alignStart="@+id/tvQuestion2Escena" />
+            <TextView
+                android:id="@+id/tvQuestion4Escena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/WhatTheyAreDoing"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvQuestion4Escena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/WhatTheyAreDoing"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_alignBaseline="@+id/et4"
-        android:layout_alignBottom="@+id/et4"
-        android:layout_alignStart="@+id/tvQuestion3Escena" />
+            <EditText
+                android:id="@+id/et4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="@string/WeWere"
+                android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/et1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvQuestion1Escena"
-        android:layout_alignBottom="@+id/tvQuestion1Escena"
-        android:layout_toEndOf="@+id/tvQuestion1Escena"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/IamWith"
-        android:textSize="24sp" />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/et2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvQuestion2Escena"
-        android:layout_alignBottom="@+id/tvQuestion2Escena"
-        android:layout_toEndOf="@+id/tvQuestion2Escena"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/WeAreIn"
-        android:textSize="24sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/et3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="24sp"
-        android:layout_marginStart="13dp"
-        android:layout_above="@+id/et4"
-        android:layout_toEndOf="@+id/tvQuestion3Escena" />
+            <TextView
+                android:id="@+id/tvQuestion3Escena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/WhatMonth"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/et4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/WeWere"
-        android:textSize="24sp"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/tvQuestion4Escena"
-        android:layout_marginBottom="14dp" />
+            <EditText
+                android:id="@+id/et3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="15"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvQuestion2Escena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/WhereAreThey"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="@string/WeAreIn"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvQuestion1Escena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/WhoAreYouWith"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="@string/IamWith"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btNextEscena"
         style="@style/Next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvQuestion3Escena"
-        android:layout_toStartOf="@+id/textView11" />
+        android:layout_marginBottom="84dp"
+        android:visibility="invisible"
+        android:layout_alignBottom="@+id/imageView5"
+        android:layout_alignEnd="@+id/textView11" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="460dp"
-        android:layout_height="440dp"
-        android:layout_above="@+id/tvEscenaInstruccions3"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="29dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/marcofoto" />
 </RelativeLayout>
