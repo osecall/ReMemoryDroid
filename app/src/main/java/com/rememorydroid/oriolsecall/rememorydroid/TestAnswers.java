@@ -415,11 +415,6 @@ public class TestAnswers implements Serializable {
             outputStream.write(dades.getBytes());
             outputStream.close();
 
-            outputStream = context.openFileOutput("respostesJSON.json", Context.MODE_PRIVATE);
-
-            outputStream.write(respostesJSON.getBytes());
-            outputStream.close();
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -427,7 +422,7 @@ public class TestAnswers implements Serializable {
         }
 
         rutes.add(0,outPutFile.getAbsolutePath());
-        rutes.add(1,outPutFileJSON.getAbsolutePath());
+        rutes.add(1,respostesJSON);
         return rutes;
     };
 }

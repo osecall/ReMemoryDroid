@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 
 public class EscenaActivity2 extends BaseActivity {
 
@@ -54,15 +50,11 @@ public class EscenaActivity2 extends BaseActivity {
         tvDEscena2 = (TextView) findViewById(R.id.tvDEscena2);
         tvEEscena2 = (TextView) findViewById(R.id.tvEEscena2);
         btNextEscena2 = (Button) findViewById(R.id.btNextEscena2);
-
-
-
         image = (ImageView) findViewById(R.id.ivEscena2);
 
+        showProgressDialog();
         byte[] imatge_favorita = getIntent().getByteArrayExtra("favorita");
         Bitmap imatge_seleccionada = BitmapFactory.decodeByteArray(imatge_favorita, 0, imatge_favorita.length);
-
-        showProgressDialog();
         image.setImageBitmap(imatge_seleccionada);
         hideProgressDialog();
 

@@ -22,6 +22,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
@@ -41,6 +43,7 @@ public class PeliculaActivity6 extends BaseActivity {
     private String RadioSelected;
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private StorageReference PacientRef;
+    private DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("pacients");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +127,12 @@ public class PeliculaActivity6 extends BaseActivity {
                     //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta i el JSON[1]
                     PacientRef = myRef.child(pacient.getID()).child(episodi).child("Resultat.csv");
                     Uri file = Uri.fromFile(new File(rutes.get(0)));
+
+                    //Pujem el JSON a la base de dades
+                    Gson gsonFile = new Gson();
+                    TestAnswers respostesJSON = gsonFile.fromJson(rutes.get(1), TestAnswers.class);
+                    DBRef.child(pacient.getID()).child("episodis").child(episodi).child("repostes").setValue(respostes_json);
+
 
                     // Create file metadata including the content type (CSV)
                     StorageMetadata metadata = new StorageMetadata.Builder()
