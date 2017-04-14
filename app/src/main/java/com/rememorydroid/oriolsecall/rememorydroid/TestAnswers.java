@@ -369,8 +369,8 @@ public class TestAnswers implements Serializable {
         PreguntesQuan_Temps = preguntesQuan_Temps;
     }
 
-     public int getDifferencesTests(){
-        return Math.abs(Test1Sumatori-Test2Sumatori);
+     public String getDifferencesTests(){
+        return String.valueOf(Math.abs(Test1Sumatori-Test2Sumatori));
     }
 
 

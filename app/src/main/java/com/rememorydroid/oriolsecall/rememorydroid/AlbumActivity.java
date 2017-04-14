@@ -83,7 +83,7 @@ public class AlbumActivity extends BaseActivity {
         translate = AnimationUtils.loadAnimation(getBaseContext(), R.anim.translate);
         translate.reset();
 
-        RefFavour = myRef.child(ID).child("episodi").child("Favorita").child("favorita.jpg");
+        RefFavour = myRef.child(ID).child(episodi).child("Favorita").child("favorita.jpg");
 
         AlertDialog.Builder Dialeg = new AlertDialog.Builder(AlbumActivity.this);
         TextView Missatge = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);

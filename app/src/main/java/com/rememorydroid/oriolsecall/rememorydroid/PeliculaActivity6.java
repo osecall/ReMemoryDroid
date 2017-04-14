@@ -117,7 +117,6 @@ public class PeliculaActivity6 extends BaseActivity {
                     respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                     editor.putString("respostes",respostes_json);
                     editor.commit();
-                    intentPel1.putExtra("SegonTest","true");
                     //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
                     String[] rutes = respostes_recuperades.ConvertToCVS(getBaseContext());
                     //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta i el JSON[1]
@@ -136,6 +135,7 @@ public class PeliculaActivity6 extends BaseActivity {
                             }
                         }
                     });
+                    startActivity(new Intent(PeliculaActivity6.this, TractamentsActivity.class));
 
                 }
                 else{
