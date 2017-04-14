@@ -1,12 +1,25 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
+
+import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
+
 
 /**
  * Created by Oriol on 27/03/2017.
  */
 
 public class TestAnswers implements Serializable {
+
 
     int Test1Pregunta1;
     int Test1Pregunta2;
@@ -361,14 +374,57 @@ public class TestAnswers implements Serializable {
     }
 
 
+    public String[] ConvertToCVS(Context context){
+
+        String dades = new String();
+        String respostesJSON = new String();
+        String[] rutes=null;
+
+        File outPutFile = new File(context.getFilesDir(),"respostes.cvs");
+        File outPutFileJSON = new File(context.getFilesDir(),"respostesJSON.json");
+
+        FileOutputStream outputStream;
+
+        //Capçalera de les columnes
+        dades = "Test1_1,Test1_2,Test1_3,Test1_4,Test1_5,Test1_6,Test2_1,Test2_2,Test2_3,Test2_4,Test2_5,"+
+                "Test2_6,Test_Differencial,Quan_EpocaAny,Quan_Temps,Quan_Duracio,Quan_Mes,Quan_FranjaDia,"+
+                "On_Localització,On_Entorns,On_Ubicacio,Perceptius_Sons,Perceptius_Temperatura,Perceptius_Olors,"+
+                "Persones_Accions,Persones_GrupsEdats,Persones_NumeroApareixen,Persones_Relacio,"+
+                "Emocions_Observades,Emocions_Propies,Emocions_Escena1_Emocio,Emocions_Escena1_Intensitat,"+
+                "Emocions_Escena2_Emocio,Emocions_Escena2_Intensitat,Emocions_Escena3_Emocio,Emocions_Escena3_Intensitat\n";
+
+        dades = dades+getTest1Pregunta1()+","+getTest1Pregunta2()+","+getTest1Pregunta3()+","+getTest1Pregunta4()+","+","+
+                getTest1Pregunta5()+","+getTest1Pregunta6()+","+getDifferencesTests()+","+getPreguntesQuan_EpocaAny()+","+
+                getPreguntesQuan_Temps()+","+getPreguntesQuan_Duracio()+","+getPreguntesQuan_Mes()+","+getPreguntesQuan_FranjaDia()+","+
+                getPreguntesOn_Localitzacio()+","+getPreguntesOn_Entorns()+","+getPreguntesOn_Ubicacio()+","+getPreguntesPerceptius_Sons()+","+
+                getPreguntesPerceptius_Temperatura()+","+getPreguntesPerceptius_Olors()+","+getPreguntesPersones_Accions()+","+getPreguntesPersones_Grups()+","+
+                getPreguntesPersones_Numero()+","+getPreguntesPersones_Relacio()+","+getPreguntesEmocions_Observades()+","+getPreguntesEmocions_Propies()+","+
+                getPreguntesEmocionsEscena1_Emocio()+","+getPreguntesEmocionsEscena1_Intentistat()+","+getPreguntesEmocionsEscena2_Emocio()+","+
+                getPreguntesEmocionsEscena2_Intentistat()+","+getPreguntesEmocionsEscena3_Emocio()+","+getPreguntesEmocionsEscena3_Intentistat()+"\n";
+
+        Gson tmp = new Gson();
+
+        respostesJSON = tmp.toJson(this,TestAnswers.class);
 
 
+        try {
+            outputStream = context.openFileOutput("respostes.cvs", Context.MODE_PRIVATE);
+            outputStream.write(dades.getBytes());
+            outputStream.close();
 
+            outputStream = context.openFileOutput("respostesJSON.json", Context.MODE_PRIVATE);
 
+            outputStream.write(respostesJSON.getBytes());
+            outputStream.close();
 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-
-
-
-
+        rutes[0]=outPutFile.getAbsolutePath();
+        rutes[1]=outPutFileJSON.getAbsolutePath();
+        return rutes;
+    };
 }

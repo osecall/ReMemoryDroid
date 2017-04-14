@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +32,7 @@ public class EscenaActivity2 extends BaseActivity {
     private PacientUsuari pacient;
     private Uri uri;
     private ImageView image;
+    private Button btNextEscena2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class EscenaActivity2 extends BaseActivity {
         tvCEscena2 = (TextView) findViewById(R.id.tvCEscena2);
         tvDEscena2 = (TextView) findViewById(R.id.tvDEscena2);
         tvEEscena2 = (TextView) findViewById(R.id.tvEEscena2);
+        btNextEscena2 = (Button) findViewById(R.id.btNextEscena2);
 
 
 
@@ -86,6 +90,14 @@ public class EscenaActivity2 extends BaseActivity {
         tvCEscena2.setText(getString(R.string.InSub,C));
         tvDEscena2.setText(getString(R.string.InTheSub,D));
         tvEEscena2.setText(getString(R.string.WeAreSub,E));
+
+
+        btNextEscena2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(EscenaActivity2.this, PeliculaActivity.class).putExtra("SegonTest","SegonTest"));
+            }
+        });
 
 
     }
