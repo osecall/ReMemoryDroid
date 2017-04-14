@@ -7,12 +7,8 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.google.firebase.auth.FirebaseAuth;
 
 
 public class RespirarActivity1 extends AppCompatActivity {

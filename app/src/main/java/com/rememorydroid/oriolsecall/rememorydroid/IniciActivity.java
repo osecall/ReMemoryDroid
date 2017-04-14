@@ -23,7 +23,6 @@ public class IniciActivity extends BaseActivity implements
 
     private static final String TAG = "EmailPassword";
 
-
     private TextView mStatusTextView;
     private TextView mDetailTextView;
     private EditText mEmailField;

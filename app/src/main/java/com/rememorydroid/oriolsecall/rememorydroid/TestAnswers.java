@@ -1,18 +1,14 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 
 import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.Serializable;
-import java.sql.Array;
 import java.util.ArrayList;
 
 
