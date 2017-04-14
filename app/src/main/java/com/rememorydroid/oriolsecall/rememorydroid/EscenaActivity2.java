@@ -3,6 +3,8 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +32,6 @@ public class EscenaActivity2 extends BaseActivity {
     private TextView tvNomEpisodiEscena2, tvAEscena2,tvBEscena2,tvCEscena2,tvDEscena2,tvEEscena2;
     private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
     private PacientUsuari pacient;
-    private Uri uri;
     private ImageView image;
     private Button btNextEscena2;
 
@@ -44,7 +45,7 @@ public class EscenaActivity2 extends BaseActivity {
         C= getIntent().getStringExtra("C");
         D= getIntent().getStringExtra("D");
         E= getIntent().getStringExtra("E");
-        uri= Uri.parse(getIntent().getStringExtra("favorita"));
+
 
         tvNomEpisodiEscena2 = (TextView) findViewById(R.id.tvNomEpisodiEscena2);
         tvAEscena2 = (TextView) findViewById(R.id.tvAEscena2);
@@ -58,8 +59,11 @@ public class EscenaActivity2 extends BaseActivity {
 
         image = (ImageView) findViewById(R.id.ivEscena2);
 
+        byte[] imatge_favorita = getIntent().getByteArrayExtra("favorita");
+        Bitmap imatge_seleccionada = BitmapFactory.decodeByteArray(imatge_favorita, 0, imatge_favorita.length);
+
         showProgressDialog();
-        Picasso.with(EscenaActivity2.this).load(uri).into(image);
+        image.setImageBitmap(imatge_seleccionada);
         hideProgressDialog();
 
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);

@@ -3,6 +3,9 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,9 +60,11 @@ public class EscenaActivity extends BaseActivity {
         imatgeEscena = (ImageView) findViewById(R.id.ivPicturePreferred);
         eLvEmocions = (Spinner) findViewById(R.id.eLvEmocions);
 
-        uri = Uri.parse(getIntent().getStringExtra("favorita").toString());
+
         showProgressDialog();
-        Picasso.with(EscenaActivity.this).load(uri).into(imatgeEscena);
+        final byte[] imatge_favorita = getIntent().getByteArrayExtra("favorita");
+        Bitmap imatge_seleccionada = BitmapFactory.decodeByteArray(imatge_favorita, 0, imatge_favorita.length);
+        imatgeEscena.setImageBitmap(imatge_seleccionada);
         hideProgressDialog();
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -140,7 +145,7 @@ public class EscenaActivity extends BaseActivity {
                 intent.putExtra("C",etQuestion2Escena.getText().toString());
                 intent.putExtra("D",etQuestion3Escena.getText().toString());
                 intent.putExtra("E",etQuestion4Escena.getText().toString());
-                intent.putExtra("favorita",uri.toString());
+                intent.putExtra("favorita",imatge_favorita);
                 if(eLvEmocions.getSelectedItemPosition()==0){
                     Toast.makeText(EscenaActivity.this, R.string.ChooseEmotion,
                             Toast.LENGTH_LONG).show();

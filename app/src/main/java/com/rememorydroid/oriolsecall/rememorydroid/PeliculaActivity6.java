@@ -23,11 +23,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class PeliculaActivity6 extends BaseActivity {
 
@@ -118,18 +120,26 @@ public class PeliculaActivity6 extends BaseActivity {
                     editor.putString("respostes",respostes_json);
                     editor.commit();
                     //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
-                    String[] rutes = respostes_recuperades.ConvertToCVS(getBaseContext());
+                    ArrayList<String> rutes = respostes_recuperades.ConvertToCVS(PeliculaActivity6.this);
                     //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta i el JSON[1]
-                    PacientRef = myRef.child(pacient.getID()).child(episodi).child("resultat");
-                    Uri file = Uri.fromFile(new File(rutes[0].toString()));
+                    PacientRef = myRef.child(pacient.getID()).child(episodi).child("Resultat.csv");
+                    Uri file = Uri.fromFile(new File(rutes.get(0)));
+
+                    // Create file metadata including the content type (CSV)
+                    StorageMetadata metadata = new StorageMetadata.Builder()
+                            .setContentType("text/csv")
+                            .build();
+
 
                     showProgressDialog();
-                    PacientRef.putFile(file).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    PacientRef.putFile(file,metadata).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            while(!task.isSuccessful());
-                            hideProgressDialog();
+                            while(!task.isSuccessful()){
+                                showProgressDialog();
+                            };
                             if(task.isComplete()){
+                                hideProgressDialog();
                                 Toast.makeText(PeliculaActivity6.this, R.string.UploadCSVSuccessful,
                                         Toast.LENGTH_LONG).show();
                             }

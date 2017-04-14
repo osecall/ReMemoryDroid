@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -42,7 +43,6 @@ public class AlbumActivity extends BaseActivity {
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private StorageReference RefFavour;
     private ImageView ivAlbum0, ivAlbum1,ivAlbum2,ivAlbum3,ivAlbum4,ivAlbum5,ivAlbum6,ivAlbum7;
-    private ArrayList<Uri> uris;
     private SharedPreferences prefs;
     private String ID, episodi;
     private Animation aumentar, translate;
@@ -54,7 +54,6 @@ public class AlbumActivity extends BaseActivity {
 
         ID = new String();
         episodi = new String();
-        uris=new ArrayList<Uri>();
 
         LayoutInflater factory = LayoutInflater.from(this);
         View textEntryView = factory.inflate(R.layout.dialegs, null);
@@ -112,9 +111,9 @@ public class AlbumActivity extends BaseActivity {
                 Bitmap bitmap = ivAlbum0.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] data = baos.toByteArray();
+                final byte[] data0 = baos.toByteArray();
 
-                UploadTask uploadTask = RefFavour.putBytes(data);
+                UploadTask uploadTask = RefFavour.putBytes(data0);
                 uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -130,7 +129,7 @@ public class AlbumActivity extends BaseActivity {
                             new Handler().postDelayed(new Runnable(){
                                 public void run(){
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                    intent.putExtra("favorita", uris.get(0).toString());
+                                    intent.putExtra("favorita",data0);
                                     startActivity(intent);
                                 };
                             }, 3000);
@@ -156,9 +155,9 @@ public class AlbumActivity extends BaseActivity {
                 Bitmap bitmap = ivAlbum1.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] data = baos.toByteArray();
+                final byte[] data1 = baos.toByteArray();
 
-                UploadTask uploadTask = RefFavour.putBytes(data);
+                UploadTask uploadTask = RefFavour.putBytes(data1);
                 uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -174,7 +173,7 @@ public class AlbumActivity extends BaseActivity {
                             new Handler().postDelayed(new Runnable(){
                                 public void run(){
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                    intent.putExtra("favorita", uris.get(1).toString());
+                                    intent.putExtra("favorita",data1);
                                     startActivity(intent);
                                 };
                             }, 3000);
@@ -200,9 +199,9 @@ public class AlbumActivity extends BaseActivity {
                 Bitmap bitmap = ivAlbum2.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] data = baos.toByteArray();
+                final byte[] data2 = baos.toByteArray();
 
-                UploadTask uploadTask = RefFavour.putBytes(data);
+                UploadTask uploadTask = RefFavour.putBytes(data2);
                 uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -218,7 +217,7 @@ public class AlbumActivity extends BaseActivity {
                             new Handler().postDelayed(new Runnable(){
                                 public void run(){
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                    intent.putExtra("favorita", uris.get(2).toString());
+                                    intent.putExtra("favorita",data2);
                                     startActivity(intent);
                                 };
                             }, 3000);
@@ -244,9 +243,9 @@ public class AlbumActivity extends BaseActivity {
                 Bitmap bitmap = ivAlbum3.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] data = baos.toByteArray();
+                final byte[] data3 = baos.toByteArray();
 
-                UploadTask uploadTask = RefFavour.putBytes(data);
+                UploadTask uploadTask = RefFavour.putBytes(data3);
                 uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -262,7 +261,7 @@ public class AlbumActivity extends BaseActivity {
                             new Handler().postDelayed(new Runnable(){
                                 public void run(){
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                    intent.putExtra("favorita", uris.get(3).toString());
+                                    intent.putExtra("favorita",data3);
                                     startActivity(intent);
                                 };
                             }, 3000);
@@ -288,9 +287,9 @@ public class AlbumActivity extends BaseActivity {
                 Bitmap bitmap = ivAlbum4.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] data = baos.toByteArray();
+                final byte[] data4 = baos.toByteArray();
 
-                UploadTask uploadTask = RefFavour.putBytes(data);
+                UploadTask uploadTask = RefFavour.putBytes(data4);
                 uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -306,7 +305,7 @@ public class AlbumActivity extends BaseActivity {
                             new Handler().postDelayed(new Runnable(){
                                 public void run(){
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                    intent.putExtra("favorita", uris.get(4).toString());
+                                    intent.putExtra("favorita",data4);
                                     startActivity(intent);
                                 };
                             }, 3000);
@@ -332,9 +331,9 @@ public class AlbumActivity extends BaseActivity {
                 Bitmap bitmap = ivAlbum5.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] data = baos.toByteArray();
+                final byte[] data5 = baos.toByteArray();
 
-                UploadTask uploadTask = RefFavour.putBytes(data);
+                UploadTask uploadTask = RefFavour.putBytes(data5);
                 uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -350,7 +349,7 @@ public class AlbumActivity extends BaseActivity {
                             new Handler().postDelayed(new Runnable(){
                                 public void run(){
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                    intent.putExtra("favorita", uris.get(5).toString());
+                                    intent.putExtra("favorita",data5);
                                     startActivity(intent);
                                 };
                             }, 3000);
@@ -376,9 +375,9 @@ public class AlbumActivity extends BaseActivity {
                 Bitmap bitmap = ivAlbum6.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] data = baos.toByteArray();
+                final byte[] data6 = baos.toByteArray();
 
-                UploadTask uploadTask = RefFavour.putBytes(data);
+                UploadTask uploadTask = RefFavour.putBytes(data6);
                 uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -394,7 +393,7 @@ public class AlbumActivity extends BaseActivity {
                             new Handler().postDelayed(new Runnable(){
                                 public void run(){
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                    intent.putExtra("favorita", uris.get(6).toString());
+                                    intent.putExtra("favorita",data6);
                                     startActivity(intent);
                                 };
                             }, 3000);
@@ -420,9 +419,9 @@ public class AlbumActivity extends BaseActivity {
                 Bitmap bitmap = ivAlbum7.getDrawingCache();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] data = baos.toByteArray();
+                final byte[] data7 = baos.toByteArray();
 
-                UploadTask uploadTask = RefFavour.putBytes(data);
+                UploadTask uploadTask = RefFavour.putBytes(data7);
                 uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -438,7 +437,7 @@ public class AlbumActivity extends BaseActivity {
                             new Handler().postDelayed(new Runnable(){
                                 public void run(){
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                    intent.putExtra("favorita", uris.get(7).toString());
+                                    intent.putExtra("favorita",data7);
                                     startActivity(intent);
                                 };
                             }, 3000);
@@ -465,7 +464,6 @@ public class AlbumActivity extends BaseActivity {
         StorageReference Ref7 = myRef.child(ID).child(episodi).child("7.jpg");
 
         showProgressDialog();
-        uris.clear();
         Ref0.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
@@ -474,7 +472,6 @@ public class AlbumActivity extends BaseActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum0);
-                        uris.add(uri);
                         hideProgressDialog();
                     }
                 });
@@ -488,7 +485,6 @@ public class AlbumActivity extends BaseActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum1);
-                        uris.add(uri);
                         hideProgressDialog();
                     }
                 });
@@ -502,7 +498,6 @@ public class AlbumActivity extends BaseActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum2);
-                        uris.add(uri);
                         hideProgressDialog();
                     }
                 });
@@ -516,7 +511,6 @@ public class AlbumActivity extends BaseActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum3);
-                        uris.add(uri);
                         hideProgressDialog();
                     }
                 });
@@ -530,7 +524,6 @@ public class AlbumActivity extends BaseActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum4);
-                        uris.add(uri);
                         hideProgressDialog();
                     }
                 });
@@ -544,7 +537,6 @@ public class AlbumActivity extends BaseActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum5);
-                        uris.add(uri);
                         hideProgressDialog();
                     }
                 });
@@ -558,7 +550,6 @@ public class AlbumActivity extends BaseActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum6);
-                        uris.add(uri);
                         hideProgressDialog();
                     }
                 });
@@ -572,7 +563,6 @@ public class AlbumActivity extends BaseActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum7);
-                        uris.add(uri);
                         hideProgressDialog();
                     }
                 });

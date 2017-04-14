@@ -12,6 +12,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
+import java.sql.Array;
+import java.util.ArrayList;
 
 
 /**
@@ -374,11 +376,11 @@ public class TestAnswers implements Serializable {
     }
 
 
-    public String[] ConvertToCVS(Context context){
+    public ArrayList<String> ConvertToCVS(Context context){
 
         String dades = new String();
         String respostesJSON = new String();
-        String[] rutes=null;
+        ArrayList<String> rutes=new ArrayList<String>();
 
         File outPutFile = new File(context.getFilesDir(),"respostes.cvs");
         File outPutFileJSON = new File(context.getFilesDir(),"respostesJSON.json");
@@ -424,8 +426,8 @@ public class TestAnswers implements Serializable {
             e.printStackTrace();
         }
 
-        rutes[0]=outPutFile.getAbsolutePath();
-        rutes[1]=outPutFileJSON.getAbsolutePath();
+        rutes.add(0,outPutFile.getAbsolutePath());
+        rutes.add(1,outPutFileJSON.getAbsolutePath());
         return rutes;
     };
 }
