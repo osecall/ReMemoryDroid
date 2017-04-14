@@ -71,8 +71,8 @@ public class TestAnswers implements Serializable {
     public TestAnswers() {
     }
 
-    public int getTest1Sumatori() {
-        return Test1Sumatori;
+    public String getTest1Sumatori() {
+        return String.valueOf(Test1Sumatori);
     }
 
     public void setTest1Sumatori() {
@@ -80,8 +80,8 @@ public class TestAnswers implements Serializable {
                 +this.Test1Pregunta4+this.Test1Pregunta5+this.Test1Pregunta6;
     }
 
-    public int getTest2Sumatori() {
-        return Test2Sumatori;
+    public String getTest2Sumatori() {
+        return String.valueOf(Test2Sumatori);
     }
 
     public void setTest2Sumatori() {
@@ -89,96 +89,96 @@ public class TestAnswers implements Serializable {
                 +this.Test2Pregunta4+this.Test2Pregunta5+this.Test2Pregunta6;
     }
 
-    public int getTest1Pregunta1() {
-        return Test1Pregunta1;
+    public String getTest1Pregunta1() {
+        return String.valueOf(Test1Pregunta1);
     }
 
     public void setTest1Pregunta1(int test1Pregunta1) {
         Test1Pregunta1 = test1Pregunta1;
     }
 
-    public int getTest1Pregunta2() {
-        return Test1Pregunta2;
+    public String getTest1Pregunta2() {
+        return String.valueOf(Test1Pregunta2);
     }
 
     public void setTest1Pregunta2(int test1Pregunta2) {
         Test1Pregunta2 = test1Pregunta2;
     }
 
-    public int getTest1Pregunta3() {
-        return Test1Pregunta3;
+    public String getTest1Pregunta3() {
+        return String.valueOf(Test1Pregunta3);
     }
 
     public void setTest1Pregunta3(int test1Pregunta3) {
         Test1Pregunta3 = test1Pregunta3;
     }
 
-    public int getTest1Pregunta4() {
-        return Test1Pregunta4;
+    public String getTest1Pregunta4() {
+        return String.valueOf(Test1Pregunta4);
     }
 
     public void setTest1Pregunta4(int test1Pregunta4) {
         Test1Pregunta4 = test1Pregunta4;
     }
 
-    public int getTest1Pregunta5() {
-        return Test1Pregunta5;
+    public String getTest1Pregunta5() {
+        return String.valueOf(Test1Pregunta5);
     }
 
     public void setTest1Pregunta5(int test1Pregunta5) {
         Test1Pregunta5 = test1Pregunta5;
     }
 
-    public int getTest1Pregunta6() {
-        return Test1Pregunta6;
+    public String getTest1Pregunta6() {
+        return String.valueOf(Test1Pregunta6);
     }
 
     public void setTest1Pregunta6(int test1Pregunta6) {
         Test1Pregunta6 = test1Pregunta6;
     }
 
-    public int getTest2Pregunta1() {
-        return Test2Pregunta1;
+    public String getTest2Pregunta1() {
+        return String.valueOf(Test2Pregunta1);
     }
 
     public void setTest2Pregunta1(int test2Pregunta1) {
         Test2Pregunta1 = test2Pregunta1;
     }
 
-    public int getTest2Pregunta2() {
-        return Test2Pregunta2;
+    public String getTest2Pregunta2() {
+        return String.valueOf(Test2Pregunta2);
     }
 
     public void setTest2Pregunta2(int test2Pregunta2) {
         Test2Pregunta2 = test2Pregunta2;
     }
 
-    public int getTest2Pregunta3() {
-        return Test2Pregunta3;
+    public String getTest2Pregunta3() {
+        return String.valueOf(Test2Pregunta3);
     }
 
     public void setTest2Pregunta3(int test2Pregunta3) {
         Test2Pregunta3 = test2Pregunta3;
     }
 
-    public int getTest2Pregunta4() {
-        return Test2Pregunta4;
+    public String getTest2Pregunta4() {
+        return String.valueOf(Test2Pregunta4);
     }
 
     public void setTest2Pregunta4(int test2Pregunta4) {
         Test2Pregunta4 = test2Pregunta4;
     }
 
-    public int getTest2Pregunta5() {
-        return Test2Pregunta5;
+    public String getTest2Pregunta5() {
+        return String.valueOf(Test2Pregunta5);
     }
 
     public void setTest2Pregunta5(int test2Pregunta5) {
         Test2Pregunta5 = test2Pregunta5;
     }
 
-    public int getTest2Pregunta6() {
-        return Test2Pregunta6;
+    public String getTest2Pregunta6() {
+        return String.valueOf(Test2Pregunta6);
     }
 
     public void setTest2Pregunta6(int test2Pregunta6) {
@@ -386,15 +386,16 @@ public class TestAnswers implements Serializable {
         FileOutputStream outputStream;
 
         //Capçalera de les columnes
-        dades = "Test1_1,Test1_2,Test1_3,Test1_4,Test1_5,Test1_6,Test2_1,Test2_2,Test2_3,Test2_4,Test2_5,"+
-                "Test2_6,Test_Differencial,Quan_EpocaAny,Quan_Temps,Quan_Duracio,Quan_Mes,Quan_FranjaDia,"+
+        dades = "Test1_1,Test1_2,Test1_3,Test1_4,Test1_5,Test1_6,Test1_Sumatori,Test2_1,Test2_2,Test2_3,Test2_4,Test2_5,"+
+                "Test2_6,Test2_Sumatori,Test_Differencial,Quan_EpocaAny,Quan_Temps,Quan_Duracio,Quan_Mes,Quan_FranjaDia,"+
                 "On_Localització,On_Entorns,On_Ubicacio,Perceptius_Sons,Perceptius_Temperatura,Perceptius_Olors,"+
                 "Persones_Accions,Persones_GrupsEdats,Persones_NumeroApareixen,Persones_Relacio,"+
                 "Emocions_Observades,Emocions_Propies,Emocions_Escena1_Emocio,Emocions_Escena1_Intensitat,"+
                 "Emocions_Escena2_Emocio,Emocions_Escena2_Intensitat,Emocions_Escena3_Emocio,Emocions_Escena3_Intensitat\n";
 
-        dades = dades+getTest1Pregunta1()+","+getTest1Pregunta2()+","+getTest1Pregunta3()+","+getTest1Pregunta4()+","+","+
-                getTest1Pregunta5()+","+getTest1Pregunta6()+","+getDifferencesTests()+","+getPreguntesQuan_EpocaAny()+","+
+        dades = dades+getTest1Pregunta1()+","+getTest1Pregunta2()+","+getTest1Pregunta3()+","+getTest1Pregunta4()+","+
+                getTest1Pregunta5()+","+getTest1Pregunta6()+getTest1Sumatori()+","+getTest2Pregunta1()+","+getTest2Pregunta2()+","+getTest2Pregunta3()+","+getTest2Pregunta4()+","+
+                getTest2Pregunta5()+","+getTest2Pregunta6()+","+getTest2Sumatori()+","+getDifferencesTests()+","+getPreguntesQuan_EpocaAny()+","+
                 getPreguntesQuan_Temps()+","+getPreguntesQuan_Duracio()+","+getPreguntesQuan_Mes()+","+getPreguntesQuan_FranjaDia()+","+
                 getPreguntesOn_Localitzacio()+","+getPreguntesOn_Entorns()+","+getPreguntesOn_Ubicacio()+","+getPreguntesPerceptius_Sons()+","+
                 getPreguntesPerceptius_Temperatura()+","+getPreguntesPerceptius_Olors()+","+getPreguntesPersones_Accions()+","+getPreguntesPersones_Grups()+","+

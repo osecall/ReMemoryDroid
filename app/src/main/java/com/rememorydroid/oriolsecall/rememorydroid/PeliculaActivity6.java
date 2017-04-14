@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,10 +19,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 
-public class PeliculaActivity6 extends AppCompatActivity {
+import java.io.File;
+
+public class PeliculaActivity6 extends BaseActivity {
 
     private TextDrawable FromPage, ToPage, NumeroSeleccionat;
     private ImageView ivFromPage, ivToPage, ivNumSeleccionat;
@@ -28,6 +37,8 @@ public class PeliculaActivity6 extends AppCompatActivity {
     private Intent intentPel1;
     private RadioGroup rbGroup;
     private String RadioSelected;
+    private StorageReference myRef = FirebaseStorage.getInstance().getReference();
+    private StorageReference PacientRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +107,8 @@ public class PeliculaActivity6 extends AppCompatActivity {
                     SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     String respostes_json = prefs.getString("respostes",null);
+                    String episodi = prefs.getString("episodi",null);
+                    PacientUsuari pacient = gson.fromJson(prefs.getString("pacient",null),PacientUsuari.class);
                     TestAnswers respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
 
                     //Passem valor sel·leccionat com Integer
@@ -105,7 +118,24 @@ public class PeliculaActivity6 extends AppCompatActivity {
                     editor.putString("respostes",respostes_json);
                     editor.commit();
                     intentPel1.putExtra("SegonTest","true");
-                    //Aqui anirem a Tractaments i s'enviara el fitxer a FireBase (CSV)
+                    //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
+                    String[] rutes = respostes_recuperades.ConvertToCVS(getBaseContext());
+                    //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta i el JSON[1]
+                    PacientRef = myRef.child(pacient.getID()).child(episodi).child("resultat");
+                    Uri file = Uri.fromFile(new File(rutes[0].toString()));
+
+                    showProgressDialog();
+                    PacientRef.putFile(file).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                            while(!task.isSuccessful());
+                            hideProgressDialog();
+                            if(task.isComplete()){
+                                Toast.makeText(PeliculaActivity6.this, R.string.UploadCSVSuccessful,
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
 
                 }
                 else{

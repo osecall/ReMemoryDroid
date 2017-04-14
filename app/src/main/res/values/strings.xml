@@ -249,5 +249,6 @@
     <string name="InSub">in %s, </string>
     <string name="InTheSub">in the %s.\n</string>
     <string name="WeAreSub">We are %s.</string>
+    <string name="UploadCSVSuccessful">Results uploaded to data base successful!</string>
 
 </resources>
