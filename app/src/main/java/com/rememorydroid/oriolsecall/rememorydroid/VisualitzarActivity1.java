@@ -118,6 +118,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(VisualitzarActivity1.this);
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
+                .setCancelable(false)
                 .setMessage(R.string.DialogVideo1)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {

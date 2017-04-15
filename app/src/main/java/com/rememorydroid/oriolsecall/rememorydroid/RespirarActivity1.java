@@ -59,6 +59,7 @@ public class RespirarActivity1 extends AppCompatActivity {
     private void DialogInstruccionsRespirar(){
         final AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(RespirarActivity1.this);
         DialegFormControl
+                .setCancelable(false)
                 .setTitle(getString(R.string.Attention))
                 .setMessage(R.string.InstructonsBreathing)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
