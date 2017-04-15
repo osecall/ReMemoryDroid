@@ -40,9 +40,7 @@ import java.util.ArrayList;
 public class AreaAvaluadorActivity extends BaseActivity {
 
     private TextView emailAvaluador, tvCUid, tvCUname, tvCUsurName, tvtest;
-    private EditText IDuserSelected;
     private FloatingActionButton fabSignUp, fabDeleteUser;
-    private Button btSelectUser;
     private String MessageDialogFinal, IDuserDelete;
     private PacientUsuari pacient;
     private ListView lvPacients;
@@ -64,7 +62,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
         tvCUname = (TextView) findViewById(R.id.tvCUname);
         tvCUsurName = (TextView) findViewById(R.id.tvCUlastName);
 
-        btSelectUser = (Button) findViewById(R.id.btSelectUser);
         fabDeleteUser = (FloatingActionButton) findViewById(R.id.fabDeleteUser);
 
         fabSignUp = (FloatingActionButton) findViewById(R.id.fabSignUp);
@@ -111,6 +108,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                pacient = new PacientUsuari();
                 lvPacients.setItemChecked(i,true);
                 TextView NomPacient = (TextView) view.findViewById(R.id.tvNomPacient);
                 TextView Cognom = (TextView) view.findViewById(R.id.tvCognomPacient);
