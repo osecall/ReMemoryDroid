@@ -2,11 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:screenOrientation="landscape"
+    android:gravity="center_horizontal"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:screenOrientation="landscape"
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.QuestionariActivity2$Fragment4">
 
 
@@ -17,9 +18,8 @@
 
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="568dp"
-        android:layout_alignTop="@+id/btNextEmotions1"
-        android:layout_toStartOf="@+id/linearLayout2"
-        android:layout_marginEnd="18dp" />
+        android:layout_alignBottom="@+id/linearLayout2"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/btNextEmotions1"
@@ -27,28 +27,26 @@
 
         tools:layout_editor_absoluteX="1114dp"
         tools:layout_editor_absoluteY="557dp"
-        android:layout_marginStart="13dp"
         android:layout_alignBottom="@+id/linearLayout2"
-        android:layout_toEndOf="@+id/linearLayout2"
-        android:layout_marginBottom="71dp" />
+        android:layout_alignParentEnd="true" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="900dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteY="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="41dp">
 
         <TextView
             android:id="@+id/PeopleAppearing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="30dp"
             android:gravity="center_horizontal"
             android:text="@string/EmotionsDuringEpisode"
             android:textAlignment="center"
@@ -57,7 +55,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/borde"
             android:orientation="vertical">
 
@@ -127,7 +125,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@drawable/borde"
             android:orientation="vertical">
 

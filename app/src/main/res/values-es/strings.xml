@@ -242,4 +242,6 @@
     <string name="Scene">Escena</string>
     <string name="Fantastic">Fantástico, lo ha hecho muy bien!!!</string>
     <string name="ToEnd">Ahora para finalizar le pedimos que señale la opción que más se aproxime a cómo se siente usted ahora mismo</string>
+    <string name="ThankYouVeryMuch">Muchas gracias por su colaboración.\nHa hecho un gran trabajo.</string>
+    <string name="HopeEnjoy">Esperemos que haya disfrutado reviviendo este episodio de su vida</string>
 </resources>
