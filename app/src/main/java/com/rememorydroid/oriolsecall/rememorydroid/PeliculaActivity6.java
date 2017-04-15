@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,13 +45,15 @@ public class PeliculaActivity6 extends BaseActivity {
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private StorageReference PacientRef;
     private DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("pacients");
+    private ActionBar actionBar = getSupportActionBar();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pelicula6);
 
-        if(getIntent().hasExtra("SegonTest")) getActionBar().setTitle("Test2");
+        if(getIntent().hasExtra("SegonTest")) actionBar.setTitle("Test2");
 
         ColorGenerator generator = ColorGenerator.DEFAULT;
         FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("6",generator.getRandomColor());
@@ -157,7 +160,7 @@ public class PeliculaActivity6 extends BaseActivity {
                         }
                     });
 
-                    AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(PeliculaActivity6.this);
+                    final AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(PeliculaActivity6.this);
                     DialegDespedida
                             .setCancelable(false)
                             .setMessage(R.string.ThankYouVeryMuch+"\n"+R.string.HopeEnjoy)

@@ -94,14 +94,15 @@ public class EscenaActivity2 extends BaseActivity {
         btNextEscena2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder Dialeg1 = new AlertDialog.Builder(EscenaActivity2.this);
+                final AlertDialog.Builder Dialeg1 = new AlertDialog.Builder(EscenaActivity2.this);
                 Dialeg1
                         .setTitle(getString(R.string.Congratulations))
                         .setCancelable(false)
                         .setMessage(R.string.Fantastic)
                         .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0, int arg1) {
-                                AlertDialog.Builder Dialeg2 = new AlertDialog.Builder(EscenaActivity2.this);
+                                arg0.dismiss();
+                                final AlertDialog.Builder Dialeg2 = new AlertDialog.Builder(EscenaActivity2.this);
                                 Dialeg2
                                         .setCancelable(false)
                                         .setMessage(R.string.ToEnd)

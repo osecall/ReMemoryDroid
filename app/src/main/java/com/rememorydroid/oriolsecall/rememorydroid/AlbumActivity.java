@@ -533,8 +533,6 @@ public class AlbumActivity extends BaseActivity {
             }
         });
         showProgressDialog();
-
-
     }
 
     //Part del menú 'action bar'

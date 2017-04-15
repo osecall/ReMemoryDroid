@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.IdRes;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,13 +31,14 @@ public class PeliculaActivity extends AppCompatActivity {
     private RadioGroup rbGroup;
     private String RadioSelected;
     protected TestAnswers respostes = new TestAnswers();
+    private ActionBar actionBar = getSupportActionBar();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pelicula);
 
-        if(getIntent().hasExtra("SegonTest")) getActionBar().setTitle("Test2");
+        if(getIntent().hasExtra("SegonTest")) actionBar.setTitle("Test2");
 
         mostrarAlertaPelicula();
 

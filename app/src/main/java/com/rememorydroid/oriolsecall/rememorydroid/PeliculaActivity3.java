@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.IdRes;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,13 +27,14 @@ public class PeliculaActivity3 extends AppCompatActivity {
     private Intent intentPel1;
     private RadioGroup rbGroup;
     private String RadioSelected;
+    private ActionBar actionBar = getSupportActionBar();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pelicula3);
 
-        if(getIntent().hasExtra("SegonTest")) getActionBar().setTitle("Test2");
+        if(getIntent().hasExtra("SegonTest")) actionBar.setTitle("Test2");
 
         ColorGenerator generator = ColorGenerator.DEFAULT;
         FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("3",generator.getRandomColor());
