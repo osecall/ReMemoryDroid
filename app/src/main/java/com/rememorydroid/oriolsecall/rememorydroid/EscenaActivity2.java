@@ -94,21 +94,21 @@ public class EscenaActivity2 extends BaseActivity {
         btNextEscena2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(EscenaActivity2.this);
-                DialegFormControl
+                AlertDialog.Builder Dialeg1 = new AlertDialog.Builder(EscenaActivity2.this);
+                Dialeg1
                         .setTitle(getString(R.string.Congratulations))
                         .setCancelable(false)
                         .setMessage(R.string.Fantastic)
                         .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0, int arg1) {
-                                arg0.dismiss();
-                                AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(EscenaActivity2.this);
-                                DialegFormControl
+                                AlertDialog.Builder Dialeg2 = new AlertDialog.Builder(EscenaActivity2.this);
+                                Dialeg2
                                         .setCancelable(false)
                                         .setMessage(R.string.ToEnd)
                                         .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface arg0, int arg1) {
                                                 startActivity(new Intent(EscenaActivity2.this, PeliculaActivity.class).putExtra("SegonTest","SegonTest"));
+                                                arg0.dismiss();
                                             }
                                         })
                                         .show();

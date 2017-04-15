@@ -157,14 +157,15 @@ public class PeliculaActivity6 extends BaseActivity {
                         }
                     });
 
-                    AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PeliculaActivity6.this);
-                    DialegFormControl
+                    AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(PeliculaActivity6.this);
+                    DialegDespedida
                             .setCancelable(false)
                             .setMessage(R.string.ThankYouVeryMuch+"\n"+R.string.HopeEnjoy)
                             .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
                                     startActivity(new Intent(PeliculaActivity6.this, TractamentsActivity.class));
+                                    arg0.dismiss();
+                                    finish();
                                 }
                             }).show();
 
