@@ -36,12 +36,12 @@
         android:id="@+id/linearLayout2"
         android:layout_width="900dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        tools:layout_editor_absoluteY="8dp">
 
         <TextView
             android:id="@+id/PeopleAppearing"
@@ -65,73 +65,63 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/EmotionsLabel1"
-                android:textSize="18sp"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <CheckBox
+                <RadioGroup
+                    android:id="@+id/rgFragment41Q2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <RadioButton
                     android:id="@+id/cbTheyScared"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/TheyAreScared" />
-            </LinearLayout>
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/TheyAreScared"
+                    android:textSize="24sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <CheckBox
+                <RadioButton
                     android:id="@+id/cbTheySad"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/TheyAreSad" />
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/TheyAreSad"
+                    android:textSize="24sp" />
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/cbTheySurprised"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/TheyAreSuprised" />
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/TheyAreSuprised"
+                    android:textSize="24sp" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <CheckBox
+                <RadioButton
                     android:id="@+id/cbTheyHappy"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/TheyAreHappy" />
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/TheyAreHappy"
+                    android:textSize="24sp" />
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/cbTheyAngry"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/TheyAreAngry" />
-
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/TheyAreAngry"
+                    android:textSize="24sp" />
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -145,52 +135,62 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/EmotionsLabel2"
-                android:textSize="18sp"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
-            <CheckBox
+            <RadioGroup
+                android:id="@+id/rgFragment42Q2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <RadioButton
                 android:id="@+id/cbHappy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/WasHappy" />
+                android:layout_marginBottom="1dp"
+                android:text="@string/WasHappy"
+                android:textSize="21sp" />
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/cbSad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/WasSad" />
+                android:layout_marginBottom="1dp"
+                android:text="@string/WasSad"
+                android:textSize="21sp" />
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/cbAngry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/wasAngry" />
+                android:layout_marginBottom="1dp"
+                android:text="@string/wasAngry"
+                android:textSize="21sp" />
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/cbScared"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/WasScared" />
+                android:layout_marginBottom="1dp"
+                android:text="@string/WasScared"
+                android:textSize="21sp" />
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/cbSorprised"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/WasSorprised" />
+                android:layout_marginBottom="1dp"
+                android:text="@string/WasSorprised"
+                android:textSize="21sp" />
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/cbNoExperience"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/NoEmotion" />
+                android:layout_marginBottom="1dp"
+                android:text="@string/NoEmotion"
+                android:textSize="21sp" />
         </LinearLayout>
 
     </LinearLayout>
