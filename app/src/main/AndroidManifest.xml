@@ -29,82 +29,101 @@
             android:screenOrientation="landscape"/>
         <activity
             android:name=".IniciActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/LogIn"/>
         <activity
             android:name=".AreaAvaluadorActivity"
             android:screenOrientation="landscape"
-            android:label="Hola"/>
+            android:label="@string/AssesserArea"/>
         <activity
             android:name=".PacientUserSignUpActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/SignUpPacientTitleActivity"/>
         <activity
             android:name=".TractamentsActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/TreatmentsArea"/>
         <activity
             android:name=".EpisodiActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Episodes"/>
         <activity
             android:name=".GuiaActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Guide"/>
         <activity
             android:name=".PeliculaActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Question1Pel1"/>
         <activity
             android:name=".PeliculaActivity2"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Question2Pel1"/>
         <activity
             android:name=".EpisodePresentationActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            />
         <activity
             android:name=".PeliculaActivity3"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Question3Pel1"/>
         <activity
             android:name=".PeliculaActivity4"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Question4Pel1"/>
         <activity
             android:name=".PeliculaActivity5"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Question5Pel1"/>
         <activity
             android:name=".PeliculaActivity6"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Question6Pel1"/>
         <activity
             android:name=".RespirarActivity1"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".VisualitzarActivity1"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Visualitzar"/>
         <activity
             android:name=".EvocarActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Evocar"/>
         <activity
             android:name=".QuestionariActivity"
-            android:label="@string/title_activity_questionari"
+            android:label="@string/Questions"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".QuestionariActivity2"
-            android:label="@string/title_activity_questionari2"
+            android:label="@string/Questions"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EmocionsActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Emotions"/>
         <activity
             android:name=".EmocionsActivity2"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Emotions2"/>
         <activity
             android:name=".EmocionsActivity3"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Emotions3"/>
         <activity
             android:name=".AlbumActivity"
-            android:screenOrientation="landscape">
-        </activity>
+            android:screenOrientation="landscape"
+            android:label="@string/Album"/>
         <activity
             android:name=".EscenaActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="@string/Scene"/>
         <activity android:name=".EscenaActivity2"
-            android:screenOrientation="landscape"> </activity>
+            android:screenOrientation="landscape"
+            android:label="@string/Scene"> </activity>
     </application>
 
 </manifest>

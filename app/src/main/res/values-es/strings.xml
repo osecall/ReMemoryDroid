@@ -123,7 +123,6 @@
     <string name="June">Junio</string>
     <string name="March">Marzo</string>
     <string name="May">Maig</string>
-    <string name="title_activity_questionari">Cuando pasó?</string>
     <string name="April">Abril</string>
     <string name="August">Agosto</string>
     <string name="September">Septiembre</string>
@@ -233,4 +232,12 @@
     <string name="WhatTheyAreDoing">"Que estan haciendo? "</string>
     <string name="WhereAreThey">"Donde estan? "</string>
     <string name="WhoAreYouWith">"Con quien estas? "</string>
+    <string name="LogIn">Iniciar sesión</string>
+    <string name="Guide">Guia</string>
+    <string name="Visualitzar">Visualizar</string>
+    <string name="Evocar">Evocar</string>
+    <string name="Questions">Cuestiones</string>
+    <string name="Emotions2">Emociones_2</string>
+    <string name="Emotions3">Emociones_3</string>
+    <string name="Scene">Escena</string>
 </resources>

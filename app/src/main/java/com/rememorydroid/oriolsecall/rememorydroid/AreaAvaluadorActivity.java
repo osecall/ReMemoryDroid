@@ -82,9 +82,10 @@ public class AreaAvaluadorActivity extends BaseActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                PacientUsuari pacientUser = new PacientUsuari();
+
                 int i=0;
                 for (DataSnapshot data : dataSnapshot.getChildren()){
+                    PacientUsuari pacientUser = new PacientUsuari();
                     pacientUser.setID(String.valueOf(i++));
                     pacientUser.setName(data.child("name").getValue(String.class));
                     pacientUser.setLastName(data.child("lastName").getValue(String.class));
