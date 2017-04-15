@@ -13,7 +13,7 @@
     <string name="hint_password">Contraseña Evaluador</string>
     <string name="sign_in">Logearse</string>
     <string name="create_account">Crear usuario Evaluador</string>
-    <string name="sign_out">Deslogearse Evaluador</string>
+    <string name="sign_out">Deslogearse Evaluador (%s)</string>
     <string name="verify_email">Verificar email</string>
     <string name="emailpassword_status_fmt">Email usuario: %1$s (verificado: %2$b)</string>
     <string name="firebase_status_fmt">Usuario: %s</string>

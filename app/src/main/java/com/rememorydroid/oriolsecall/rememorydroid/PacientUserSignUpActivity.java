@@ -217,6 +217,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menuavaluadors, menu);
+        menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
         return true;
     }
 

@@ -13,7 +13,7 @@
     <string name="hint_password">Contrasenya Avaluador</string>
     <string name="sign_in">Entrar</string>
     <string name="create_account">Crear usuari Avaluador</string>
-    <string name="sign_out">Acabar sessió Avaluador</string>
+    <string name="sign_out">Acabar sessió Avaluador (%s)</string>
     <string name="verify_email">Verificar email</string>
     <string name="emailpassword_status_fmt">Email usuari: %1$s (verificat: %2$b)</string>
     <string name="firebase_status_fmt">Usuari: %s</string>
@@ -172,7 +172,6 @@
     <string name="OldPeople">Gent gran</string>
     <string name="Young">Jove</string>
     <string name="Youth">Juventut</string>
-    <string name="title_activity_questionari2"></string>
     <string name="Walking">Caminant</string>
     <string name="Talking">Parlant</string>
     <string name="Kids">Nens</string>

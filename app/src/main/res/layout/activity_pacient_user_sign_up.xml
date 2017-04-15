@@ -11,11 +11,10 @@
         android:id="@+id/ivIDerror"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignBottom="@+id/tvPacientIDSignUp"
-        android:layout_alignTop="@+id/etIDPacientSignUp"
-        android:layout_toEndOf="@+id/tvSignUpTitle"
         android:visibility="invisible"
-        app:srcCompat="@drawable/signodeadmiracion" />
+        app:srcCompat="@drawable/signodeadmiracion"
+        android:layout_alignTop="@+id/etIDPacientSignUp"
+        android:layout_toEndOf="@+id/etNamePacientSignUp" />
 
     <Button
         android:id="@+id/btSavePacientSignUp"
@@ -85,10 +84,10 @@
         android:id="@+id/etIDPacientSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/btSavePacientSignUp"
+        android:ems="4"
+        android:inputType="number"
         android:layout_alignTop="@+id/tvPacientIDSignUp"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:layout_toEndOf="@+id/tvPacientLastNameSignUp" />
 
     <EditText
         android:id="@+id/etNamePacientSignUp"

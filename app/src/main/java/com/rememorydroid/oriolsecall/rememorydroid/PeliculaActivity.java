@@ -36,6 +36,8 @@ public class PeliculaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pelicula);
 
+        if(getIntent().hasExtra("SegonTest")) getActionBar().setTitle("Test2");
+
         mostrarAlertaPelicula();
 
         ColorGenerator generator = ColorGenerator.DEFAULT;
@@ -151,7 +153,8 @@ public class PeliculaActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menuavaluadors, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
+        menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
         return true;
     }
 

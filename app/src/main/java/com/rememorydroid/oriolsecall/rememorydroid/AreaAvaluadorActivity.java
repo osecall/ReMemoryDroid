@@ -323,6 +323,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menuavaluadors, menu);
+        menu.getItem(0).setTitle(getString(R.string.sign_out,FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
         return true;
     }
 
@@ -342,22 +343,9 @@ public class AreaAvaluadorActivity extends BaseActivity {
                   Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(AreaAvaluadorActivity.this, IniciActivity.class);
             startActivity(areaAvaluador);
-
-        }
-
-        if (id == R.id.btSignOutPacient) {
-
-            //Retorna a la pantalla 'Area Avaluador'
-
-            Toast.makeText(AreaAvaluadorActivity.this, R.string.MenuChangePacient,
-                    Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(AreaAvaluadorActivity.this, AreaAvaluadorActivity.class);
-            startActivity(areaAvaluador);
-
         }
 
         if (id == R.id.btSelectUser) {
-
 
             LayoutInflater factory = LayoutInflater.from(AreaAvaluadorActivity.this);
             View textEntryView = factory.inflate(R.layout.dialegdeleteid, null);
@@ -425,9 +413,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                     Toast.LENGTH_SHORT).show();
 
                                         }
-
-
-
                                     });
                                     hideProgressDialog();
 
@@ -440,13 +425,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
                             })
                             .show();
 
-
-
                     }
-
-
-
-
         return super.onOptionsItemSelected(item);
     }
 }

@@ -13,6 +13,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -24,6 +26,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -117,7 +120,7 @@ public class AlbumActivity extends BaseActivity {
                 uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        while(!task.isSuccessful()){
+                        while(!task.isComplete()){
                             showProgressDialog();
                            }
                         if(task.isComplete()){
@@ -570,5 +573,50 @@ public class AlbumActivity extends BaseActivity {
                 });
             }
         });
+    }
+
+    //Part del menú 'action bar'
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        menu.getItem(0).setTitle(getString(R.string.sign_out,FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient,ID));
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.btSignOutMenu) {
+
+            //Retorna a la pantalla inicial
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(AlbumActivity.this, R.string.signed_out,
+                    Toast.LENGTH_LONG).show();
+            Intent areaAvaluador = new Intent(AlbumActivity.this, IniciActivity.class);
+            startActivity(areaAvaluador);
+
+        }
+
+        if (id == R.id.btSignOutPacient) {
+
+            //Retorna a la pantalla 'Area Avaluador'
+
+            Toast.makeText(AlbumActivity.this, R.string.MenuChangePacient,
+                    Toast.LENGTH_LONG).show();
+            Intent areaAvaluador = new Intent(AlbumActivity.this, AreaAvaluadorActivity.class);
+            startActivity(areaAvaluador);
+
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -32,6 +32,8 @@ public class PeliculaActivity4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pelicula4);
 
+        if(getIntent().hasExtra("SegonTest")) getActionBar().setTitle("Test2");
+
         ColorGenerator generator = ColorGenerator.DEFAULT;
         FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("4",generator.getRandomColor());
         ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("6",generator.getRandomColor());
@@ -132,7 +134,8 @@ public class PeliculaActivity4 extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menuavaluadors, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
+        menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
         return true;
     }
 

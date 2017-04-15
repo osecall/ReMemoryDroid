@@ -291,6 +291,8 @@ public class IniciActivity extends BaseActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menuavaluadors, menu);
+        menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        menu.getItem(1).setEnabled(false);
         return true;
     }
 
@@ -304,10 +306,7 @@ public class IniciActivity extends BaseActivity implements
         //noinspection SimplifiableIfStatement
         if (id == R.id.btSignOutMenu) {
             signOut();
-
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

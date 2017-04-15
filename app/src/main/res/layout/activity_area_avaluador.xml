@@ -20,14 +20,6 @@
         android:textSize="42sp"
         android:textStyle="bold" />
 
-    <ListView
-        android:id="@+id/lvPacients"
-        android:layout_width="450dp"
-        android:layout_height="500dp"
-        android:layout_alignBottom="@+id/fabDeleteUser"
-        android:layout_centerHorizontal="true"
-        android:choiceMode="singleChoice" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabDeleteUser"
         android:layout_width="245dp"
@@ -53,6 +45,14 @@
         app:srcCompat="@drawable/accountplus"
         android:layout_alignTop="@+id/fabDeleteUser"
         android:layout_alignEnd="@+id/tvCurrentUser" />
+
+    <ListView
+        android:id="@+id/lvPacients"
+        android:layout_width="450dp"
+        android:layout_height="500dp"
+        android:layout_alignBottom="@+id/fabDeleteUser"
+        android:layout_centerHorizontal="true"
+        android:choiceMode="singleChoice" />
 
     <TextView
         android:id="@+id/tvAssessersSessionEmail"

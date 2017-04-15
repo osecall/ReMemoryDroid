@@ -26,7 +26,7 @@
     <string name="hint_password">Assesor\'s password</string>
     <string name="sign_in">Log in</string>
     <string name="create_account">Create Assesser\'s user</string>
-    <string name="sign_out">Sign out Assesor</string>
+    <string name="sign_out">Sign out Assesor\n(%s)</string>
     <string name="verify_email">Verify email</string>
     <string name="emailpassword_status_fmt">User\'s email: %1$s (verified: %2$b)</string>
     <string name="firebase_status_fmt">User: %s</string>
@@ -178,7 +178,6 @@
     <string name="UnPleasentOdor">Unpleasent odors</string>
     <string name="NoOdors">I couldn\'t appreciate any odor</string>
     <string name="WhatOdors">What odors did you feel?</string>
-    <string name="title_activity_questionari2">QuestionariActivity2</string>
     <string name="PeopleAppearing">People who appears</string>
     <string name="PeopleActions">Actions which are being done by people who appears</string>
     <string name="Talking">Talking</string>

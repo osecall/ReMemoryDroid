@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class VisualitzarActivity1 extends AppCompatActivity {
 
-    private MediaPlayer mp, mp2;
+    private MediaPlayer mp,mp2;
     private VideoView vv;
     private ImageButton ibPlay, ibStop;
     private Button btBack, btNext;
@@ -151,7 +151,8 @@ public class VisualitzarActivity1 extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menuavaluadors, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
+        menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
         return true;
     }
 

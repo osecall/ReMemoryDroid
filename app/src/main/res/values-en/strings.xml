@@ -13,7 +13,7 @@
     <string name="hint_password">Assesor\'s password</string>
     <string name="sign_in">Log in</string>
     <string name="create_account">Create Assesser\'s user</string>
-    <string name="sign_out">Sign out Assesor</string>
+    <string name="sign_out">Sign out Assesor (%s)</string>
     <string name="verify_email">Verify email</string>
     <string name="emailpassword_status_fmt">User\'s email: %1$s (verified: %2$b)</string>
     <string name="firebase_status_fmt">User: %s</string>
