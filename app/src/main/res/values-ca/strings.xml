@@ -240,4 +240,6 @@
     <string name="Emotions2">Emocions_2</string>
     <string name="Emotions3">Emocions_3</string>
     <string name="Scene">Escena</string>
+    <string name="Fantastic">Fantastic, ho ha fet molt bé!!!</string>
+    <string name="ToEnd">Ara per finalitzar li demanem que senyali l\'opció que més s\'apoximi a com se sent vosté ara mateix</string>
 </resources>

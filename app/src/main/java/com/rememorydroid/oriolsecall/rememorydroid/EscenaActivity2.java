@@ -1,11 +1,14 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -91,7 +94,29 @@ public class EscenaActivity2 extends BaseActivity {
         btNextEscena2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(EscenaActivity2.this, PeliculaActivity.class).putExtra("SegonTest","SegonTest"));
+                AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(EscenaActivity2.this);
+                DialegFormControl
+                        .setTitle(getString(R.string.Congratulations))
+                        .setCancelable(false)
+                        .setMessage(R.string.Fantastic)
+                        .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                arg0.dismiss();
+                                AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(EscenaActivity2.this);
+                                DialegFormControl
+                                        .setCancelable(false)
+                                        .setMessage(R.string.ToEnd)
+                                        .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface arg0, int arg1) {
+                                                startActivity(new Intent(EscenaActivity2.this, PeliculaActivity.class).putExtra("SegonTest","SegonTest"));
+                                            }
+                                        })
+                                        .show();
+                            }
+                        })
+                        .show();
+
+
             }
         });
 

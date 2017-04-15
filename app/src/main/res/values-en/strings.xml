@@ -240,4 +240,6 @@
     <string name="Emotions2">Emotions_2</string>
     <string name="Emotions3">Emotions_3</string>
     <string name="Scene">Scene</string>
+    <string name="Fantastic">Outstanding, you did it very well!!!</string>
+    <string name="ToEnd">Now to finalize we ask you to point the option which is closest to how you feel right now</string>
 </resources>
