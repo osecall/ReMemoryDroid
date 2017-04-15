@@ -211,4 +211,26 @@
     <string name="wasAngry">I was angry</string>
     <string name="ChooseImageFavourite">Choose the most significant image which is going to be saved in your memory album</string>
     <string name="PictureUploaded">Your favourite picture is saved in your album memory</string>
+    <string name="BeingWith">being with %s</string>
+    <string name="ChooseSpinner">You have to choose an emotion from the list!</string>
+    <string name="HereShowingImages">Here we are going to show you several images of that episode and ask you to choose the most positive and significant for you.  The image you choose is going to be saved in your memory album.</string>
+    <string name="HereWriteAnswers">Here write the answers regarding to the questions:</string>
+    <string name="IamWith">\"I am with \"</string>
+    <string name="ImFeeling">"I am feeling %s, "</string>
+    <string name="InSub">"in %s, "</string>
+    <string name="InTheSub">in the %s.</string>
+    <string name="NonSelected">No current pacient user</string>
+    <string name="ThisSouvenir">This is your choosen memory for your memory album</string>
+    <string name="UploadCSVSuccessful">Results uploaded to data base successful!</string>
+    <string name="WasHappy">I was happy</string>
+    <string name="WasSad">I was sad</string>
+    <string name="WasScared">I was scared</string>
+    <string name="WasSorprised">I was sorprised</string>
+    <string name="WeAreIn">We are in</string>
+    <string name="WeAreSub">We are %s.</string>
+    <string name="WeWere">We were</string>
+    <string name="WhatMonth">In what month and year was the picture taken?</string>
+    <string name="WhatTheyAreDoing">\"What were they doing? \"</string>
+    <string name="WhereAreThey">\"Where are they? \"</string>
+    <string name="WhoAreYouWith">\"Who are you with? \"</string>
 </resources>

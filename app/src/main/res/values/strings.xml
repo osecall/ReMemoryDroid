@@ -49,8 +49,8 @@
     <string name="IncorrecPassword">Password incorrecte</string>
     <string name="PasswordDialog">Introduce your assesor\'s password</string>
     <string name="IntroducePassword">Introduce your assesor password</string>
-    <string name="CUName">Name</string>
-    <string name="CULastName">Last Name</string>
+    <string name="CUName">Name: %s</string>
+    <string name="CULastName">Last Name: %s\n</string>
     <string name="SignUpPacientTitleActivity">Sign Up Pacient</string>
     <string name="Name">Name</string>
     <string name="SurName">Surname</string>
@@ -239,7 +239,7 @@
     <string name="WhereAreThey">"Where are they? "</string>
     <string name="WhatMonth">In what month and year was the picture taken?</string>
     <string name="WhatTheyAreDoing">"What were they doing? "</string>
-    <string name="IamWith">I am with</string>
+    <string name="IamWith">"I am with "</string>
     <string name="WeAreIn">We are in</string>
     <string name="WeWere">We were</string>
     <string name="ChooseSpinner">You have to choose an emotion from the list!</string>
@@ -250,5 +250,6 @@
     <string name="InTheSub">in the %s.\n</string>
     <string name="WeAreSub">We are %s.</string>
     <string name="UploadCSVSuccessful">Results uploaded to data base successful!</string>
+    <string name="NonSelected">No current pacient user</string>
 
 </resources>

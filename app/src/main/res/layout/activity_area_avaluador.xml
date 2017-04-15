@@ -2,19 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:descendantFocusability="beforeDescendants"
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.AreaAvaluadorActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <ImageView
-        android:id="@+id/ivIconRememoryAreaAva"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/iconosymbolrem"
-        android:layout_marginStart="55dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/textView"
@@ -28,101 +20,78 @@
         android:textSize="42sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btSelectUser"
+    <ListView
+        android:id="@+id/lvPacients"
         android:layout_width="450dp"
-        android:layout_height="80dp"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_alignTop="@+id/ivIconRememoryAreaAva"
-        android:drawableLeft="@drawable/userselecting"
-        android:elevation="24dp"
-        android:text="@string/PacientSelection"
-        android:textSize="30sp" />
+        android:layout_height="500dp"
+        android:layout_alignBottom="@+id/fabDeleteUser"
+        android:layout_centerHorizontal="true"
+        android:choiceMode="singleChoice" />
 
-    <EditText
-        android:id="@+id/etIDuserSelected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btSelectUser"
-        android:layout_alignStart="@+id/btSelectUser"
-        android:ems="10"
-        android:hint="@string/PacientID"
-        android:inputType="textPersonName"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/etIDuserDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/btDeleteUser"
-        android:layout_below="@+id/ivIconRememoryAreaAva"
-        android:layout_marginTop="42dp"
-        android:ems="10"
-        android:hint="@string/PacientID"
-        android:inputType="textPersonName"
-        android:textSize="30sp" />
-
-    <Button
-        android:id="@+id/btDeleteUser"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabDeleteUser"
         android:layout_width="245dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/btCreateUser"
-        android:layout_below="@+id/etIDuserDelete"
-        android:drawableLeft="@drawable/userremoving"
+        android:layout_marginBottom="31dp"
         android:elevation="24dp"
-        android:text="@string/DeletePacient"
-        android:textSize="18sp" />
+        app:backgroundTint="@color/colorPrimary"
+        app:elevation="24dp"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/accountremove"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/fabSignUp"
+        android:layout_marginEnd="75dp" />
 
-    <Button
-        android:id="@+id/btCreateUser"
-        android:layout_width="450dp"
-        android:layout_height="80dp"
-        android:layout_alignBottom="@+id/ivIconRememoryAreaAva"
-        android:layout_alignStart="@+id/btSelectUser"
-        android:layout_marginBottom="33dp"
-        android:drawableLeft="@drawable/useradding"
-        android:elevation="24dp"
-        android:text="@string/PacientSignUp"
-        android:textSize="30sp" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:elevation="24dp"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/accountplus"
+        android:layout_alignTop="@+id/fabDeleteUser"
+        android:layout_alignEnd="@+id/tvCurrentUser" />
 
     <TextView
         android:id="@+id/tvAssessersSessionEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/ivIconRememoryAreaAva"
-        android:layout_below="@+id/textView"
-        android:text="TextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/textView"
+        android:layout_marginStart="62dp"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tvCurrentUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_below="@+id/tvAssessersSessionEmail"
-        android:layout_marginStart="132dp"
-        android:layout_toEndOf="@+id/btSelectUser"
+        android:layout_marginEnd="41dp"
         android:text="@string/CurrentUser"
         android:textAlignment="viewStart"
-        android:textSize="36sp"
+        android:textSize="34sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvCUid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvCUname"
         android:layout_below="@+id/tvCurrentUser"
-        android:visibility="invisible"
-        android:layout_alignStart="@+id/tvCurrentUser"
-        android:textSize="36sp" />
+        android:textSize="30sp"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/tvCUname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvCUid"
+        android:text="@string/NonSelected"
+        android:textSize="30sp"
         android:layout_below="@+id/tvCUid"
-        android:visibility="invisible"
-        android:textSize="36sp" />
+        android:layout_alignStart="@+id/tvCurrentUser" />
 
     <TextView
         android:id="@+id/tvCUlastName"
@@ -130,26 +99,15 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/tvCUname"
         android:layout_below="@+id/tvCUname"
-        android:visibility="invisible"
-        android:textSize="36sp" />
+        android:textSize="30sp"
+        android:visibility="invisible" />
 
     <ImageView
-        android:id="@+id/ivIDerrorSelect"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/tvCurrentUser"
-        android:layout_marginStart="22dp"
-        android:layout_toEndOf="@+id/etIDuserSelected"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/signodeadmiracion" />
-
-    <ImageView
-        android:id="@+id/ivIDerrorDelete"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignTop="@+id/etIDuserDelete"
-        android:layout_toEndOf="@+id/etIDuserDelete"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/signodeadmiracion" />
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/iconosymbolrem"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/tvAssessersSessionEmail" />
 
 </RelativeLayout>
