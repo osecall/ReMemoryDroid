@@ -31,12 +31,13 @@ public class PeliculaActivity extends AppCompatActivity {
     private RadioGroup rbGroup;
     private String RadioSelected;
     protected TestAnswers respostes = new TestAnswers();
-    private ActionBar actionBar = getSupportActionBar();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pelicula);
+
+        ActionBar actionBar = getSupportActionBar();
 
         if(getIntent().hasExtra("SegonTest")) actionBar.setTitle("Test2");
 

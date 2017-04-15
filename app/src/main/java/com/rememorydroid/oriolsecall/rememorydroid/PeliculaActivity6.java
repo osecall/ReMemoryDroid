@@ -45,13 +45,14 @@ public class PeliculaActivity6 extends BaseActivity {
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private StorageReference PacientRef;
     private DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("pacients");
-    private ActionBar actionBar = getSupportActionBar();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pelicula6);
+
+        ActionBar actionBar = getSupportActionBar();
 
         if(getIntent().hasExtra("SegonTest")) actionBar.setTitle("Test2");
 
