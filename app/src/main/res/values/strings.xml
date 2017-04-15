@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">ReMemoryDroid</string>
 
-    <string name="str_cat">Catala</string>
+    <string name="str_cat">Català</string>
     <string name="str_es">Español</string>
     <string name="str_en">English</string>
 
@@ -15,6 +15,7 @@
         <item>Eufórico</item>
         <item>Entusiasmado</item>
     </string-array>
+
     <string name="auth_failed">Failed in Auth</string>
     <string name="loading">Loading</string>
     <string name="signed_out">You just signed out</string>

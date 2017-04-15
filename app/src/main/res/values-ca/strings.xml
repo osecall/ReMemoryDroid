@@ -244,4 +244,5 @@
     <string name="ToEnd">Ara per finalitzar li demanem que senyali l\'opció que més s\'apoximi a com se sent vosté ara mateix</string>
     <string name="ThankYouVeryMuch">Moltes gràcies per la seva col·laboració.</string>
     <string name="HopeEnjoy">Esperem que hagi gaudit revivint aquest episodi de la seva vida</string>
+    <string-array name="emocions"><item>Selecciona una emoció aquí</item>         <item>Content</item>         <item>Orgullós</item>         <item>Feliç</item>         <item>Satisfet</item>         <item>Ple d\'amor</item>         <item>Eufòric</item>         <item>Entusiasmat</item></string-array>
 </resources>
