@@ -53,6 +53,7 @@ public class PeliculaActivity6 extends BaseActivity {
         setContentView(R.layout.activity_pelicula6);
 
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setSubtitle(R.string.SixSix);
 
         if(getIntent().hasExtra("SegonTest")) actionBar.setTitle("Test2");
 

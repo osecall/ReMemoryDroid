@@ -40,6 +40,7 @@ public class PeliculaActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         if(getIntent().hasExtra("SegonTest")) actionBar.setTitle("Test2");
+        actionBar.setSubtitle(R.string.OneSix);
 
         mostrarAlertaPelicula();
 

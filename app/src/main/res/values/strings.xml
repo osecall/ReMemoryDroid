@@ -262,5 +262,11 @@
     <string name="ToEnd">Now to finalize we ask you to point the option which is closest to how you feel right now</string>
     <string name="ThankYouVeryMuch">Thank you very much for your cooperation. You have done a great job.</string>
     <string name="HopeEnjoy">We hope you enjoyed recalling this episode of your life</string>
+    <string name="OneSix">1 out of 6</string>
+    <string name="TwoSix">2 out of 6</string>
+    <string name="ThreeSix">3 out of 6</string>
+    <string name="FourSix">4 out of 6</string>
+    <string name="FiveSix">5 out of 6</string>
+    <string name="SixSix">6 out of 6</string>
 
 </resources>

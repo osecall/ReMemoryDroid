@@ -24,9 +24,9 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/fabDeleteUser"
+        android:layout_below="@+id/tvCurrentUser"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp">
+        android:id="@+id/frameLayout">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabSignUp"
@@ -36,7 +36,7 @@
             android:layout_margin="20dp"
             android:clickable="true"
             app:backgroundTint="@color/colorPrimaryDark"
-            app:elevation="20dp"
+            app:elevation="12dp"
             app:fabSize="normal"
             app:srcCompat="@drawable/accountplus" />
 
@@ -53,14 +53,14 @@
         android:id="@+id/fabDeleteUser"
         android:layout_width="245dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tvCUname"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="43dp"
         android:elevation="24dp"
         app:backgroundTint="@color/colorPrimary"
         app:elevation="24dp"
         app:fabSize="normal"
-        app:srcCompat="@drawable/accountremove" />
+        app:srcCompat="@drawable/accountremove"
+        android:layout_alignBottom="@+id/frameLayout"
+        android:layout_alignEnd="@+id/imageView10"
+        android:layout_marginEnd="30dp" />
 
     <TextView
         android:id="@+id/tvAssessersSessionEmail"

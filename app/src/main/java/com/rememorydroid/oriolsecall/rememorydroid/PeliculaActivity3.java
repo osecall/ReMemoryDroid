@@ -34,6 +34,7 @@ public class PeliculaActivity3 extends AppCompatActivity {
         setContentView(R.layout.activity_pelicula3);
 
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setSubtitle(R.string.ThreeSix);
 
         if(getIntent().hasExtra("SegonTest")) actionBar.setTitle("Test2");
 

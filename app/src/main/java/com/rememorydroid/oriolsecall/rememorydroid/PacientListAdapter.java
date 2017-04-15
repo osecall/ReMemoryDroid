@@ -58,7 +58,7 @@ public class PacientListAdapter extends ArrayAdapter<PacientUsuari> {
         viewHolder.tvCognomPacient.setText(datos.get(position).getSurName());
         viewHolder.tvCognom2Pacient.setText(datos.get(position).getLastName());
 
-        viewHolder.ivNumeroPacient.setImageDrawable(TextDrawable.builder().beginConfig().width(125).height(125).endConfig().buildRound(datos.get(position).getID().toString(), ColorGenerator.DEFAULT.getRandomColor()));
+        viewHolder.ivNumeroPacient.setImageDrawable(TextDrawable.builder().beginConfig().width(100).height(100).endConfig().buildRound(datos.get(position).getID().toString(), ColorGenerator.DEFAULT.getRandomColor()));
 
 
         return view;

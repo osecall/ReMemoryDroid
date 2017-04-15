@@ -245,4 +245,10 @@
     <string name="ThankYouVeryMuch">Muchas gracias por su colaboración.\nHa hecho un gran trabajo.</string>
     <string name="HopeEnjoy">Esperemos que haya disfrutado reviviendo este episodio de su vida</string>
     <string-array name="emocions"><item>Elige una emoción aquí...</item>         <item>Contento</item>         <item>Orgulloso</item>         <item>Feliz</item>         <item>Satisfecho</item>         <item>Lleno de amor</item>         <item>Eufòrico</item>         <item>Entusiasmado</item></string-array>
+    <string name="OneSix">1 de 6</string>
+    <string name="TwoSix">2 de 6</string>
+    <string name="ThreeSix">3 de 6</string>
+    <string name="FourSix">4 de 6</string>
+    <string name="FiveSix">5 de 6</string>
+    <string name="SixSix">6 de 6</string>
 </resources>
