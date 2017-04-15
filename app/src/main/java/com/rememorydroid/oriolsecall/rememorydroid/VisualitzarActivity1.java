@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -21,7 +22,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
 
     private MediaPlayer mp,mp2;
     private VideoView vv;
-    private ImageButton ibPlay, ibStop;
+    private ImageView ibPlay, ibStop;
     private Button btBack, btNext;
     private Intent intent;
 
@@ -31,8 +32,8 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         setContentView(R.layout.activity_visualitzar1);
 
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
-        ibPlay = (ImageButton) findViewById(R.id.ibPlay);
-        ibStop = (ImageButton) findViewById(R.id.ibStop);
+        ibPlay = (ImageView) findViewById(R.id.ibPlay);
+        ibStop = (ImageView) findViewById(R.id.ibStop);
         btBack = (Button) findViewById(R.id.btBackWeather);
         btNext = (Button) findViewById(R.id.btNextWeather);
 
@@ -77,9 +78,11 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(vv.isPlaying()){
+                    ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
                     vv.resume();
                 }
                 if(!vv.isPlaying()){
+                    ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
                     vv.start();
                 }
             }
@@ -88,6 +91,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         ibStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ibPlay.setImageDrawable(getDrawable(R.drawable.play));
                 vv.pause();
             }
         });
