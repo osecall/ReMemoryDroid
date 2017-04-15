@@ -82,10 +82,10 @@ public class AreaAvaluadorActivity extends BaseActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 int i=0;
                 for (DataSnapshot data : dataSnapshot.getChildren()){
                     PacientUsuari pacientUser = new PacientUsuari();
+
                     pacientUser.setID(String.valueOf(i++));
                     pacientUser.setName(data.child("name").getValue(String.class));
                     pacientUser.setLastName(data.child("lastName").getValue(String.class));
@@ -93,6 +93,8 @@ public class AreaAvaluadorActivity extends BaseActivity {
 
                     PacientList.add(pacientUser);
                 }
+                pacientListAdapter = new PacientListAdapter(AreaAvaluadorActivity.this,PacientList);
+                lvPacients.setAdapter(pacientListAdapter);
                 hideProgressDialog();
             }
 
@@ -101,9 +103,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
 
             }
         });
-        pacientListAdapter = new PacientListAdapter(AreaAvaluadorActivity.this,PacientList);
-
-        lvPacients.setAdapter(pacientListAdapter);
 
         lvPacients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -152,9 +151,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
-
-
-
     }
 
 

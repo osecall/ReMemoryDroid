@@ -117,7 +117,9 @@ public class AlbumActivity extends BaseActivity {
                 uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        while(!task.isSuccessful()) showProgressDialog();
+                        while(!task.isSuccessful()){
+                            showProgressDialog();
+                           }
                         if(task.isComplete()){
                             hideProgressDialog();
                             Toast.makeText(getApplicationContext(),
