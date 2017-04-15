@@ -18,8 +18,10 @@
         <activity
             android:name=".Splash"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"><intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
@@ -101,7 +103,7 @@
         <activity
             android:name=".EmocionsActivity"
             android:screenOrientation="landscape"
-            android:label="@string/Emotions"/>
+            android:label="@string/Emotions"></activity>
         <activity
             android:name=".EmocionsActivity2"
             android:screenOrientation="landscape"
@@ -113,10 +115,7 @@
         <activity
             android:name=".AlbumActivity"
             android:screenOrientation="landscape"
-            android:label="@string/Album"><intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter></activity>
+            android:label="@string/Album"></activity>
         <activity
             android:name=".EscenaActivity"
             android:screenOrientation="landscape"

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -37,13 +38,15 @@ public class EmocionsActivity extends AppCompatActivity {
     private String CaraSeleccionada=null;
     private String IntensitatSeleccionada=null;
     private VideoView vvEmotions1;
+    private Animation votar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emocions);
 
-
+        votar = AnimationUtils.loadAnimation(getBaseContext(), R.anim.votar);
+        votar.reset();
 
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(EmocionsActivity.this);
         DialegFormControl
@@ -123,6 +126,9 @@ public class EmocionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                happy.setAnimation(votar);
+                happy.startAnimation(votar);
+
                 happy.setImageDrawable(getDrawable(R.drawable.checkgreensesentadp));
                 sad.setImageDrawable(getDrawable(R.drawable.iconsadface));
                 angry.setImageDrawable(getDrawable(R.drawable.iconangryface));
@@ -145,6 +151,9 @@ public class EmocionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                sad.setAnimation(votar);
+                sad.startAnimation(votar);
+
                 sad.setImageDrawable(getDrawable(R.drawable.sadcheckedsesentadp));
                 happy.setImageDrawable(getDrawable(R.drawable.iconhappyface));
                 angry.setImageDrawable(getDrawable(R.drawable.iconangryface));
@@ -165,6 +174,9 @@ public class EmocionsActivity extends AppCompatActivity {
         angry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                angry.setAnimation(votar);
+                angry.startAnimation(votar);
 
                 angry.setImageDrawable(getDrawable(R.drawable.angrychecksesentadp));
                 happy.setImageDrawable(getDrawable(R.drawable.iconhappyface));
