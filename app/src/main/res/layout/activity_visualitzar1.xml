@@ -8,58 +8,66 @@
 
     <VideoView
         android:id="@+id/vvVisualitzar1"
-        android:layout_width="1000dp"
-        android:layout_height="400dp"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="79dp"
-        android:layout_marginTop="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:id="@+id/ibPlay"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
-        android:elevation="24dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/play"
-        tools:layout_editor_absoluteX="745dp"
-        tools:layout_editor_absoluteY="522dp"
-        android:layout_marginStart="171dp"
-        android:layout_alignBottom="@+id/btBackWeather"
-        android:layout_toEndOf="@+id/btBackWeather" />
-
-    <ImageView
-        android:id="@+id/ibStop"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/stop"
-        android:layout_marginEnd="126dp"
-        android:layout_alignBottom="@+id/btNextWeather"
-        android:layout_toStartOf="@+id/btNextWeather" />
-
-    <Button
-        android:id="@+id/btNextWeather"
-        style="@style/Next_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="583dp"
-        android:layout_alignBaseline="@+id/btBackWeather"
-        android:layout_alignBottom="@+id/btBackWeather"
-        android:layout_toEndOf="@+id/vvVisualitzar1" />
+        android:layout_width="350dp"
+        android:layout_height="600dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
     <Button
         android:id="@+id/btBackWeather"
         style="@style/Back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_weight="1"
         tools:layout_editor_absoluteX="1140dp"
         tools:layout_editor_absoluteY="583dp"
-        android:layout_marginBottom="29dp"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="26dp" />
+
+    <Button
+        android:id="@+id/btNextWeather"
+        style="@style/Next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="583dp"
+        android:layout_alignBaseline="@+id/btBackWeather"
+        android:layout_alignBottom="@+id/btBackWeather"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="35dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="false"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ibStop"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="68dp"
         android:layout_toStartOf="@+id/vvVisualitzar1"
-        android:layout_marginEnd="15dp" />
+        android:elevation="24dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/stop" />
+
+    <ImageView
+        android:id="@+id/ibPlay"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_alignTop="@+id/ibStop"
+        android:layout_marginStart="54dp"
+        android:layout_toEndOf="@+id/vvVisualitzar1"
+        android:elevation="24dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/play" />
 
 </RelativeLayout>
