@@ -68,6 +68,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             mp = MediaPlayer.create(this, R.raw.visualitzar1);
             //Vídeo
             vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
+            vv.seekTo(1);
             intent=new Intent(VisualitzarActivity1.this,EvocarActivity.class);
         }
         DialogInstruccionsVisualitzar(mp);
@@ -76,12 +77,12 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         ibPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(vv.isPlaying()){
-                    ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
-                    vv.resume();
+                    ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                    vv.pause();
                 }
-                if(!vv.isPlaying()){
+
+                else{
                     ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
                     vv.start();
                 }
@@ -92,7 +93,9 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                vv.seekTo(0);
                 vv.pause();
+
             }
         });
 
