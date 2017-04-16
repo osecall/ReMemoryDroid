@@ -73,6 +73,13 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         }
         DialogInstruccionsVisualitzar(mp);
 
+        vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                btNext.setVisibility(View.VISIBLE);
+            }
+        });
+
 
         ibPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +148,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                         }
                         mp.stop();
                         mp.release();
-                        btNext.setVisibility(View.VISIBLE);
+                        //btNext.setVisibility(View.VISIBLE);
                         ibPlay.setVisibility(View.VISIBLE);
                         ibStop.setVisibility(View.VISIBLE);
                         ibPlay.setEnabled(true);
