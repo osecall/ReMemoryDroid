@@ -21,7 +21,7 @@ public class Splash extends AppCompatActivity {
 
                 startActivity(intent);
                 finish();
-            };
+            }
         }, SPLASH_SCREEN_DELAY);
 
     }

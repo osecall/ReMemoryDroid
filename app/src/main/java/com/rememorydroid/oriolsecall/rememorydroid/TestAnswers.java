@@ -420,5 +420,5 @@ public class TestAnswers implements Serializable {
         rutes.add(0,outPutFile.getAbsolutePath());
         rutes.add(1,respostesJSON);
         return rutes;
-    };
+    }
 }

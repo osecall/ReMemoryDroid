@@ -1,5 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +20,8 @@ import android.widget.VideoView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.IOException;
+
 public class VisualitzarActivity1 extends AppCompatActivity {
 
     private MediaPlayer mp,mp2;
@@ -27,6 +31,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
     private Intent intent;
     private int duration, PrimeraFraccio,SegonaFraccio;
     private ProgressBar ProgressBarVideo;
+    private boolean PrimerFraccioTrobat=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         ibStop = (ImageView) findViewById(R.id.ibStop);
         btBack = (Button) findViewById(R.id.btBackWeather);
         btNext = (Button) findViewById(R.id.btNextWeather);
+
 
         //Quan acabi les instruccions per veu s'habilitaran els botons de reproducció
         btNext.setVisibility(View.INVISIBLE);
@@ -79,20 +85,37 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                DialegFraccions(MediaPlayer.create(VisualitzarActivity1.this,R.raw.respirar1),true);
+                mp=MediaPlayer.create(VisualitzarActivity1.this,R.raw.evocara);
+
+                try{
+                    mp.prepare();
+                }catch (Exception e){
+
+                }
+                mp.start();
+                while(mp.isPlaying()){
+                }
+                mp.stop();
+                mp.release();
+
+                //DialegFraccions(MediaPlayer.create(VisualitzarActivity1.this,R.raw.respirar1),true);
                 btNext.setVisibility(View.VISIBLE);
+
             }
         });
 
         vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
-                vv.seekTo(1);
+
+                vv.start();
+                vv.pause();
                 duration = vv.getDuration();
                 PrimeraFraccio = duration /3;
                 SegonaFraccio = (duration*2)/3;
 
-                ProgressBarVideo.;
+                ProgressBarVideo.setMax(duration);
+                ProgressBarVideo.setProgress(0);
 
                 ibPlay.setEnabled(true);
                 ibStop.setEnabled(true);
@@ -101,31 +124,76 @@ public class VisualitzarActivity1 extends AppCompatActivity {
 
 
         ibPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vv.start();
-                while(vv.isPlaying()){
-                    ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
-                    if(vv.getCurrentPosition()==PrimeraFraccio){
+                 @Override
+                 public void onClick(View view) {
+                 if (vv.isPlaying()) {
+                     ibPlay.setImageDrawable(getDrawable(R.drawable.play));
                         vv.pause();
-                        DialegFraccions(MediaPlayer.create(VisualitzarActivity1.this,R.raw.respirar1),false);
-                    }
-                    else if(vv.getCurrentPosition()==SegonaFraccio){
-                        vv.pause();
-                        DialegFraccions(MediaPlayer.create(VisualitzarActivity1.this,R.raw.respirar1),false);
-                    }
-                }
-                ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                 }
+                 else {
 
-            }
+                     ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
+
+                     new Thread(new Runnable() {
+                         public void run() {
+                             vv.start();
+                             while (vv.isPlaying()) {
+                                 ProgressBarVideo.post(new Runnable() {
+                                     @Override
+                                     public void run() {
+                                         ProgressBarVideo.setProgress(vv.getCurrentPosition());
+                                     }
+                                 });
+
+                                 vv.post(new Runnable() {
+                                     @Override
+                                     public void run() {
+                                         if (vv.getCurrentPosition() == PrimeraFraccio) {
+                                             mp=MediaPlayer.create(VisualitzarActivity1.this,R.raw.evocara);
+
+                                             try{
+                                                 mp.prepare();
+                                             }catch (Exception e){
+
+                                             }
+                                             mp.start();
+                                             while(mp.isPlaying()){
+                                             }
+                                             mp.stop();
+                                             mp.release();
+                                         }
+                                         if (vv.getCurrentPosition() == SegonaFraccio) {
+                                             mp=MediaPlayer.create(VisualitzarActivity1.this,R.raw.evocara);
+
+                                             try{
+                                                 mp.prepare();
+                                             }catch (Exception e){
+
+                                             }
+                                             mp.start();
+                                             while(mp.isPlaying()){
+                                             }
+                                             mp.stop();
+                                             mp.release();
+                                         }
+
+                                     }
+                                 });
+
+                             }
+                            }}).start();
+
+                 }
+                 }
         });
 
         ibStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ibPlay.setImageDrawable(getDrawable(R.drawable.play));
-                vv.seekTo(1);
+                ProgressBarVideo.setProgress(0);
                 vv.pause();
+                vv.seekTo(1);
 
             }
         });
@@ -161,7 +229,6 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                 .setMessage(R.string.DialogVideo1)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        arg0.cancel();
                         try{
                             mp.prepare();
                         }catch (Exception e){
@@ -176,6 +243,8 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                         ibStop.setVisibility(View.VISIBLE);
                         ibPlay.setEnabled(true);
                         ibStop.setEnabled(true);
+                        arg0.cancel();
+                        arg0.dismiss();
 
                     }
                 })
@@ -203,9 +272,10 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                         ibPlay.setEnabled(true);
                         ibStop.setEnabled(true);
                         if(!ultim){
-                            vv.start();
+                           vv.start();
                         }
                         arg0.cancel();
+                        arg0.dismiss();
                     }
                 })
                 .show();
@@ -248,7 +318,6 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(VisualitzarActivity1.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
-
         }
 
         return super.onOptionsItemSelected(item);

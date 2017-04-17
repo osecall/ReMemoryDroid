@@ -136,7 +136,7 @@ public class AlbumActivity extends BaseActivity {
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
                                     intent.putExtra("favorita",data0);
                                     startActivity(intent);
-                                };
+                                }
                             }, 3000);
 
                         }
@@ -180,7 +180,7 @@ public class AlbumActivity extends BaseActivity {
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
                                     intent.putExtra("favorita",data1);
                                     startActivity(intent);
-                                };
+                                }
                             }, 3000);
 
                         }
@@ -224,7 +224,7 @@ public class AlbumActivity extends BaseActivity {
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
                                     intent.putExtra("favorita",data2);
                                     startActivity(intent);
-                                };
+                                }
                             }, 3000);
 
                         }
@@ -268,7 +268,7 @@ public class AlbumActivity extends BaseActivity {
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
                                     intent.putExtra("favorita",data3);
                                     startActivity(intent);
-                                };
+                                }
                             }, 3000);
 
                         }
@@ -312,7 +312,7 @@ public class AlbumActivity extends BaseActivity {
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
                                     intent.putExtra("favorita",data4);
                                     startActivity(intent);
-                                };
+                                }
                             }, 3000);
 
                         }
@@ -356,7 +356,7 @@ public class AlbumActivity extends BaseActivity {
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
                                     intent.putExtra("favorita",data5);
                                     startActivity(intent);
-                                };
+                                }
                             }, 3000);
 
                         }
@@ -400,7 +400,7 @@ public class AlbumActivity extends BaseActivity {
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
                                     intent.putExtra("favorita",data6);
                                     startActivity(intent);
-                                };
+                                }
                             }, 3000);
 
                         }
@@ -444,7 +444,7 @@ public class AlbumActivity extends BaseActivity {
                                     Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
                                     intent.putExtra("favorita",data7);
                                     startActivity(intent);
-                                };
+                                }
                             }, 3000);
 
                         }

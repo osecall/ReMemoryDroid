@@ -64,7 +64,7 @@ public class EpisodePresentationActivity extends BaseActivity {
             public void run(){
                 startActivity(new Intent(EpisodePresentationActivity.this, PeliculaActivity.class));
                 finish();
-            };
+            }
         }, 5000);
 
 

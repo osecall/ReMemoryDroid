@@ -85,5 +85,5 @@ public class RespirarActivity1 extends AppCompatActivity {
         mp.stop();
         mp.release();
         startActivity(intentRespirar);
-    };
+    }
 }

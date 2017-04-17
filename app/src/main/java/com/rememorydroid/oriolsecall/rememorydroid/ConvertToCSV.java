@@ -10,5 +10,5 @@ public class ConvertToCSV {
     public ConvertToCSV(){
     }
 
-    private boolean Convert(String f){return true;};
+    private boolean Convert(String f){return true;}
 }

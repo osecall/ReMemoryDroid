@@ -153,7 +153,7 @@ public class PeliculaActivity6 extends BaseActivity {
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                             while(!task.isSuccessful()){
                                 showProgressDialog();
-                            };
+                            }
                             if(task.isComplete()){
                                 hideProgressDialog();
                                 Toast.makeText(PeliculaActivity6.this, R.string.UploadCSVSuccessful,

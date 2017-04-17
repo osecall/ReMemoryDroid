@@ -161,7 +161,7 @@ public class IniciActivity extends BaseActivity implements
                             if(checkIfEmailVerified()){
                                 Intent areaAvaluador = new Intent(IniciActivity.this, AreaAvaluadorActivity.class);
                                 startActivity(areaAvaluador);
-                            };
+                            }
                         }
 
 
