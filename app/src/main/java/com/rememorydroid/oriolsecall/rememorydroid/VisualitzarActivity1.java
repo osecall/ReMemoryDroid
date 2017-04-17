@@ -11,8 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -25,6 +25,8 @@ public class VisualitzarActivity1 extends AppCompatActivity {
     private ImageView ibPlay, ibStop;
     private Button btBack, btNext;
     private Intent intent;
+    private int duration, PrimeraFraccio,SegonaFraccio;
+    private ProgressBar ProgressBarVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         setContentView(R.layout.activity_visualitzar1);
 
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
+        ProgressBarVideo = (ProgressBar) findViewById(R.id.progressBarVideo);
         ibPlay = (ImageView) findViewById(R.id.ibPlay);
         ibStop = (ImageView) findViewById(R.id.ibStop);
         btBack = (Button) findViewById(R.id.btBackWeather);
@@ -68,15 +71,31 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             mp = MediaPlayer.create(this, R.raw.visualitzar1);
             //Vídeo
             vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
-            vv.seekTo(1);
             intent=new Intent(VisualitzarActivity1.this,EvocarActivity.class);
+
         }
         DialogInstruccionsVisualitzar(mp);
 
         vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
+                DialegFraccions(MediaPlayer.create(VisualitzarActivity1.this,R.raw.respirar1),true);
                 btNext.setVisibility(View.VISIBLE);
+            }
+        });
+
+        vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                vv.seekTo(1);
+                duration = vv.getDuration();
+                PrimeraFraccio = duration /3;
+                SegonaFraccio = (duration*2)/3;
+
+                ProgressBarVideo.;
+
+                ibPlay.setEnabled(true);
+                ibStop.setEnabled(true);
             }
         });
 
@@ -84,15 +103,20 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         ibPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(vv.isPlaying()){
-                    ibPlay.setImageDrawable(getDrawable(R.drawable.play));
-                    vv.pause();
-                }
-
-                else{
+                vv.start();
+                while(vv.isPlaying()){
                     ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
-                    vv.start();
+                    if(vv.getCurrentPosition()==PrimeraFraccio){
+                        vv.pause();
+                        DialegFraccions(MediaPlayer.create(VisualitzarActivity1.this,R.raw.respirar1),false);
+                    }
+                    else if(vv.getCurrentPosition()==SegonaFraccio){
+                        vv.pause();
+                        DialegFraccions(MediaPlayer.create(VisualitzarActivity1.this,R.raw.respirar1),false);
+                    }
                 }
+                ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+
             }
         });
 
@@ -100,7 +124,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ibPlay.setImageDrawable(getDrawable(R.drawable.play));
-                vv.seekTo(0);
+                vv.seekTo(1);
                 vv.pause();
 
             }
@@ -128,6 +152,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         mp.release();
     }
 
+
     private void DialogInstruccionsVisualitzar(final MediaPlayer mp){
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(VisualitzarActivity1.this);
         DialegFormControl
@@ -140,15 +165,13 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                         try{
                             mp.prepare();
                         }catch (Exception e){
-                            Toast.makeText(VisualitzarActivity1.this, e.toString(),
-                                    Toast.LENGTH_LONG).show();e.toString();
+
                         }
                         mp.start();
                         while(mp.isPlaying()){
                         }
                         mp.stop();
                         mp.release();
-                        //btNext.setVisibility(View.VISIBLE);
                         ibPlay.setVisibility(View.VISIBLE);
                         ibStop.setVisibility(View.VISIBLE);
                         ibPlay.setEnabled(true);
@@ -158,8 +181,35 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                 })
                 .show();
     }
+    private void DialegFraccions(final MediaPlayer mp,final boolean ultim){
+        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(VisualitzarActivity1.this);
+        DialegFormControl
+                .setTitle(getString(R.string.Listen))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        try{
+                            mp.prepare();
+                        }catch (Exception e){
 
-
+                        }
+                        mp.start();
+                        while(mp.isPlaying()){
+                        }
+                        mp.stop();
+                        mp.release();
+                        ibPlay.setVisibility(View.VISIBLE);
+                        ibStop.setVisibility(View.VISIBLE);
+                        ibPlay.setEnabled(true);
+                        ibStop.setEnabled(true);
+                        if(!ultim){
+                            vv.start();
+                        }
+                        arg0.cancel();
+                    }
+                })
+                .show();
+    }
 
     //Part del menú 'action bar'
 
@@ -203,4 +253,6 @@ public class VisualitzarActivity1 extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
