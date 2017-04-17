@@ -1,6 +1,5 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -8,7 +7,6 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +18,6 @@ import android.widget.VideoView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.IOException;
-
 public class VisualitzarActivity1 extends AppCompatActivity {
 
     private MediaPlayer mp,mp2;
@@ -31,7 +27,6 @@ public class VisualitzarActivity1 extends AppCompatActivity {
     private Intent intent;
     private int duration, PrimeraFraccio,SegonaFraccio;
     private ProgressBar ProgressBarVideo;
-    private boolean PrimerFraccioTrobat=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,12 +122,13 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                  @Override
                  public void onClick(View view) {
                  if (vv.isPlaying()) {
-                     ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                     //ibPlay.setImageDrawable(getDrawable(R.drawable.play));
                         vv.pause();
                  }
                  else {
 
-                     ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
+
+                     //ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
 
                      new Thread(new Runnable() {
                          public void run() {
@@ -149,6 +145,8 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                                      @Override
                                      public void run() {
                                          if (vv.getCurrentPosition() == PrimeraFraccio) {
+                                             vv.pause();
+                                             mp=null;
                                              mp=MediaPlayer.create(VisualitzarActivity1.this,R.raw.evocara);
 
                                              try{
@@ -157,12 +155,11 @@ public class VisualitzarActivity1 extends AppCompatActivity {
 
                                              }
                                              mp.start();
-                                             while(mp.isPlaying()){
-                                             }
-                                             mp.stop();
-                                             mp.release();
+
                                          }
                                          if (vv.getCurrentPosition() == SegonaFraccio) {
+                                             vv.pause();
+                                             mp=null;
                                              mp=MediaPlayer.create(VisualitzarActivity1.this,R.raw.evocara);
 
                                              try{
@@ -171,10 +168,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
 
                                              }
                                              mp.start();
-                                             while(mp.isPlaying()){
-                                             }
-                                             mp.stop();
-                                             mp.release();
+
                                          }
 
                                      }
