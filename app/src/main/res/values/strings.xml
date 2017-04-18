@@ -234,10 +234,10 @@
     <string name="HereShowingImages">Here we are going to show you several images of that episode and ask you to choose the most positive and significant for you.\n\nThe image you choose is going to be saved in your memory album.</string>
     <string name="PictureUploaded">Your favourite picture is saved in your album memory</string>
     <string name="HereWriteAnswers">Here write the answers regarding to the questions:</string>
-    <string name="WhoAreYouWith">"Who are you with? "</string>
-    <string name="WhereAreThey">"Where are they? "</string>
+    <string name="WhoAreYouWith">Who are you with?</string>
+    <string name="WhereAreThey">Where are they?</string>
     <string name="WhatMonth">In what month and year was the picture taken?</string>
-    <string name="WhatTheyAreDoing">"What were they doing? "</string>
+    <string name="WhatTheyAreDoing">What were they doing?</string>
     <string name="IamWith">"I am with "</string>
     <string name="WeAreIn">We are in</string>
     <string name="WeWere">We were</string>

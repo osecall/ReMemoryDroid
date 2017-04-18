@@ -67,6 +67,9 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             intent=new Intent(VisualitzarActivity1.this,EvocarActivity.class);
             intent.putExtra("Quarta","Quarta");
         }
+        else if(getIntent().hasExtra("Curta")){
+            // AQUI TODO
+        }
         else{
             //Per les instruccions
             mp = MediaPlayer.create(this, R.raw.visualitzar1);

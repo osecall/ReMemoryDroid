@@ -131,7 +131,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         tvRecording.setVisibility(View.INVISIBLE);
         chronometer.stop();
         chronometer.setVisibility(View.INVISIBLE);
-        chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.setBase(0);
 
         ibPlayEvocar.setEnabled(true);
         ibRecordEvocar.setEnabled(true);
@@ -216,6 +216,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         btNext = (Button) findViewById(R.id.btNextWeather);
 
         chronometer = (Chronometer) findViewById(R.id.chronometerEvocar);
+        chronometer.setBase(0);
         chronometer.setVisibility(View.INVISIBLE);
 
         ibRecordEvocar.setOnClickListener(this);

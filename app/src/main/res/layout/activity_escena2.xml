@@ -44,6 +44,7 @@
                     android:id="@+id/ivEscena2"
                     android:layout_width="575dp"
                     android:layout_height="375dp"
+                    android:layout_gravity="center"
                     android:layout_margin="35dp"
                     android:layout_marginTop="50dp"
                     android:scaleType="fitCenter" />
@@ -52,6 +53,7 @@
                     android:id="@+id/imageView6"
                     android:layout_width="650dp"
                     android:layout_height="460dp"
+                    android:layout_gravity="center"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/marcofoto" />
 

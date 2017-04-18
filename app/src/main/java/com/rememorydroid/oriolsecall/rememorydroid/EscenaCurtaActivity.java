@@ -20,6 +20,7 @@ public class EscenaCurtaActivity extends BaseActivity {
     private ImageView ivPicturePreferred;
 
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
+    private StorageReference myRefFavour;
     private String Episodi;
     private Button btNextEscenaCurta;
 
@@ -38,11 +39,11 @@ public class EscenaCurtaActivity extends BaseActivity {
         ivPicturePreferred = (ImageView) findViewById(R.id.ivPicturePreferredCurta);
         btNextEscenaCurta = (Button) findViewById(R.id.btNextEscenaCurta);
 
-        myRef.child(pacient.getID()).child(Episodi).child("Favorita").child("favorita.jpg");
+        myRefFavour = myRef.child(pacient.getID()).child(Episodi).child("Favorita").child("favorita.jpg");
 
         showProgressDialog();
 
-        myRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        myRefFavour.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.with(EscenaCurtaActivity.this).load(uri).into(ivPicturePreferred);
