@@ -50,11 +50,18 @@ public class RespirarActivity1 extends AppCompatActivity {
         else if(getIntent().hasExtra("Curta")){
             ivRespirar.setImageResource(R.drawable.abstracte5);
             Reproduccio = R.raw.respirar5;
+            intentRespirar = new Intent(RespirarActivity1.this,VisualitzarActivity0.class);
             intentRespirar.putExtra("Curta","Curta");
+            DialogInstruccionsRespirar();
+        }
+        else if(getIntent().hasExtra("Curta2")){
+            ivRespirar.setImageResource(R.drawable.abstracte6);
+            Reproduccio = R.raw.respirar5;
             DialogInstruccionsRespirar();
         }
         else{
             Reproduccio = R.raw.respirar1;
+            intentRespirar = new Intent(RespirarActivity1.this, VisualitzarActivity0.class);
             DialogInstruccionsRespirar();
         }
 

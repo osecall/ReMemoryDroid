@@ -68,17 +68,12 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             intent.putExtra("Quarta","Quarta");
         }
         else if(getIntent().hasExtra("Curta")){
-            // AQUI TODO
-        }
-        else{
-            //Per les instruccions
-            mp = MediaPlayer.create(this, R.raw.visualitzar1);
-            //Vídeo
+            mp = MediaPlayer.create(this, R.raw.visualitzar2);
             vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
             intent=new Intent(VisualitzarActivity1.this,EvocarActivity.class);
-            intent.putExtra("Primer","Primer");
-
+            intent.putExtra("EvocarD","EvocarD");
         }
+
         DialogInstruccionsVisualitzar(mp);
 
         vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

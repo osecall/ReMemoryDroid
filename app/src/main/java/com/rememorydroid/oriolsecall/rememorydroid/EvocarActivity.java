@@ -187,6 +187,14 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             intent = new Intent (EvocarActivity.this, EscenaCurtaActivity.class);
         }
 
+        if(curta && getIntent().hasExtra("EvocarD")){
+            DialegPrimerCurta();
+            outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarD.3gp";
+            NomFitxerCloud = "_EvocarD.3gp";
+            intent = new Intent (EvocarActivity.this, RespirarActivity1.class);
+            intent.putExtra("Curta2","Curta2");
+        }
+
 
         if(getIntent().hasExtra("Quarta")){
             DialegCongrats(); //Felicitem a l'usuari
