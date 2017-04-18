@@ -1,13 +1,9 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,22 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.SimpleExpandableListAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class EscenaActivity extends BaseActivity {
 
@@ -42,7 +27,6 @@ public class EscenaActivity extends BaseActivity {
     private SeekBar seekBar2;
     private String A;
     private Intent intent;
-    private Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +41,7 @@ public class EscenaActivity extends BaseActivity {
 
         seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
         btNextEscena = (Button) findViewById(R.id.btNextEscena);
-        imatgeEscena = (ImageView) findViewById(R.id.ivPicturePreferred);
+        imatgeEscena = (ImageView) findViewById(R.id.ivPicturePreferredCurta);
         eLvEmocions = (Spinner) findViewById(R.id.eLvEmocions);
 
 
@@ -134,7 +118,6 @@ public class EscenaActivity extends BaseActivity {
 
             }
         });
-
 
         btNextEscena.setOnClickListener(new View.OnClickListener() {
             @Override

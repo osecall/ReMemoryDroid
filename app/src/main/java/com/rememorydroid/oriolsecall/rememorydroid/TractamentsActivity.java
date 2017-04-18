@@ -31,7 +31,6 @@ public class TractamentsActivity extends AppCompatActivity {
         NomCuUserTreatment = (TextView) findViewById(R.id.tvNameTreatment);
         CognomCuUserTreatment = (TextView) findViewById(R.id.tvSurTreatment);
 
-
         btPelicula= (Button) findViewById(R.id.btPelicula);
         btAlbum = (Button) findViewById(R.id.btAlbum);
         btGuia = (Button) findViewById(R.id.btGuia);
@@ -53,11 +52,13 @@ public class TractamentsActivity extends AppCompatActivity {
             btAlbum.setEnabled(false);
             btGuia.setEnabled(false);
             btPelicula.setEnabled(true);
+
         }
         else if(prefs.getString("Versio",null).matches("Short")){
-            btPelicula.setEnabled(false);
+            btPelicula.setEnabled(true);
             btAlbum.setEnabled(true);
             btGuia.setEnabled(true);
+
         }
 
         btBackEpisodiActivity.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +81,10 @@ public class TractamentsActivity extends AppCompatActivity {
         btPelicula.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IntentToTreatment = new Intent(TractamentsActivity.this, EpisodePresentationActivity.class);
-                startActivity(IntentToTreatment);
+                    IntentToTreatment = new Intent(TractamentsActivity.this, EpisodePresentationActivity.class);
+                    startActivity(IntentToTreatment);
+
+
             }
         });
 

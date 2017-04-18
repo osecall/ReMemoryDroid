@@ -17,7 +17,13 @@
         <activity
             android:name=".Splash"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape" />
@@ -80,13 +86,7 @@
         <activity
             android:name=".VisualitzarActivity1"
             android:label="@string/Visualitzar"
-            android:screenOrientation="landscape"> <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-        </activity>
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".EvocarActivity"
             android:label="@string/Evocar"
@@ -125,6 +125,8 @@
             android:name=".EscenaActivity2"
             android:label="@string/Scene"
             android:screenOrientation="landscape" />
+        <activity android:name=".EscenaCurtaActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

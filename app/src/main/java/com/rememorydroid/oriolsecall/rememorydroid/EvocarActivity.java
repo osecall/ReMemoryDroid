@@ -39,10 +39,12 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     private MediaRecorder mr;
     private Intent intent;
     private String outputFile = null;
+    private String ID_usuari, NomFitxerCloud, episodi;
     private Button btBack, btNext;
     private TextView tvRecording;
     private Chronometer chronometer;
     private FirebaseStorage reference = FirebaseStorage.getInstance();
+    private boolean curta=false;
 
     @Override
     public void onClick(View view) {
@@ -68,7 +70,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
             Uri file = Uri.fromFile(new File(outputFile));
             //Col·locar-ho en l'episodi corresponent
-            StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child("54/EvocarA.3gp");
+            StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child(ID_usuari).child(episodi).child(NomFitxerCloud);
             soRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -167,27 +169,39 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evocar);
 
-
         //Extreure dades pacient
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String pacient = prefs.getString("pacient",null);
         PacientUsuari pacientusuari = gson.fromJson(pacient, PacientUsuari.class);
+        ID_usuari = pacientusuari.getID();
+        episodi = prefs.getString("episodi",null);
+        //Comprobar si és versió curta
+        if (prefs.getString("Versio",null).matches("Short")) curta = true;
+
+        //Evocar C
+        if(curta){
+            DialegPrimerCurta();
+            outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarC.3gp";
+            NomFitxerCloud = "_EvocarC.3gp";
+            intent = new Intent (EvocarActivity.this, EscenaCurtaActivity.class);
+        }
 
 
         if(getIntent().hasExtra("Quarta")){
             DialegCongrats(); //Felicitem a l'usuari
             DialegSegon(); //Instruccions diferents a si es la primera vegada
             outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarB.3gp";
+            NomFitxerCloud = "_EvocarB.3gp";
             intent = new Intent (EvocarActivity.this, EmocionsActivity.class);
         }
-        else{
+        if(getIntent().hasExtra("Primer")){
             DialegPrimer();
             outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarA.3gp";
             intent = new Intent(EvocarActivity.this,RespirarActivity1.class);
+            NomFitxerCloud = "_EvocarA.3gp";
             intent.putExtra("Segon","Segon");
         }
-
 
         ibRecordEvocar = (ImageButton) findViewById(R.id.ibRecordEvocar);
         ibStopPlayEvocar = (ImageButton) findViewById(R.id.ibStopPlayEvocar);
@@ -268,6 +282,28 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         dialeg
                 .setTitle(getString(R.string.Attention))
                 .setMessage(getString(R.string.EvocarAdiaelg))
+                .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        reproduirMissatgeDialeg();
+                        arg0.dismiss();
+                        arg0.cancel();
+                    }
+                })
+                .setNegativeButton(R.string.NoListen, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    private void DialegPrimerCurta(){
+        AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
+        dialeg
+                .setTitle(getString(R.string.Attention))
+                .setMessage(getString(R.string.Evocarccurta))
                 .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         reproduirMissatgeDialeg();

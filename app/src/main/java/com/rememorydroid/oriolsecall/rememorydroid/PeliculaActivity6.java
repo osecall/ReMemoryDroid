@@ -109,6 +109,91 @@ public class PeliculaActivity6 extends BaseActivity {
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+
+                //Cas que sigui versió curta
+                if(prefs.getString("Versio",null).matches("Short")){
+                    //Per controlar si es segona vegada el test
+                    if(getIntent().hasExtra("SegonTest")){
+                        Gson gson = new Gson();
+                        SharedPreferences.Editor editor = prefs.edit();
+                        String respostes_json = prefs.getString("respostes",null);
+                        String episodi = prefs.getString("episodi",null);
+                        PacientUsuari pacient = gson.fromJson(prefs.getString("pacient",null),PacientUsuari.class);
+                        TestAnswers respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
+
+                        //Passem valor sel·leccionat com Integer
+                        respostes_recuperades.setTest2Pregunta6(Integer.parseInt(RadioSelected));
+                        respostes_recuperades.setTest2Sumatori();
+                        respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
+                        editor.putString("respostes",respostes_json);
+                        editor.commit();
+                        //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
+                        ArrayList<String> rutes = respostes_recuperades.ConvertToCVS(PeliculaActivity6.this);
+                        //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta i el JSON[1]
+                        PacientRef = myRef.child(pacient.getID()).child(episodi).child("ResultatVersioCurta.csv");
+                        Uri file = Uri.fromFile(new File(rutes.get(0)));
+
+                        //Pujem el JSON a la base de dades
+                        Gson gsonFile = new Gson();
+                        TestAnswers respostesJSON = gsonFile.fromJson(rutes.get(1), TestAnswers.class);
+                        DBRef.child(pacient.getID()).child("episodis").child(episodi).child("repostes").setValue(respostes_json);
+
+
+                        // Create file metadata including the content type (CSV)
+                        StorageMetadata metadata = new StorageMetadata.Builder()
+                                .setContentType("text/csv")
+                                .build();
+
+
+                        showProgressDialog();
+                        PacientRef.putFile(file,metadata).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                while(!task.isSuccessful()){
+                                    showProgressDialog();
+                                }
+                                if(task.isComplete()){
+                                    hideProgressDialog();
+                                    Toast.makeText(PeliculaActivity6.this, R.string.UploadCSVSuccessful,
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+
+                        final AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(PeliculaActivity6.this);
+                        DialegDespedida
+                                .setCancelable(false)
+                                .setMessage(R.string.Colaboration)
+                                .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        startActivity(new Intent(PeliculaActivity6.this, TractamentsActivity.class));
+                                        arg0.dismiss();
+                                        finish();
+                                    }
+                                }).show();
+
+                    }
+                    else{
+                        //Guardem dada sel·leccionada a la classe TestAnswers
+
+                        Gson gson = new Gson();
+                        SharedPreferences.Editor editor = prefs.edit();
+                        String respostes_json = prefs.getString("respostes",null);
+                        TestAnswers respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
+
+                        //Passem valor sel·leccionat com Integer
+                        respostes_recuperades.setTest1Pregunta6(Integer.parseInt(RadioSelected));
+                        respostes_recuperades.setTest1Sumatori();
+                        respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
+                        editor.putString("respostes",respostes_json);
+                        editor.commit();
+                        startActivity(new Intent (PeliculaActivity6.this, EvocarActivity.class));
+
+                    }
+
+                }
+                else{
 
                 intentPel1 = new Intent (PeliculaActivity6.this, RespirarActivity1.class);
 
@@ -116,7 +201,6 @@ public class PeliculaActivity6 extends BaseActivity {
                 if(getIntent().hasExtra("SegonTest")){
                     mostrarAlertaDescans();
                     Gson gson = new Gson();
-                    SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     String respostes_json = prefs.getString("respostes",null);
                     String episodi = prefs.getString("episodi",null);
@@ -132,7 +216,7 @@ public class PeliculaActivity6 extends BaseActivity {
                     //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
                     ArrayList<String> rutes = respostes_recuperades.ConvertToCVS(PeliculaActivity6.this);
                     //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta i el JSON[1]
-                    PacientRef = myRef.child(pacient.getID()).child(episodi).child("Resultat.csv");
+                    PacientRef = myRef.child(pacient.getID()).child(episodi).child("ResultatVersioLlarga.csv");
                     Uri file = Uri.fromFile(new File(rutes.get(0)));
 
                     //Pujem el JSON a la base de dades
@@ -174,15 +258,12 @@ public class PeliculaActivity6 extends BaseActivity {
                                 }
                             }).show();
 
-
-
                 }
                 else{
                     mostrarAlertaDescans();
                     //Guardem dada sel·leccionada a la classe TestAnswers
 
                     Gson gson = new Gson();
-                    SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     String respostes_json = prefs.getString("respostes",null);
                     TestAnswers respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
@@ -193,6 +274,7 @@ public class PeliculaActivity6 extends BaseActivity {
                     respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                     editor.putString("respostes",respostes_json);
                     editor.commit();
+                }
                 }
             }
         });
@@ -241,7 +323,6 @@ public class PeliculaActivity6 extends BaseActivity {
                     Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(PeliculaActivity6.this, IniciActivity.class);
             startActivity(areaAvaluador);
-
         }
 
         if (id == R.id.btSignOutPacient) {
@@ -252,9 +333,7 @@ public class PeliculaActivity6 extends BaseActivity {
                     Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(PeliculaActivity6.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

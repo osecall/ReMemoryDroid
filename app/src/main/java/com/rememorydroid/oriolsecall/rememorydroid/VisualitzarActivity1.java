@@ -73,6 +73,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             //Vídeo
             vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
             intent=new Intent(VisualitzarActivity1.this,EvocarActivity.class);
+            intent.putExtra("Primer","Primer");
 
         }
         DialogInstruccionsVisualitzar(mp);
@@ -127,7 +128,6 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                  }
                  else {
 
-
                      //ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
 
                      new Thread(new Runnable() {
@@ -155,6 +155,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
 
                                              }
                                              mp.start();
+
 
                                          }
                                          if (vv.getCurrentPosition() == SegonaFraccio) {
