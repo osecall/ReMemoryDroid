@@ -24,7 +24,7 @@
     <string name="PacientSignUp">Create a new pacient</string>
     <string name="PacientSelection">Select a pacient</string>
     <string name="PacientID">Pacient ID</string>
-    <string name="DeletePacient">Delete a pacient</string>
+    <string name="DeletePacient">Delete pacient</string>
     <string name="CurrentUser">Current\'s user Pacient</string>
     <string name="Attention">Attention</string>
     <string name="OK">OK</string>

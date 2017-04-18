@@ -38,7 +38,7 @@
     <string name="PacientSignUp">Sign Up a pacient</string>
     <string name="PacientSelection">Select a pacient</string>
     <string name="PacientID">Pacient ID</string>
-    <string name="DeletePacient">Delete a pacient</string>
+    <string name="DeletePacient">Delete pacient</string>
     <string name="CurrentUser">Current Pacient User</string>
     <string name="Attention">Attention</string>
     <string name="OK">OK</string>
@@ -270,5 +270,6 @@
     <string name="SixSix">6 out of 6</string>
     <string name="Colaboration">Thank you very uch for your colaboration. You did a great job. We hope it\'s been estimulating.</string>
     <string name="Evocarccurta">Now we ask you to everything you can from the last episode you reviewd in the previous day. Try to give details like where they are, with who they are, what they were doing, etc. When you are ready press the \'record\' button.</string>
+    <string name="PacientIDSecurity">Introduce the pacient ID again for security reasons</string>
 
 </resources>

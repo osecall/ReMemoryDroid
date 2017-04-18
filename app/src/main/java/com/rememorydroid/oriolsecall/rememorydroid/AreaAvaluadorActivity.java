@@ -102,6 +102,152 @@ public class AreaAvaluadorActivity extends BaseActivity {
             }
         });
 
+        lvPacients.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                LayoutInflater factory = LayoutInflater.from(AreaAvaluadorActivity.this);
+                final View textEntryView = factory.inflate(R.layout.dialegdeleteid, null);
+                final EditText input1 = (EditText) textEntryView.findViewById(R.id.etiddelteUser);
+                final AlertDialog.Builder Borrar = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+                Borrar
+                        .setIcon(R.drawable.warningdialogdeleteuser)
+                        .setTitle(getString(R.string.Attention))
+                        .setMessage(getString(R.string.DeletePacient)+" "+String.valueOf(i)+"\n"+getString(R.string.PacientIDSecurity))
+                        .setView(textEntryView)
+                        .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                IDuserDelete=input1.getText().toString();
+                                MessageDialogFinal = getString(R.string.UserDeleteMessage,IDuserDelete);
+
+                                final AlertDialog.Builder Dialeg = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+
+                                Dialeg
+                                        .setIcon(R.drawable.warningdialogdeleteuser)
+                                        .setTitle(getString(R.string.Attention))
+                                        .setMessage(MessageDialogFinal)
+                                        .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface arg0, int arg1) {
+                                                // Some stuff to do when ok got clicked
+
+                                                //Confirmar eliminació per contrasenya
+                                                //-------------------------------------------------------------------
+                                                AlertDialog.Builder dialegPassword = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+                                                LayoutInflater factory = LayoutInflater.from(AreaAvaluadorActivity.this);
+                                                View textEntryView = factory.inflate(R.layout.dialegdeleteuser, null);
+                                                //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+                                                final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+                                                dialegPassword
+                                                        .setView(textEntryView)
+                                                        .setIcon(R.drawable.passwordicon)
+                                                        .setTitle(R.string.PasswordDialog)
+                                                        .setMessage(R.string.IntroducePassword)
+                                                        .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface arg0, int arg1) {
+                                                                // Recuperem el email del avaluador i el reautentiquem
+                                                                String email_user= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                                                                String pass_user = input.getText().toString();
+                                                                //Reautentiquem al avaluador per seguretat
+                                                                AuthCredential credential = EmailAuthProvider.getCredential(email_user,pass_user);
+
+                                                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                                                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                            @Override
+                                                                            public void onDataChange(DataSnapshot snapshot) {
+
+
+                                                                                if (snapshot.child(IDuserDelete).exists()){
+                                                                                    snapshot.child(IDuserDelete).getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                        @Override
+                                                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                                                            Toast.makeText(AreaAvaluadorActivity.this, getString(R.string.UserDeleted)+IDuserDelete,
+                                                                                                    Toast.LENGTH_LONG).show();
+
+                                                                                            //Eliminem l'usuari de la memòria si és el mateix que està a la sessió
+                                                                                            SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                                                                                            String pacient_json = prefs.getString("pacient",null);
+                                                                                            Gson temp = new Gson();
+                                                                                            PacientUsuari pacient = temp.fromJson(pacient_json, PacientUsuari.class);
+                                                                                            if(pacient.getID().equalsIgnoreCase(IDuserDelete)){
+                                                                                                SharedPreferences.Editor editor = prefs.edit();
+                                                                                                editor.remove("pacient");
+                                                                                                editor.commit();
+                                                                                                editor.clear();
+                                                                                                editor.apply();
+                                                                                                tvCUid.setVisibility(View.GONE);
+                                                                                                tvCUname.setVisibility(View.GONE);
+                                                                                                tvCUsurName.setVisibility(View.GONE);
+
+                                                                                            }
+
+                                                                                        }
+                                                                                    });
+
+
+                                                                                }
+                                                                                else{
+                                                                                    Toast.makeText(AreaAvaluadorActivity.this,R.string.UserDoesNotExist,
+                                                                                            Toast.LENGTH_LONG).show();
+                                                                                }
+                                                                            }
+
+                                                                            @Override
+                                                                            public void onCancelled(DatabaseError E) {
+                                                                                Toast.makeText(AreaAvaluadorActivity.this,"Database Error",
+                                                                                        Toast.LENGTH_LONG).show();
+                                                                            }
+                                                                        });
+                                                                    }
+
+
+                                                                }).addOnFailureListener(new OnFailureListener() {
+                                                                    @Override
+                                                                    public void onFailure(@NonNull Exception e) {
+                                                                        Toast.makeText(AreaAvaluadorActivity.this,getString(R.string.WrongPassword),
+                                                                                Toast.LENGTH_LONG).show();
+                                                                    }
+                                                                });
+
+
+                                                                arg0.cancel();arg0.dismiss();
+
+
+                                                            }
+                                                        })
+                                                        .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface arg0, int arg1) {
+                                                                arg0.dismiss();
+                                                                arg0.cancel();
+                                                            }
+                                                        })
+                                                        .show();
+
+                                            }
+                                        })
+                                        .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface arg0, int arg1) {
+
+                                            }
+                                        })
+                                        .show();
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                dialogInterface.cancel();
+                            }
+                        })
+                        .show();
+
+
+                return true;
+            }
+        });
+
         lvPacients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

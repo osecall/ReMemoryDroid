@@ -24,7 +24,7 @@
     <string name="PacientSignUp">Dar de alta un paciente</string>
     <string name="PacientSelection">Seleccionar un paciente</string>
     <string name="PacientID">ID del paciente</string>
-    <string name="DeletePacient">Eliminar a un paciente</string>
+    <string name="DeletePacient">Eliminar paciente</string>
     <string name="CurrentUser">Usuario actual del paciente</string>
     <string name="Attention">Atención</string>
     <string name="KO">Cancelar</string>
