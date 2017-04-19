@@ -188,7 +188,9 @@ public class PeliculaActivity6 extends BaseActivity {
                         respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                         editor.putString("respostes",respostes_json);
                         editor.commit();
-                        startActivity(new Intent (PeliculaActivity6.this, EvocarActivity.class));
+                        Intent intent = new Intent (PeliculaActivity6.this, EvocarActivity.class);
+                        intent.putExtra("EvocarC","EvocarC");
+                        startActivity(intent);
 
                     }
 

@@ -55,8 +55,10 @@ public class VisualitzarActivity0 extends AppCompatActivity {
             //Versió llarga primera visualització...
         }
 
-        if(getIntent().hasExtra("Curta")){
+        if(getIntent().hasExtra("Curta1")){
             noAudio=true;
+            intent.putExtra("EvocarD","EvocarD");
+
         }
         else{
             intent.putExtra("Primer","Primer");

@@ -55,7 +55,7 @@ public class EscenaCurtaActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EscenaCurtaActivity.this, RespirarActivity1.class);
-                intent.putExtra("Curta","Curta");
+                intent.putExtra("Curta1","Curta1");
                 startActivity(intent);
             }
         });

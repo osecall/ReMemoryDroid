@@ -10,8 +10,10 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.annotation.UiThread;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.util.TimeUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -180,7 +182,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         if (prefs.getString("Versio",null).matches("Short")) curta = true;
 
         //Evocar C
-        if(curta){
+        if(curta && getIntent().hasExtra("EvocarC")){
             DialegPrimerCurta();
             outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarC.3gp";
             NomFitxerCloud = "_EvocarC.3gp";
