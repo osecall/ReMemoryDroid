@@ -120,7 +120,7 @@
     </style>
 
     <style name="radioGroupElementsWhere">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_margin">20sp</item>
         <item name="android:layout_gravity">center_vertical</item>

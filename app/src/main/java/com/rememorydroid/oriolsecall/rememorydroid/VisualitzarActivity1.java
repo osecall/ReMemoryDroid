@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -20,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class VisualitzarActivity1 extends AppCompatActivity {
 
-    private MediaPlayer mp,mp2;
+    private MediaPlayer mp;
     private VideoView vv;
     private ImageView ibPlay, ibStop;
     private Button btBack, btNext;
@@ -51,15 +52,13 @@ public class VisualitzarActivity1 extends AppCompatActivity {
         if(getIntent().hasExtra("Segon")){
             mp = MediaPlayer.create(this, R.raw.visualitzar2);
             vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
-            //Es ficarà en conjunt al vídeo, com a so
-            mp2 = MediaPlayer.create(this, R.raw.visualitzar2peliculabackground);
-
             intent=new Intent(VisualitzarActivity1.this,QuestionariActivity.class);
         }
         else if(getIntent().hasExtra("Tercer")){
             mp = MediaPlayer.create(this, R.raw.visualitzar2);
             vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
             intent=new Intent(VisualitzarActivity1.this,QuestionariActivity2.class);
+            //Aquí el video no té audio
         }
         else if(getIntent().hasExtra("Quarta")){
             mp = MediaPlayer.create(this, R.raw.visualitzar2);
@@ -105,6 +104,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                 vv.start();
                 vv.pause();
                 duration = vv.getDuration();
+                vv.setMediaController(new MediaController(VisualitzarActivity1.this));
                 PrimeraFraccio = duration /3;
                 SegonaFraccio = (duration*2)/3;
 
@@ -121,12 +121,12 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                  @Override
                  public void onClick(View view) {
                  if (vv.isPlaying()) {
-                     //ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                     ibPlay.setImageDrawable(getDrawable(R.drawable.play));
                         vv.pause();
                  }
                  else {
 
-                     //ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
+                     ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
 
                      new Thread(new Runnable() {
                          public void run() {
@@ -202,6 +202,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intent);
+                finish();
             }
         });
 

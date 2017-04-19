@@ -76,8 +76,8 @@
         style="@style/Back_button"
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="568dp"
-        android:layout_marginStart="47dp"
-        android:layout_alignBottom="@+id/btNextGeo"
+        android:layout_marginStart="49dp"
+        android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>

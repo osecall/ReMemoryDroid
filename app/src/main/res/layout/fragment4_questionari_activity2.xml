@@ -18,17 +18,15 @@
 
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="568dp"
-        android:layout_alignBottom="@+id/linearLayout2"
+        android:layout_alignBottom="@+id/btNextEmotions1"
         android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/btNextEmotions1"
         style="@style/Next_button"
-
-        tools:layout_editor_absoluteX="1114dp"
-        tools:layout_editor_absoluteY="557dp"
         android:layout_alignBottom="@+id/linearLayout2"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="12dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -36,11 +34,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="41dp">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/PeopleAppearing"
@@ -50,7 +45,7 @@
             android:gravity="center_horizontal"
             android:text="@string/EmotionsDuringEpisode"
             android:textAlignment="center"
-            android:textSize="60sp"
+            android:textSize="50sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -61,10 +56,10 @@
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/EmotionsLabel1"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -85,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="@string/TheyAreScared"
-                    android:textSize="24sp" />
+                    android:textSize="21sp" />
 
                 <RadioButton
                     android:id="@+id/cbTheySad"
@@ -93,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="@string/TheyAreSad"
-                    android:textSize="24sp" />
+                    android:textSize="21sp" />
 
                 <RadioButton
                     android:id="@+id/cbTheySurprised"
@@ -101,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="@string/TheyAreSuprised"
-                    android:textSize="24sp" />
+                    android:textSize="21sp" />
 
                 <RadioButton
                     android:id="@+id/cbTheyHappy"
@@ -109,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="@string/TheyAreHappy"
-                    android:textSize="24sp" />
+                    android:textSize="21sp" />
 
                 <RadioButton
                     android:id="@+id/cbTheyAngry"
@@ -117,14 +112,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="@string/TheyAreAngry"
-                    android:textSize="24sp" />
+                    android:textSize="21sp" />
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/borde"
             android:orientation="vertical">
@@ -134,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/EmotionsLabel2"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <RadioGroup

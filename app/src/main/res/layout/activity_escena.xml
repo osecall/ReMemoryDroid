@@ -260,4 +260,15 @@
         android:layout_toStartOf="@+id/textView11"
         android:layout_marginEnd="32dp" />
 
+    <TextView
+        android:id="@+id/tvValorIntensity1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_marginTop="29dp"
+        android:layout_toStartOf="@+id/btNextEscena"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
 </RelativeLayout>

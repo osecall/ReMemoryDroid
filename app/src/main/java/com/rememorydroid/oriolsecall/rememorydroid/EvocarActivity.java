@@ -201,7 +201,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             DialegSegon(); //Instruccions diferents a si es la primera vegada
             outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarB.3gp";
             NomFitxerCloud = "_EvocarB.3gp";
-            intent = new Intent (EvocarActivity.this, EmocionsActivity.class);
+            intent = new Intent (EvocarActivity.this, AlbumActivity.class);
         }
         if(getIntent().hasExtra("Primer")){
             DialegPrimer();

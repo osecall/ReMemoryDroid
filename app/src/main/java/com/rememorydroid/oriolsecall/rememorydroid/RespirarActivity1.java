@@ -62,12 +62,10 @@ public class RespirarActivity1 extends AppCompatActivity {
         else{
             Reproduccio = R.raw.respirar1;
             intentRespirar = new Intent(RespirarActivity1.this, VisualitzarActivity0.class);
+            intentRespirar.putExtra("Primer","Primer");
             DialogInstruccionsRespirar();
         }
-
-
     }
-
 
     private void DialogInstruccionsRespirar(){
         final AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(RespirarActivity1.this);

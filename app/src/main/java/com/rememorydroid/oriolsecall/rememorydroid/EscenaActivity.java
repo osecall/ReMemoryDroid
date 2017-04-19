@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -27,6 +28,7 @@ public class EscenaActivity extends BaseActivity {
     private SeekBar seekBar2;
     private String A;
     private Intent intent;
+    private TextView tvValorIntensity1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class EscenaActivity extends BaseActivity {
         etQuestion2Escena = (EditText) findViewById(R.id.editText2);
         etQuestion3Escena = (EditText) findViewById(R.id.et3);
         etQuestion4Escena = (EditText) findViewById(R.id.editText4);
+
+        tvValorIntensity1 = (TextView) findViewById(R.id.tvValorIntensity1);
 
 
         seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
@@ -105,6 +109,7 @@ public class EscenaActivity extends BaseActivity {
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 if(eLvEmocions.getSelectedItemPosition()!=0){
                     btNextEscena.setVisibility(View.VISIBLE);
+                    tvValorIntensity1.setText(String.valueOf(i));
                 }
             }
 

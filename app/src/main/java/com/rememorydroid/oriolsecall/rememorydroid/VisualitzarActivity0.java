@@ -1,9 +1,7 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
@@ -15,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
-
-import java.io.IOException;
 
 public class VisualitzarActivity0 extends AppCompatActivity {
 
@@ -54,6 +50,10 @@ public class VisualitzarActivity0 extends AppCompatActivity {
         //Vídeo
         vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
         intent=new Intent(VisualitzarActivity0.this,EvocarActivity.class);
+
+        if(getIntent().hasExtra("Primer")){
+            //Versió llarga primera visualització...
+        }
 
         if(getIntent().hasExtra("Curta")){
             noAudio=true;
