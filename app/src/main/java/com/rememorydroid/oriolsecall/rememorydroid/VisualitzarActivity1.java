@@ -144,6 +144,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                                      public void run() {
                                          if (vv.getCurrentPosition() == PrimeraFraccio) {
                                              vv.pause();
+                                             //ibPlay.setImageDrawable(getDrawable(R.drawable.play));
                                              mp=null;
                                              mp=MediaPlayer.create(VisualitzarActivity1.this,R.raw.evocara);
 
@@ -158,6 +159,7 @@ public class VisualitzarActivity1 extends AppCompatActivity {
                                          }
                                          if (vv.getCurrentPosition() == SegonaFraccio) {
                                              vv.pause();
+                                             //ibPlay.setImageDrawable(getDrawable(R.drawable.play));
                                              mp=null;
                                              mp=MediaPlayer.create(VisualitzarActivity1.this,R.raw.evocara);
 

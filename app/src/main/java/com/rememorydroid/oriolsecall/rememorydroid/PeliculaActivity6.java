@@ -9,7 +9,6 @@ import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -287,16 +286,15 @@ public class PeliculaActivity6 extends BaseActivity {
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PeliculaActivity6.this);
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
+                .setCancelable(false)
                 .setMessage(R.string.DialogResting)
                 .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         arg0.dismiss();
                         startActivity(intentPel1);
-
                     }
                 })
                 .show();
-
     }
 
     //Part del menú 'action bar'

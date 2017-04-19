@@ -271,5 +271,6 @@
     <string name="Colaboration">Thank you very much for your colaboration. You did a great job. We hope it\'s been estimulating.</string>
     <string name="Evocarccurta">Now we ask you to recall everything you can from the last episode you reviewed in the previous day. Try to give details like where they are, with who they are, what they were doing, etc. When you are ready press the \'record\' button.</string>
     <string name="PacientIDSecurity">Introduce the pacient ID again for security reasons</string>
+    <string name="AskingQuestions">Here we ask you to answer the next questions about the episode which you have seen, choosing the answer option which you consider it right.</string>
 
 </resources>

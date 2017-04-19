@@ -1,10 +1,12 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.IdRes;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -32,11 +34,8 @@ import com.google.gson.Gson;
 public class QuestionariActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
     private static ViewPager mViewPager;
-
     public static SharedPreferences prefs;
-
     public static TestAnswers respostes_recuperades;
 
 
@@ -44,6 +43,8 @@ public class QuestionariActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionari);
+
+        DialegQuestionari();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -1037,6 +1038,21 @@ public class QuestionariActivity extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    private void DialegQuestionari(){
+        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(QuestionariActivity.this);
+        DialegFormControl
+                .setTitle(getString(R.string.Attention))
+                .setCancelable(false)
+                .setMessage(R.string.AskingQuestions)
+                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        arg0.dismiss();
+                        arg0.cancel();
+                    }
+                })
+                .show();
     }
 
 }

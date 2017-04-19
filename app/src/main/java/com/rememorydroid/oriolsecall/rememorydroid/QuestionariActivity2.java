@@ -1,10 +1,12 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.IdRes;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -20,7 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -53,6 +54,8 @@ public class QuestionariActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionari2);
+
+        DialegQuestionari();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -465,5 +468,20 @@ public class QuestionariActivity2 extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    private void DialegQuestionari(){
+        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(QuestionariActivity2.this);
+        DialegFormControl
+                .setTitle(getString(R.string.Attention))
+                .setCancelable(false)
+                .setMessage(R.string.AskingQuestions)
+                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        arg0.dismiss();
+                        arg0.cancel();
+                    }
+                })
+                .show();
     }
 }

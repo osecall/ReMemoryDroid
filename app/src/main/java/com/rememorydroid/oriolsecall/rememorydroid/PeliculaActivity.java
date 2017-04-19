@@ -128,13 +128,9 @@ public class PeliculaActivity extends AppCompatActivity {
                     editor.putString("respostes",respostes_json);
                     editor.commit();
                 }
-
                 startActivity(intentPel1);
-
             }
         });
-
-
     }
 
     private void mostrarAlertaPelicula(){
@@ -144,13 +140,12 @@ public class PeliculaActivity extends AppCompatActivity {
                 .setMessage(R.string.AlertDialaogTest)
                 .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-
+                        arg0.dismiss();
+                        arg0.cancel();
                     }
                 })
                 .show();
-
     }
-
 
     //Part del menú 'action bar'
 
@@ -171,14 +166,12 @@ public class PeliculaActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.btSignOutMenu) {
-
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(PeliculaActivity.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(PeliculaActivity.this, IniciActivity.class);
             startActivity(areaAvaluador);
-
         }
 
         if (id == R.id.btSignOutPacient) {
@@ -189,13 +182,8 @@ public class PeliculaActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(PeliculaActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
-
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
 }

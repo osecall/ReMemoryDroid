@@ -19,7 +19,6 @@ public class EpisodePresentationActivity extends BaseActivity {
 
     private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
     private String ID_pacient, episodi;
-    private Intent parentIntent;
     private TextView tvEpisodePresenName, tvEpisodePresenDate,tvEpisodePresenTime;
 
 
