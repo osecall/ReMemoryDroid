@@ -92,7 +92,7 @@
     <string name="EpisodeNameIntroduce">Introdueix el nom del episodi</string>
     <string name="EpisodeTimeIntroduce">Introdueix la franja horària de l\'episodi</string>
     <string name="AddNewEpisode">Afegeix un episodi nou (Nom, data i franja horària)</string>
-    <string name="EpisodeAdded">"Número episodi és "</string>
+    <string name="EpisodeAdded">Número episodi és</string>
     <string name="UserDoesNotExist">Aquest pacient no existeix a la base de dades</string>
     <string name="UserAlreadyExist">ID usuari ja existeix, escull un altre ID</string>
     <string name="IDalreadyExists">Aquest ID ja existeix, escull un altre si us plau</string>
@@ -229,8 +229,8 @@
     <string name="WeAreSub">Som %s.</string>
     <string name="WeWere">Estàvem</string>
     <string name="WhatMonth">En quin mes i any es va fer la fotografía?</string>
-    <string name="WhatTheyAreDoing">"Què estan fent? "</string>
-    <string name="WhereAreThey">"On estàn? "</string>
+    <string name="WhatTheyAreDoing">Què estan fent?</string>
+    <string name="WhereAreThey">On estàn?</string>
     <string name="WhoAreYouWith">Amb qui estàs?</string>
     <string name="LogIn">Iniciar sessió</string>
     <string name="Guide">Guía</string>
@@ -251,4 +251,7 @@
     <string name="FourSix">4 de 6</string>
     <string name="FiveSix">5 de 6</string>
     <string name="SixSix">6 de 6</string>
+    <string name="Colaboration">Moltes gràcies per la teva col·laboració. Has fet un gran treball. Esperem que hagi estat estimulant.</string>
+    <string name="Evocarccurta">Ara et demanem que recordis tot el que puguis de l\'últim episodi que has vist en l\'última sessió. Intenta donar detalls com on estan, amb qui estan, que estan fent, etc. Quan estiguis preparat apreta el botó de grabar.</string>
+    <string name="PacientIDSecurity">Introdueix el ID del pacient de nou per seguretat</string>
 </resources>

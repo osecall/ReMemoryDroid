@@ -214,7 +214,7 @@
     <string name="ChooseSpinner">You have to choose an emotion from the list!</string>
     <string name="HereShowingImages">Here we are going to show you several images of that episode and ask you to choose the most positive and significant for you.  The image you choose is going to be saved in your memory album.</string>
     <string name="HereWriteAnswers">Here write the answers regarding to the questions:</string>
-    <string name="IamWith">\"I am with \"</string>
+    <string name="IamWith">"I am with "</string>
     <string name="ImFeeling">"I am feeling %s, "</string>
     <string name="InSub">"in %s, "</string>
     <string name="InTheSub">in the %s.</string>
@@ -229,9 +229,9 @@
     <string name="WeAreSub">We are %s.</string>
     <string name="WeWere">We were</string>
     <string name="WhatMonth">In what month and year was the picture taken?</string>
-    <string name="WhatTheyAreDoing">\"What were they doing? \"</string>
-    <string name="WhereAreThey">\"Where are they? \"</string>
-    <string name="WhoAreYouWith">\"Who are you with? \"</string>
+    <string name="WhatTheyAreDoing">What were they doing?</string>
+    <string name="WhereAreThey">Where are they?</string>
+    <string name="WhoAreYouWith">Who are you with?</string>
     <string name="LogIn">Log in</string>
     <string name="Guide">Guide</string>
     <string name="Visualitzar">View</string>
@@ -251,4 +251,7 @@
     <string name="FourSix">4 out of 6</string>
     <string name="FiveSix">5 out of 6</string>
     <string name="SixSix">6 out of 6</string>
+    <string name="Colaboration">Thank you very much for your colaboration. You did a great job. We hope it\'s been estimulating.</string>
+    <string name="Evocarccurta">Now we ask you to recall everything you can from the last episode you reviewed in the previous day. Try to give details like where they are, with who they are, what they were doing, etc. When you are ready press the \'record\' button.</string>
+    <string name="PacientIDSecurity">Introduce the pacient ID again for security reasons</string>
 </resources>
