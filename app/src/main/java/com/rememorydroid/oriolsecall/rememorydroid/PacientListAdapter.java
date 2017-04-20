@@ -19,7 +19,7 @@ public class PacientListAdapter extends ArrayAdapter<PacientUsuari> {
     ArrayList<PacientUsuari> datos;
 
     public PacientListAdapter(Activity activity, ArrayList<PacientUsuari> datos) {
-        super(activity, R.layout.lvpacient);
+        super(activity, R.layout.listview_pacient);
         this.activity = activity;
         this.datos = datos;
     }
@@ -42,7 +42,7 @@ public class PacientListAdapter extends ArrayAdapter<PacientUsuari> {
         // inflamos nuestra vista con el layout
         View view = null;
         LayoutInflater inflator = activity.getLayoutInflater();
-        view = inflator.inflate(R.layout.lvpacient, null);
+        view = inflator.inflate(R.layout.listview_pacient, null);
         final PacientListAdapter.ViewHolder viewHolder = new PacientListAdapter.ViewHolder();
 
         // *** instanciamos a los recursos

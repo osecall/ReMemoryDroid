@@ -127,7 +127,7 @@ public class EscenaActivity extends BaseActivity {
         btNextEscena.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(EscenaActivity.this,EscenaActivity2.class);
+                intent = new Intent(EscenaActivity.this,Escena2Activity.class);
                 intent.putExtra("A",A);
                 intent.putExtra("B",etQuestion1Escena.getText().toString());
                 intent.putExtra("C",etQuestion2Escena.getText().toString());
@@ -169,7 +169,7 @@ public class EscenaActivity extends BaseActivity {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(EscenaActivity.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(EscenaActivity.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(EscenaActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
         }

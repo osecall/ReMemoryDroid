@@ -117,7 +117,7 @@ public class TractamentsActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(TractamentsActivity.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(TractamentsActivity.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(TractamentsActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
         }

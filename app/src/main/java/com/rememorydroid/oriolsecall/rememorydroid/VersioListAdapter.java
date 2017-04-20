@@ -21,7 +21,7 @@ public class VersioListAdapter extends ArrayAdapter<VersioList> {
     ArrayList<VersioList> datos;
 
     public VersioListAdapter(Activity activity, ArrayList<VersioList> datos) {
-        super(activity, R.layout.listaversio);
+        super(activity, R.layout.listview_versio);
         this.activity = activity;
         this.datos = datos;
     }
@@ -44,7 +44,7 @@ public class VersioListAdapter extends ArrayAdapter<VersioList> {
         // inflamos nuestra vista con el layout
         View view = null;
         LayoutInflater inflator = activity.getLayoutInflater();
-        view = inflator.inflate(R.layout.listaversio, null);
+        view = inflator.inflate(R.layout.listview_versio, null);
         final ViewHolder viewHolder = new ViewHolder();
 
         // *** instanciamos a los recursos

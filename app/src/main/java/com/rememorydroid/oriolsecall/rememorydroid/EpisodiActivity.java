@@ -35,7 +35,7 @@ public class EpisodiActivity extends BaseActivity {
     private long j=1;
     private boolean Curta;
     private String episodiSeleccionat;
-    private EpisodilistAdapter adaptadorPersonalitzat;
+    private EpisodiListAdapter adaptadorPersonalitzat;
     private VersioListAdapter adaptadorVersio;
     private ArrayList<VersioList> versions;
     private ArrayList<EpisodiList> episodis;
@@ -110,7 +110,7 @@ public class EpisodiActivity extends BaseActivity {
 
         listaVersio.setAdapter(adaptadorVersio);
 
-        adaptadorPersonalitzat = new EpisodilistAdapter(this,episodis);
+        adaptadorPersonalitzat = new EpisodiListAdapter(this,episodis);
         lista.setAdapter(adaptadorPersonalitzat);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -194,7 +194,7 @@ public class EpisodiActivity extends BaseActivity {
 
     private void testDialeg(){
         LayoutInflater factory = LayoutInflater.from(this);
-        View textEntryView = factory.inflate(R.layout.dialegepisodis, null);
+        View textEntryView = factory.inflate(R.layout.dialeg_episodis, null);
         //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
         final EditText NameEpisode = (EditText) textEntryView.findViewById(R.id.etDialegEpisodeName);
         final EditText FechaEpisode = (EditText) textEntryView.findViewById(R.id.etDialegEpisodeFecha);
@@ -264,7 +264,7 @@ public class EpisodiActivity extends BaseActivity {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(EpisodiActivity.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(EpisodiActivity.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(EpisodiActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
         }

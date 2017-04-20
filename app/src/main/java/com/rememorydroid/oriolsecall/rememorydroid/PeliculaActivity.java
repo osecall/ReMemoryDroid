@@ -35,7 +35,7 @@ public class PeliculaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pelicula);
+        setContentView(R.layout.activity_test_1);
 
         ActionBar actionBar = getSupportActionBar();
 
@@ -170,7 +170,7 @@ public class PeliculaActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(PeliculaActivity.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(PeliculaActivity.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(PeliculaActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
         }
 

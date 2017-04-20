@@ -204,7 +204,7 @@
     <string name="Sad">Triste</string>
     <string name="wasAngry">Estaba enfadado</string>
     <string name="ChooseImageFavourite">Seleccione la imagen más significativa que será guardada en tu album de memoria</string>
-    <string name="PictureUploaded">TU foto preferida se ha guardado en tu album de memoria</string>
+    <string name="PictureUploaded">Tu foto preferida se ha guardado en tu album de memoria</string>
     <string name="BeingWith">estando con %s</string>
     <string name="ChooseSpinner">Tienes que escoger una emoción de la lista!</string>
     <string name="HereShowingImages">A continuación se le mostrara varias imagenes del episodio y se le pedira que elija la más positiva y significante para ti.\n\nLa imagen que elija se guardara en tu memoria de album.</string>
@@ -255,4 +255,6 @@
     <string name="Evocarccurta">Ahora le pedimos que recuerda todo lo que pueda del último episodio que se ha visto en la última sesión. Intenta dar detalles de donde estan, con quien, que estan haciendo, etc. Cuando estes listo pulsa el botón de grabar.</string>
     <string name="PacientIDSecurity">Introduce el ID del paciente de nuevo por seguridad</string>
     <string name="AskingQuestions">A continuación le pedimos que responda las siguientes preguntas sobre el episodio que acaba de ver, seleccionando la opción de respuesta que considere correcta</string>
+    <string name="PressMoreThanOne">Pulsa el botón más de un segundo para crear el usuario del paciente nuevo</string>
+    <string name="PressToDeleteUser">Aprieta encima para eliminar usuario</string>
 </resources>

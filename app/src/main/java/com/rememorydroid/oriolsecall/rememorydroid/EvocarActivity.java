@@ -61,7 +61,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             pararReproduccio();
         }
         if (i==R.id.btBackWeather){
-            startActivity(new Intent(EvocarActivity.this,VisualitzarActivity1.class));
+            startActivity(new Intent(EvocarActivity.this,VisualitzarFragmentsActivity.class));
         }
         if (i==R.id.btNextWeather){
             //Enviar fitxer so a FireBase
@@ -76,6 +76,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                     hideProgressDialog();
                     new AlertDialog.Builder(EvocarActivity.this)
                             .setMessage(R.string.DoingGreat)
+                            .setCancelable(false)
                             .setTitle(R.string.Congratulations)
                             .setNeutralButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
                                 @Override
@@ -190,7 +191,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             DialegPrimerCurta();
             outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarD.3gp";
             NomFitxerCloud = "_EvocarD.3gp";
-            intent = new Intent (EvocarActivity.this, RespirarActivity1.class);
+            intent = new Intent (EvocarActivity.this, RespirarActivity.class);
             intent.putExtra("Curta2","Curta2");
         }
 
@@ -205,7 +206,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         if(getIntent().hasExtra("Primer")){
             DialegPrimer();
             outputFile = new Environment().getExternalStorageDirectory().getAbsolutePath()+"/"+pacientusuari.getID()+pacientusuari.getName()+"_EvocarA.3gp";
-            intent = new Intent(EvocarActivity.this,RespirarActivity1.class);
+            intent = new Intent(EvocarActivity.this,RespirarActivity.class);
             NomFitxerCloud = "_EvocarA.3gp";
             intent.putExtra("Segon","Segon");
         }
@@ -266,7 +267,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(EvocarActivity.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(EvocarActivity.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(EvocarActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
         }
@@ -289,6 +290,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
         dialeg
                 .setTitle(getString(R.string.Attention))
+                .setCancelable(false)
                 .setMessage(getString(R.string.EvocarAdiaelg))
                 .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -311,6 +313,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
         dialeg
                 .setTitle(getString(R.string.Attention))
+                .setCancelable(false)
                 .setMessage(getString(R.string.Evocarccurta))
                 .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -333,6 +336,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
         dialeg
                 .setTitle(getString(R.string.Attention))
+                .setCancelable(false)
                 .setMessage(getString(R.string.EvocarB))
                 .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -355,6 +359,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
         dialeg
                 .setTitle(getString(R.string.Congratulations))
+                .setCancelable(false)
                 .setMessage(getString(R.string.DoingGreat))
                 .setPositiveButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {

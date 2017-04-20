@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:screenOrientation="landscape"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.rememorydroid.oriolsecall.rememorydroid.Preguntes2Activity$Fragment2">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="900dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:id="@+id/PeopleAppearing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/PeopleAppearing"
+            android:textAlignment="center"
+            android:textSize="60sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvPeople"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/AgesPeople"
+            android:textAlignment="center"
+            android:textSize="39sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/rgPeople2"
+            style="@style/radioGroupElementsWhen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <RadioButton
+                android:id="@+id/rbPeople2_1"
+                style="@style/radioGroupElementsWhen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Kids" />
+
+            <RadioButton
+                android:id="@+id/rbPeople2_2"
+                style="@style/radioGroupElementsWhen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Youth" />
+
+            <RadioButton
+                android:id="@+id/rbPeople2_3"
+                style="@style/radioGroupElementsWhen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Adults" />
+            <RadioButton
+                android:id="@+id/rbPeople2_4"
+                style="@style/radioGroupElementsWhen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/OldPeople" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btNextPeople2"
+        style="@style/Next_button"
+        android:layout_marginBottom="44dp"
+        android:layout_alignBottom="@+id/linearLayout2"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/btBackPeople2"
+        style="@style/Back_button"
+        android:layout_alignBaseline="@+id/btNextPeople2"
+        android:layout_alignBottom="@+id/btNextPeople2"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

@@ -15,19 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Splash"
+            android:name=".SplashActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"><intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".LanguageActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".IniciActivity"
+            android:name=".SignInActivity"
             android:label="@string/LogIn"
             android:screenOrientation="landscape" />
         <activity
@@ -79,11 +78,11 @@
             android:label="Test1"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".RespirarActivity1"
+            android:name=".RespirarActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".VisualitzarActivity1"
+            android:name=".VisualitzarFragmentsActivity"
             android:label="@string/Visualitzar"
             android:screenOrientation="landscape" />
         <activity
@@ -91,44 +90,38 @@
             android:label="@string/Evocar"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".QuestionariActivity"
+            android:name=".PreguntesActivity"
             android:label="@string/Questions"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".QuestionariActivity2"
+            android:name=".Preguntes2Activity"
             android:label="@string/Questions"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".EmocionsActivity"
-            android:label="@string/Emotions"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".EmocionsActivity2"
-            android:label="@string/Emotions2"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".EmocionsActivity3"
-            android:label="@string/Emotions3"
-            android:screenOrientation="landscape" />
         <activity
             android:name=".AlbumActivity"
             android:label="@string/Album"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" ></activity>
         <activity
             android:name=".EscenaActivity"
             android:label="@string/Scene"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".EscenaActivity2"
+            android:name=".Escena2Activity"
             android:label="@string/Scene"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" ></activity>
         <activity
             android:name=".EscenaCurtaActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".VisualitzarActivity0"
-            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".VisualitzarActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".TestActivity"
+            android:label="Test"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

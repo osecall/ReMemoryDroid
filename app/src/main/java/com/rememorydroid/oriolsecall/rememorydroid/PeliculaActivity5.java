@@ -31,7 +31,7 @@ public class PeliculaActivity5 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pelicula5);
+        setContentView(R.layout.activity_test_5);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setSubtitle(R.string.FiveSix);
@@ -157,7 +157,7 @@ public class PeliculaActivity5 extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(PeliculaActivity5.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(PeliculaActivity5.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(PeliculaActivity5.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
         }

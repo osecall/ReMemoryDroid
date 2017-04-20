@@ -58,7 +58,7 @@ public class GuiaActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(GuiaActivity.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(GuiaActivity.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(GuiaActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
         }

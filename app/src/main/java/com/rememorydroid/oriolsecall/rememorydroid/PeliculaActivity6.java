@@ -49,7 +49,7 @@ public class PeliculaActivity6 extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pelicula6);
+        setContentView(R.layout.activity_test_6);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setSubtitle(R.string.SixSix);
@@ -196,7 +196,7 @@ public class PeliculaActivity6 extends BaseActivity {
                 }
                 else{
 
-                intentPel1 = new Intent (PeliculaActivity6.this, RespirarActivity1.class);
+                intentPel1 = new Intent (PeliculaActivity6.this, RespirarActivity.class);
 
                 //Per controlar si es segona vegada el test
                 if(getIntent().hasExtra("SegonTest")){
@@ -250,7 +250,7 @@ public class PeliculaActivity6 extends BaseActivity {
                     final AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(PeliculaActivity6.this);
                     DialegDespedida
                             .setCancelable(false)
-                            .setMessage(R.string.ThankYouVeryMuch+"\n"+R.string.HopeEnjoy)
+                            .setMessage(getString(R.string.ThankYouVeryMuch)+"\n"+getString(R.string.HopeEnjoy))
                             .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     startActivity(new Intent(PeliculaActivity6.this, TractamentsActivity.class));
@@ -321,7 +321,7 @@ public class PeliculaActivity6 extends BaseActivity {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(PeliculaActivity6.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(PeliculaActivity6.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(PeliculaActivity6.this, SignInActivity.class);
             startActivity(areaAvaluador);
         }
 

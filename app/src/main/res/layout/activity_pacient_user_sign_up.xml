@@ -7,114 +7,167 @@
     android:layout_height="match_parent">
 
 
-    <ImageView
-        android:id="@+id/ivIDerror"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/signodeadmiracion"
-        android:layout_alignTop="@+id/etIDPacientSignUp"
-        android:layout_toEndOf="@+id/etNamePacientSignUp" />
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="50dp"
+        android:orientation="vertical"
+        android:padding="50dp">
+
+        <TextView
+            android:id="@+id/tvSignUpTitle"
+            style="@style/Titol_Pantalles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="30dp"
+            android:text="@string/SignUpPacientTitleActivity" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPacientIDSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PacientID"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etIDPacientSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="4"
+                android:gravity="center_horizontal|center"
+                android:inputType="number"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ivIDerror"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/signodeadmiracion" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPacientNameSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Name"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etNamePacientSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/ivNameError"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/signodeadmiracion" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPacientSurnameSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/SurName"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etSurNamePacientSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/ivSurError"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/signodeadmiracion" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPacientLastNameSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/LastName"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etLastNamePacientSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/ivLastError"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/signodeadmiracion" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btSavePacientSignUp"
-        android:layout_width="400dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="35dp"
         android:text="@string/Save"
-        android:textSize="60sp" />
-
-    <TextView
-        android:id="@+id/tvPacientIDSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/btSavePacientSignUp"
-        android:layout_marginTop="191dp"
-        android:text="@string/PacientID"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvPacientNameSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvPacientIDSignUp"
-        android:layout_below="@+id/tvPacientIDSignUp"
-        android:layout_marginTop="41dp"
-        android:text="@string/Name"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvPacientSurnameSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvPacientNameSignUp"
-        android:layout_below="@+id/tvPacientNameSignUp"
-        android:layout_marginTop="33dp"
-        android:text="@string/SurName"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvPacientLastNameSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvPacientSurnameSignUp"
-        android:layout_below="@+id/tvPacientSurnameSignUp"
-        android:layout_marginTop="37dp"
-        android:text="@string/LastName"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvSignUpTitle"
-        style="@style/Titol_Pantalles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
-        android:text="@string/SignUpPacientTitleActivity" />
-
-    <EditText
-        android:id="@+id/etIDPacientSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="4"
-        android:inputType="number"
-        android:layout_alignTop="@+id/tvPacientIDSignUp"
-        android:layout_toEndOf="@+id/tvPacientLastNameSignUp" />
-
-    <EditText
-        android:id="@+id/etNamePacientSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/etIDPacientSignUp"
-        android:layout_alignTop="@+id/tvPacientNameSignUp"
-        android:ems="10"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/etSurNamePacientSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/etNamePacientSignUp"
-        android:layout_alignTop="@+id/tvPacientSurnameSignUp"
-        android:ems="10"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/etLastNamePacientSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/etSurNamePacientSignUp"
-        android:layout_alignTop="@+id/tvPacientLastNameSignUp"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:textSize="60sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/imageView3" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -134,33 +187,4 @@
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true" />
 
-    <ImageView
-        android:id="@+id/ivNameError"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/tvPacientSurnameSignUp"
-        android:layout_alignStart="@+id/ivIDerror"
-        android:layout_alignTop="@+id/etNamePacientSignUp"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/signodeadmiracion" />
-
-    <ImageView
-        android:id="@+id/ivSurError"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/tvPacientLastNameSignUp"
-        android:layout_alignStart="@+id/ivNameError"
-        android:layout_alignTop="@+id/etSurNamePacientSignUp"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/signodeadmiracion" />
-
-    <ImageView
-        android:id="@+id/ivLastError"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignBottom="@+id/imageView3"
-        android:layout_alignStart="@+id/ivSurError"
-        android:layout_alignTop="@+id/etLastNamePacientSignUp"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/signodeadmiracion" />
 </RelativeLayout>

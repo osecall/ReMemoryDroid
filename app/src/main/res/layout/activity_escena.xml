@@ -264,11 +264,11 @@
         android:id="@+id/tvValorIntensity1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView11"
-        android:layout_marginTop="29dp"
+        android:layout_below="@+id/textView10"
+        android:layout_marginEnd="63dp"
         android:layout_toStartOf="@+id/btNextEscena"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="36sp"
         android:textStyle="bold" />
 
 </RelativeLayout>

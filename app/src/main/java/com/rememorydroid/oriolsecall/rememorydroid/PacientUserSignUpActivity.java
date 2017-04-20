@@ -56,6 +56,19 @@ public class PacientUserSignUpActivity extends BaseActivity{
         ivSurError = (ImageView) findViewById(R.id.ivSurError);
         ivLastError = (ImageView) findViewById(R.id.ivLastError);
 
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Long numeroMaximUser = dataSnapshot.getChildrenCount();
+                etIDPacientSignUp.setText(numeroMaximUser.toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
 
         btSavePacientSignUp.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +89,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
                             if(dataSnapshot.hasChild(ID)){
                                 AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PacientUserSignUpActivity.this);
                                 LayoutInflater factory = LayoutInflater.from(PacientUserSignUpActivity.this);
-                                View textEntryView = factory.inflate(R.layout.dialegpacientexistent, null);
+                                View textEntryView = factory.inflate(R.layout.dialeg_pacient_existent, null);
 
                                 //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
                                 final EditText IDnouDialeg = (EditText) textEntryView.findViewById(R.id.etIDnouDialeg);
@@ -233,7 +246,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(PacientUserSignUpActivity.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(PacientUserSignUpActivity.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(PacientUserSignUpActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
         }
@@ -313,7 +326,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
             return false;
         }
 
-        if(!Nom.matches("^[a-z A-Z]+$")){
+        if(!Nom.matches("^[a-z ñ A-Z]+$")){
             DialegFormControl.setMessage(R.string.NameNotDigits);
             DialegFormControl.show();
             ivNameError.setVisibility(View.VISIBLE);
@@ -325,7 +338,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
             ivSurError.setVisibility(View.VISIBLE);
             return false;
         }
-        if(!Cognom.matches("^[a-z A-Z]+$")){
+        if(!Cognom.matches("^[a-z ñ A-Z]+$")){
             DialegFormControl.setMessage(R.string.SurNameNotDigits);
             DialegFormControl.show();
             ivSurError.setVisibility(View.VISIBLE);
@@ -343,7 +356,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
             ivLastError.setVisibility(View.VISIBLE);
             return false;
         }
-        if(!SeCognom.matches("^[a-z A-Z]+$")){
+        if(!SeCognom.matches("^[a-z ñ A-Z]+$")){
             DialegFormControl.setMessage(R.string.LastNameNotDigits);
             DialegFormControl.show();
             ivLastError.setVisibility(View.VISIBLE);

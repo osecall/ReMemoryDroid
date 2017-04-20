@@ -272,5 +272,15 @@
     <string name="Evocarccurta">Now we ask you to recall everything you can from the last episode you reviewed in the previous day. Try to give details like where they are, with who they are, what they were doing, etc. When you are ready press the \'record\' button.</string>
     <string name="PacientIDSecurity">Introduce the pacient ID again for security reasons</string>
     <string name="AskingQuestions">Here we ask you to answer the next questions about the episode which you have seen, choosing the answer option which you consider it right.</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="PressMoreThanOne">Press the button more than one second to create an pacient user</string>
+    <string name="Question1">Question 1</string>
+    <string name="Question2">Question 2</string>
+    <string name="Question3">Question 3</string>
+    <string name="Question4">Question 4</string>
+    <string name="Question5">Question5</string>
+    <string name="Question6">Question 6</string>
+    <string name="PressToDeleteUser">Press here to delete the user</string>
 
 </resources>

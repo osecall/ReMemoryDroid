@@ -255,4 +255,6 @@
     <string name="Evocarccurta">Ara et demanem que recordis tot el que puguis de l\'últim episodi que has vist en l\'última sessió. Intenta donar detalls com on estan, amb qui estan, que estan fent, etc. Quan estiguis preparat apreta el botó de grabar.</string>
     <string name="PacientIDSecurity">Introdueix el ID del pacient de nou per seguretat</string>
     <string name="AskingQuestions">A continuació li demanem que respongui les següents preguntes sobre l\'episodi que acaba de veure, seleccionant l\'opció de resposta que consideri correcta.</string>
+    <string name="PressMoreThanOne">Apreta el botó més d\'un segon per tal de crear l\'usuari del pacient nou</string>
+    <string name="PressToDeleteUser">Apreta aqui a sobre per eliminar l\'usuari</string>
 </resources>

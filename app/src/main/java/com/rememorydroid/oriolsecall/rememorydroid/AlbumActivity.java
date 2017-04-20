@@ -551,7 +551,7 @@ public class AlbumActivity extends BaseActivity {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(AlbumActivity.this, R.string.signed_out,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(AlbumActivity.this, IniciActivity.class);
+            Intent areaAvaluador = new Intent(AlbumActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
         }
