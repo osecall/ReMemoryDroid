@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ public class EpisodiActivity extends BaseActivity {
 
     private ListView lista, listaVersio;
     private Button btNextEpisode;
+    private FloatingActionButton fabEpisodi;
     private long i=0;
     private long j=1;
     private boolean Curta;
@@ -52,6 +54,8 @@ public class EpisodiActivity extends BaseActivity {
 
         lista = (ListView) findViewById(R.id.lvEpisodis);
         listaVersio = (ListView) findViewById(R.id.lvVersio);
+        fabEpisodi = (FloatingActionButton) findViewById(R.id.fabEpisodi);
+
 
         Curta= false; //per saber si s'ha escollit versió curta o llarga
 
@@ -186,6 +190,13 @@ public class EpisodiActivity extends BaseActivity {
                     startActivity(TractamentIntent);
 
                 }
+            }
+        });
+
+        fabEpisodi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                testDialeg();
             }
         });
 

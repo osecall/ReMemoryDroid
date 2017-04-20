@@ -7,28 +7,45 @@
     android:layout_height="match_parent">
 
 
-    <ListView
-        android:id="@+id/lvEpisodis"
-        android:layout_width="550dp"
-        android:layout_height="400dp"
-        android:layout_marginBottom="45dp"
-        android:layout_marginStart="74dp"
-        android:choiceMode="singleChoice"
-        android:listSelector="@color/grey_300"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+    <FrameLayout
+        android:id="@+id/flEpisodis"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvEpisodis"
+        android:layout_marginStart="80dp">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabEpisodi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="25dp"
+            android:clickable="true"
+            app:elevation="12dp"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/nameepisode" />
+
+        <ListView
+            android:id="@+id/lvEpisodis"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+            android:listSelector="@color/grey_300" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tvEpisodis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/lvVersio"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="55dp"
-        android:layout_toStartOf="@+id/btNextEpisode"
+        android:layout_marginBottom="26dp"
         android:text="@string/Version"
         android:textSize="45sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_above="@+id/lvVersio"
+        android:layout_toEndOf="@+id/tvEpisodiTitol"
+        android:layout_marginStart="27dp" />
 
     <TextView
         android:id="@+id/tvVersio"
@@ -60,15 +77,16 @@
         android:layout_height="250dp"
         android:choiceMode="singleChoice"
         android:listSelector="@color/grey_300"
-        android:layout_alignTop="@+id/lvEpisodis"
-        android:layout_alignEnd="@+id/btNextEpisode"
-        android:layout_marginEnd="105dp" />
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/btNextEpisode" />
 
     <Button
         android:id="@+id/btNextEpisode"
         style="@style/Next_button"
-        android:layout_alignBottom="@+id/lvEpisodis"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="44dp" />
+        android:layout_below="@+id/lvVersio"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="52dp"
+        android:textSize="36sp" />
 
 </RelativeLayout>
