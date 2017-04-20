@@ -84,6 +84,7 @@ public class SignInActivity extends BaseActivity implements
         // [END auth_state_listener]
     }
 
+
     // [START on_start_add_listener]
     @Override
     public void onStart() {
@@ -101,6 +102,7 @@ public class SignInActivity extends BaseActivity implements
         }
     }
     // [END on_stop_remove_listener]
+
 
     private void createAccount(String email, String password) {
         Log.d(TAG, "createAccount:" + email);
@@ -136,13 +138,13 @@ public class SignInActivity extends BaseActivity implements
     private void signIn(String email, String password) {
         Log.d(TAG, "signIn:" + email);
         if (!validateForm()) {
-            return;
+      // [START sign_in_with_email]
+             return;
         }
 
         showProgressDialog();
 
-        // [START sign_in_with_email]
-        mAuth.signInWithEmailAndPassword(email, password)
+         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -272,6 +274,8 @@ public class SignInActivity extends BaseActivity implements
         }
     }
 
+
+
     private boolean checkIfEmailVerified()
     {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -287,26 +291,6 @@ public class SignInActivity extends BaseActivity implements
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menuavaluadors, menu);
-        menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
-        menu.getItem(1).setEnabled(false);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.btSignOutMenu) {
-            signOut();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
+
