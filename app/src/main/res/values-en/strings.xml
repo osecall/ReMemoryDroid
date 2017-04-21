@@ -268,4 +268,5 @@
     <string name="False">False</string>
     <string name="sign_out_signinactivity">Sign out Assesor</string>
     <string name="SelectionVersion">Select a version to continue</string>
+    <string name="Record">You have to record</string>
 </resources>

@@ -268,4 +268,5 @@
     <string name="True">Verdad</string>
     <string name="sign_out_signinactivity">Deslogearse Evaluador</string>
     <string name="SelectionVersion">Seleccione una versión</string>
+    <string name="Record">Tienes que grabar</string>
 </resources>

@@ -75,12 +75,18 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             startActivity(new Intent(EvocarActivity.this,VisualitzarFragmentsActivity.class));
         }
         if (i==R.id.btNextWeather){
-            //Enviar fitxer so a FireBase
-            showProgressDialog();
+
 
             Uri file = Uri.fromFile(new File(outputFile));
 
-            if(!file.getPath().isEmpty()) {
+            if(file.getPath().isEmpty()){
+                Toast.makeText(EvocarActivity.this, R.string.Record,
+                        Toast.LENGTH_LONG).show();
+            }
+
+            else {
+                //Enviar fitxer so a FireBase
+                showProgressDialog();
                 //Col·locar-ho en l'episodi corresponent
                 StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child(ID_usuari).child(episodi).child(NomFitxerCloud);
                 soRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -106,6 +112,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(EvocarActivity.this, "Error!",
                                         Toast.LENGTH_LONG).show();
+                                hideProgressDialog();
                             }
                         });
             }

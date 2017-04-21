@@ -268,4 +268,5 @@
     <string name="False">Falç</string>
     <string name="sign_out_signinactivity">Acabar sessió</string>
     <string name="SelectionVersion">Seleccioni una versió</string>
+    <string name="Record">Has de grabar</string>
 </resources>
