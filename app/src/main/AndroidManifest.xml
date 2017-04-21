@@ -21,12 +21,11 @@
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"><intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
             android:name=".LanguageActivity"
@@ -56,33 +55,9 @@
             android:label="@string/Guide"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".PeliculaActivity"
-            android:label="Test1"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".PeliculaActivity2"
-            android:label="Test1"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".EpisodePresentationActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".PeliculaActivity3"
-            android:label="Test1"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".PeliculaActivity4"
-            android:label="Test1"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".PeliculaActivity5"
-            android:label="Test1"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".PeliculaActivity6"
-            android:label="Test1"
-            android:screenOrientation="landscape" />
         <activity
             android:name=".RespirarActivity"
             android:screenOrientation="landscape"
@@ -90,7 +65,7 @@
         <activity
             android:name=".VisualitzarFragmentsActivity"
             android:label="@string/Visualitzar"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" ></activity>
         <activity
             android:name=".EvocarActivity"
             android:label="@string/Evocar"
@@ -119,19 +94,17 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".EscenaCurtaActivity"
+            android:label="@string/Scene"
             android:screenOrientation="landscape" />
         <activity
             android:name=".VisualitzarActivity"
+            android:label="@string/Visualitzar"
             android:screenOrientation="landscape" />
         <activity
             android:name=".TestActivity"
             android:label="Test"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".LoginActivity"
-            android:screenOrientation="landscape"
-            android:label="@string/title_activity_login"></activity>
     </application>
 
 </manifest>

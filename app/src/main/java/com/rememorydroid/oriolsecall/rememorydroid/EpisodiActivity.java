@@ -259,6 +259,7 @@ public class EpisodiActivity extends BaseActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menuepisodis, menu);
         menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+" ("+ID_pacient+")");
         return true;
     }
 

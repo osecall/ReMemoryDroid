@@ -257,4 +257,11 @@
     <string name="AskingQuestions">A continuación le pedimos que responda las siguientes preguntas sobre el episodio que acaba de ver, seleccionando la opción de respuesta que considere correcta</string>
     <string name="PressMoreThanOne">Pulsa el botón más de un segundo para crear el usuario del paciente nuevo</string>
     <string name="PressToDeleteUser">Aprieta encima para eliminar usuario</string>
+    <string name="Question1">Pregunta 1</string>
+    <string name="Question2">Pregunta 2</string>
+    <string name="Question3">Pregunta 3</string>
+    <string name="Question4">Pregunta 4</string>
+    <string name="Question5">Pregunta 5</string>
+    <string name="Question6">Pregunta 5</string>
+    <string name="title_activity_test">Test</string>
 </resources>

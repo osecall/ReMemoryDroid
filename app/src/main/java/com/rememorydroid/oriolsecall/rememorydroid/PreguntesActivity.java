@@ -37,6 +37,7 @@ public class PreguntesActivity extends AppCompatActivity {
     private static ViewPager mViewPager;
     public static SharedPreferences prefs;
     public static TestAnswers respostes_recuperades;
+    private static PacientUsuari pacient;
 
 
     @Override
@@ -68,6 +69,9 @@ public class PreguntesActivity extends AppCompatActivity {
         Gson gson = new Gson();
         respostes_recuperades= new TestAnswers();
         respostes_recuperades = gson.fromJson(respostes_json, TestAnswers.class);
+
+        String pacient_json = prefs.getString("pacient",null);
+        pacient = gson.fromJson(pacient_json, PacientUsuari.class);
     }
 
 
@@ -78,6 +82,7 @@ public class PreguntesActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
         menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+" ("+pacient.getID()+")");
         return true;
     }
 

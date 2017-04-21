@@ -1,9 +1,16 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.app.IntentService;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.StrictMode;
+import android.support.annotation.MainThread;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +25,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 
 public class VisualitzarFragmentsActivity extends AppCompatActivity {
 
@@ -28,11 +36,18 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
     private Intent intent;
     private int duration, PrimeraFraccio,SegonaFraccio;
     private ProgressBar ProgressBarVideo;
+    private PacientUsuari pacient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualitzar_fragments);
+
+        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        String pacient_json = prefs.getString("pacient",null);
+        Gson temp = new Gson();
+        pacient = temp.fromJson(pacient_json, PacientUsuari.class);
+
 
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
         ProgressBarVideo = (ProgressBar) findViewById(R.id.progressBarVideo);
@@ -93,6 +108,7 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
 
                 //DialegFraccions(MediaPlayer.create(VisualitzarFragmentsActivity.this,R.raw.respirar1),true);
                 btNext.setVisibility(View.VISIBLE);
+                ibPlay.setImageDrawable(getDrawable(R.drawable.play));
 
             }
         });
@@ -118,69 +134,78 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
 
 
         ibPlay.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View view) {
-                 if (vv.isPlaying()) {
-                     ibPlay.setImageDrawable(getDrawable(R.drawable.play));
-                        vv.pause();
-                 }
-                 else {
-
-                     ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
-
-                     new Thread(new Runnable() {
-                         public void run() {
-                             vv.start();
-                             while (vv.isPlaying()) {
-                                 ProgressBarVideo.post(new Runnable() {
-                                     @Override
-                                     public void run() {
-                                         ProgressBarVideo.setProgress(vv.getCurrentPosition());
-                                     }
-                                 });
-
-                                 vv.post(new Runnable() {
-                                     @Override
-                                     public void run() {
-                                         if (vv.getCurrentPosition() == PrimeraFraccio) {
-                                             vv.pause();
-                                             //ibPlay.setImageDrawable(getDrawable(R.drawable.play));
-                                             mp=null;
-                                             mp=MediaPlayer.create(VisualitzarFragmentsActivity.this,R.raw.evocara);
-
-                                             try{
-                                                 mp.prepare();
-                                             }catch (Exception e){
-
-                                             }
-                                             mp.start();
+                                      @Override
+                                      public void onClick(View view) {
+                                          if (vv.isPlaying()) {
+                                              vv.pause();
+                                              ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                                          } else {
+                                              ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
+                                              vv.start();
 
 
-                                         }
-                                         if (vv.getCurrentPosition() == SegonaFraccio) {
-                                             vv.pause();
-                                             //ibPlay.setImageDrawable(getDrawable(R.drawable.play));
-                                             mp=null;
-                                             mp=MediaPlayer.create(VisualitzarFragmentsActivity.this,R.raw.evocara);
+                                              new Thread(new Runnable() {
+                                                  public void run() {
+                                                      while (vv.isPlaying()) {
+                                                          ProgressBarVideo.post(new Runnable() {
+                                                              @Override
+                                                              public void run() {
+                                                                  ProgressBarVideo.setProgress(vv.getCurrentPosition());
+                                                              }
+                                                          });
+                                                          if (vv.getCurrentPosition() == PrimeraFraccio) {
+                                                              vv.post(new Runnable() {
+                                                                  @Override
+                                                                  public void run() {
+                                                                      vv.pause();
+                                                                  }
+                                                              });
 
-                                             try{
-                                                 mp.prepare();
-                                             }catch (Exception e){
+                                                              ibPlay.post(new Runnable() {
+                                                                  @Override
+                                                                  public void run() {
+                                                                      ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                                                                  }
+                                                              });
+                                                              runOnUiThread(new Runnable() {
+                                                                  @Override
+                                                                  public void run() {
+                                                                      mp = null;
+                                                                      mp = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.evocara);
 
-                                             }
-                                             mp.start();
+                                                                      try {
+                                                                          mp.prepare();
+                                                                      } catch (Exception e) {
 
-                                         }
+                                                                      }
+                                                                      mp.start();
+                                                                  }
+                                                              });
+                                                          }
+                                                                  if (vv.getCurrentPosition() == SegonaFraccio) {
+                                                                      vv.pause();
+                                                                      ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                                                                      mp = null;
+                                                                      mp = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.evocara);
 
-                                     }
-                                 });
+                                                                      try {
+                                                                          mp.prepare();
+                                                                      } catch (Exception e) {
 
-                             }
-                            }}).start();
+                                                                      }
+                                                                      mp.start();
 
-                 }
-                 }
-        });
+                                                                  }
+                                                      }
+                                                  }
+                                              }).start();
+
+                                          }
+                                      }
+                                  });
+
+
+
 
         ibStop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -277,6 +302,7 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
                 .show();
     }
 
+
     //Part del menú 'action bar'
 
     @Override
@@ -284,6 +310,7 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
         menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+" ("+pacient.getID()+")");
         return true;
     }
 
@@ -294,7 +321,6 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.btSignOutMenu) {
 
             //Retorna a la pantalla inicial
@@ -314,10 +340,10 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(VisualitzarFragmentsActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
+
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 }

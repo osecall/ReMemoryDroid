@@ -112,6 +112,7 @@ public class TestActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
         menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+"("+pacient.getID()+")");
         return true;
     }
 
@@ -575,6 +576,7 @@ public class TestActivity extends AppCompatActivity {
             btNext.setEnabled(false);
             btNext.setVisibility(View.INVISIBLE);
 
+
             final RadioGroup rbGroup = (RadioGroup) rootView.findViewById(R.id.rbGroup1Pel5);
 
             rbGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -681,8 +683,20 @@ public class TestActivity extends AppCompatActivity {
                     //Recuperem l'element ara que tenim el identificador per a la classe R (id)
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
-                    btNext.setVisibility(View.VISIBLE);
-                    btNext.setEnabled(true);
+
+
+                    if(respostes.getTest1Pregunta1()!=null && respostes.getTest1Pregunta2()!=null && respostes.getTest1Pregunta3()!=null &&
+                            respostes.getTest1Pregunta4()!=null && respostes.getTest1Pregunta5()!=null){
+                        btNext.setVisibility(View.VISIBLE);
+                        btNext.setEnabled(true);
+                    }
+                    else if(SegonTest){
+                        if(respostes.getTest2Pregunta1()!=null && respostes.getTest2Pregunta2()!=null && respostes.getTest2Pregunta3()!=null &&
+                                respostes.getTest2Pregunta4()!=null && respostes.getTest2Pregunta5()!=null){
+                            btNext.setVisibility(View.VISIBLE);
+                            btNext.setEnabled(true);
+                        }
+                    }
 
                     TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
                     ivNumSeleccionat.setImageDrawable(NumeroSeleccionat);

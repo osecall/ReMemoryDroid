@@ -8,6 +8,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     private Chronometer chronometer;
     private FirebaseStorage reference = FirebaseStorage.getInstance();
     private boolean curta=false;
+    private PacientUsuari pacientusuari;
 
     @Override
     public void onClick(View view) {
@@ -119,6 +121,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                 Toast.LENGTH_SHORT).show();
         tvRecording.setVisibility(View.VISIBLE);
         chronometer.setVisibility(View.VISIBLE);
+        chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
 
     }
@@ -173,7 +176,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String pacient = prefs.getString("pacient",null);
-        PacientUsuari pacientusuari = gson.fromJson(pacient, PacientUsuari.class);
+        pacientusuari = gson.fromJson(pacient, PacientUsuari.class);
         ID_usuari = pacientusuari.getID();
         episodi = prefs.getString("episodi",null);
         //Comprobar si és versió curta
@@ -250,6 +253,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
         menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+"("+pacientusuari.getID()+")");
         return true;
     }
 

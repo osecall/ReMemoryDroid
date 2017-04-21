@@ -1,18 +1,26 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import android.widget.VideoView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 
 public class VisualitzarActivity extends AppCompatActivity {
 
@@ -24,11 +32,17 @@ public class VisualitzarActivity extends AppCompatActivity {
     private int duration;
     private ProgressBar ProgressBarVideo;
     private boolean noAudio=false;
+    private PacientUsuari pacient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualitzar);
+
+        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        String pacient_json = prefs.getString("pacient",null);
+        Gson temp = new Gson();
+        pacient = temp.fromJson(pacient_json, PacientUsuari.class);
 
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
         ProgressBarVideo = (ProgressBar) findViewById(R.id.progressBarVideo);
@@ -85,6 +99,7 @@ public class VisualitzarActivity extends AppCompatActivity {
         vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
+                ibPlay.setImageDrawable(getDrawable(R.drawable.play));
                 btNext.setVisibility(View.VISIBLE);
                 btNext.setEnabled(true);
             }
@@ -165,5 +180,48 @@ public class VisualitzarActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    //Part del menú 'action bar'
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+" ("+pacient.getID()+")");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.btSignOutMenu) {
+
+            //Retorna a la pantalla inicial
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(VisualitzarActivity.this, R.string.signed_out,
+                    Toast.LENGTH_LONG).show();
+            Intent areaAvaluador = new Intent(VisualitzarActivity.this, SignInActivity.class);
+            startActivity(areaAvaluador);
+
+        }
+
+        if (id == R.id.btSignOutPacient) {
+
+            //Retorna a la pantalla 'Area Avaluador'
+
+            Toast.makeText(VisualitzarActivity.this, R.string.MenuChangePacient,
+                    Toast.LENGTH_LONG).show();
+            Intent areaAvaluador = new Intent(VisualitzarActivity.this, AreaAvaluadorActivity.class);
+            startActivity(areaAvaluador);
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

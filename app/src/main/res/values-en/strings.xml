@@ -257,4 +257,11 @@
     <string name="AskingQuestions">Here we ask you to answer the next questions about the episode which you have seen, choosing the answer option which you consider it right.</string>
     <string name="PressMoreThanOne">Press the button more than one second to create an pacient user</string>
     <string name="PressToDeleteUser">Press here to delete the user</string>
+    <string name="Question1">Question 1</string>
+    <string name="Question2">Question 2</string>
+    <string name="Question3">Question 3</string>
+    <string name="Question4">Question 4</string>
+    <string name="Question5">Question 5</string>
+    <string name="Question6">Question 6</string>
+    <string name="title_activity_test">Test</string>
 </resources>
