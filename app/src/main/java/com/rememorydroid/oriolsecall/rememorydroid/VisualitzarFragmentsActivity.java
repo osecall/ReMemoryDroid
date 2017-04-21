@@ -184,16 +184,22 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
                                                           }
                                                                   if (vv.getCurrentPosition() == SegonaFraccio) {
                                                                       vv.pause();
-                                                                      ibPlay.setImageDrawable(getDrawable(R.drawable.play));
-                                                                      mp = null;
-                                                                      mp = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.evocara);
+                                                                      vv.post(new Runnable() {
+                                                                          @Override
+                                                                          public void run() {
+                                                                              ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                                                                              mp = null;
+                                                                              mp = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.evocara);
 
-                                                                      try {
-                                                                          mp.prepare();
-                                                                      } catch (Exception e) {
+                                                                              try {
+                                                                                  mp.prepare();
+                                                                              } catch (Exception e) {
 
-                                                                      }
-                                                                      mp.start();
+                                                                              }
+                                                                              mp.start();
+                                                                          }
+                                                                      });
+
 
                                                                   }
                                                       }
