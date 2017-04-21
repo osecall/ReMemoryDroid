@@ -1,15 +1,20 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.*;
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
@@ -46,6 +51,10 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     private FirebaseStorage reference = FirebaseStorage.getInstance();
     private boolean curta=false;
     private PacientUsuari pacientusuari;
+    private static final int MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 4 ;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1 ;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2 ;
+
 
     @Override
     public void onClick(View view) {
@@ -70,32 +79,36 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             showProgressDialog();
 
             Uri file = Uri.fromFile(new File(outputFile));
-            //Col·locar-ho en l'episodi corresponent
-            StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child(ID_usuari).child(episodi).child(NomFitxerCloud);
-            soRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    hideProgressDialog();
-                    new AlertDialog.Builder(EvocarActivity.this)
-                            .setMessage(R.string.DoingGreat)
-                            .setCancelable(false)
-                            .setTitle(R.string.Congratulations)
-                            .setNeutralButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    startActivity(intent);
-                                }
-                            })
-                            .show();
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(EvocarActivity.this,"Error!",
-                            Toast.LENGTH_LONG).show();
-                }
-            });
+
+            if(!file.getPath().isEmpty()) {
+                //Col·locar-ho en l'episodi corresponent
+                StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child(ID_usuari).child(episodi).child(NomFitxerCloud);
+                soRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        hideProgressDialog();
+                        new AlertDialog.Builder(EvocarActivity.this)
+                                .setMessage(R.string.DoingGreat)
+                                .setCancelable(false)
+                                .setTitle(R.string.Congratulations)
+                                .setNeutralButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        startActivity(intent);
+                                    }
+                                })
+                                .show();
+                    }
+
+                })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(EvocarActivity.this, "Error!",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        });
+            }
 
         }
     }
@@ -171,6 +184,55 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evocar);
+
+
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.RECORD_AUDIO)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    android.Manifest.permission.RECORD_AUDIO)) {
+
+            } else {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.RECORD_AUDIO},
+                        MY_PERMISSIONS_REQUEST_RECORD_AUDIO);
+
+            }
+        }
+
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+            } else {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+            }
+        }
+
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            } else {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+
+            }
+        }
 
         //Extreure dades pacient
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
@@ -390,4 +452,40 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         mp.stop();
         mp.release();
     }
-}
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+        switch (requestCode) {
+
+             case MY_PERMISSIONS_REQUEST_RECORD_AUDIO: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+
+                }
+                }
+                case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
+                     // If request is cancelled, the result arrays are empty.
+                     if (grantResults.length > 0
+                             && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                     } else {
+
+                     }
+                     return;
+                 }case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                     // If request is cancelled, the result arrays are empty.
+                     if (grantResults.length > 0
+                             && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                     } else {
+
+                     }
+                     return;
+                 }
+            }
+        }
+    }
+

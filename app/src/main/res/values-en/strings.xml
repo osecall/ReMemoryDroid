@@ -15,7 +15,7 @@
     <string name="create_account">Create Assesser\'s user</string>
     <string name="sign_out">Sign out Assesor (%s)</string>
     <string name="verify_email">Verify email</string>
-    <string name="emailpassword_status_fmt">User\'s email: %1$s (verified: %2$b)</string>
+    <string name="emailpassword_status_fmt">User\'s email: %s</string>
     <string name="firebase_status_fmt">User: %s</string>
     <string name="Required">Required</string>
     <string name="EmailNotVerifiedYet">Email not verified yet</string>
@@ -264,4 +264,8 @@
     <string name="Question5">Question 5</string>
     <string name="Question6">Question 6</string>
     <string name="title_activity_test">Test</string>
+    <string name="True">True</string>
+    <string name="False">False</string>
+    <string name="sign_out_signinactivity">Sign out Assesor</string>
+    <string name="SelectionVersion">Select a version to continue</string>
 </resources>

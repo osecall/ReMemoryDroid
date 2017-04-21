@@ -47,20 +47,18 @@
         style="@style/Back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="30dp"
-        android:layout_marginStart="26dp" />
+        android:layout_marginStart="26dp"
+        android:layout_alignTop="@+id/ivNumSeleccionat1"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/btNextPel1"
         style="@style/Next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btBackPel1"
-        android:layout_alignParentEnd="true"
         android:layout_marginEnd="30dp"
-        />
+        android:layout_alignTop="@+id/ivNumSeleccionat1"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/tvGensPel1"
@@ -170,9 +168,9 @@
         android:layout_height="wrap_content"
         android:visibility="invisible"
         app:srcCompat="@drawable/common_google_signin_btn_icon_dark"
-        android:layout_marginBottom="22dp"
-        android:layout_alignBottom="@+id/btNextPel1"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/rbGroup1Pel6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp" />
 
 </RelativeLayout>
 

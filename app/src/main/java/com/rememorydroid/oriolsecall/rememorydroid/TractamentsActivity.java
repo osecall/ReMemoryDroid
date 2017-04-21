@@ -42,6 +42,7 @@ public class TractamentsActivity extends AppCompatActivity {
         String pacient_json= prefs.getString("pacient",null);
         PacientUsuari pacient = gson.fromJson(pacient_json, PacientUsuari.class);
 
+
         idCuUserTreatment.setText(pacient.getID());
         NomCuUserTreatment.setText(pacient.getName());
         CognomCuUserTreatment.setText(pacient.getSurName());
@@ -58,6 +59,10 @@ public class TractamentsActivity extends AppCompatActivity {
             btPelicula.setEnabled(true);
             btAlbum.setEnabled(true);
             btGuia.setEnabled(true);
+
+            if(prefs.getString("episodi",null).isEmpty()){
+                btPelicula.setEnabled(false);
+            }
 
         }
 

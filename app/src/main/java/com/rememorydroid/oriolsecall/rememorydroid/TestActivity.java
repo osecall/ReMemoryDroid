@@ -683,16 +683,14 @@ public class TestActivity extends AppCompatActivity {
                     //Recuperem l'element ara que tenim el identificador per a la classe R (id)
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
-
-
-                    if(respostes.getTest1Pregunta1()!=null && respostes.getTest1Pregunta2()!=null && respostes.getTest1Pregunta3()!=null &&
-                            respostes.getTest1Pregunta4()!=null && respostes.getTest1Pregunta5()!=null){
+                    if(!respostes.getTest1Pregunta1().isEmpty() && !respostes.getTest1Pregunta2().isEmpty() && !respostes.getTest1Pregunta3().isEmpty() &&
+                            !respostes.getTest1Pregunta4().isEmpty() && !respostes.getTest1Pregunta5().isEmpty()){
                         btNext.setVisibility(View.VISIBLE);
                         btNext.setEnabled(true);
                     }
                     else if(SegonTest){
-                        if(respostes.getTest2Pregunta1()!=null && respostes.getTest2Pregunta2()!=null && respostes.getTest2Pregunta3()!=null &&
-                                respostes.getTest2Pregunta4()!=null && respostes.getTest2Pregunta5()!=null){
+                        if(!respostes.getTest2Pregunta1().isEmpty() && !respostes.getTest2Pregunta2().isEmpty() && !respostes.getTest2Pregunta3().isEmpty() &&
+                                !respostes.getTest2Pregunta4().isEmpty() && !respostes.getTest2Pregunta5().isEmpty()){
                             btNext.setVisibility(View.VISIBLE);
                             btNext.setEnabled(true);
                         }

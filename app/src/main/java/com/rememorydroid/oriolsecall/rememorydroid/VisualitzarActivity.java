@@ -82,6 +82,7 @@ public class VisualitzarActivity extends AppCompatActivity {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 duration = vv.getDuration();
+
                 vv.setMediaController(new MediaController(VisualitzarActivity.this));
                 if(noAudio){
                     mediaPlayer.setVolume(0,0);
@@ -95,6 +96,8 @@ public class VisualitzarActivity extends AppCompatActivity {
                 ibStop.setEnabled(true);
             }
         });
+
+
 
         vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override

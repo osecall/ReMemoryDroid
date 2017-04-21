@@ -133,7 +133,7 @@
                     android:layout_height="100dp"
                     android:layout_weight="1.0"
                     android:elevation="24dp"
-                    android:text="@string/sign_out"
+                    android:text="@string/sign_out_signinactivity"
                     android:textSize="36sp"
                     android:textStyle="bold"
                     android:theme="@style/ThemeOverlay.MyDarkButton" />

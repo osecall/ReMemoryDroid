@@ -187,7 +187,14 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
                                                                       vv.post(new Runnable() {
                                                                           @Override
                                                                           public void run() {
-                                                                              ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                                                                              ibPlay.post(new Runnable() {
+                                                                                  @Override
+                                                                                  public void run() {
+                                                                                      ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+
+                                                                                  }
+                                                                              });
+
                                                                               mp = null;
                                                                               mp = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.evocara);
 

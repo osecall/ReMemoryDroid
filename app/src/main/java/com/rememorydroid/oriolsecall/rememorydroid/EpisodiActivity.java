@@ -35,7 +35,7 @@ public class EpisodiActivity extends BaseActivity {
     private FloatingActionButton fabEpisodi;
     private long i=0;
     private long j=1;
-    private boolean Curta;
+    private String Versio;
     private String episodiSeleccionat;
     private EpisodiListAdapter adaptadorPersonalitzat;
     private VersioListAdapter adaptadorVersio;
@@ -50,14 +50,14 @@ public class EpisodiActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episodi);
 
+        Versio=new String();
+
         btNextEpisode = (Button) findViewById(R.id.btNextEpisode);
 
         lista = (ListView) findViewById(R.id.lvEpisodis);
         listaVersio = (ListView) findViewById(R.id.lvVersio);
         fabEpisodi = (FloatingActionButton) findViewById(R.id.fabEpisodi);
 
-
-        Curta= false; //per saber si s'ha escollit versió curta o llarga
 
         episodis = new ArrayList<EpisodiList>();
         versions = new ArrayList<VersioList>();
@@ -92,15 +92,17 @@ public class EpisodiActivity extends BaseActivity {
                             j++;
                         }
                         hideProgressDialog();
+                adaptadorPersonalitzat = new EpisodiListAdapter(EpisodiActivity.this,episodis);
+                lista.setAdapter(adaptadorPersonalitzat);
+
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 hideProgressDialog();
                 Toast.makeText(EpisodiActivity.this,"Error en connectar base de dades" ,
                         Toast.LENGTH_LONG).show();
-
-
             }
         });
 
@@ -114,8 +116,7 @@ public class EpisodiActivity extends BaseActivity {
 
         listaVersio.setAdapter(adaptadorVersio);
 
-        adaptadorPersonalitzat = new EpisodiListAdapter(this,episodis);
-        lista.setAdapter(adaptadorPersonalitzat);
+
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -134,10 +135,10 @@ public class EpisodiActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i==1){
-                    Curta=true;
+                    Versio="Curta";
                 }
                 if(i==0){
-                    Curta=false;
+                    Versio="Llarga";
                 }
                 listaVersio.setItemChecked(i,true);
                 TextView versioSeleccionada = (TextView) view.findViewById(R.id.tvVersio);
@@ -155,41 +156,63 @@ public class EpisodiActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                if(Curta==false && episodiSeleccionat.isEmpty()){
+                Intent TractamentIntent = new Intent(EpisodiActivity.this, TractamentsActivity.class);
+                //Passem versió per intent ja que només s'usarà a la pròxima activity una vegada
+                //Com que hi ha 3 idiomes passem alguna dada per indica que s'ha escollit la versió llarga a la següent activity
+
+                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+
+                if(Versio.matches("Llarga") && episodiSeleccionat.isEmpty()){
                     new AlertDialog.Builder(EpisodiActivity.this)
                             .setTitle(getString(R.string.Attention))
                             .setMessage(getString(R.string.SelectionVersionEpisode))
                             .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-
+                                    arg0.dismiss();
                                 }
 
                             })
                             .show();
                 }
-                else{
-                    Intent TractamentIntent = new Intent(EpisodiActivity.this, TractamentsActivity.class);
-                    //Passem versió per intent ja que només s'usarà a la pròxima activity una vegada
-                    //Com que hi ha 3 idiomes passem alguna dada per indica que s'ha escollit la versió llarga a la següent activity
+                else if(Versio.isEmpty() && !episodiSeleccionat.isEmpty()){
+                    new AlertDialog.Builder(EpisodiActivity.this)
+                            .setTitle(getString(R.string.Attention))
+                            .setMessage(getString(R.string.SelectionVersion))
+                            .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    arg0.dismiss();
+                                }
 
-                    SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-
-                    if(Curta==false){
-                        TractamentIntent.putExtra("versio","Long");
-                        editor.putString("Versio", "Long");
-
-                    }
-                    else{
-                        TractamentIntent.putExtra("versio","Short");
-                        editor.putString("Versio", "Short");
-                    }
-                    editor.putString("episodi", episodiSeleccionat);
-                    editor.commit();
-
-                    startActivity(TractamentIntent);
-
+                            })
+                            .show();
                 }
+                else if(Versio.isEmpty() && episodiSeleccionat.isEmpty()){
+                    new AlertDialog.Builder(EpisodiActivity.this)
+                            .setTitle(getString(R.string.Attention))
+                            .setMessage(getString(R.string.SelectionVersionEpisode))
+                            .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    arg0.dismiss();
+                                }
+
+                            })
+                            .show();
+                }
+                else if(Versio.matches("Curta")){
+                    TractamentIntent.putExtra("versio","Short");
+                    editor.putString("Versio", "Short");
+                    startActivity(TractamentIntent);
+                }
+                else if(Versio.matches("Llarga")){
+                     TractamentIntent.putExtra("versio","Long");
+                     editor.putString("Versio", "Long");
+                     startActivity(TractamentIntent);
+                }
+
+                editor.putString("episodi", episodiSeleccionat);
+                editor.commit();
+
             }
         });
 

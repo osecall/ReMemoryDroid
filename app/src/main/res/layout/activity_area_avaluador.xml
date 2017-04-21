@@ -13,20 +13,21 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="17dp"
         android:text="@string/AssesserArea"
         android:textAllCaps="true"
         android:textSize="42sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvCurrentUser"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/frameLayout">
+        android:id="@+id/frameLayout"
+        android:layout_marginEnd="32dp"
+        android:layout_alignTop="@+id/tvCurrentUser"
+        android:layout_alignEnd="@+id/textView">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabSignUp"
@@ -62,13 +63,14 @@
         android:id="@+id/tvCurrentUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/tvAssessersSessionEmail"
-        android:layout_marginEnd="41dp"
+        android:layout_marginEnd="48dp"
         android:text="@string/CurrentUser"
         android:textAlignment="viewStart"
         android:textSize="34sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="49dp" />
 
     <TextView
         android:id="@+id/tvCUid"
@@ -84,11 +86,11 @@
         android:id="@+id/tvCUname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvCurrentUser"
-        android:layout_below="@+id/tvCUid"
-        android:layout_marginTop="10dp"
         android:text="@string/NonSelected"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_marginTop="32dp"
+        android:layout_alignTop="@+id/imageView10"
+        android:layout_alignStart="@+id/tvCurrentUser" />
 
     <TextView
         android:id="@+id/tvCUlastName"

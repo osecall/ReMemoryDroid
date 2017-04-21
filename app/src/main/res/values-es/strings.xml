@@ -15,7 +15,7 @@
     <string name="create_account">Crear usuario Evaluador</string>
     <string name="sign_out">Deslogearse Evaluador (%s)</string>
     <string name="verify_email">Verificar email</string>
-    <string name="emailpassword_status_fmt">Email usuario: %1$s (verificado: %2$b)</string>
+    <string name="emailpassword_status_fmt">Email usuario: %s</string>
     <string name="firebase_status_fmt">Usuario: %s</string>
     <string name="Required">Requisito</string>
     <string name="EmailNotVerifiedYet">Email aun no esta verficado, revista su email</string>
@@ -264,4 +264,8 @@
     <string name="Question5">Pregunta 5</string>
     <string name="Question6">Pregunta 5</string>
     <string name="title_activity_test">Test</string>
+    <string name="False">Falso</string>
+    <string name="True">Verdad</string>
+    <string name="sign_out_signinactivity">Deslogearse Evaluador</string>
+    <string name="SelectionVersion">Seleccione una versión</string>
 </resources>

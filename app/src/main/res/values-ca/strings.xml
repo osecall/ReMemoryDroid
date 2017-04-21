@@ -15,7 +15,7 @@
     <string name="create_account">Crear usuari Avaluador</string>
     <string name="sign_out">Acabar sessió Avaluador (%s)</string>
     <string name="verify_email">Verificar email</string>
-    <string name="emailpassword_status_fmt">Email usuari: %1$s (verificat: %2$b)</string>
+    <string name="emailpassword_status_fmt">Email usuari: %s</string>
     <string name="firebase_status_fmt">Usuari: %s</string>
     <string name="Required">Requisit</string>
     <string name="EmailNotVerifiedYet">Email no està verificat encara! Revisa l\'email</string>
@@ -264,4 +264,8 @@
     <string name="Question5">Pregunta 5</string>
     <string name="Question6">Pregunta 6</string>
     <string name="title_activity_test">Test</string>
+    <string name="True">Veritat</string>
+    <string name="False">Falç</string>
+    <string name="sign_out_signinactivity">Acabar sessió</string>
+    <string name="SelectionVersion">Seleccioni una versió</string>
 </resources>
