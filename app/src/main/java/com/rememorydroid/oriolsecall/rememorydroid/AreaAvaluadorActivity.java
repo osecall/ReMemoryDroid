@@ -76,7 +76,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
         lvPacients = (ListView) findViewById(R.id.lvPacients);
 
         showProgressDialog();
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int i=0;
