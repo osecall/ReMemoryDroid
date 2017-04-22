@@ -30,6 +30,7 @@ public class RespirarActivity extends AppCompatActivity {
             ivRespirar.setImageResource(R.drawable.abstracte2);
             Reproduccio = R.raw.respirar2;
             intentRespirar.putExtra("Segon","Segon");
+            ReproduirMissatge(Reproduccio);
             DialogInstruccionsRespirar();
 
         }
@@ -37,6 +38,7 @@ public class RespirarActivity extends AppCompatActivity {
             ivRespirar.setImageResource(R.drawable.abstracte3);
             Reproduccio = R.raw.respirar3;
             intentRespirar.putExtra("Tercer","Tercer");
+            ReproduirMissatge(Reproduccio);
             DialogInstruccionsRespirar();
 
         }
@@ -44,6 +46,7 @@ public class RespirarActivity extends AppCompatActivity {
             ivRespirar.setImageResource(R.drawable.abstracte4);
             Reproduccio = R.raw.respirar4;
             intentRespirar.putExtra("Quarta","Quarta");
+            ReproduirMissatge(Reproduccio);
             DialogInstruccionsRespirar();
 
         }
@@ -52,6 +55,7 @@ public class RespirarActivity extends AppCompatActivity {
             Reproduccio = R.raw.respirar5;
             intentRespirar = new Intent(RespirarActivity.this,VisualitzarActivity.class);
             intentRespirar.putExtra("Curta1","Curta1");
+            ReproduirMissatge(Reproduccio);
             DialogInstruccionsRespirar();
         }
         else if(getIntent().hasExtra("Curta2")){
@@ -59,12 +63,14 @@ public class RespirarActivity extends AppCompatActivity {
             Reproduccio = R.raw.respirar5;
             intentRespirar = new Intent(RespirarActivity.this,TestActivity.class);
             intentRespirar.putExtra("SegonTest","SegonTest");
+            ReproduirMissatge(Reproduccio);
             DialogInstruccionsRespirar();
         }
         else{
             Reproduccio = R.raw.respirar1;
             intentRespirar = new Intent(RespirarActivity.this, VisualitzarActivity.class);
             intentRespirar.putExtra("Primer","Primer");
+            ReproduirMissatge(Reproduccio);
             DialogInstruccionsRespirar();
         }
     }
@@ -78,25 +84,33 @@ public class RespirarActivity extends AppCompatActivity {
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         arg0.cancel();
-                        ReproduirMissatge(Reproduccio);
                     }
                 })
                 .show();
     }
 
     private void ReproduirMissatge(int Reproduccio){
-        MediaPlayer mp = MediaPlayer.create(this,Reproduccio);
+        final MediaPlayer mp = MediaPlayer.create(this,Reproduccio);
         try{
             mp.prepare();
         }catch (Exception e){
             Toast.makeText(RespirarActivity.this, e.toString(),
                     Toast.LENGTH_LONG).show();e.toString();
         }
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mp.stop();
+                mp.release();
+                startActivity(intentRespirar);
+            }
+        });
         mp.start();
-        while(mp.isPlaying()){
-        }
-        mp.stop();
-        mp.release();
-        startActivity(intentRespirar);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
     }
 }
