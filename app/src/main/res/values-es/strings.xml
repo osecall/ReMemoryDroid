@@ -269,4 +269,9 @@
     <string name="sign_out_signinactivity">Deslogearse Evaluador</string>
     <string name="SelectionVersion">Seleccione una versión</string>
     <string name="Record">Tienes que grabar</string>
+    <string name="DeleteEpisodi">Introduce ID del episodio</string>
+    <string name="EpisodeDeleted">Eliminado episodio numero: %d</string>
+    <string name="EpisodeNotExist">El episodio no existe</string>
+    <string name="EpisodeToDelete">Eliminaras este numero de episodio: %d</string>
+    <string name="NumberDoesNotMatch">Números no coinciden</string>
 </resources>

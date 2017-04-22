@@ -8,35 +8,31 @@
 
 
     <ImageView
-        android:id="@+id/ivFromPage1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_gravity="center_horizontal|center"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="11dp"
-        android:layout_toStartOf="@+id/ivNumSeleccionat" />
-
-    <TextView
-        android:id="@+id/tvFromTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center"
-        android:gravity="center_horizontal|center"
-        android:text="@string/From"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" />
-
-    <ImageView
         android:id="@+id/ivToPage1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
         android:layout_alignTop="@+id/ivFromPage1"
-        android:layout_gravity="center_horizontal|center"
-        android:layout_marginStart="36dp"
-        android:layout_toEndOf="@+id/ivNumSeleccionat" />
+        android:layout_toEndOf="@+id/tvFromTo" />
+
+    <ImageView
+        android:id="@+id/ivFromPage1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="23dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/tvFromTo" />
+
+    <TextView
+        android:id="@+id/tvFromTo"
+        android:text="@string/From"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignTop="@+id/ivToPage1"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/tvQuestionPel1"

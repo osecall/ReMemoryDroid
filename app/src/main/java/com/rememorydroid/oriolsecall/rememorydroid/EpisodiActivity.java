@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
@@ -18,6 +19,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -130,6 +136,16 @@ public class EpisodiActivity extends BaseActivity {
            }
         });
 
+        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                EliminarEpisodi(i+1); //Afegim 1 ja que la llista no comença a 0
+
+                return true;
+            }
+        });
+
 
         listaVersio.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -223,6 +239,106 @@ public class EpisodiActivity extends BaseActivity {
             }
         });
 
+    }
+
+
+    private void EliminarEpisodi(final int numeroEpisodi) {
+        LayoutInflater factory = LayoutInflater.from(EpisodiActivity.this);
+        final View textEntryView = factory.inflate(R.layout.dialeg_deleteepisodi, null);
+        final EditText input1 = (EditText) textEntryView.findViewById(R.id.etEpisode);
+        final AlertDialog.Builder Borrar = new AlertDialog.Builder(EpisodiActivity.this);
+        Borrar
+                .setIcon(R.drawable.warningdialogdeleteuser)
+                .setTitle(getString(R.string.Attention))
+                .setMessage(getString(R.string.EpisodeToDelete,numeroEpisodi))
+                .setView(textEntryView)
+                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        if(!String.valueOf(numeroEpisodi).matches(input1.getText().toString())){
+                            Toast.makeText(EpisodiActivity.this, getString(R.string.NumberDoesNotMatch),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else{
+
+                            //Confirmar eliminació per contrasenya
+                            //-------------------------------------------------------------------
+                            AlertDialog.Builder dialegPassword = new AlertDialog.Builder(EpisodiActivity.this);
+                            LayoutInflater factory = LayoutInflater.from(EpisodiActivity.this);
+                            View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+                            //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+                            final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+                            dialegPassword
+                                    .setView(textEntryView)
+                                    .setIcon(R.drawable.passwordicon)
+                                    .setTitle(R.string.PasswordDialog)
+                                    .setMessage(R.string.IntroducePassword)
+                                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface arg0, int arg1) {
+                                            // Recuperem el email del avaluador i el reautentiquem
+                                            String email_user= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                                            String pass_user = input.getText().toString();
+                                            //Reautentiquem al avaluador per seguretat
+                                            AuthCredential credential = EmailAuthProvider.getCredential(email_user,pass_user);
+
+                                            FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+
+                                                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(DataSnapshot snapshot) {
+
+                                                            if (snapshot.child(ID_pacient).exists()){
+                                                                snapshot.child(ID_pacient).child("episodis").child(String.valueOf(numeroEpisodi)).getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                        Toast.makeText(EpisodiActivity.this, getString(R.string.EpisodeDeleted,numeroEpisodi),
+                                                                                Toast.LENGTH_LONG).show();
+                                                                    }
+                                                                });
+
+
+                                                            }
+                                                            else{
+                                                                Toast.makeText(EpisodiActivity.this,R.string.EpisodeNotExist,
+                                                                        Toast.LENGTH_LONG).show();
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(DatabaseError E) {
+                                                            Toast.makeText(EpisodiActivity.this,"Database Error",
+                                                                    Toast.LENGTH_LONG).show();
+                                                        }
+                                                    });
+                                                }
+
+
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(EpisodiActivity.this,getString(R.string.WrongPassword),
+                                                            Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+
+
+                                            arg0.cancel();
+                                            arg0.dismiss();
+
+
+                                        }
+                                    })
+                                    .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface arg0, int arg1) {
+                                            arg0.dismiss();
+                                            arg0.cancel();
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }}).show();
     }
 
 

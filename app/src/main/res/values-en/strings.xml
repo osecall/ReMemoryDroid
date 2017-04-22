@@ -269,4 +269,9 @@
     <string name="sign_out_signinactivity">Sign out Assesor</string>
     <string name="SelectionVersion">Select a version to continue</string>
     <string name="Record">You have to record</string>
+    <string name="DeleteEpisodi">Introduce ID episode</string>
+    <string name="EpisodeDeleted">Deleted episode number: %d</string>
+    <string name="EpisodeNotExist">Episode does not exist</string>
+    <string name="EpisodeToDelete">You\'ll delete this episode number: %d</string>
+    <string name="NumberDoesNotMatch">Numbers don\'t match</string>
 </resources>

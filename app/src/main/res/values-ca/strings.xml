@@ -269,4 +269,9 @@
     <string name="sign_out_signinactivity">Acabar sessió</string>
     <string name="SelectionVersion">Seleccioni una versió</string>
     <string name="Record">Has de grabar</string>
+    <string name="DeleteEpisodi">Introdueix ID de l\'episodi</string>
+    <string name="EpisodeDeleted">Eliminat episodi numbero: %d</string>
+    <string name="EpisodeNotExist">L\'episodi no existeix</string>
+    <string name="EpisodeToDelete">Borraràs aquest número d\'episodi: %d</string>
+    <string name="NumberDoesNotMatch">Números no coincideixen</string>
 </resources>
