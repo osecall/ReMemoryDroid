@@ -29,7 +29,7 @@
         <ListView
             android:id="@+id/lvEpisodis"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="431dp"
             android:choiceMode="singleChoice"
             android:listSelector="@color/grey_300" />
 
