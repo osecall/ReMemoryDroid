@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -765,9 +766,14 @@ public class TestActivity extends AppCompatActivity {
                         });
 
                         AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(getContext());
+                        LayoutInflater factory = LayoutInflater.from(getContext());
+                        View textEntryView = factory.inflate(R.layout.dialegs, null);
+                        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+                        tv.setText(R.string.Colaboration);
                         DialegDespedida
                                     .setCancelable(false)
-                                    .setMessage(R.string.Colaboration)
+                                    .setView(textEntryView)
+                                    //.setMessage(R.string.Colaboration)
                                     .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface arg0, int arg1) {
                                             startActivity(new Intent(getContext(), TractamentsActivity.class));
@@ -825,9 +831,14 @@ public class TestActivity extends AppCompatActivity {
                         });
 
                         AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(getContext());
+                        LayoutInflater factory = LayoutInflater.from(getContext());
+                        View textEntryView = factory.inflate(R.layout.dialegs, null);
+                        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+                        tv.setText(R.string.Colaboration);
                         DialegDespedida
                                 .setCancelable(false)
-                                .setMessage(R.string.Colaboration)
+                                .setView(textEntryView)
+                                //.setMessage(R.string.Colaboration)
                                 .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface arg0, int arg1) {
                                         startActivity(new Intent(getContext(), TractamentsActivity.class));
@@ -917,10 +928,15 @@ public class TestActivity extends AppCompatActivity {
 
     private void mostrarAlertaPelicula(){
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(TestActivity.this);
+        LayoutInflater factory = LayoutInflater.from(this);
+        View textEntryView = factory.inflate(R.layout.dialegs, null);
+        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        tv.setText(R.string.AlertDialaogTest);
         DialegFormControl
                 .setCancelable(false)
+                .setView(R.string.AlertDialaogTest)
                 .setTitle(getString(R.string.Attention))
-                .setMessage(R.string.AlertDialaogTest)
+                //.setMessage(R.string.AlertDialaogTest)
                 .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         arg0.dismiss();
