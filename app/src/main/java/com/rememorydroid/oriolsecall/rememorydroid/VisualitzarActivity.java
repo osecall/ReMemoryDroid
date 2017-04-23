@@ -59,6 +59,7 @@ public class VisualitzarActivity extends AppCompatActivity {
         ibStop.setEnabled(false);
         ibPlay.setVisibility(View.INVISIBLE);
         ibStop.setVisibility(View.INVISIBLE);
+        vv.setEnabled(false);
 
         //Per les instruccions
         mp = MediaPlayer.create(this, R.raw.visualitzar1);
@@ -181,6 +182,7 @@ public class VisualitzarActivity extends AppCompatActivity {
                                 ibStop.setVisibility(View.VISIBLE);
                                 ibPlay.setEnabled(true);
                                 ibStop.setEnabled(true);
+                                vv.setEnabled(true);
 
                             }
                         });

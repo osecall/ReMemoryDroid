@@ -86,13 +86,11 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             startActivity(intent);
-                            finish();
                         }
                     }).setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialogInterface) {
                     startActivity(intent);
-                    finish();
                 }
             })
                     .show();
@@ -100,6 +98,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void grabar(String outputFile){
+        ibRecordEvocar.setEnabled(false);
         mr=new MediaRecorder();
         mr.setAudioSource(MediaRecorder.AudioSource.MIC);
         mr.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -179,6 +178,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                         }
                     });
         }
+        ibRecordEvocar.setEnabled(true);
     }
     private void reproduir(){
         ibRecordEvocar.setEnabled(false);
@@ -350,7 +350,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         mp.release();
         mr=null;
         mp=null;
-        finish();
     }
 
     //Part del menú 'action bar'

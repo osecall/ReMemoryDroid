@@ -86,7 +86,7 @@ public class RespirarActivity extends AppCompatActivity {
 
     private void DialogInstruccionsRespirar(){
         final AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(RespirarActivity.this);
-        LayoutInflater factory = LayoutInflater.from(this);
+        LayoutInflater factory = LayoutInflater.from(RespirarActivity.this);
         View textEntryView = factory.inflate(R.layout.dialegs, null);
         TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
         tv.setText(R.string.InstructonsBreathing);
@@ -95,13 +95,12 @@ public class RespirarActivity extends AppCompatActivity {
                 .setView(textEntryView)
                 .setTitle(getString(R.string.Attention))
                 //.setMessage(R.string.InstructonsBreathing)
-                /*
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         arg0.cancel();
                         arg0.dismiss();
                     }
-                })*/
+                })
                 .show();
     }
 
