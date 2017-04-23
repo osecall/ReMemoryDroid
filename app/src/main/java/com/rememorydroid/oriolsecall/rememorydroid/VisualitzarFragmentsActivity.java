@@ -95,24 +95,24 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
 
         if(getIntent().hasExtra("Segon")){
             mp = MediaPlayer.create(this, R.raw.visualitzar2);
-            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
+            //vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
             intent=new Intent(VisualitzarFragmentsActivity.this,PreguntesActivity.class);
         }
         else if(getIntent().hasExtra("Tercer")){
             mp = MediaPlayer.create(this, R.raw.visualitzar2);
-            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
+            //vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
             intent=new Intent(VisualitzarFragmentsActivity.this,Preguntes2Activity.class);
             //Aquí el video no té audio
         }
         else if(getIntent().hasExtra("Quarta")){
             mp = MediaPlayer.create(this, R.raw.visualitzar2);
-            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
+            //vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
             intent=new Intent(VisualitzarFragmentsActivity.this,EvocarActivity.class);
             intent.putExtra("Quarta","Quarta");
         }
         else if(getIntent().hasExtra("Curta")){
             mp = MediaPlayer.create(this, R.raw.visualitzar2);
-            vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
+            //vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
             intent=new Intent(VisualitzarFragmentsActivity.this,EvocarActivity.class);
             intent.putExtra("EvocarD","EvocarD");
         }
