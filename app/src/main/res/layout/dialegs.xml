@@ -13,5 +13,5 @@
         android:layout_marginEnd="15dp"
         android:layout_marginLeft="15dp"
         android:textAlignment="textStart"
-        android:textSize="55sp" />
+        android:textSize="45sp" />
 </LinearLayout>

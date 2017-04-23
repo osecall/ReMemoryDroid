@@ -75,47 +75,18 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             startActivity(new Intent(EvocarActivity.this,VisualitzarFragmentsActivity.class));
         }
         if (i==R.id.btNextWeather){
+            new AlertDialog.Builder(EvocarActivity.this)
+                    .setMessage(R.string.DoingGreat)
+                    .setCancelable(false)
+                    .setTitle(R.string.Congratulations)
+                    .setNeutralButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            startActivity(intent);
+                        }
+                    })
+                    .show();
 
-
-            Uri file = Uri.fromFile(new File(outputFile));
-
-            if(file.getPath().isEmpty()){
-                Toast.makeText(EvocarActivity.this, R.string.Record,
-                        Toast.LENGTH_LONG).show();
-            }
-
-            else {
-                //Enviar fitxer so a FireBase
-                showProgressDialog();
-                //Col·locar-ho en l'episodi corresponent
-                StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child(ID_usuari).child(episodi).child(NomFitxerCloud);
-                soRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        hideProgressDialog();
-                        new AlertDialog.Builder(EvocarActivity.this)
-                                .setMessage(R.string.DoingGreat)
-                                .setCancelable(false)
-                                .setTitle(R.string.Congratulations)
-                                .setNeutralButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        startActivity(intent);
-                                    }
-                                })
-                                .show();
-                    }
-
-                })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(EvocarActivity.this, "Error!",
-                                        Toast.LENGTH_LONG).show();
-                                hideProgressDialog();
-                            }
-                        });
-            }
 
         }
     }
@@ -161,8 +132,39 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         ibPlayEvocar.setImageResource(R.drawable.audio);
         Toast.makeText(EvocarActivity.this,R.string.StopRecording ,
                 Toast.LENGTH_SHORT).show();
-        btNext.setEnabled(true);
-        btNext.setVisibility(View.VISIBLE);
+
+
+        Uri file = Uri.fromFile(new File(outputFile));
+
+        if(file.getPath().isEmpty()){
+            Toast.makeText(EvocarActivity.this, R.string.Record,
+                    Toast.LENGTH_LONG).show();
+        }
+
+        else {
+            //Enviar fitxer so a FireBase
+            showProgressDialog();
+            //Col·locar-ho en l'episodi corresponent
+            StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child(ID_usuari).child(episodi).child(NomFitxerCloud);
+            soRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    hideProgressDialog();
+                    btNext.setVisibility(View.VISIBLE);
+                    btNext.setEnabled(true);
+
+                }
+
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(EvocarActivity.this, "Error!",
+                                    Toast.LENGTH_LONG).show();
+                            hideProgressDialog();
+                        }
+                    });
+        }
     }
     private void reproduir(){
         mp = new MediaPlayer();
