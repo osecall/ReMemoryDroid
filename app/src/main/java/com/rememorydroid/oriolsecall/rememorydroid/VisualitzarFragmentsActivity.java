@@ -26,10 +26,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
-public class VisualitzarFragmentsActivity extends AppCompatActivity {
+import java.io.File;
+import java.io.IOException;
+
+public class VisualitzarFragmentsActivity extends BaseActivity {
 
     private MediaPlayer mp;
     private VideoView vv;
@@ -39,6 +46,10 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
     private int duration, PrimeraFraccio,SegonaFraccio;
     private ProgressBar ProgressBarVideo;
     private PacientUsuari pacient;
+    private File video;
+    private StorageReference myRef = FirebaseStorage.getInstance().getReference();
+    private String episodi;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +60,8 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
         String pacient_json = prefs.getString("pacient",null);
         Gson temp = new Gson();
         pacient = temp.fromJson(pacient_json, PacientUsuari.class);
-
+        episodi = prefs.getString("episodi",null);
+        myRef = myRef.child(pacient.getID()).child(episodi).child("video1.mp4");
 
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
         ProgressBarVideo = (ProgressBar) findViewById(R.id.progressBarVideo);
@@ -57,6 +69,21 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
         ibStop = (ImageView) findViewById(R.id.ibStop);
         btBack = (Button) findViewById(R.id.btBackWeather);
         btNext = (Button) findViewById(R.id.btNextWeather);
+
+        try {
+            video = File.createTempFile("video", "mp4");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        showProgressDialog();
+        myRef.getFile(video).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                vv.setVideoURI(Uri.parse(video.getAbsolutePath().toString()));
+                hideProgressDialog();
+            }
+        });
 
 
         //Quan acabi les instruccions per veu s'habilitaran els botons de reproducció
@@ -96,17 +123,14 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 mp=MediaPlayer.create(VisualitzarFragmentsActivity.this,R.raw.evocara);
-
-                try{
-                    mp.prepare();
-                }catch (Exception e){
-
-                }
                 mp.start();
-                while(mp.isPlaying()){
-                }
-                mp.stop();
-                mp.release();
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        mp.stop();
+                        mp.release();
+                    }
+                });
 
                 //DialegFraccions(MediaPlayer.create(VisualitzarFragmentsActivity.this,R.raw.respirar1),true);
                 btNext.setVisibility(View.VISIBLE);

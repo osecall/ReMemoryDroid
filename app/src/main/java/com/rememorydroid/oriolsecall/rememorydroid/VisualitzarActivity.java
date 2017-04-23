@@ -21,10 +21,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
-public class VisualitzarActivity extends AppCompatActivity {
+import java.io.File;
+import java.io.IOException;
+
+public class VisualitzarActivity extends BaseActivity {
 
     private MediaPlayer mp;
     private VideoView vv;
@@ -35,6 +42,11 @@ public class VisualitzarActivity extends AppCompatActivity {
     private ProgressBar ProgressBarVideo;
     private boolean noAudio=false;
     private PacientUsuari pacient;
+    private StorageReference myRef = FirebaseStorage.getInstance().getReference();
+    private SharedPreferences prefs;
+    private String episodi;
+    private File video;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +57,9 @@ public class VisualitzarActivity extends AppCompatActivity {
         String pacient_json = prefs.getString("pacient",null);
         Gson temp = new Gson();
         pacient = temp.fromJson(pacient_json, PacientUsuari.class);
+        episodi = prefs.getString("episodi",null);
+
+        myRef = myRef.child(pacient.getID()).child(episodi).child("video1.mp4");
 
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
         ProgressBarVideo = (ProgressBar) findViewById(R.id.progressBarVideo);
@@ -52,6 +67,21 @@ public class VisualitzarActivity extends AppCompatActivity {
         ibStop = (ImageView) findViewById(R.id.ibStop);
         btBack = (Button) findViewById(R.id.btBackWeather);
         btNext = (Button) findViewById(R.id.btNextWeather);
+
+        try {
+            video = File.createTempFile("video", "mp4");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        showProgressDialog();
+        myRef.getFile(video).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                vv.setVideoURI(Uri.parse(video.getAbsolutePath().toString()));
+                hideProgressDialog();
+            }
+        });
 
         //Quan acabi les instruccions per veu s'habilitaran els botons de reproducció
         btNext.setVisibility(View.INVISIBLE);
@@ -65,7 +95,7 @@ public class VisualitzarActivity extends AppCompatActivity {
         mp = MediaPlayer.create(this, R.raw.visualitzar1);
         DialogInstruccionsVisualitzar(mp);
         //Vídeo
-        vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
+        //vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
         intent=new Intent(VisualitzarActivity.this,EvocarActivity.class);
 
         if(getIntent().hasExtra("Primer")){

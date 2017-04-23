@@ -1,6 +1,5 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.*;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,7 +11,6 @@ import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.SystemClock;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -182,7 +180,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     }
     private void reproduir(){
         ibRecordEvocar.setEnabled(false);
-        ibRecordEvocar.setActivated(false);
         ibRecordEvocar.setVisibility(View.INVISIBLE);
         mp = MediaPlayer.create(this,Uri.parse(outputFile));
         mp.start();
