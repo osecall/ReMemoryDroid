@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -157,29 +159,32 @@ public class VisualitzarActivity extends AppCompatActivity {
 
     private void DialogInstruccionsVisualitzar(final MediaPlayer mp) {
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(VisualitzarActivity.this);
+        LayoutInflater factory = LayoutInflater.from(this);
+        View textEntryView = factory.inflate(R.layout.dialegs, null);
+        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        tv.setText(R.string.DialogVideo1);
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
+                .setView(textEntryView)
                 .setCancelable(false)
-                .setMessage(R.string.DialogVideo1)
+                //.setMessage(R.string.DialogVideo1)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                            mp.prepare();
-                        } catch (Exception e) {
-
-                        }
                         mp.start();
-                        while (mp.isPlaying()) {
-                        }
-                        mp.stop();
-                        mp.release();
-                        ibPlay.setVisibility(View.VISIBLE);
-                        ibStop.setVisibility(View.VISIBLE);
-                        ibPlay.setEnabled(true);
-                        ibStop.setEnabled(true);
+                        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                mp.stop();
+                                mp.release();
+                                ibPlay.setVisibility(View.VISIBLE);
+                                ibStop.setVisibility(View.VISIBLE);
+                                ibPlay.setEnabled(true);
+                                ibStop.setEnabled(true);
+
+                            }
+                        });
                         arg0.cancel();
                         arg0.dismiss();
-
                     }
                 })
                 .show();

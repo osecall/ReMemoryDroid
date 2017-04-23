@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -143,7 +145,6 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
                                               ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
                                               vv.start();
 
-
                                               new Thread(new Runnable() {
                                                   public void run() {
                                                       while (vv.isPlaying()) {
@@ -154,6 +155,7 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
                                                               }
                                                           });
                                                           if (vv.getCurrentPosition() == PrimeraFraccio) {
+
                                                               vv.post(new Runnable() {
                                                                   @Override
                                                                   public void run() {
@@ -165,59 +167,61 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
                                                                   @Override
                                                                   public void run() {
                                                                       ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                                                                      ibPlay.setVisibility(View.INVISIBLE);
+                                                                      ibStop.setVisibility(View.INVISIBLE);
                                                                   }
                                                               });
                                                               runOnUiThread(new Runnable() {
                                                                   @Override
                                                                   public void run() {
+                                                                      mp.release();
                                                                       mp = null;
                                                                       mp = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.evocara);
-
-                                                                      try {
-                                                                          mp.prepare();
-                                                                      } catch (Exception e) {
-
-                                                                      }
+                                                                      mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                                                          @Override
+                                                                          public void onCompletion(MediaPlayer mediaPlayer) {
+                                                                              ibPlay.setVisibility(View.VISIBLE);
+                                                                              ibStop.setVisibility(View.VISIBLE);
+                                                                              //vv.start();
+                                                                          }
+                                                                      });
                                                                       mp.start();
                                                                   }
                                                               });
-                                                          }
-                                                                  if (vv.getCurrentPosition() == SegonaFraccio) {
-                                                                      vv.pause();
+                                                          }if (vv.getCurrentPosition() == SegonaFraccio) {
                                                                       vv.post(new Runnable() {
                                                                           @Override
                                                                           public void run() {
+                                                                              vv.pause();
                                                                               ibPlay.post(new Runnable() {
                                                                                   @Override
                                                                                   public void run() {
                                                                                       ibPlay.setImageDrawable(getDrawable(R.drawable.play));
-
+                                                                                      ibPlay.setVisibility(View.INVISIBLE);
+                                                                                      ibStop.setVisibility(View.INVISIBLE);
                                                                                   }
                                                                               });
-
+                                                                              mp.release();
                                                                               mp = null;
                                                                               mp = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.evocara);
-
-                                                                              try {
-                                                                                  mp.prepare();
-                                                                              } catch (Exception e) {
-
-                                                                              }
+                                                                              mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                                                                  @Override
+                                                                                  public void onCompletion(MediaPlayer mediaPlayer) {
+                                                                                      ibPlay.setVisibility(View.VISIBLE);
+                                                                                      ibStop.setVisibility(View.VISIBLE);
+                                                                                      //vv.start();
+                                                                                  }
+                                                                              });
                                                                               mp.start();
                                                                           }
                                                                       });
-
-
-                                                                  }
+                                                          }
                                                       }
                                                   }
                                               }).start();
-
                                           }
                                       }
                                   });
-
-
 
 
         ibStop.setOnClickListener(new View.OnClickListener() {
@@ -252,31 +256,36 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mp.release();
+        mp=null;
     }
 
 
     private void DialogInstruccionsVisualitzar(final MediaPlayer mp){
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(VisualitzarFragmentsActivity.this);
+        LayoutInflater factory = LayoutInflater.from(this);
+        View textEntryView = factory.inflate(R.layout.dialegs, null);
+        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        tv.setText(R.string.DialogVideo1);
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
+                .setView(textEntryView)
                 .setCancelable(false)
                 .setMessage(R.string.DialogVideo1)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        try{
-                            mp.prepare();
-                        }catch (Exception e){
 
-                        }
+                        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                mp.stop();
+                                mp.release();
+                                ibPlay.setVisibility(View.VISIBLE);
+                                ibStop.setVisibility(View.VISIBLE);
+                                ibPlay.setEnabled(true);
+                                ibStop.setEnabled(true);
+                            }
+                        });
                         mp.start();
-                        while(mp.isPlaying()){
-                        }
-                        mp.stop();
-                        mp.release();
-                        ibPlay.setVisibility(View.VISIBLE);
-                        ibStop.setVisibility(View.VISIBLE);
-                        ibPlay.setEnabled(true);
-                        ibStop.setEnabled(true);
                         arg0.cancel();
                         arg0.dismiss();
 
@@ -286,28 +295,31 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
     }
     private void DialegFraccions(final MediaPlayer mp,final boolean ultim){
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(VisualitzarFragmentsActivity.this);
+        LayoutInflater factory = LayoutInflater.from(this);
+        View textEntryView = factory.inflate(R.layout.dialegs, null);
+        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        tv.setText(R.string.DialogVideo1);
         DialegFormControl
                 .setTitle(getString(R.string.Listen))
+                .setView(textEntryView)
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        try{
-                            mp.prepare();
-                        }catch (Exception e){
-
-                        }
+                        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                mp.stop();
+                                mp.release();
+                                ibPlay.setVisibility(View.VISIBLE);
+                                ibStop.setVisibility(View.VISIBLE);
+                                ibPlay.setEnabled(true);
+                                ibStop.setEnabled(true);
+                                if(!ultim){
+                                    vv.start();
+                                }
+                            }
+                        });
                         mp.start();
-                        while(mp.isPlaying()){
-                        }
-                        mp.stop();
-                        mp.release();
-                        ibPlay.setVisibility(View.VISIBLE);
-                        ibStop.setVisibility(View.VISIBLE);
-                        ibPlay.setEnabled(true);
-                        ibStop.setEnabled(true);
-                        if(!ultim){
-                           vv.start();
-                        }
                         arg0.cancel();
                         arg0.dismiss();
                     }
