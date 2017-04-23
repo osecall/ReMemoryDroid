@@ -12,6 +12,7 @@ import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.SystemClock;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -77,17 +78,22 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         if (i==R.id.btNextWeather){
             new AlertDialog.Builder(EvocarActivity.this)
                     .setMessage(R.string.DoingGreat)
-                    .setCancelable(false)
+                    .setCancelable(true)
                     .setTitle(R.string.Congratulations)
                     .setNeutralButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             startActivity(intent);
+                            finish();
                         }
-                    })
+                    }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogInterface) {
+                    startActivity(intent);
+                    finish();
+                }
+            })
                     .show();
-
-
         }
     }
 
@@ -98,22 +104,24 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         mr.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
 
         mr.setOutputFile(outputFile);
-
         try {
             mr.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
         mr.start();
-        ibRecordEvocar.setEnabled(false);
-        ibPlayEvocar.setEnabled(false);
-        ibPlayEvocar.setImageResource(R.drawable.audiof);
-        Toast.makeText(EvocarActivity.this,R.string.Recording ,
-                Toast.LENGTH_SHORT).show();
+
         tvRecording.setVisibility(View.VISIBLE);
         chronometer.setVisibility(View.VISIBLE);
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
+
+
+        ibStopRecordEvocar.setVisibility(View.VISIBLE);
+        ibStopRecordEvocar.setEnabled(true);
+
+        Toast.makeText(EvocarActivity.this,R.string.Recording ,
+                Toast.LENGTH_SHORT).show();
 
     }
     private void pararGrabar(){
@@ -121,11 +129,10 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             mr.stop();
             mr.release();
             mr=null;
+            chronometer.stop();
+            chronometer.setVisibility(View.INVISIBLE);
         }
         tvRecording.setVisibility(View.INVISIBLE);
-        chronometer.stop();
-        chronometer.setVisibility(View.INVISIBLE);
-        chronometer.setBase(0);
 
         ibPlayEvocar.setEnabled(true);
         ibRecordEvocar.setEnabled(true);
@@ -142,6 +149,8 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         }
 
         else {
+            ibPlayEvocar.setVisibility(View.VISIBLE);
+            ibPlayEvocar.setEnabled(true);
             //Enviar fitxer so a FireBase
             showProgressDialog();
             //Col·locar-ho en l'episodi corresponent
@@ -167,23 +176,35 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         }
     }
     private void reproduir(){
-        mp = new MediaPlayer();
         ibRecordEvocar.setEnabled(false);
-        ibRecordEvocar.setImageResource(R.drawable.microf);
-        try {
-            mp.setDataSource(outputFile);
-            mp.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ibRecordEvocar.setActivated(false);
+        ibRecordEvocar.setVisibility(View.INVISIBLE);
+        mp = MediaPlayer.create(this,Uri.parse(outputFile));
         mp.start();
-        ibRecordEvocar.setEnabled(true);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                ibRecordEvocar.setEnabled(true);
+                mp.stop();
+                mp.release();
+                ibStopPlayEvocar.setEnabled(false);
+                ibStopPlayEvocar.setVisibility(View.INVISIBLE);
+                ibRecordEvocar.setVisibility(View.VISIBLE);
+
+            }
+        });
+        ibStopPlayEvocar.setEnabled(true);
+        ibStopPlayEvocar.setVisibility(View.VISIBLE);
 
     }
     private void pararReproduccio(){
         if(mp.isPlaying()){
             mp.stop();
+            mp.release();
+            ibRecordEvocar.setVisibility(View.VISIBLE);
         }
+        ibStopPlayEvocar.setEnabled(false);
+        ibStopPlayEvocar.setVisibility(View.INVISIBLE);
         ibRecordEvocar.setEnabled(true);
         ibRecordEvocar.setImageResource(R.drawable.microphone);
 
@@ -290,9 +311,15 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         ibPlayEvocar = (ImageButton) findViewById(R.id.ibPlayEvocar);
         ibStopRecordEvocar = (ImageButton) findViewById(R.id.ibStopRecordEvocar);
 
+        ibStopRecordEvocar.setVisibility(View.INVISIBLE);
+        ibStopPlayEvocar.setVisibility(View.INVISIBLE);
+        ibStopRecordEvocar.setEnabled(false);
+        ibStopPlayEvocar.setEnabled(false);
+        ibPlayEvocar.setVisibility(View.INVISIBLE);
+        ibPlayEvocar.setEnabled(false);
+
         tvRecording = (TextView) findViewById(R.id.tvRecordingEvocar);
         tvRecording.setVisibility(View.INVISIBLE);
-
 
         btBack = (Button) findViewById(R.id.btBackWeather);
         btNext = (Button) findViewById(R.id.btNextWeather);
@@ -315,6 +342,9 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         super.onDestroy();
         mr.release();
         mp.release();
+        mr=null;
+        mp=null;
+        finish();
     }
 
     //Part del menú 'action bar'
@@ -448,18 +478,16 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
 
     private void reproduirMissatgeDialeg(){
-        MediaPlayer mp = MediaPlayer.create(this,R.raw.evocara);
-        try{
-            mp.prepare();
-        }catch (Exception e){
-            Toast.makeText(EvocarActivity.this, e.toString(),
-                    Toast.LENGTH_LONG).show();e.toString();
-        }
+        final MediaPlayer mp = MediaPlayer.create(this,R.raw.evocara);
         mp.start();
-        while(mp.isPlaying()){
-        }
-        mp.stop();
-        mp.release();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mp.stop();
+                mp.release();
+            }
+        });
+
     }
 
     @Override
