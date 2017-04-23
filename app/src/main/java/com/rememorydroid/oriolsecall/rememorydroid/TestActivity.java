@@ -60,11 +60,17 @@ public class TestActivity extends AppCompatActivity {
     public static StorageReference myRef;
     public static DatabaseReference DBRef;
     public static ProgressDialog mProgressDialog;
+    public static TextView tv;
+    public static View textEntryView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+        LayoutInflater factory = LayoutInflater.from(this);
+        textEntryView = factory.inflate(R.layout.dialegs, null);
+        tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -84,7 +90,6 @@ public class TestActivity extends AppCompatActivity {
         DBRef = FirebaseDatabase.getInstance().getReference("pacients");
         prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         editor= prefs.edit();
-
 
         //Recuperació valors
 
@@ -766,9 +771,6 @@ public class TestActivity extends AppCompatActivity {
                         });
 
                         AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(getContext());
-                        LayoutInflater factory = LayoutInflater.from(getContext());
-                        View textEntryView = factory.inflate(R.layout.dialegs, null);
-                        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
                         tv.setText(R.string.Colaboration);
                         DialegDespedida
                                     .setCancelable(false)
@@ -831,9 +833,6 @@ public class TestActivity extends AppCompatActivity {
                         });
 
                         AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(getContext());
-                        LayoutInflater factory = LayoutInflater.from(getContext());
-                        View textEntryView = factory.inflate(R.layout.dialegs, null);
-                        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
                         tv.setText(R.string.Colaboration);
                         DialegDespedida
                                 .setCancelable(false)
@@ -928,13 +927,11 @@ public class TestActivity extends AppCompatActivity {
 
     private void mostrarAlertaPelicula(){
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(TestActivity.this);
-        LayoutInflater factory = LayoutInflater.from(this);
-        View textEntryView = factory.inflate(R.layout.dialegs, null);
-        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+
         tv.setText(R.string.AlertDialaogTest);
         DialegFormControl
                 .setCancelable(false)
-                .setView(R.string.AlertDialaogTest)
+                .setView(textEntryView)
                 .setTitle(getString(R.string.Attention))
                 //.setMessage(R.string.AlertDialaogTest)
                 .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
