@@ -96,6 +96,7 @@ public class VisualitzarActivity extends AppCompatActivity {
 
                 ibPlay.setEnabled(true);
                 ibStop.setEnabled(true);
+
             }
         });
 

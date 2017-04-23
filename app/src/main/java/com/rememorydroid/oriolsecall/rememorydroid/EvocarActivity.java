@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     private Chronometer chronometer;
     private FirebaseStorage reference = FirebaseStorage.getInstance();
     private boolean curta=false;
+    private ProgressBar pbEvocar;
     private PacientUsuari pacientusuari;
     private static final int MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 4 ;
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1 ;
@@ -115,6 +117,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         chronometer.setVisibility(View.VISIBLE);
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
+        pbEvocar.setVisibility(View.VISIBLE);
 
 
         ibStopRecordEvocar.setVisibility(View.VISIBLE);
@@ -132,7 +135,9 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             chronometer.stop();
             chronometer.setVisibility(View.INVISIBLE);
         }
+        pbEvocar.setVisibility(View.INVISIBLE);
         tvRecording.setVisibility(View.INVISIBLE);
+        ibStopRecordEvocar.setVisibility(View.INVISIBLE);
 
         ibPlayEvocar.setEnabled(true);
         ibRecordEvocar.setEnabled(true);
@@ -310,6 +315,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         ibStopPlayEvocar = (ImageButton) findViewById(R.id.ibStopPlayEvocar);
         ibPlayEvocar = (ImageButton) findViewById(R.id.ibPlayEvocar);
         ibStopRecordEvocar = (ImageButton) findViewById(R.id.ibStopRecordEvocar);
+        pbEvocar = (ProgressBar) findViewById(R.id.pbEvocar);
 
         ibStopRecordEvocar.setVisibility(View.INVISIBLE);
         ibStopPlayEvocar.setVisibility(View.INVISIBLE);
