@@ -39,7 +39,7 @@ public class AlbumActivity extends BaseActivity {
     private ImageView ivAlbum0, ivAlbum1,ivAlbum2,ivAlbum3,ivAlbum4,ivAlbum5,ivAlbum6,ivAlbum7;
     private SharedPreferences prefs;
     private String ID, episodi;
-    private Animation aumentar, translate;
+    private Animation translate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +71,6 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum7 = (ImageView) findViewById(R.id.ivAlbum7);
 
         //Per animar les imatges al clicar a sobre
-        aumentar = AnimationUtils.loadAnimation(getBaseContext(), R.anim.zoom);
-        aumentar.reset();
         translate = AnimationUtils.loadAnimation(getBaseContext(), R.anim.translate);
         translate.reset();
 
@@ -96,8 +94,6 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ivAlbum0.setAnimation(aumentar);
-                ivAlbum0.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
                 ivAlbum0.setDrawingCacheEnabled(true);
@@ -142,8 +138,6 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ivAlbum1.setAnimation(aumentar);
-                ivAlbum1.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
                 ivAlbum1.setDrawingCacheEnabled(true);
@@ -186,8 +180,6 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ivAlbum2.setAnimation(aumentar);
-                ivAlbum2.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
                 ivAlbum2.setDrawingCacheEnabled(true);
@@ -230,8 +222,6 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ivAlbum3.setAnimation(aumentar);
-                ivAlbum3.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
                 ivAlbum3.setDrawingCacheEnabled(true);
@@ -274,8 +264,6 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ivAlbum4.setAnimation(aumentar);
-                ivAlbum4.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
                 ivAlbum4.setDrawingCacheEnabled(true);
@@ -318,8 +306,6 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ivAlbum5.setAnimation(aumentar);
-                ivAlbum5.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
                 ivAlbum5.setDrawingCacheEnabled(true);
@@ -362,8 +348,6 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ivAlbum6.setAnimation(aumentar);
-                ivAlbum6.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
                 ivAlbum6.setDrawingCacheEnabled(true);
@@ -406,8 +390,6 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ivAlbum7.setAnimation(aumentar);
-                ivAlbum7.startAnimation(aumentar);
 
                 //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
                 ivAlbum7.setDrawingCacheEnabled(true);

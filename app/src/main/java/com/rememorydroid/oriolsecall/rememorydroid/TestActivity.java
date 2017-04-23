@@ -287,8 +287,8 @@ public class TestActivity extends AppCompatActivity {
             ivFromPage.setImageDrawable(FromPage);
             ivToPage.setImageDrawable(ToPage);
 
-            final Button btBack = (Button) rootView.findViewById(R.id.btBackPel1);
-            final Button btNext = (Button) rootView.findViewById(R.id.btNextPel1);
+            final Button btBack = (Button) rootView.findViewById(R.id.btBackPel2);
+            final Button btNext = (Button) rootView.findViewById(R.id.btNextPel2);
 
             btNext.setEnabled(false);
             btNext.setVisibility(View.INVISIBLE);
@@ -384,8 +384,8 @@ public class TestActivity extends AppCompatActivity {
             ivFromPage.setImageDrawable(FromPage);
             ivToPage.setImageDrawable(ToPage);
 
-            final Button btBack = (Button) rootView.findViewById(R.id.btBackPel1);
-            final Button btNext = (Button) rootView.findViewById(R.id.btNextPel1);
+            final Button btBack = (Button) rootView.findViewById(R.id.btBackPel3);
+            final Button btNext = (Button) rootView.findViewById(R.id.btNextPel3);
 
             btNext.setEnabled(false);
             btNext.setVisibility(View.INVISIBLE);
@@ -480,8 +480,8 @@ public class TestActivity extends AppCompatActivity {
             ivFromPage.setImageDrawable(FromPage);
             ivToPage.setImageDrawable(ToPage);
 
-            final Button btBack = (Button) rootView.findViewById(R.id.btBackPel1);
-            final Button btNext = (Button) rootView.findViewById(R.id.btNextPel1);
+            final Button btBack = (Button) rootView.findViewById(R.id.btBackPel4);
+            final Button btNext = (Button) rootView.findViewById(R.id.btNextPel4);
 
             btNext.setEnabled(false);
             btNext.setVisibility(View.INVISIBLE);
@@ -576,8 +576,8 @@ public class TestActivity extends AppCompatActivity {
             ivFromPage.setImageDrawable(FromPage);
             ivToPage.setImageDrawable(ToPage);
 
-            final Button btBack = (Button) rootView.findViewById(R.id.btBackPel1);
-            final Button btNext = (Button) rootView.findViewById(R.id.btNextPel1);
+            final Button btBack = (Button) rootView.findViewById(R.id.btBackPel5);
+            final Button btNext = (Button) rootView.findViewById(R.id.btNextPel5);
 
             btNext.setEnabled(false);
             btNext.setVisibility(View.INVISIBLE);
@@ -672,8 +672,8 @@ public class TestActivity extends AppCompatActivity {
             ivFromPage.setImageDrawable(FromPage);
             ivToPage.setImageDrawable(ToPage);
 
-            final Button btBack = (Button) rootView.findViewById(R.id.btBackPel1);
-            final Button btNext = (Button) rootView.findViewById(R.id.btNextPel1);
+            final Button btBack = (Button) rootView.findViewById(R.id.btBackPel6);
+            final Button btNext = (Button) rootView.findViewById(R.id.btNextPel6);
 
             btNext.setEnabled(false);
             btNext.setVisibility(View.INVISIBLE);
@@ -690,15 +690,15 @@ public class TestActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     if(!SegonTest){
-                        if(!respostes.getTest1Pregunta1().isEmpty() && !respostes.getTest1Pregunta2().isEmpty() && !respostes.getTest1Pregunta3().isEmpty() &&
-                                !respostes.getTest1Pregunta4().isEmpty() && !respostes.getTest1Pregunta5().isEmpty()){
+                        if(!respostes.getTest1Pregunta1().matches("0") && !respostes.getTest1Pregunta2().matches("0") && !respostes.getTest1Pregunta3().matches("0") &&
+                                !respostes.getTest1Pregunta4().matches("0") && !respostes.getTest1Pregunta5().matches("0")){
                             btNext.setVisibility(View.VISIBLE);
                             btNext.setEnabled(true);
                         }
                     }
                     if(SegonTest){
-                        if(!respostes.getTest2Pregunta1().isEmpty() && !respostes.getTest2Pregunta2().isEmpty() && !respostes.getTest2Pregunta3().isEmpty() &&
-                                !respostes.getTest2Pregunta4().isEmpty() && !respostes.getTest2Pregunta5().isEmpty()){
+                        if(!respostes.getTest2Pregunta1().matches("0") && !respostes.getTest2Pregunta2().isEmpty() && !respostes.getTest2Pregunta3().matches("0") &&
+                                !respostes.getTest2Pregunta4().matches("0") && !respostes.getTest2Pregunta5().matches("0")){
                             btNext.setVisibility(View.VISIBLE);
                             btNext.setEnabled(true);
                         }

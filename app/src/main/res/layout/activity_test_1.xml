@@ -53,7 +53,7 @@
         android:textStyle="bold"
         android:layout_alignBaseline="@+id/tvMoltPel1"
         android:layout_alignBottom="@+id/tvMoltPel1"
-        android:layout_alignStart="@+id/btNextPel1" />
+        android:layout_alignStart="@+id/btNextPel5" />
 
     <TextView
         android:id="@+id/tvMoltPel1"
@@ -63,7 +63,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_above="@+id/rbGroup1Pel1"
-        android:layout_alignStart="@+id/btBackPel1"
+        android:layout_alignStart="@+id/btBackPel5"
         android:layout_marginBottom="10dp" />
 
     <RadioGroup
