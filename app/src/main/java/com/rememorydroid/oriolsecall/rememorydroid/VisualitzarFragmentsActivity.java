@@ -270,7 +270,7 @@ public class VisualitzarFragmentsActivity extends AppCompatActivity {
                 .setTitle(getString(R.string.Attention))
                 .setView(textEntryView)
                 .setCancelable(false)
-                .setMessage(R.string.DialogVideo1)
+                //.setMessage(R.string.DialogVideo1)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 
