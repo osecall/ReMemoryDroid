@@ -356,49 +356,52 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         mp=null;
     }
 
-    //Part del menú 'action bar'
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
-        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+"("+pacientusuari.getID()+")");
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        //Part del menú 'action bar'
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.btSignOutMenu) {
-
-            //Retorna a la pantalla inicial
-            FirebaseAuth.getInstance().signOut();
-            Toast.makeText(EvocarActivity.this, R.string.signed_out,
-                    Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(EvocarActivity.this, SignInActivity.class);
-            startActivity(areaAvaluador);
-
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu){
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.menu, menu);
+            menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+            menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient) + "(" + pacientusuari.getID() + ")");
+            return true;
         }
 
-        if (id == R.id.btSignOutPacient) {
+        @Override
+        public boolean onOptionsItemSelected (MenuItem item){
+            // Handle action bar item clicks here. The action bar will
+            // automatically handle clicks on the Home/Up button, so long
+            // as you specify a parent activity in AndroidManifest.xml.
+            int id = item.getItemId();
 
-            //Retorna a la pantalla 'Area Avaluador'
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.btSignOutMenu) {
 
-            Toast.makeText(EvocarActivity.this, R.string.MenuChangePacient,
-                    Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(EvocarActivity.this, AreaAvaluadorActivity.class);
-            startActivity(areaAvaluador);
+                //Retorna a la pantalla inicial
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(EvocarActivity.this, R.string.signed_out,
+                        Toast.LENGTH_LONG).show();
+                Intent areaAvaluador = new Intent(EvocarActivity.this, SignInActivity.class);
+                startActivity(areaAvaluador);
 
+            }
+
+            if (id == R.id.btSignOutPacient) {
+
+                //Retorna a la pantalla 'Area Avaluador'
+
+                Toast.makeText(EvocarActivity.this, R.string.MenuChangePacient,
+                        Toast.LENGTH_LONG).show();
+                Intent areaAvaluador = new Intent(EvocarActivity.this, AreaAvaluadorActivity.class);
+                startActivity(areaAvaluador);
+
+            }
+
+            return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
-    }
 
     private void DialegPrimer(){
         LayoutInflater factory = LayoutInflater.from(EvocarActivity.this);

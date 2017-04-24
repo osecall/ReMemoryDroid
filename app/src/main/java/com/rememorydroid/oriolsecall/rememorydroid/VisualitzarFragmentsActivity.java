@@ -129,12 +129,14 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
                     public void onCompletion(MediaPlayer mediaPlayer) {
                         mp.stop();
                         mp.release();
+                        btNext.setVisibility(View.VISIBLE);
+                        btNext.setEnabled(true);
+                        ibPlay.setImageDrawable(getDrawable(R.drawable.play));
                     }
                 });
 
                 //DialegFraccions(MediaPlayer.create(VisualitzarFragmentsActivity.this,R.raw.respirar1),true);
-                btNext.setVisibility(View.VISIBLE);
-                ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+
 
             }
         });
