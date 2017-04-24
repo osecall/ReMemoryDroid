@@ -122,6 +122,8 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
         vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
+                ibPlay.setVisibility(View.INVISIBLE);
+                ibStop.setVisibility(View.INVISIBLE);
                 mp=MediaPlayer.create(VisualitzarFragmentsActivity.this,R.raw.evocara);
                 mp.start();
                 mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -129,6 +131,8 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
                     public void onCompletion(MediaPlayer mediaPlayer) {
                         mp.stop();
                         mp.release();
+                        ibPlay.setVisibility(View.VISIBLE);
+                        ibStop.setVisibility(View.VISIBLE);
                         btNext.setVisibility(View.VISIBLE);
                         btNext.setEnabled(true);
                         ibPlay.setImageDrawable(getDrawable(R.drawable.play));

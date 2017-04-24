@@ -84,20 +84,14 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             new AlertDialog.Builder(EvocarActivity.this)
                     //.setMessage(R.string.DoingGreat)
                     .setView(textEntryView)
-                    .setCancelable(true)
+                    .setCancelable(false)
                     .setTitle(R.string.Congratulations)
                     .setNeutralButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             startActivity(intent);
                         }
-                    }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    startActivity(intent);
-                }
-            })
-                    .show();
+                    }).show();
         }
     }
 
@@ -195,6 +189,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                 ibRecordEvocar.setEnabled(true);
                 mp.stop();
                 mp.release();
+                mp=null;
                 ibStopPlayEvocar.setEnabled(false);
                 ibStopPlayEvocar.setVisibility(View.INVISIBLE);
                 ibRecordEvocar.setVisibility(View.VISIBLE);
@@ -354,6 +349,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         mp.release();
         mr=null;
         mp=null;
+        finish();
     }
 
 
@@ -518,7 +514,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
     private void reproduirMissatgeDialeg(){
         final MediaPlayer mp = MediaPlayer.create(this,R.raw.evocara);
-        mp.start();
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
@@ -527,7 +522,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                 ibRecordEvocar.setEnabled(true);
             }
         });
-
+        mp.start();
     }
 
     @Override
