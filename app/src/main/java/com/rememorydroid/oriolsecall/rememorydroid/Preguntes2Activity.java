@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,6 +50,8 @@ public class Preguntes2Activity extends AppCompatActivity {
     public static SharedPreferences prefs;
 
     public static TestAnswers respostes_recuperades;
+
+    public static PacientUsuari pacient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,7 @@ public class Preguntes2Activity extends AppCompatActivity {
         respostes_recuperades= new TestAnswers();
         respostes_recuperades = gson.fromJson(respostes_json, TestAnswers.class);
 
+        pacient = gson.fromJson(prefs.getString("pacient",null),PacientUsuari.class);
     }
 
     //Part del menú 'action bar'
@@ -89,6 +93,7 @@ public class Preguntes2Activity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
         menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+" ("+pacient.getID()+")");
         return true;
     }
 
@@ -154,8 +159,12 @@ public class Preguntes2Activity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes2_1, container, false);
-            Button btNextPeople = (Button) rootView.findViewById(R.id.btNextPeople);
-            Button btBackPeople = (Button) rootView.findViewById(R.id.btBackPeople);
+
+            final Button btNextPeople = (Button) rootView.findViewById(R.id.btNextPeople);
+            final Button btBackPeople = (Button) rootView.findViewById(R.id.btBackPeople);
+
+            btNextPeople.setEnabled(false);
+            btNextPeople.setVisibility(View.INVISIBLE);
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgPeople);
 
@@ -173,6 +182,9 @@ public class Preguntes2Activity extends AppCompatActivity {
 
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesPersones_Accions(rb.getText().toString());
+
+                    btNextPeople.setEnabled(true);
+                    btNextPeople.setVisibility(View.VISIBLE);
 
 
 
@@ -228,8 +240,11 @@ public class Preguntes2Activity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes2_2, container, false);
-            Button btNextPeople = (Button) rootView.findViewById(R.id.btNextPeople2);
-            Button btBackPeople = (Button) rootView.findViewById(R.id.btBackPeople2);
+            final Button btNextPeople = (Button) rootView.findViewById(R.id.btNextPeople2);
+            final Button btBackPeople = (Button) rootView.findViewById(R.id.btBackPeople2);
+
+            btNextPeople.setEnabled(false);
+            btNextPeople.setVisibility(View.INVISIBLE);
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgPeople2);
 
@@ -247,6 +262,9 @@ public class Preguntes2Activity extends AppCompatActivity {
 
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesPersones_Grups(rb.getText().toString());
+
+                    btNextPeople.setEnabled(true);
+                    btNextPeople.setVisibility(View.VISIBLE);
 
 
 
@@ -300,8 +318,11 @@ public class Preguntes2Activity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes2_3, container, false);
-            Button btNextPeople = (Button) rootView.findViewById(R.id.btNextEmotions1);
-            Button btBackPeople = (Button) rootView.findViewById(R.id.btBackPeople3);
+            final Button btNextPeople = (Button) rootView.findViewById(R.id.btNextEmotions1);
+            final Button btBackPeople = (Button) rootView.findViewById(R.id.btBackPeople3);
+
+            btNextPeople.setEnabled(false);
+            btNextPeople.setVisibility(View.INVISIBLE);
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgPeople3);
 
@@ -319,6 +340,9 @@ public class Preguntes2Activity extends AppCompatActivity {
 
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesPersones_Relacio(rb.getText().toString());
+
+                    btNextPeople.setEnabled(true);
+                    btNextPeople.setVisibility(View.VISIBLE);
 
                 }
 
@@ -371,8 +395,14 @@ public class Preguntes2Activity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes2_4, container, false);
 
-            RadioGroup rgFragment41Q2 = (RadioGroup) rootView.findViewById(R.id.rgFragment41Q2);
-            RadioGroup rgFragment42Q2 = (RadioGroup) rootView.findViewById(R.id.rgFragment42Q2);
+            final Button btNextEmotions = (Button) rootView.findViewById(R.id.btNextEmotions1);
+            final Button btBackEmotions = (Button) rootView.findViewById(R.id.btBackEmotions);
+
+            btNextEmotions.setEnabled(false);
+            btNextEmotions.setVisibility(View.INVISIBLE);
+
+            final RadioGroup rgFragment41Q2 = (RadioGroup) rootView.findViewById(R.id.rgFragment41Q2);
+            final RadioGroup rgFragment42Q2 = (RadioGroup) rootView.findViewById(R.id.rgFragment42Q2);
 
 
             rgFragment41Q2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -382,6 +412,10 @@ public class Preguntes2Activity extends AppCompatActivity {
                     RadioButton rbSeleccionat = (RadioButton) rootView.findViewById(radioGroup.getCheckedRadioButtonId());
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesEmocions_Observades(rbSeleccionat.getText().toString());
+                    if(rgFragment42Q2.getCheckedRadioButtonId()!=-1){
+                        btNextEmotions.setEnabled(true);
+                        btNextEmotions.setVisibility(View.VISIBLE);
+                    }
                 }
             });
 
@@ -392,11 +426,14 @@ public class Preguntes2Activity extends AppCompatActivity {
                     RadioButton rbSeleccionat = (RadioButton) rootView.findViewById(radioGroup.getCheckedRadioButtonId());
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesEmocions_Propies(rbSeleccionat.getText().toString());
+                    if(rgFragment41Q2.getCheckedRadioButtonId()!=-1){
+                        btNextEmotions.setEnabled(true);
+                        btNextEmotions.setVisibility(View.VISIBLE);
+                    }
                 }
             });
 
-            Button btNextEmotions = (Button) rootView.findViewById(R.id.btNextEmotions1);
-            Button btBackEmotions = (Button) rootView.findViewById(R.id.btBackEmotions);
+
 
             btBackEmotions.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -472,10 +509,16 @@ public class Preguntes2Activity extends AppCompatActivity {
 
     private void DialegQuestionari(){
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(Preguntes2Activity.this);
+        LayoutInflater factory = LayoutInflater.from(Preguntes2Activity.this);
+        View textEntryView = factory.inflate(R.layout.dialegs, null);
+        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        tv.setText(R.string.AskingQuestions);
+
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
                 .setCancelable(false)
-                .setMessage(R.string.AskingQuestions)
+                .setView(textEntryView)
+                //.setMessage(R.string.AskingQuestions)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         arg0.dismiss();

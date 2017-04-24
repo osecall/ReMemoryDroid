@@ -68,10 +68,6 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        LayoutInflater factory = LayoutInflater.from(this);
-        textEntryView = factory.inflate(R.layout.dialegs, null);
-        tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -752,6 +748,7 @@ public class TestActivity extends AppCompatActivity {
                                .setContentType("text/csv")
                                .build();
 
+
                         mProgressDialog = new ProgressDialog(getContext());
                         mProgressDialog.setMessage(getString(R.string.loading));
                         mProgressDialog.setIndeterminate(true);
@@ -773,7 +770,11 @@ public class TestActivity extends AppCompatActivity {
                         });
 
                         AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(getContext());
+                        LayoutInflater factory = LayoutInflater.from(getContext());
+                        textEntryView = factory.inflate(R.layout.dialegs, null);
+                        tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
                         tv.setText(R.string.Colaboration);
+
                         DialegDespedida
                                     .setCancelable(false)
                                     .setView(textEntryView)
@@ -782,7 +783,6 @@ public class TestActivity extends AppCompatActivity {
                                         public void onClick(DialogInterface arg0, int arg1) {
                                             startActivity(new Intent(getContext(), TractamentsActivity.class));
                                             arg0.dismiss();
-                                            getActivity().finish();
                                        }
                                     }).show();
 
@@ -814,6 +814,8 @@ public class TestActivity extends AppCompatActivity {
                                 .setContentType("text/csv")
                                 .build();
 
+
+
                         mProgressDialog = new ProgressDialog(getContext());
                         mProgressDialog.setMessage(getString(R.string.loading));
                         mProgressDialog.setIndeterminate(true);
@@ -835,7 +837,11 @@ public class TestActivity extends AppCompatActivity {
                         });
 
                         AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(getContext());
+                        LayoutInflater factory = LayoutInflater.from(getContext());
+                        textEntryView = factory.inflate(R.layout.dialegs, null);
+                        tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
                         tv.setText(R.string.Colaboration);
+
                         DialegDespedida
                                 .setCancelable(false)
                                 .setView(textEntryView)
@@ -844,7 +850,6 @@ public class TestActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface arg0, int arg1) {
                                         startActivity(new Intent(getContext(), TractamentsActivity.class));
                                         arg0.dismiss();
-                                        getActivity().finish();
                                     }
                                 }).show();
 

@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -94,17 +95,27 @@ public class Escena2Activity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 final AlertDialog.Builder Dialeg1 = new AlertDialog.Builder(Escena2Activity.this);
+                LayoutInflater factory = LayoutInflater.from(Escena2Activity.this);
+                final View textEntryView = factory.inflate(R.layout.dialegs, null);
+                TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+                tv.setText(R.string.Fantastic);
                 Dialeg1
                         .setTitle(getString(R.string.Congratulations))
                         .setCancelable(false)
-                        .setMessage(R.string.Fantastic)
+                        .setView(textEntryView)
+                        //.setMessage(R.string.Fantastic)
                         .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0, int arg1) {
                                 arg0.dismiss();
                                 final AlertDialog.Builder Dialeg2 = new AlertDialog.Builder(Escena2Activity.this);
+                                LayoutInflater factory = LayoutInflater.from(Escena2Activity.this);
+                                final View textEntryView = factory.inflate(R.layout.dialegs, null);
+                                TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+                                tv.setText(R.string.ToEnd);
                                 Dialeg2
                                         .setCancelable(false)
-                                        .setMessage(R.string.ToEnd)
+                                        .setView(textEntryView)
+                                        //.setMessage(R.string.ToEnd)
                                         .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface arg0, int arg1) {
                                                 startActivity(new Intent(Escena2Activity.this, TestActivity.class).putExtra("SegonTest","SegonTest"));

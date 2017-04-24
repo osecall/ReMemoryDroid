@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -149,8 +150,11 @@ public class PreguntesActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes1_1, container, false);
 
-            Button btNextTime = (Button) rootView.findViewById(R.id.btNextTime);
-            Button btBackTime = (Button) rootView.findViewById(R.id.btBackTime);
+            final Button btNextTime = (Button) rootView.findViewById(R.id.btNextTime);
+            final Button btBackTime = (Button) rootView.findViewById(R.id.btBackTime);
+
+            btNextTime.setEnabled(false);
+            btNextTime.setVisibility(View.INVISIBLE);
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhenTime);
 
@@ -168,6 +172,9 @@ public class PreguntesActivity extends AppCompatActivity {
 
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
+
+                    btNextTime.setVisibility(View.VISIBLE);
+                    btNextTime.setEnabled(true);
 
 
 
@@ -225,8 +232,11 @@ public class PreguntesActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes1_2, container, false);
 
-            Button btNextWeather = (Button) rootView.findViewById(R.id.btNextWeather);
-            Button btBackWeather = (Button) rootView.findViewById(R.id.btBackWeather);
+            final Button btNextWeather = (Button) rootView.findViewById(R.id.btNextWeather);
+            final Button btBackWeather = (Button) rootView.findViewById(R.id.btBackWeather);
+
+            btNextWeather.setEnabled(false);
+            btNextWeather.setVisibility(View.INVISIBLE);
 
 
             btBackWeather.setOnClickListener(new View.OnClickListener() {
@@ -258,6 +268,9 @@ public class PreguntesActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                     respostes_recuperades.setPreguntesQuan_Temps(rb.getText().toString());
+
+                    btNextWeather.setEnabled(true);
+                    btNextWeather.setVisibility(View.VISIBLE);
 
                 }
 
@@ -302,8 +315,11 @@ public class PreguntesActivity extends AppCompatActivity {
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1Long);
 
-            Button btNextLong = (Button) rootView.findViewById(R.id.btNextLong);
-            Button btBackLong = (Button) rootView.findViewById(R.id.btBackLong);
+            final Button btNextLong = (Button) rootView.findViewById(R.id.btNextLong);
+            final Button btBackLong = (Button) rootView.findViewById(R.id.btBackLong);
+
+            btNextLong.setEnabled(false);
+            btNextLong.setVisibility(View.INVISIBLE);
 
 
             btBackLong.setOnClickListener(new View.OnClickListener() {
@@ -332,6 +348,9 @@ public class PreguntesActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                     respostes_recuperades.setPreguntesQuan_Duracio(rb.getText().toString());
+
+                    btNextLong.setEnabled(true);
+                    btNextLong.setVisibility(View.VISIBLE);
 
 
                 }
@@ -394,9 +413,11 @@ public class PreguntesActivity extends AppCompatActivity {
 
             listView.setAdapter(adapter);
 
-            Button btNextMonth = (Button) rootView.findViewById(R.id.btNextMonth);
-            Button btBackMonth = (Button) rootView.findViewById(R.id.btBackMonth);
+            final Button btNextMonth = (Button) rootView.findViewById(R.id.btNextMonth);
+            final Button btBackMonth = (Button) rootView.findViewById(R.id.btBackMonth);
 
+            btNextMonth.setEnabled(false);
+            btNextMonth.setVisibility(View.INVISIBLE);
 
             btBackMonth.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -419,6 +440,9 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), seleccionat,
                             Toast.LENGTH_LONG).show();
                     respostes_recuperades.setPreguntesQuan_Mes(seleccionat);
+
+                    btNextMonth.setEnabled(true);
+                    btNextMonth.setVisibility(View.VISIBLE);
                 }
             });
 
@@ -461,8 +485,11 @@ public class PreguntesActivity extends AppCompatActivity {
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1DayTime);
 
-            Button btNextDayTime = (Button) rootView.findViewById(R.id.btNextDayTime);
-            Button btBackDayTime = (Button) rootView.findViewById(R.id.btBackDayTime);
+            final Button btNextDayTime = (Button) rootView.findViewById(R.id.btNextDayTime);
+            final Button btBackDayTime = (Button) rootView.findViewById(R.id.btBackDayTime);
+
+            btNextDayTime.setEnabled(false);
+            btNextDayTime.setVisibility(View.INVISIBLE);
 
 
             btBackDayTime.setOnClickListener(new View.OnClickListener() {
@@ -492,7 +519,8 @@ public class PreguntesActivity extends AppCompatActivity {
 
                     respostes_recuperades.setPreguntesQuan_FranjaDia(rb.getText().toString());
 
-
+                    btNextDayTime.setEnabled(true);
+                    btNextDayTime.setVisibility(View.VISIBLE);
                 }
 
             });
@@ -536,8 +564,11 @@ public class PreguntesActivity extends AppCompatActivity {
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1Location);
 
-            Button btNextGeo = (Button) rootView.findViewById(R.id.btNextGeo);
-            Button btBackGeo = (Button) rootView.findViewById(R.id.btBackGeo);
+            final Button btNextGeo = (Button) rootView.findViewById(R.id.btNextGeo);
+            final Button btBackGeo = (Button) rootView.findViewById(R.id.btBackGeo);
+
+            btNextGeo.setEnabled(false);
+            btNextGeo.setVisibility(View.INVISIBLE);
 
 
             btBackGeo.setOnClickListener(new View.OnClickListener() {
@@ -567,6 +598,9 @@ public class PreguntesActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                     respostes_recuperades.setPreguntesOn_Localitzacio(rb.getText().toString());
+
+                    btNextGeo.setEnabled(true);
+                    btNextGeo.setVisibility(View.VISIBLE);
 
 
                 }
@@ -613,8 +647,11 @@ public class PreguntesActivity extends AppCompatActivity {
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1Enviroments);
 
-            Button btNextEnv = (Button) rootView.findViewById(R.id.btNextEnv);
-            Button btBackEnv = (Button) rootView.findViewById(R.id.btBackEnv);
+            final Button btNextEnv = (Button) rootView.findViewById(R.id.btNextEnv);
+            final Button btBackEnv = (Button) rootView.findViewById(R.id.btBackEnv);
+
+            btNextEnv.setEnabled(false);
+            btNextEnv.setVisibility(View.INVISIBLE);
 
             btBackEnv.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -644,7 +681,8 @@ public class PreguntesActivity extends AppCompatActivity {
 
                     respostes_recuperades.setPreguntesOn_Entorns(rb.getText().toString());
 
-
+                    btNextEnv.setEnabled(true);
+                    btNextEnv.setVisibility(View.VISIBLE);
                 }
 
             });
@@ -688,6 +726,11 @@ public class PreguntesActivity extends AppCompatActivity {
 
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgWhen1Loc);
+            final Button btNextLoc = (Button) rootView.findViewById(R.id.btNextLoc);
+            final Button btBackLoc = (Button) rootView.findViewById(R.id.btBackDetails);
+
+            btNextLoc.setEnabled(false);
+            btNextLoc.setVisibility(View.INVISIBLE);
 
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
@@ -703,13 +746,15 @@ public class PreguntesActivity extends AppCompatActivity {
 
                     respostes_recuperades.setPreguntesOn_Ubicacio(rb.getText().toString());
 
+                    btNextLoc.setEnabled(true);
+                    btNextLoc.setVisibility(View.VISIBLE);
+
 
                 }
 
             });
 
-            Button btNextLoc = (Button) rootView.findViewById(R.id.btNextLoc);
-            Button btBackLoc = (Button) rootView.findViewById(R.id.btBackDetails);
+
 
             btBackLoc.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -760,8 +805,11 @@ public class PreguntesActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes1_9, container, false);
 
-            Button btNextDetails = (Button) rootView.findViewById(R.id.btNextDetails);
-            Button btBackDetails = (Button) rootView.findViewById(R.id.btBackDetails);
+            final Button btNextDetails = (Button) rootView.findViewById(R.id.btNextDetails);
+            final Button btBackDetails = (Button) rootView.findViewById(R.id.btBackDetails);
+
+            btNextDetails.setEnabled(false);
+            btNextDetails.setVisibility(View.INVISIBLE);
 
 
             btBackDetails.setOnClickListener(new View.OnClickListener() {
@@ -793,6 +841,9 @@ public class PreguntesActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                     respostes_recuperades.setPreguntesPerceptius_Sons(rb.getText().toString());
+
+                    btNextDetails.setEnabled(true);
+                    btNextDetails.setVisibility(View.VISIBLE);
                 }
 
             });
@@ -835,8 +886,11 @@ public class PreguntesActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes1_10, container, false);
 
-            Button btNextDetails2 = (Button) rootView.findViewById(R.id.btNextDetails2);
-            Button btBackDetails2 = (Button) rootView.findViewById(R.id.btBackDetails2);
+            final Button btNextDetails2 = (Button) rootView.findViewById(R.id.btNextDetails2);
+            final Button btBackDetails2 = (Button) rootView.findViewById(R.id.btBackDetails2);
+
+            btNextDetails2.setEnabled(false);
+            btNextDetails2.setVisibility(View.INVISIBLE);
 
 
             btBackDetails2.setOnClickListener(new View.OnClickListener() {
@@ -868,6 +922,9 @@ public class PreguntesActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                     respostes_recuperades.setPreguntesPerceptius_Temperatura(rb.getText().toString());
+
+                    btNextDetails2.setEnabled(true);
+                    btNextDetails2.setVisibility(View.VISIBLE);
 
                 }
 
@@ -909,8 +966,11 @@ public class PreguntesActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes1_11, container, false);
 
-            Button btNextDetails3 = (Button) rootView.findViewById(R.id.btNextDetails3);
-            Button btBackDetails3 = (Button) rootView.findViewById(R.id.btBackDetails3);
+            final Button btNextDetails3 = (Button) rootView.findViewById(R.id.btNextDetails3);
+            final Button btBackDetails3 = (Button) rootView.findViewById(R.id.btBackDetails3);
+
+            btNextDetails3.setEnabled(false);
+            btNextDetails3.setVisibility(View.INVISIBLE);
 
 
             btBackDetails3.setOnClickListener(new View.OnClickListener() {
@@ -949,6 +1009,9 @@ public class PreguntesActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                     respostes_recuperades.setPreguntesPerceptius_Olors(rb.getText().toString());
+
+                    btNextDetails3.setEnabled(true);
+                    btNextDetails3.setVisibility(View.VISIBLE);
 
                 }
 
@@ -1047,10 +1110,17 @@ public class PreguntesActivity extends AppCompatActivity {
 
     private void DialegQuestionari(){
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PreguntesActivity.this);
+
+        LayoutInflater factory = LayoutInflater.from(PreguntesActivity.this);
+        View textEntryView = factory.inflate(R.layout.dialegs, null);
+        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        tv.setText(R.string.AskingQuestions);
+
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
+                .setView(textEntryView)
                 .setCancelable(false)
-                .setMessage(R.string.AskingQuestions)
+                //.setMessage(R.string.AskingQuestions)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         arg0.dismiss();
