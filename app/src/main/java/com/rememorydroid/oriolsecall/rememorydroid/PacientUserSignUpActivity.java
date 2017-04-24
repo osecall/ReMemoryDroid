@@ -251,7 +251,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
         }
 
-        if (id == R.id.btSignOutPacient) {
+        if (id == R.id.btSelectUser) {
 
             //Retorna a la pantalla 'Area Avaluador'
 
