@@ -78,9 +78,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_below="@+id/tvQuestionPel1"
-        android:layout_alignStart="@+id/btNextPel4"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="11dp" />
+        android:layout_alignStart="@+id/btNextPel4" />
 
     <RadioGroup
         android:id="@+id/rbGroup1Pel4"

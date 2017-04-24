@@ -212,7 +212,7 @@
     <string name="PictureUploaded">Your favourite picture is saved in your album memory</string>
     <string name="BeingWith">being with %s</string>
     <string name="ChooseSpinner">You have to choose an emotion from the list!</string>
-    <string name="HereShowingImages">Here we are going to show you several images of that episode and ask you to choose the most positive and significant for you.  The image you choose is going to be saved in your memory album.</string>
+    <string name="HereShowingImages">Here we are going to show you several images of that episode and ask you to choose the most positive and significant for you.  \n\nThe image you choose is going to be saved in your memory album.</string>
     <string name="HereWriteAnswers">Here write the answers regarding to the questions:</string>
     <string name="IamWith">"I am with "</string>
     <string name="ImFeeling">"I am feeling %s, "</string>

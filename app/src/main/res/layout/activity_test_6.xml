@@ -78,7 +78,7 @@
         android:text="@string/Very"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="35dp"
         android:layout_below="@+id/tvQuestionPel1"
         android:layout_alignStart="@+id/btNextPel6" />
 

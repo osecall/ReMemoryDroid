@@ -53,14 +53,15 @@
                 <ImageView
                     android:id="@+id/ivAlbum0"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter" />
 
                 <ImageView
                     android:id="@+id/imageView11"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marcofoto" />
+                    app:srcCompat="@drawable/marco2" />
 
             </FrameLayout>
 
@@ -72,14 +73,15 @@
                 <ImageView
                     android:id="@+id/ivAlbum1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter" />
 
                 <ImageView
                     android:id="@+id/imageView12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marcofoto" />
+                    app:srcCompat="@drawable/marco2" />
 
             </FrameLayout>
 
@@ -91,14 +93,15 @@
                 <ImageView
                     android:id="@+id/ivAlbum2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter" />
 
                 <ImageView
                     android:id="@+id/imageView13"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marcofoto" />
+                    app:srcCompat="@drawable/marco2" />
 
             </FrameLayout>
 
@@ -112,21 +115,42 @@
             android:orientation="horizontal">
 
             <FrameLayout
-                android:id="@+id/flAlbum4"
+                android:id="@+id/flAlbum3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/ivAlbum3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter" />
 
                 <ImageView
                     android:id="@+id/imageView14"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marcofoto" />
+                    app:srcCompat="@drawable/marco2" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flAlbum4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivAlbum4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter" />
+
+                <ImageView
+                    android:id="@+id/imageView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/marco2" />
 
             </FrameLayout>
 
@@ -136,35 +160,17 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/ivAlbum4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <ImageView
-                    android:id="@+id/imageView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marcofoto" />
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/flAlbum6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
                     android:id="@+id/ivAlbum5"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter" />
 
                 <ImageView
                     android:id="@+id/imageView16"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marcofoto" />
+                    app:srcCompat="@drawable/marco2" />
 
             </FrameLayout>
 
