@@ -12,8 +12,6 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 
@@ -78,19 +76,14 @@
     <Button
         android:id="@+id/btNextEnv"
         style="@style/Next_button"
-        tools:layout_editor_absoluteX="1114dp"
-        tools:layout_editor_absoluteY="557dp"
-        android:layout_marginBottom="79dp"
-        android:layout_marginEnd="21dp"
+        android:layout_marginEnd="12dp"
         android:layout_alignBottom="@+id/linearLayout2"
         android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/btBackEnv"
         style="@style/Back_button"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="568dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="43dp"
         android:layout_alignBottom="@+id/btNextEnv"
         android:layout_alignParentStart="true" />
 

@@ -36,7 +36,7 @@ public class AlbumActivity extends BaseActivity {
 
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private StorageReference RefFavour;
-    private ImageView ivAlbum0, ivAlbum1,ivAlbum2,ivAlbum3,ivAlbum4,ivAlbum5,ivAlbum6,ivAlbum7;
+    private ImageView ivAlbum0, ivAlbum1,ivAlbum2,ivAlbum3,ivAlbum4,ivAlbum5;
     private SharedPreferences prefs;
     private String ID, episodi;
     private Animation translate;
@@ -67,8 +67,6 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum3 = (ImageView) findViewById(R.id.ivAlbum3);
         ivAlbum4 = (ImageView) findViewById(R.id.ivAlbum4);
         ivAlbum5 = (ImageView) findViewById(R.id.ivAlbum5);
-        ivAlbum6 = (ImageView) findViewById(R.id.ivAlbum6);
-        ivAlbum7 = (ImageView) findViewById(R.id.ivAlbum7);
 
         //Per animar les imatges al clicar a sobre
         translate = AnimationUtils.loadAnimation(getBaseContext(), R.anim.translate);
@@ -345,90 +343,6 @@ public class AlbumActivity extends BaseActivity {
                 });
             }
         });
-        ivAlbum6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                ivAlbum6.setDrawingCacheEnabled(true);
-                ivAlbum6.buildDrawingCache();
-                Bitmap bitmap = ivAlbum6.getDrawingCache();
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                final byte[] data6 = baos.toByteArray();
-
-                UploadTask uploadTask = RefFavour.putBytes(data6);
-                uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        while(!task.isComplete()) showProgressDialog();
-                        if(task.isComplete()){
-                            hideProgressDialog();
-                            Toast.makeText(getApplicationContext(),
-                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                            ivAlbum6.setAnimation(translate);
-                            ivAlbum6.startAnimation(translate);
-
-
-                            new Handler().postDelayed(new Runnable(){
-                                public void run(){
-                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                    intent.putExtra("favorita",data6);
-                                    startActivity(intent);
-                                }
-                            }, 3000);
-
-                        }
-                        if(!task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),
-                                    "Error!", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-            }
-        });
-        ivAlbum7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                ivAlbum7.setDrawingCacheEnabled(true);
-                ivAlbum7.buildDrawingCache();
-                Bitmap bitmap = ivAlbum7.getDrawingCache();
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                final byte[] data7 = baos.toByteArray();
-
-                UploadTask uploadTask = RefFavour.putBytes(data7);
-                uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        while(!task.isComplete()) showProgressDialog();
-                        if(task.isComplete()){
-                            hideProgressDialog();
-                            Toast.makeText(getApplicationContext(),
-                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                            ivAlbum7.setAnimation(translate);
-                            ivAlbum7.startAnimation(translate);
-
-
-                            new Handler().postDelayed(new Runnable(){
-                                public void run(){
-                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                    intent.putExtra("favorita",data7);
-                                    startActivity(intent);
-                                }
-                            }, 3000);
-
-                        }
-                        if(!task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),
-                                    "Error!", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-            }
-        });
     }
 
     private void descargarImatges(){
@@ -438,8 +352,7 @@ public class AlbumActivity extends BaseActivity {
         StorageReference Ref3 = myRef.child(ID).child(episodi).child("3.jpg");
         StorageReference Ref4 = myRef.child(ID).child(episodi).child("4.jpg");
         StorageReference Ref5 = myRef.child(ID).child(episodi).child("5.jpg");
-        StorageReference Ref6 = myRef.child(ID).child(episodi).child("6.jpg");
-        StorageReference Ref7 = myRef.child(ID).child(episodi).child("7.jpg");
+
 
         showProgressDialog();
         Ref0.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -489,23 +402,7 @@ public class AlbumActivity extends BaseActivity {
                 hideProgressDialog();
             }
         });
-        showProgressDialog();
-        Ref6.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum6);
-                hideProgressDialog();
-            }
-        });
-        showProgressDialog();
-        Ref7.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum7);
-                hideProgressDialog();
-            }
-        });
-        showProgressDialog();
+
     }
 
     //Part del menú 'action bar'
@@ -515,7 +412,7 @@ public class AlbumActivity extends BaseActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
         menu.getItem(0).setTitle(getString(R.string.sign_out,FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
-        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient,ID));
+        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+" ("+ID+")");
         return true;
     }
 

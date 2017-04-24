@@ -17,10 +17,9 @@
     <Button
         android:id="@+id/btNextWeather"
         style="@style/Next_button"
+        android:layout_marginEnd="40dp"
         android:layout_alignBottom="@+id/linearLayout2"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="55dp" />
+        android:layout_alignParentEnd="true" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -29,9 +28,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvWhenItHappened"
