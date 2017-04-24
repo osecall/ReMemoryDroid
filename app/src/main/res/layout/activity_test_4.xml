@@ -64,21 +64,23 @@
         android:id="@+id/tvGensPel1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/btBackPel5"
-        android:layout_below="@+id/tvQuestionPel1"
         android:text="@string/AtAll"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@+id/tvQuestionPel1"
+        android:layout_alignStart="@+id/btBackPel4" />
 
     <TextView
         android:id="@+id/tvMoltPel1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/btNextPel5"
-        android:layout_below="@+id/tvQuestionPel1"
         android:text="@string/Very"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@+id/tvQuestionPel1"
+        android:layout_alignStart="@+id/btNextPel4"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="11dp" />
 
     <RadioGroup
         android:id="@+id/rbGroup1Pel4"

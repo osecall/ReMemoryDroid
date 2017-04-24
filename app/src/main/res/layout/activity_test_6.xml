@@ -37,10 +37,10 @@
         style="@style/QuestionsTestPel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="@string/Question6Pel1"
         android:layout_below="@+id/tvFromTo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
-        android:text="@string/Question6Pel1" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btBackPel6"
@@ -64,21 +64,23 @@
         android:id="@+id/tvGensPel1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/btBackPel5"
-        android:layout_below="@+id/tvQuestionPel1"
         android:text="@string/AtAll"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/tvMoltPel1"
+        android:layout_alignBottom="@+id/tvMoltPel1"
+        android:layout_alignEnd="@+id/btBackPel6" />
 
     <TextView
         android:id="@+id/tvMoltPel1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/btNextPel5"
-        android:layout_below="@+id/tvQuestionPel1"
         android:text="@string/Very"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/tvQuestionPel1"
+        android:layout_alignStart="@+id/btNextPel6" />
 
     <RadioGroup
         android:id="@+id/rbGroup1Pel6"
@@ -88,7 +90,8 @@
         android:layout_span="50"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_below="@+id/tvGensPel1"
+        android:layout_marginTop="71dp"
+        android:layout_below="@+id/tvQuestionPel1"
         android:layout_alignParentStart="true">
 
         <RadioButton
