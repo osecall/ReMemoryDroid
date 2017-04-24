@@ -72,10 +72,10 @@
     <Button
         android:id="@+id/btNextDetails3"
         style="@style/Next_button"
-        android:layout_marginBottom="33dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="18dp"
+        android:layout_below="@+id/linearLayout2"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="18dp" />
+        android:layout_marginTop="11dp" />
 
     <Button
         android:id="@+id/btBackDetails3"
