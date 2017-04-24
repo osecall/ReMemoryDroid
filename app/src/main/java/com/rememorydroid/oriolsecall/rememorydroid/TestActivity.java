@@ -934,7 +934,9 @@ public class TestActivity extends AppCompatActivity {
 
     private void mostrarAlertaPelicula(){
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(TestActivity.this);
-
+        LayoutInflater factory = LayoutInflater.from(this);
+        textEntryView = factory.inflate(R.layout.dialegs, null);
+        tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
         tv.setText(R.string.AlertDialaogTest);
         DialegFormControl
                 .setCancelable(false)
