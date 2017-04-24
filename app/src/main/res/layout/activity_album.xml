@@ -52,14 +52,14 @@
 
                 <ImageView
                     android:id="@+id/ivAlbum0"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitCenter" />
+                    android:layout_width="350dp"
+                    android:layout_height="225dp"
+                    android:layout_gravity="center_horizontal|center" />
 
                 <ImageView
                     android:id="@+id/imageView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/marco2" />
 
@@ -72,8 +72,9 @@
 
                 <ImageView
                     android:id="@+id/ivAlbum1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="350dp"
+                    android:layout_height="225dp"
+                    android:layout_gravity="center_horizontal|center"
                     android:scaleType="fitCenter" />
 
                 <ImageView
@@ -92,8 +93,9 @@
 
                 <ImageView
                     android:id="@+id/ivAlbum2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="350dp"
+                    android:layout_height="225dp"
+                    android:layout_gravity="center_horizontal|center"
                     android:scaleType="fitCenter" />
 
                 <ImageView
@@ -121,8 +123,9 @@
 
                 <ImageView
                     android:id="@+id/ivAlbum3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="350dp"
+                    android:layout_height="225dp"
+                    android:layout_gravity="center_horizontal|center"
                     android:scaleType="fitCenter" />
 
                 <ImageView
@@ -141,8 +144,9 @@
 
                 <ImageView
                     android:id="@+id/ivAlbum4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="350dp"
+                    android:layout_height="225dp"
+                    android:layout_gravity="center_horizontal|center"
                     android:scaleType="fitCenter" />
 
                 <ImageView
@@ -161,8 +165,9 @@
 
                 <ImageView
                     android:id="@+id/ivAlbum5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="350dp"
+                    android:layout_height="225dp"
+                    android:layout_gravity="center_horizontal|center"
                     android:scaleType="fitCenter" />
 
                 <ImageView
