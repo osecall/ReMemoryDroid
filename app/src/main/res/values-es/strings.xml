@@ -99,7 +99,7 @@
     <string name="StopRecording">Se ha parado de grabar</string>
     <string name="Recording">Grabando</string>
     <string name="Congratulations">Felicidades!</string>
-    <string name="DoingGreat">Lo estas haciendo muy bien!</string>
+    <string name="DoingGreat">Lo estas haciendo muy bien %s!</string>
     <string name="ThankYou">Gracias!</string>
     <string name="WhenItHappened">Cuando sucedió?</string>
     <string name="EpisodeSeasonTime">Epoca del año del episodio</string>
@@ -240,7 +240,7 @@
     <string name="Emotions2">Emociones_2</string>
     <string name="Emotions3">Emociones_3</string>
     <string name="Scene">Escena</string>
-    <string name="Fantastic">Fantástico, lo ha hecho muy bien!!!</string>
+    <string name="Fantastic">Fantástico, lo ha hecho muy bien %s!!!</string>
     <string name="ToEnd">Ahora para finalizar le pedimos que señale la opción que más se aproxime a cómo se siente usted ahora mismo</string>
     <string name="ThankYouVeryMuch">Muchas gracias por su colaboración.\nHa hecho un gran trabajo.</string>
     <string name="HopeEnjoy">Esperemos que haya disfrutado reviviendo este episodio de su vida</string>
@@ -251,7 +251,7 @@
     <string name="FourSix">4 de 6</string>
     <string name="FiveSix">5 de 6</string>
     <string name="SixSix">6 de 6</string>
-    <string name="Colaboration">Muchas gracias por tu colaboración. Hiciste un gran trabajo. Esperemos que haya sido estimulante.</string>
+    <string name="Colaboration">Muchas gracias por tu colaboración %s. Hiciste un gran trabajo. Esperemos que haya sido estimulante.</string>
     <string name="Evocarccurta">Ahora le pedimos que recuerda todo lo que pueda del último episodio que se ha visto en la última sesión. Intenta dar detalles de donde estan, con quien, que estan haciendo, etc. Cuando estes listo pulsa el botón de grabar.</string>
     <string name="PacientIDSecurity">Introduce el ID del paciente de nuevo por seguridad</string>
     <string name="AskingQuestions">A continuación le pedimos que responda las siguientes preguntas sobre el episodio que acaba de ver, seleccionando la opción de respuesta que considere correcta</string>
@@ -274,4 +274,9 @@
     <string name="EpisodeNotExist">El episodio no existe</string>
     <string name="EpisodeToDelete">Eliminaras este numero de episodio: %d</string>
     <string name="NumberDoesNotMatch">Números no coinciden</string>
+    <string name="NotificationAlert">Notificación ReMemory</string>
+    <string name="NotificationTest1">Test 1 terminado por %s !</string>
+    <string name="Test1Ticker">Test 1 terminado! Muy buen trabajo %s !!</string>
+    <string name="Test2Ticker">Test 2 terminado! Muy buen trabajo %s !!</string>
+    <string name="NotificationTest2">Test 2 terminado por %s !</string>
 </resources>

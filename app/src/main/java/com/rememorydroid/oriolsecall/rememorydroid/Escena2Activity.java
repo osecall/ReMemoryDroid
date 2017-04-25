@@ -98,7 +98,7 @@ public class Escena2Activity extends BaseActivity {
                 LayoutInflater factory = LayoutInflater.from(Escena2Activity.this);
                 final View textEntryView = factory.inflate(R.layout.dialegs, null);
                 TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
-                tv.setText(R.string.Fantastic);
+                tv.setText(getString(R.string.Fantastic,pacient.getName()));
                 Dialeg1
                         .setTitle(getString(R.string.Congratulations))
                         .setCancelable(false)

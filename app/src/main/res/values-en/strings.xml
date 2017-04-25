@@ -99,7 +99,7 @@
     <string name="StopRecording">Stop recording</string>
     <string name="Recording">Recording</string>
     <string name="Congratulations">Congratulations!</string>
-    <string name="DoingGreat">You are doing it great!</string>
+    <string name="DoingGreat">You are doing it great %s!</string>
     <string name="ThankYou">Thank you!</string>
     <string name="WhenItHappened">When did it happen?</string>
     <string name="EpisodeSeasonTime">Episode\'s season time</string>
@@ -240,7 +240,7 @@
     <string name="Emotions2">Emotions_2</string>
     <string name="Emotions3">Emotions_3</string>
     <string name="Scene">Scene</string>
-    <string name="Fantastic">Outstanding, you did it very well!!!</string>
+    <string name="Fantastic">Outstanding, you did it very well %s!!!</string>
     <string name="ToEnd">Now to finalize we ask you to point the option which is closest to how you feel right now</string>
     <string name="ThankYouVeryMuch">Thank you very much for your cooperation. You have done a great job.</string>
     <string name="HopeEnjoy">We hope you enjoyed recalling this episode of your life</string>
@@ -251,7 +251,7 @@
     <string name="FourSix">4 out of 6</string>
     <string name="FiveSix">5 out of 6</string>
     <string name="SixSix">6 out of 6</string>
-    <string name="Colaboration">Thank you very much for your colaboration. You did a great job. We hope it\'s been estimulating.</string>
+    <string name="Colaboration">Thank you very much for your colaboration %s. You did a great job. We hope it\'s been estimulating.</string>
     <string name="Evocarccurta">Now we ask you to recall everything you can from the last episode you reviewed in the previous day. Try to give details like where they are, with who they are, what they were doing, etc. When you are ready press the \'record\' button.</string>
     <string name="PacientIDSecurity">Introduce the pacient ID again for security reasons</string>
     <string name="AskingQuestions">Here we ask you to answer the next questions about the episode which you have seen, choosing the answer option which you consider it right.</string>
@@ -274,4 +274,9 @@
     <string name="EpisodeNotExist">Episode does not exist</string>
     <string name="EpisodeToDelete">You\'ll delete this episode number: %d</string>
     <string name="NumberDoesNotMatch">Numbers don\'t match</string>
+    <string name="NotificationAlert">Notificaction ReMemory</string>
+    <string name="NotificationTest1">Test 1 finished by %s !</string>
+    <string name="Test1Ticker">Test 1 finished! Great job %s !!</string>
+    <string name="Test2Ticker">Test 2 finished! Great job %s !!</string>
+    <string name="NotificationTest2">Test 2 finished by %s !</string>
 </resources>

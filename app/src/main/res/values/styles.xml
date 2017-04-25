@@ -82,7 +82,7 @@
 
     <style name="Back_button">
         <item name="android:textSize">30sp</item>
-        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_width">125dp</item>
         <item name="android:layout_height">60dp</item>
         <item name="android:padding">10dp</item>
         <item name="android:textAllCaps">false</item>

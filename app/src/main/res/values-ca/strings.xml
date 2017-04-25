@@ -99,7 +99,7 @@
     <string name="StopRecording">S\'ha parat de grabar</string>
     <string name="Recording">Grabant</string>
     <string name="Congratulations">Felicitats!</string>
-    <string name="DoingGreat">Ho estàs fent molt bé!</string>
+    <string name="DoingGreat">Ho estàs fent molt bé %s!</string>
     <string name="ThankYou">Gràcies!</string>
     <string name="WhenItHappened">Quan va passar?</string>
     <string name="EpisodeSeasonTime">Època de l\'any de l\'episodi</string>
@@ -240,7 +240,7 @@
     <string name="Emotions2">Emocions_2</string>
     <string name="Emotions3">Emocions_3</string>
     <string name="Scene">Escena</string>
-    <string name="Fantastic">Fantastic, ho ha fet molt bé!!!</string>
+    <string name="Fantastic">Fantastic, ho ha fet molt bé %s !!!</string>
     <string name="ToEnd">Ara per finalitzar li demanem que senyali l\'opció que més s\'apoximi a com se sent vosté ara mateix</string>
     <string name="ThankYouVeryMuch">Moltes gràcies per la seva col·laboració.</string>
     <string name="HopeEnjoy">Esperem que hagi gaudit revivint aquest episodi de la seva vida</string>
@@ -251,7 +251,7 @@
     <string name="FourSix">4 de 6</string>
     <string name="FiveSix">5 de 6</string>
     <string name="SixSix">6 de 6</string>
-    <string name="Colaboration">Moltes gràcies per la teva col·laboració. Has fet un gran treball. Esperem que hagi estat estimulant.</string>
+    <string name="Colaboration">Moltes gràcies per la teva col·laboració %s. Has fet un gran treball. Esperem que hagi estat estimulant.</string>
     <string name="Evocarccurta">Ara et demanem que recordis tot el que puguis de l\'últim episodi que has vist en l\'última sessió. Intenta donar detalls com on estan, amb qui estan, que estan fent, etc. Quan estiguis preparat apreta el botó de grabar.</string>
     <string name="PacientIDSecurity">Introdueix el ID del pacient de nou per seguretat</string>
     <string name="AskingQuestions">A continuació li demanem que respongui les següents preguntes sobre l\'episodi que acaba de veure, seleccionant l\'opció de resposta que consideri correcta.</string>
@@ -274,4 +274,9 @@
     <string name="EpisodeNotExist">L\'episodi no existeix</string>
     <string name="EpisodeToDelete">Borraràs aquest número d\'episodi: %d</string>
     <string name="NumberDoesNotMatch">Números no coincideixen</string>
+    <string name="NotificationAlert">Notificació ReMemory</string>
+    <string name="NotificationTest1">Test 1 acabat per %s !</string>
+    <string name="Test1Ticker">Test 1 acabat! Molt bona feina %s !!</string>
+    <string name="Test2Ticker">Test 2 acabat! Molt bona feina %s !!</string>
+    <string name="NotificationTest2">Test 2 acabat per %s !</string>
 </resources>

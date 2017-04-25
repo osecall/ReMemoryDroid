@@ -1,14 +1,20 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -41,6 +47,8 @@ import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
+
+import junit.framework.Test;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -769,11 +777,26 @@ public class TestActivity extends AppCompatActivity {
                             }
                         });
 
+                        //Notificació
+                        Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
+
+                        NotificationCompat.Builder mBuilder =
+                                new NotificationCompat.Builder(getContext())
+                                        .setSmallIcon(R.drawable.iconrem)
+                                        .setLargeIcon(bitmap)
+                                        .setContentTitle(getString(R.string.NotificationAlert))
+                                        .setContentText(getString(R.string.NotificationTest2, pacient.getName()))
+                                        .setTicker(getString(R.string.Test2Ticker,pacient.getName()));
+
+                        NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
+                        m.notify(0,mBuilder.build());
+
+
                         AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(getContext());
                         LayoutInflater factory = LayoutInflater.from(getContext());
                         textEntryView = factory.inflate(R.layout.dialegs, null);
                         tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
-                        tv.setText(R.string.Colaboration);
+                        tv.setText(getString(R.string.Colaboration,pacient.getName()));
 
                         DialegDespedida
                                     .setCancelable(false)
@@ -792,6 +815,20 @@ public class TestActivity extends AppCompatActivity {
                         //Guardem respostes ja que és la primera vegada i és la versió curta
                         editor.putString("respostes",gson.toJson(respostes,TestAnswers.class));
                         editor.commit();
+
+                        //Notificació
+                        Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
+
+                        NotificationCompat.Builder mBuilder =
+                                new NotificationCompat.Builder(getContext())
+                                        .setSmallIcon(R.drawable.iconrem)
+                                        .setLargeIcon(bitmap)
+                                        .setContentTitle(getString(R.string.NotificationAlert))
+                                        .setContentText(getString(R.string.NotificationTest1, pacient.getName()))
+                                        .setTicker(getString(R.string.Test1Ticker,pacient.getName()));
+
+                        NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
+                        m.notify(0,mBuilder.build());
 
                         Intent intent = new Intent (getContext(), EvocarActivity.class);
                         intent.putExtra("EvocarC","EvocarC");
@@ -840,7 +877,21 @@ public class TestActivity extends AppCompatActivity {
                         LayoutInflater factory = LayoutInflater.from(getContext());
                         textEntryView = factory.inflate(R.layout.dialegs, null);
                         tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
-                        tv.setText(R.string.Colaboration);
+                        tv.setText(getString(R.string.Colaboration,pacient.getName()));
+
+                        //Notificació
+                        Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
+
+                        NotificationCompat.Builder mBuilder =
+                                new NotificationCompat.Builder(getContext())
+                                        .setSmallIcon(R.drawable.iconrem)
+                                        .setLargeIcon(bitmap)
+                                        .setContentTitle(getString(R.string.NotificationAlert))
+                                        .setContentText(getString(R.string.NotificationTest2, pacient.getName()))
+                                        .setTicker(getString(R.string.Test2Ticker,pacient.getName()));
+
+                        NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
+                        m.notify(0,mBuilder.build());
 
                         DialegDespedida
                                 .setCancelable(false)
@@ -860,6 +911,19 @@ public class TestActivity extends AppCompatActivity {
                         editor.putString("respostes",gson.toJson(respostes,TestAnswers.class));
                         editor.commit();
                         Intent intent = new Intent (getContext(), RespirarActivity.class);
+                        Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
+
+                        //Notificació
+                        NotificationCompat.Builder mBuilder =
+                                new NotificationCompat.Builder(getContext())
+                                        .setSmallIcon(R.drawable.iconrem)
+                                        .setLargeIcon(bitmap)
+                                        .setContentTitle(getString(R.string.NotificationAlert))
+                                        .setContentText(getString(R.string.NotificationTest1, pacient.getName()))
+                                        .setTicker(getString(R.string.Test1Ticker,pacient.getName()));
+
+                        NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
+                        m.notify(0,mBuilder.build());
                         startActivity(intent);
                     }
 
@@ -950,5 +1014,31 @@ public class TestActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    private void NotificarTest1(){
+        Bitmap bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(),R.drawable.checkgreensesentadp);
+
+        NotificationCompat.Builder mBuilder =
+                 new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.iconhappyface)
+                .setLargeIcon(bitmap)
+                .setContentTitle(getString(R.string.NotificationAlert))
+                .setContentText(getString(R.string.NotificationTest1, pacient.getName()))
+                .setContentInfo("4")
+                .setTicker(getString(R.string.Test1Ticker,pacient.getName()));
+    }
+
+    private void NotificarTest2(){
+        Bitmap bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(),R.drawable.checkgreensesentadp);
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.iconhappyface)
+                        .setLargeIcon(bitmap)
+                        .setContentTitle(getString(R.string.NotificationAlert))
+                        .setContentText(getString(R.string.NotificationTest2, pacient.getName()))
+                        .setContentInfo("4")
+                        .setTicker(getString(R.string.Test2Ticker,pacient.getName()));
     }
 }

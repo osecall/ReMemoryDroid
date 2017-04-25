@@ -80,7 +80,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             LayoutInflater factory = LayoutInflater.from(EvocarActivity.this);
             View textEntryView = factory.inflate(R.layout.dialegs, null);
             TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
-            tv.setText(R.string.DoingGreat);
+            tv.setText(getString(R.string.DoingGreat,pacientusuari.getName()));
             new AlertDialog.Builder(EvocarActivity.this)
                     //.setMessage(R.string.DoingGreat)
                     .setView(textEntryView)
@@ -493,7 +493,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         LayoutInflater factory = LayoutInflater.from(EvocarActivity.this);
         View textEntryView = factory.inflate(R.layout.dialegs, null);
         TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
-        tv.setText(R.string.DoingGreat);
+        tv.setText(getString(R.string.DoingGreat,pacientusuari.getName()));
 
         AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
         dialeg
