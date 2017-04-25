@@ -789,7 +789,7 @@ public class TestActivity extends AppCompatActivity {
                                         .setTicker(getString(R.string.Test2Ticker,pacient.getName()));
 
                         NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
-                        m.notify(0,mBuilder.build());
+                        m.notify(1,mBuilder.build());
 
 
                         AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(getContext());
@@ -891,7 +891,7 @@ public class TestActivity extends AppCompatActivity {
                                         .setTicker(getString(R.string.Test2Ticker,pacient.getName()));
 
                         NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
-                        m.notify(0,mBuilder.build());
+                        m.notify(1,mBuilder.build());
 
                         DialegDespedida
                                 .setCancelable(false)
