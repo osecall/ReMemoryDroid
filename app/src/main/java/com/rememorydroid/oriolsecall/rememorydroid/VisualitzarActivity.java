@@ -137,15 +137,7 @@ public class VisualitzarActivity extends BaseActivity {
                 ibPlay.setEnabled(true);
                 ibStop.setEnabled(true);
 
-                vv.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View view, MotionEvent motionEvent) {
-                        vv.setLayoutParams(new RelativeLayout.LayoutParams(getWindow().getAttributes().width, getWindow().getAttributes().height));
-                        //VisualitzarActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
-                        vv.setMediaController(new MediaController(VisualitzarActivity.this));
-                        return true;
-                    }
-                });
+
             }
         });
 
