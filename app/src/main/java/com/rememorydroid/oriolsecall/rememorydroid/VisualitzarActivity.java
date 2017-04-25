@@ -4,19 +4,28 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ViewUtils;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -113,10 +122,10 @@ public class VisualitzarActivity extends BaseActivity {
 
         vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
+            public void onPrepared(final MediaPlayer mediaPlayer) {
                 duration = vv.getDuration();
 
-                vv.setMediaController(new MediaController(VisualitzarActivity.this));
+                //vv.setMediaController(new MediaController(VisualitzarActivity.this));
                 if(noAudio){
                     mediaPlayer.setVolume(0,0);
                 }
@@ -128,6 +137,15 @@ public class VisualitzarActivity extends BaseActivity {
                 ibPlay.setEnabled(true);
                 ibStop.setEnabled(true);
 
+                vv.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        vv.setLayoutParams(new RelativeLayout.LayoutParams(getWindow().getAttributes().width, getWindow().getAttributes().height));
+                        //VisualitzarActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
+                        vv.setMediaController(new MediaController(VisualitzarActivity.this));
+                        return true;
+                    }
+                });
             }
         });
 
