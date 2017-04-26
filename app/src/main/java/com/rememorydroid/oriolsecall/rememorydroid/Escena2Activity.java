@@ -98,34 +98,49 @@ public class Escena2Activity extends BaseActivity {
                 LayoutInflater factory = LayoutInflater.from(Escena2Activity.this);
                 final View textEntryView = factory.inflate(R.layout.dialegs, null);
                 TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+                Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
                 tv.setText(getString(R.string.Fantastic,pacient.getName()));
                 Dialeg1
                         .setTitle(getString(R.string.Congratulations))
                         .setCancelable(false)
-                        .setView(textEntryView)
-                        //.setMessage(R.string.Fantastic)
-                        .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                arg0.dismiss();
-                                final AlertDialog.Builder Dialeg2 = new AlertDialog.Builder(Escena2Activity.this);
-                                LayoutInflater factory = LayoutInflater.from(Escena2Activity.this);
-                                final View textEntryView = factory.inflate(R.layout.dialegs, null);
-                                TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
-                                tv.setText(R.string.ToEnd);
-                                Dialeg2
-                                        .setCancelable(false)
-                                        .setView(textEntryView)
-                                        //.setMessage(R.string.ToEnd)
-                                        .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface arg0, int arg1) {
-                                                startActivity(new Intent(Escena2Activity.this, TestActivity.class).putExtra("SegonTest","SegonTest"));
-                                                arg0.dismiss();
-                                            }
-                                        })
-                                        .show();
+                        .setView(textEntryView);
+
+                final AlertDialog alerta1 = Dialeg1.create();
+
+                alerta1.show();
+
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alerta1.dismiss();
+
+                        final AlertDialog.Builder Dialeg2 = new AlertDialog.Builder(Escena2Activity.this);
+                        LayoutInflater factory = LayoutInflater.from(Escena2Activity.this);
+                        final View textEntryView = factory.inflate(R.layout.dialegs, null);
+                        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+                        Button bt2 = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
+                        tv.setText(R.string.ToEnd);
+                        Dialeg2
+                                .setCancelable(false)
+                                .setView(textEntryView);
+                                //.setMessage(R.string.ToEnd)
+
+
+                        final AlertDialog alerta2 = Dialeg2.create();
+
+                        alerta2.show();
+
+                        bt2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(Escena2Activity.this, TestActivity.class).putExtra("SegonTest","SegonTest"));
+                                alerta2.dismiss();
                             }
-                        })
-                        .show();
+                        });
+
+
+                    }
+                });
 
 
             }

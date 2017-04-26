@@ -20,6 +20,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,18 +89,32 @@ public class AlbumActivity extends BaseActivity {
 
         AlertDialog.Builder Dialeg = new AlertDialog.Builder(AlbumActivity.this);
         TextView Missatge = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
         Missatge.setText(getString(R.string.HereShowingImages));
 
         Dialeg
                 .setTitle(getString(R.string.Attention))
-                .setView(textEntryView)
+                .setView(textEntryView);
+        /*
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         descargarImatges();
                         arg0.dismiss();
                     }
                 })
-                .show();
+                .show();*/
+        final AlertDialog alerta = Dialeg.create();
+
+        alerta.show();
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                descargarImatges();
+                alerta.dismiss();
+            }
+        });
 
         ivAlbum0.setOnClickListener(new View.OnClickListener() {
             @Override

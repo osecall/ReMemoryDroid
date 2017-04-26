@@ -112,10 +112,11 @@ public class EscenaActivity extends BaseActivity {
             }
         });
 
+
         seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                tvValorIntensity1.setText(String.valueOf(i));
+                tvValorIntensity1.setText(String.valueOf(i+1));
                 if(eLvEmocions.getSelectedItemPosition()!=0){
                     btNextEscena.setVisibility(View.VISIBLE);
                 }

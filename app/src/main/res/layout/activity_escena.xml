@@ -57,23 +57,24 @@
         android:id="@+id/tvEscenariInstruccions2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvEscenaInstruccio1"
-        android:layout_alignBottom="@+id/tvEscenaInstruccio1"
-        android:layout_alignStart="@+id/seekBar2"
         android:text="@string/IntensityEmotion"
         android:textSize="26sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/tvEscenaInstruccio1"
+        android:layout_alignBottom="@+id/tvEscenaInstruccio1"
+        android:layout_alignStart="@+id/textView10" />
 
     <SeekBar
         android:id="@+id/seekBar2"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="400dp"
+        android:layout_width="425dp"
         android:layout_height="wrap_content"
-        android:max="5"
-        android:progress="3"
-        android:layout_marginEnd="30dp"
         android:layout_alignBottom="@+id/tvEscenaInstruccio1"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"
+        android:elevation="24dp"
+        android:max="4"
+        android:progress="2" />
 
     <TextView
         android:id="@+id/textView10"
@@ -82,7 +83,7 @@
         android:layout_alignBottom="@+id/eLvEmocions"
         android:layout_alignStart="@+id/seekBar2"
         android:layout_marginStart="12dp"
-        android:text="0"
+        android:text="1"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -264,10 +265,11 @@
         android:id="@+id/tvValorIntensity1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView10"
-        android:layout_marginEnd="53dp"
+        android:layout_below="@+id/seekBar2"
+        android:layout_marginEnd="64dp"
         android:layout_toStartOf="@+id/btNextEscena"
         android:elevation="24dp"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="36sp"
         android:textStyle="bold" />

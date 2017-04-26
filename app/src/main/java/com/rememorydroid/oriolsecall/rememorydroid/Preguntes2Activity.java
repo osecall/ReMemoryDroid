@@ -347,7 +347,7 @@ public class Preguntes2Activity extends AppCompatActivity {
             btBackPeople3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(2);
+                    mViewPager.setCurrentItem(1);
                 }
             });
 
@@ -355,7 +355,7 @@ public class Preguntes2Activity extends AppCompatActivity {
             btNextPeople3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mViewPager.setCurrentItem(4);
+                    mViewPager.setCurrentItem(3);
                 }
             });
 

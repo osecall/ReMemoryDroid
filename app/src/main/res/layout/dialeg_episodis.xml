@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,6 +16,7 @@
             android:id="@+id/imageView7"
             android:layout_width="125dp"
             android:layout_height="125dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.67"
             app:srcCompat="@drawable/nameepisode" />
 
@@ -23,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/EpisodeNameIntroduce"
@@ -42,6 +45,7 @@
             android:id="@+id/imageView8"
             android:layout_width="125dp"
             android:layout_height="125dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.67"
             app:srcCompat="@drawable/dateepisode" />
 
@@ -50,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/EpisodeIntroduceDate"
@@ -68,6 +73,7 @@
             android:id="@+id/imageView9"
             android:layout_width="125dp"
             android:layout_height="125dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.66"
             app:srcCompat="@drawable/timeepisode" />
 
@@ -76,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/EpisodeTimeIntroduce"
