@@ -1,7 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.IdRes;
@@ -160,11 +159,11 @@ public class Preguntes2Activity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes2_1, container, false);
 
-            final Button btNextPeople = (Button) rootView.findViewById(R.id.btNextPeople);
-            final Button btBackPeople = (Button) rootView.findViewById(R.id.btBackPeople);
+            final Button btNextPeople1 = (Button) rootView.findViewById(R.id.btNextPeople1);
+            final Button btBackPeople1 = (Button) rootView.findViewById(R.id.btBackPeople1);
 
-            btNextPeople.setEnabled(false);
-            btNextPeople.setVisibility(View.INVISIBLE);
+            btNextPeople1.setEnabled(false);
+            btNextPeople1.setVisibility(View.INVISIBLE);
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgPeople);
 
@@ -183,8 +182,8 @@ public class Preguntes2Activity extends AppCompatActivity {
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesPersones_Accions(rb.getText().toString());
 
-                    btNextPeople.setEnabled(true);
-                    btNextPeople.setVisibility(View.VISIBLE);
+                    btNextPeople1.setEnabled(true);
+                    btNextPeople1.setVisibility(View.VISIBLE);
 
 
 
@@ -192,7 +191,7 @@ public class Preguntes2Activity extends AppCompatActivity {
 
             });
 
-            btBackPeople.setOnClickListener(new View.OnClickListener() {
+            btBackPeople1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getContext(),VisualitzarFragmentsActivity.class);
@@ -200,7 +199,7 @@ public class Preguntes2Activity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-            btNextPeople.setOnClickListener(new View.OnClickListener() {
+            btNextPeople1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(1);
@@ -240,11 +239,11 @@ public class Preguntes2Activity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes2_2, container, false);
-            final Button btNextPeople = (Button) rootView.findViewById(R.id.btNextPeople2);
-            final Button btBackPeople = (Button) rootView.findViewById(R.id.btBackPeople2);
+            final Button btNextPeople2 = (Button) rootView.findViewById(R.id.btNextPeople2);
+            final Button btBackPeople2 = (Button) rootView.findViewById(R.id.btBackPeople2);
 
-            btNextPeople.setEnabled(false);
-            btNextPeople.setVisibility(View.INVISIBLE);
+            btNextPeople2.setEnabled(false);
+            btNextPeople2.setVisibility(View.INVISIBLE);
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgPeople2);
 
@@ -263,22 +262,19 @@ public class Preguntes2Activity extends AppCompatActivity {
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesPersones_Grups(rb.getText().toString());
 
-                    btNextPeople.setEnabled(true);
-                    btNextPeople.setVisibility(View.VISIBLE);
-
-
-
+                    btNextPeople2.setEnabled(true);
+                    btNextPeople2.setVisibility(View.VISIBLE);
                 }
 
             });
 
-            btBackPeople.setOnClickListener(new View.OnClickListener() {
+            btBackPeople2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(0);
                 }
             });
-            btNextPeople.setOnClickListener(new View.OnClickListener() {
+            btNextPeople2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(2);
@@ -318,11 +314,11 @@ public class Preguntes2Activity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes2_3, container, false);
-            final Button btNextPeopleNumber = (Button) rootView.findViewById(R.id.btNextPeopleNumber);
-            final Button btBackPeopleNumber = (Button) rootView.findViewById(R.id.btBackPeopleNumber);
+            final Button btNextPeople3 = (Button) rootView.findViewById(R.id.btNextPeople3);
+            final Button btBackPeople3 = (Button) rootView.findViewById(R.id.btBackPeople3);
 
-            btNextPeopleNumber.setEnabled(false);
-            btNextPeopleNumber.setVisibility(View.INVISIBLE);
+            btNextPeople3.setEnabled(false);
+            btNextPeople3.setVisibility(View.INVISIBLE);
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgPeople3);
 
@@ -341,14 +337,14 @@ public class Preguntes2Activity extends AppCompatActivity {
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesPersones_Relacio(rb.getText().toString());
 
-                    btNextPeopleNumber.setEnabled(true);
-                    btNextPeopleNumber.setVisibility(View.VISIBLE);
+                    btNextPeople3.setEnabled(true);
+                    btNextPeople3.setVisibility(View.VISIBLE);
 
                 }
 
             });
 
-            btBackPeopleNumber.setOnClickListener(new View.OnClickListener() {
+            btBackPeople3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(2);
@@ -356,7 +352,7 @@ public class Preguntes2Activity extends AppCompatActivity {
             });
 
 
-            btNextPeopleNumber.setOnClickListener(new View.OnClickListener() {
+            btNextPeople3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(4);
@@ -397,11 +393,11 @@ public class Preguntes2Activity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes2_4, container, false);
 
-            final Button btNextEmotions = (Button) rootView.findViewById(R.id.btNextEmotions1);
-            final Button btBackEmotions = (Button) rootView.findViewById(R.id.btBackEmotions);
+            final Button btNextPeople4 = (Button) rootView.findViewById(R.id.btNextPeople4);
+            final Button btBackPeople4 = (Button) rootView.findViewById(R.id.btBackPeople4);
 
-            btNextEmotions.setEnabled(false);
-            btNextEmotions.setVisibility(View.INVISIBLE);
+            btNextPeople4.setEnabled(false);
+            btNextPeople4.setVisibility(View.INVISIBLE);
 
             final RadioGroup rgFragment41Q2 = (RadioGroup) rootView.findViewById(R.id.rgFragment41Q2);
             final RadioGroup rgFragment42Q2 = (RadioGroup) rootView.findViewById(R.id.rgFragment42Q2);
@@ -415,8 +411,8 @@ public class Preguntes2Activity extends AppCompatActivity {
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesEmocions_Observades(rbSeleccionat.getText().toString());
                     if(rgFragment42Q2.getCheckedRadioButtonId()!=-1){
-                        btNextEmotions.setEnabled(true);
-                        btNextEmotions.setVisibility(View.VISIBLE);
+                        btNextPeople4.setEnabled(true);
+                        btNextPeople4.setVisibility(View.VISIBLE);
                     }
                 }
             });
@@ -429,21 +425,21 @@ public class Preguntes2Activity extends AppCompatActivity {
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesEmocions_Propies(rbSeleccionat.getText().toString());
                     if(rgFragment41Q2.getCheckedRadioButtonId()!=-1){
-                        btNextEmotions.setEnabled(true);
-                        btNextEmotions.setVisibility(View.VISIBLE);
+                        btNextPeople4.setEnabled(true);
+                        btNextPeople4.setVisibility(View.VISIBLE);
                     }
                 }
             });
 
 
 
-            btBackEmotions.setOnClickListener(new View.OnClickListener() {
+            btBackPeople4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(2);
                 }
             });
-            btNextEmotions.setOnClickListener(new View.OnClickListener() {
+            btNextPeople4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(),RespirarActivity.class);

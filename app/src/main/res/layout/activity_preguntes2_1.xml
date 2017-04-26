@@ -7,14 +7,14 @@
 
 
     <Button
-        android:id="@+id/btBackPeople"
+        android:id="@+id/btBackPeople1"
         style="@style/Back_button"
-        android:layout_alignBottom="@+id/btNextPeople"
+        android:layout_alignBottom="@+id/btNextPeople1"
         android:layout_alignParentStart="true"
         android:layout_marginStart="21dp" />
 
     <Button
-        android:id="@+id/btNextPeople"
+        android:id="@+id/btNextPeople1"
         style="@style/Next_button"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="24dp"
@@ -93,6 +93,4 @@
         </RadioGroup>
 
     </LinearLayout>
-
-
 </RelativeLayout>

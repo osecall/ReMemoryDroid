@@ -254,9 +254,7 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
         };
 
         myThread = new Thread(Fragments);
-        myThread.setPriority(Thread.MAX_PRIORITY);
         myThread2 = new Thread(Fragments2);
-        myThread2.setPriority(Thread.MAX_PRIORITY);
 
         ibPlay.setOnClickListener(new View.OnClickListener() {
                                       @Override
