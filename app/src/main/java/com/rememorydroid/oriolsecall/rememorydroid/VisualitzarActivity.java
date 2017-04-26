@@ -45,7 +45,7 @@ public class VisualitzarActivity extends BaseActivity {
     private MediaPlayer mp;
     private VideoView vv;
     private ImageView ibPlay, ibStop;
-    private Button btBack, btNext;
+    private Button btNext;
     private Intent intent;
     private int duration;
     private ProgressBar ProgressBarVideo;
@@ -74,7 +74,6 @@ public class VisualitzarActivity extends BaseActivity {
         ProgressBarVideo = (ProgressBar) findViewById(R.id.progressBarVideo);
         ibPlay = (ImageView) findViewById(R.id.ibPlay);
         ibStop = (ImageView) findViewById(R.id.ibStop);
-        btBack = (Button) findViewById(R.id.btBackWeather);
         btNext = (Button) findViewById(R.id.btNextWeather);
 
         try {
@@ -125,7 +124,7 @@ public class VisualitzarActivity extends BaseActivity {
             public void onPrepared(final MediaPlayer mediaPlayer) {
                 duration = vv.getDuration();
 
-                //vv.setMediaController(new MediaController(VisualitzarActivity.this));
+                vv.setMediaController(new MediaController(VisualitzarActivity.this));
                 if(noAudio){
                     mediaPlayer.setVolume(0,0);
                 }
@@ -205,11 +204,13 @@ public class VisualitzarActivity extends BaseActivity {
         View textEntryView = factory.inflate(R.layout.dialegs, null);
         TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
         tv.setText(R.string.DialogVideo1);
+        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
+
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
                 .setView(textEntryView)
-                .setCancelable(false)
-                //.setMessage(R.string.DialogVideo1)
+                .setCancelable(false);/*
+                .setMessage(R.string.DialogVideo1)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         mp.start();
@@ -230,7 +231,33 @@ public class VisualitzarActivity extends BaseActivity {
                         arg0.dismiss();
                     }
                 })
-                .show();
+                .show();*/
+
+        final AlertDialog alerta = DialegFormControl.create();
+
+        alerta.show();
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mp.start();
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        mp.stop();
+                        mp.release();
+                        ibPlay.setVisibility(View.VISIBLE);
+                        ibStop.setVisibility(View.VISIBLE);
+                        ibPlay.setEnabled(true);
+                        ibStop.setEnabled(true);
+                        vv.setEnabled(true);
+
+                    }
+                });
+
+                alerta.dismiss();
+            }
+        });
     }
 
     //Part del menú 'action bar'

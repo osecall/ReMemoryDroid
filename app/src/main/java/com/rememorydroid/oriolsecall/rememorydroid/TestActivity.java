@@ -797,17 +797,34 @@ public class TestActivity extends AppCompatActivity {
                         textEntryView = factory.inflate(R.layout.dialegs, null);
                         tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
                         tv.setText(getString(R.string.Colaboration,pacient.getName()));
+                        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
+
 
                         DialegDespedida
                                     .setCancelable(false)
-                                    .setView(textEntryView)
+                                    .setView(textEntryView);
                                     //.setMessage(R.string.Colaboration)
+                                    /*
                                     .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface arg0, int arg1) {
                                             startActivity(new Intent(getContext(), TractamentsActivity.class));
                                             arg0.dismiss();
                                        }
-                                    }).show();
+                                    });*/
+
+                        final AlertDialog alerta = DialegDespedida.create();
+
+                        alerta.show();
+
+                        bt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(getContext(), TractamentsActivity.class));
+                                alerta.dismiss();
+                            }
+                        });
+
+
 
                     }
 
@@ -828,7 +845,7 @@ public class TestActivity extends AppCompatActivity {
                                         .setTicker(getString(R.string.Test1Ticker,pacient.getName()));
 
                         NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
-                        m.notify(0,mBuilder.build());
+                        m.notify(2,mBuilder.build());
 
                         Intent intent = new Intent (getContext(), EvocarActivity.class);
                         intent.putExtra("EvocarC","EvocarC");
@@ -873,12 +890,6 @@ public class TestActivity extends AppCompatActivity {
                             }
                         });
 
-                        AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(getContext());
-                        LayoutInflater factory = LayoutInflater.from(getContext());
-                        textEntryView = factory.inflate(R.layout.dialegs, null);
-                        tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
-                        tv.setText(getString(R.string.Colaboration,pacient.getName()));
-
                         //Notificació
                         Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
 
@@ -891,18 +902,37 @@ public class TestActivity extends AppCompatActivity {
                                         .setTicker(getString(R.string.Test2Ticker,pacient.getName()));
 
                         NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
-                        m.notify(1,mBuilder.build());
+                        m.notify(3,mBuilder.build());
+
+                        AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(getContext());
+                        LayoutInflater factory = LayoutInflater.from(getContext());
+                        textEntryView = factory.inflate(R.layout.dialegs, null);
+                        tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+                        tv.setText(getString(R.string.Colaboration,pacient.getName()));
+                        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
 
                         DialegDespedida
                                 .setCancelable(false)
-                                .setView(textEntryView)
+                                .setView(textEntryView);
                                 //.setMessage(R.string.Colaboration)
-                                .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                                /*.setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface arg0, int arg1) {
                                         startActivity(new Intent(getContext(), TractamentsActivity.class));
                                         arg0.dismiss();
                                     }
-                                }).show();
+                                });*/
+
+                        final AlertDialog alerta = DialegDespedida.create();
+
+                        alerta.show();
+
+                        bt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(getContext(), TractamentsActivity.class));
+                                alerta.dismiss();
+                            }
+                        });
 
                     }
 
@@ -923,7 +953,7 @@ public class TestActivity extends AppCompatActivity {
                                         .setTicker(getString(R.string.Test1Ticker,pacient.getName()));
 
                         NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
-                        m.notify(0,mBuilder.build());
+                        m.notify(4,mBuilder.build());
                         startActivity(intent);
                     }
 
@@ -1002,18 +1032,25 @@ public class TestActivity extends AppCompatActivity {
         textEntryView = factory.inflate(R.layout.dialegs, null);
         tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
         tv.setText(R.string.AlertDialaogTest);
+        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
         DialegFormControl
                 .setCancelable(false)
                 .setView(textEntryView)
-                .setTitle(getString(R.string.Attention))
+                .setTitle(getString(R.string.Attention));
                 //.setMessage(R.string.AlertDialaogTest)
-                .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        arg0.dismiss();
-                        arg0.cancel();
-                    }
-                })
-                .show();
+
+
+        final AlertDialog alerta = DialegFormControl.create();
+
+        alerta.show();
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alerta.dismiss();
+            }
+        });
+
     }
 
     private void NotificarTest1(){

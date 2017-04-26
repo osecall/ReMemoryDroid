@@ -5,6 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Bundle;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +32,13 @@ public class EpisodePresentationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episode_presentation);
+
+        Animation fadeIn = new AlphaAnimation(0,1);
+        fadeIn.setInterpolator(new DecelerateInterpolator());
+        fadeIn.setDuration(2500);
+
+        AnimationSet animation = new AnimationSet(false);
+        animation.addAnimation(fadeIn);
 
         tvEpisodePresenName = (TextView) findViewById(R.id.tvEpisodePresenName);
         tvEpisodePresenDate = (TextView) findViewById(R.id.tvEpisodePresenDate);
@@ -59,12 +72,20 @@ public class EpisodePresentationActivity extends BaseActivity {
             }
         });
 
+        tvEpisodePresenName.setAnimation(animation);
+        tvEpisodePresenDate.setAnimation(animation);
+        tvEpisodePresenTime.setAnimation(animation);
+
         new Handler().postDelayed(new Runnable(){
             public void run(){
                 startActivity(new Intent(EpisodePresentationActivity.this, TestActivity.class));
                 finish();
             }
-        }, 5000);
+        }, 8000);
+
+
+
+
 
 
     }

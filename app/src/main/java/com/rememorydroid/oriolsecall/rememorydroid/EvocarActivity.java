@@ -46,7 +46,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     private Intent intent;
     private String outputFile = null;
     private String ID_usuari, NomFitxerCloud, episodi;
-    private Button btBack, btNext;
+    private Button btNext;
     private TextView tvRecording;
     private Chronometer chronometer;
     private FirebaseStorage reference = FirebaseStorage.getInstance();
@@ -73,25 +73,37 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         if (i==R.id.ibStopPlayEvocar){
             pararReproduccio();
         }
-        if (i==R.id.btBackWeather){
-            startActivity(new Intent(EvocarActivity.this,VisualitzarFragmentsActivity.class));
-        }
         if (i==R.id.btNextWeather){
             LayoutInflater factory = LayoutInflater.from(EvocarActivity.this);
             View textEntryView = factory.inflate(R.layout.dialegs, null);
             TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
             tv.setText(getString(R.string.DoingGreat,pacientusuari.getName()));
-            new AlertDialog.Builder(EvocarActivity.this)
+            Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
+            AlertDialog.Builder alertab = new AlertDialog.Builder(EvocarActivity.this);
+            alertab
                     //.setMessage(R.string.DoingGreat)
                     .setView(textEntryView)
                     .setCancelable(false)
-                    .setTitle(R.string.Congratulations)
+                    .setTitle(R.string.Congratulations);
+                    /*
                     .setNeutralButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             startActivity(intent);
                         }
-                    }).show();
+                    });*/
+
+            final AlertDialog alerta = alertab.create();
+
+            alerta.show();
+
+            bt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(intent);
+                    alerta.dismiss();
+                }
+            });
         }
     }
 
@@ -179,37 +191,43 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         ibRecordEvocar.setEnabled(true);
     }
     private void reproduir(){
-        ibRecordEvocar.setEnabled(false);
-        ibRecordEvocar.setVisibility(View.INVISIBLE);
-        mp = MediaPlayer.create(this,Uri.parse(outputFile));
-        mp.start();
-        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                ibRecordEvocar.setEnabled(true);
-                mp.stop();
-                mp.release();
-                mp=null;
-                ibStopPlayEvocar.setEnabled(false);
-                ibStopPlayEvocar.setVisibility(View.INVISIBLE);
-                ibRecordEvocar.setVisibility(View.VISIBLE);
 
-            }
-        });
-        ibStopPlayEvocar.setEnabled(true);
-        ibStopPlayEvocar.setVisibility(View.VISIBLE);
+            ibPlayEvocar.setEnabled(false);
+            ibRecordEvocar.setEnabled(false);
+            ibRecordEvocar.setVisibility(View.INVISIBLE);
+            mp = MediaPlayer.create(this,Uri.parse(outputFile));
+            mp.start();
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    ibRecordEvocar.setEnabled(true);
+                    mp.stop();
+                    mp.release();
+                    mp=null;
+                    ibStopPlayEvocar.setEnabled(false);
+                    ibStopPlayEvocar.setVisibility(View.INVISIBLE);
+                    ibRecordEvocar.setVisibility(View.VISIBLE);
+                    ibPlayEvocar.setEnabled(true);
+
+                }
+            });
+            ibStopPlayEvocar.setEnabled(true);
+            ibStopPlayEvocar.setVisibility(View.VISIBLE);
+
 
     }
     private void pararReproduccio(){
         if(mp.isPlaying()){
             mp.stop();
             mp.release();
+            mp=null;
             ibRecordEvocar.setVisibility(View.VISIBLE);
         }
         ibStopPlayEvocar.setEnabled(false);
         ibStopPlayEvocar.setVisibility(View.INVISIBLE);
         ibRecordEvocar.setEnabled(true);
         ibRecordEvocar.setImageResource(R.drawable.microphone);
+        ibPlayEvocar.setEnabled(true);
 
     }
 
@@ -326,7 +344,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         tvRecording = (TextView) findViewById(R.id.tvRecordingEvocar);
         tvRecording.setVisibility(View.INVISIBLE);
 
-        btBack = (Button) findViewById(R.id.btBackWeather);
         btNext = (Button) findViewById(R.id.btNextWeather);
 
         chronometer = (Chronometer) findViewById(R.id.chronometerEvocar);
@@ -338,7 +355,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         ibPlayEvocar.setOnClickListener(this);
         ibStopRecordEvocar.setOnClickListener(this);
         btNext.setOnClickListener(this);
-        btBack.setOnClickListener(this);
 
     }
 
@@ -401,16 +417,19 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
     private void DialegPrimer(){
         LayoutInflater factory = LayoutInflater.from(EvocarActivity.this);
-        View textEntryView = factory.inflate(R.layout.dialegs, null);
+        View textEntryView = factory.inflate(R.layout.dialegslisten, null);
         TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        Button btListen = (Button) textEntryView.findViewById(R.id.btListen);
+        Button btNoListen = (Button) textEntryView.findViewById(R.id.btNoListen);
         tv.setText(R.string.EvocarAdiaelg);
 
         AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
         dialeg
                 .setTitle(getString(R.string.Attention))
                 .setCancelable(false)
-                .setView(textEntryView)
+                .setView(textEntryView);
                 //.setMessage(getString(R.string.EvocarAdiaelg))
+                /*
                 .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         reproduirMissatgeDialeg();
@@ -425,22 +444,44 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                         dialogInterface.dismiss();
                         ibRecordEvocar.setEnabled(true);
                     }
-                })
-                .show();
+                });*/
+
+        final AlertDialog alerta = dialeg.create();
+
+        alerta.show();
+
+        btListen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reproduirMissatgeDialeg();
+                alerta.dismiss();
+            }
+        });
+
+        btNoListen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ibRecordEvocar.setEnabled(true);
+                alerta.dismiss();
+            }
+        });
     }
 
     private void DialegPrimerCurta(){
         AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
         LayoutInflater factory = LayoutInflater.from(EvocarActivity.this);
-        View textEntryView = factory.inflate(R.layout.dialegs, null);
+        View textEntryView = factory.inflate(R.layout.dialegslisten, null);
         TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        Button btListen = (Button) textEntryView.findViewById(R.id.btListen);
+        Button btNoListen = (Button) textEntryView.findViewById(R.id.btNoListen);
         tv.setText(R.string.Evocarccurta);
 
         dialeg
                 .setTitle(getString(R.string.Attention))
                 .setCancelable(false)
                 //.setMessage(getString(R.string.Evocarccurta))
-                .setView(textEntryView)
+                .setView(textEntryView);
+        /*
                 .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         reproduirMissatgeDialeg();
@@ -455,21 +496,44 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                         dialogInterface.dismiss();
                         ibRecordEvocar.setEnabled(true);
                     }
-                })
-                .show();
+                })*/
+
+
+        final AlertDialog alerta = dialeg.create();
+
+        alerta.show();
+
+        btListen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reproduirMissatgeDialeg();
+                alerta.dismiss();
+            }
+        });
+
+        btNoListen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ibRecordEvocar.setEnabled(true);
+                alerta.dismiss();
+            }
+        });
     }
 
     private void DialegSegon(){
         LayoutInflater factory = LayoutInflater.from(EvocarActivity.this);
-        View textEntryView = factory.inflate(R.layout.dialegs, null);
+        View textEntryView = factory.inflate(R.layout.dialegslisten, null);
         TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        Button btListen = (Button) textEntryView.findViewById(R.id.btListen);
+        Button btNoListen = (Button) textEntryView.findViewById(R.id.btNoListen);
         tv.setText(R.string.EvocarB);
 
         AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
         dialeg
                 .setTitle(getString(R.string.Attention))
                 .setCancelable(false)
-                .setView(textEntryView)
+                .setView(textEntryView);
+        /*
                 //.setMessage(getString(R.string.EvocarB))
                 .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -485,29 +549,59 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                         dialogInterface.dismiss();
                         ibRecordEvocar.setEnabled(true);
                     }
-                })
-                .show();
+                });*/
+        final AlertDialog alerta = dialeg.create();
+
+        alerta.show();
+
+        btListen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reproduirMissatgeDialeg();
+                alerta.dismiss();
+            }
+        });
+
+        btNoListen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ibRecordEvocar.setEnabled(true);
+                alerta.dismiss();
+            }
+        });
     }
 
     private void DialegCongrats(){
         LayoutInflater factory = LayoutInflater.from(EvocarActivity.this);
         View textEntryView = factory.inflate(R.layout.dialegs, null);
         TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
         tv.setText(getString(R.string.DoingGreat,pacientusuari.getName()));
 
         AlertDialog.Builder dialeg =new AlertDialog.Builder(EvocarActivity.this);
         dialeg
                 .setTitle(getString(R.string.Congratulations))
                 .setCancelable(false)
-                .setView(textEntryView)
+                .setView(textEntryView);
                 //.setMessage(getString(R.string.DoingGreat))
+        /*
                 .setPositiveButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         arg0.dismiss();
                         arg0.cancel();
                     }
-                })
-                .show();
+                });*/
+
+        final AlertDialog alerta = dialeg.create();
+
+        alerta.show();
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alerta.dismiss();
+            }
+        });
     }
 
 

@@ -1114,20 +1114,32 @@ public class PreguntesActivity extends AppCompatActivity {
         LayoutInflater factory = LayoutInflater.from(PreguntesActivity.this);
         View textEntryView = factory.inflate(R.layout.dialegs, null);
         TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
         tv.setText(R.string.AskingQuestions);
 
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
                 .setView(textEntryView)
-                .setCancelable(false)
-                //.setMessage(R.string.AskingQuestions)
+                .setCancelable(false);/*
+                .setMessage(R.string.AskingQuestions)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         arg0.dismiss();
                         arg0.cancel();
                     }
                 })
-                .show();
+                .show();*/
+
+        final AlertDialog alerta = DialegFormControl.create();
+
+        alerta.show();
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alerta.dismiss();
+            }
+        });
     }
 
 }

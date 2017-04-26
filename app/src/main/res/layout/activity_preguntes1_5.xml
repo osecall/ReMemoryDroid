@@ -67,10 +67,10 @@
     <Button
         android:id="@+id/btNextDayTime"
         style="@style/Next_button"
-        android:layout_marginEnd="10dp"
-        android:layout_below="@+id/linearLayout2"
+        android:layout_marginEnd="13dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="21dp" />
+        android:layout_marginBottom="103dp" />
 
     <Button
         android:id="@+id/btBackDayTime"

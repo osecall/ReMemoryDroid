@@ -127,7 +127,7 @@
                     android:id="@+id/cbNoExperience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
+                    android:layout_marginBottom="3dp"
                     android:layout_weight="1"
                     android:text="@string/NoEmotion"
                     android:textSize="21sp" />
@@ -136,7 +136,7 @@
                     android:id="@+id/cbSorprised"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
+                    android:layout_marginBottom="3dp"
                     android:layout_weight="1"
                     android:text="@string/WasSorprised"
                     android:textSize="21sp" />
@@ -145,7 +145,7 @@
                     android:id="@+id/cbScared"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
+                    android:layout_marginBottom="3dp"
                     android:layout_weight="1"
                     android:text="@string/WasScared"
                     android:textSize="21sp" />
@@ -154,7 +154,7 @@
                     android:id="@+id/cbAngry"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
+                    android:layout_marginBottom="3dp"
                     android:layout_weight="1"
                     android:text="@string/wasAngry"
                     android:textSize="21sp" />
@@ -163,7 +163,7 @@
                     android:id="@+id/cbSad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
+                    android:layout_marginBottom="3dp"
                     android:layout_weight="1"
                     android:text="@string/WasSad"
                     android:textSize="21sp" />
@@ -172,7 +172,7 @@
                     android:id="@+id/cbHappy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
+                    android:layout_marginBottom="3dp"
                     android:layout_weight="1"
                     android:text="@string/WasHappy"
                     android:textSize="21sp" />

@@ -34,7 +34,6 @@ public class TractamentsActivity extends AppCompatActivity {
         btPelicula= (Button) findViewById(R.id.btPelicula);
         btAlbum = (Button) findViewById(R.id.btAlbum);
         btGuia = (Button) findViewById(R.id.btGuia);
-        btBackEpisodiActivity = (Button) findViewById(R.id.btBackEpisode);
 
         //Llegim informació de l'usuari
         SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
@@ -66,14 +65,6 @@ public class TractamentsActivity extends AppCompatActivity {
 
         }
 
-        btBackEpisodiActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent backIntent = new Intent(TractamentsActivity.this, EpisodiActivity.class);
-                startActivity(backIntent);
-            }
-        });
-
 
         btGuia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +93,7 @@ public class TractamentsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menutractaments, menu);
         menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
         menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+" ("+idCuUserTreatment.getText().toString()+")");
         return true;
@@ -135,6 +126,15 @@ public class TractamentsActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(TractamentsActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
+
+        }
+
+        if (id == R.id.btEpisodis) {
+
+            //Retorna a la pantalla 'Episodis'
+
+            Intent intent = new Intent(TractamentsActivity.this, EpisodiActivity.class);
+            startActivity(intent);
 
         }
 

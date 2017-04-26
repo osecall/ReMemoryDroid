@@ -318,11 +318,11 @@ public class Preguntes2Activity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_preguntes2_3, container, false);
-            final Button btNextPeople = (Button) rootView.findViewById(R.id.btNextEmotions1);
-            final Button btBackPeople = (Button) rootView.findViewById(R.id.btBackPeople3);
+            final Button btNextPeopleNumber = (Button) rootView.findViewById(R.id.btNextPeopleNumber);
+            final Button btBackPeopleNumber = (Button) rootView.findViewById(R.id.btBackPeopleNumber);
 
-            btNextPeople.setEnabled(false);
-            btNextPeople.setVisibility(View.INVISIBLE);
+            btNextPeopleNumber.setEnabled(false);
+            btNextPeopleNumber.setVisibility(View.INVISIBLE);
 
             final RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.rgPeople3);
 
@@ -341,20 +341,22 @@ public class Preguntes2Activity extends AppCompatActivity {
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesPersones_Relacio(rb.getText().toString());
 
-                    btNextPeople.setEnabled(true);
-                    btNextPeople.setVisibility(View.VISIBLE);
+                    btNextPeopleNumber.setEnabled(true);
+                    btNextPeopleNumber.setVisibility(View.VISIBLE);
 
                 }
 
             });
 
-            btBackPeople.setOnClickListener(new View.OnClickListener() {
+            btBackPeopleNumber.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(2);
                 }
             });
-            btNextPeople.setOnClickListener(new View.OnClickListener() {
+
+
+            btNextPeopleNumber.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mViewPager.setCurrentItem(4);
@@ -512,19 +514,31 @@ public class Preguntes2Activity extends AppCompatActivity {
         LayoutInflater factory = LayoutInflater.from(Preguntes2Activity.this);
         View textEntryView = factory.inflate(R.layout.dialegs, null);
         TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
         tv.setText(R.string.AskingQuestions);
 
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
-                .setCancelable(false)
                 .setView(textEntryView)
-                //.setMessage(R.string.AskingQuestions)
+                .setCancelable(false);/*
+                .setMessage(R.string.AskingQuestions)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         arg0.dismiss();
                         arg0.cancel();
                     }
                 })
-                .show();
+                .show();*/
+
+        final AlertDialog alerta = DialegFormControl.create();
+
+        alerta.show();
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alerta.dismiss();
+            }
+        });
     }
 }

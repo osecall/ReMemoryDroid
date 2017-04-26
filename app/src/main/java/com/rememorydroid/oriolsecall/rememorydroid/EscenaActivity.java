@@ -1,7 +1,9 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 
 public class EscenaActivity extends BaseActivity {
 
@@ -29,11 +32,16 @@ public class EscenaActivity extends BaseActivity {
     private String A;
     private Intent intent;
     private TextView tvValorIntensity1;
+    private PacientUsuari pacient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escena);
+
+        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        pacient = gson.fromJson(prefs.getString("pacient",null), PacientUsuari.class);
 
         etQuestion1Escena = (EditText) findViewById(R.id.editText1);
         etQuestion2Escena = (EditText) findViewById(R.id.editText2);
@@ -152,6 +160,7 @@ public class EscenaActivity extends BaseActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
         menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+" ("+pacient.getID()+")");
         return true;
     }
 

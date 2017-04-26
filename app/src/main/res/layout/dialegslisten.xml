@@ -15,11 +15,24 @@
         android:textAlignment="textStart"
         android:textSize="45sp" />
 
-    <Button
-        android:id="@+id/btDiaelgOK"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="24dp"
-        android:text="@string/OK"
-        android:textSize="30sp" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btListen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/Listen" />
+
+        <Button
+            android:id="@+id/btNoListen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/NoListen" />
+    </LinearLayout>
+
 </LinearLayout>

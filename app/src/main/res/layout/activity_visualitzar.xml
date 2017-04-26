@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.VisualitzarActivity"
+    android:theme="@style/AppTheme.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,17 +11,8 @@
         android:id="@+id/vvVisualitzar1"
         android:layout_width="575dp"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="false" />
-
-    <Button
-        android:id="@+id/btBackWeather"
-        style="@style/Back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:layout_weight="1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/progressBarVideo" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"/>
 
     <Button
         android:id="@+id/btNextWeather"
@@ -28,19 +20,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginEnd="46dp"
-        android:layout_alignBaseline="@+id/btBackWeather"
-        android:layout_alignBottom="@+id/btBackWeather"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginEnd="68dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="81dp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="false"
-        android:orientation="vertical">
-
-    </LinearLayout>
 
     <ImageView
         android:id="@+id/ibStop"
@@ -60,19 +44,17 @@
         android:elevation="24dp"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/play"
-        android:layout_marginEnd="156dp"
-        android:layout_below="@+id/progressBarVideo"
-        android:layout_alignEnd="@+id/progressBarVideo"
-        android:layout_marginTop="46dp" />
+        android:layout_marginBottom="45dp"
+        android:layout_marginEnd="92dp"
+        android:layout_above="@+id/ibStop"
+        android:layout_toStartOf="@+id/btNextWeather" />
 
     <ProgressBar
         android:id="@+id/progressBarVideo"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="500dp"
+        android:layout_width="600dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="41dp"
-        android:layout_below="@+id/linearLayout6"
-        android:layout_toStartOf="@+id/btNextWeather" />
+        android:layout_marginTop="33dp"
+        android:layout_alignEnd="@+id/btNextWeather" />
 
 </RelativeLayout>

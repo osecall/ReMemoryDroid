@@ -14,8 +14,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +44,7 @@ public class AlbumActivity extends BaseActivity {
     private SharedPreferences prefs;
     private String ID, episodi;
     private Animation translate;
+    private AnimationSet animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,13 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum3 = (ImageView) findViewById(R.id.ivAlbum3);
         ivAlbum4 = (ImageView) findViewById(R.id.ivAlbum4);
         ivAlbum5 = (ImageView) findViewById(R.id.ivAlbum5);
+
+        Animation fadeIn = new AlphaAnimation(0,1);
+        fadeIn.setInterpolator(new DecelerateInterpolator());
+        fadeIn.setDuration(2000);
+
+        animation = new AnimationSet(false);
+        animation.addAnimation(fadeIn);
 
         //Per animar les imatges al clicar a sobre
         translate = AnimationUtils.loadAnimation(getBaseContext(), R.anim.translate);
@@ -358,8 +370,10 @@ public class AlbumActivity extends BaseActivity {
         Ref0.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
+
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum0);
                 hideProgressDialog();
+                ivAlbum0.setAnimation(animation);
             }
         });
         showProgressDialog();
@@ -368,6 +382,7 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum1);
                 hideProgressDialog();
+                ivAlbum1.setAnimation(animation);
             }
         });
         showProgressDialog();
@@ -376,6 +391,7 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum2);
                 hideProgressDialog();
+                ivAlbum2.setAnimation(animation);
             }
         });
         showProgressDialog();
@@ -384,6 +400,7 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum3);
                 hideProgressDialog();
+                ivAlbum3.setAnimation(animation);
             }
         });
         showProgressDialog();
@@ -392,6 +409,7 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum4);
                 hideProgressDialog();
+                ivAlbum4.setAnimation(animation);
             }
         });
         showProgressDialog();
@@ -400,6 +418,7 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum5);
                 hideProgressDialog();
+                ivAlbum5.setAnimation(animation);
             }
         });
 

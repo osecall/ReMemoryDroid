@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewParent;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -89,20 +91,29 @@ public class RespirarActivity extends AppCompatActivity {
         LayoutInflater factory = LayoutInflater.from(RespirarActivity.this);
         View textEntryView = factory.inflate(R.layout.dialegs, null);
         TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
         tv.setText(R.string.InstructonsBreathing);
+
 
         DialegFormControl
                 .setCancelable(false)
                 .setView(textEntryView)
-                .setTitle(getString(R.string.Attention))
+                .setTitle(getString(R.string.Attention));
                 //.setMessage(R.string.InstructonsBreathing)
-                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        arg0.cancel();
-                        arg0.dismiss();
-                    }
-                })
-                .show();
+
+        final AlertDialog alerta = DialegFormControl.create();
+
+        alerta.show();
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alerta.dismiss();
+            }
+        });
+
+
+
     }
 
     private void ReproduirMissatge(final MediaPlayer mp){

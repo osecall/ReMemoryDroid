@@ -8,11 +8,12 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:id="@+id/linearLayout">
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -64,53 +65,45 @@
         style="@style/Next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/btBackWeather"
-        android:layout_marginEnd="41dp"
-        android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/btBackWeather"
-        style="@style/Back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="42dp"
-        android:layout_marginStart="50dp" />
+        android:layout_marginEnd="84dp"
+        android:visibility="invisible"
+        android:layout_marginBottom="10dp"
+        android:layout_alignBottom="@+id/linearLayout"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/tvRecordingEvocar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout"
-        android:layout_marginBottom="14dp"
-        android:layout_marginStart="355dp"
-        android:layout_toEndOf="@+id/btBackWeather"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="458dp"
         android:text="@string/Recording"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentStart="true" />
 
     <Chronometer
         android:id="@+id/chronometerEvocar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tvRecordingEvocar"
-        android:layout_marginStart="112dp"
-        android:layout_toEndOf="@+id/tvRecordingEvocar"
+        android:layout_marginStart="137dp"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/tvRecordingEvocar"
+        android:layout_alignBottom="@+id/tvRecordingEvocar"
+        android:layout_toEndOf="@+id/tvRecordingEvocar" />
 
     <ProgressBar
         android:id="@+id/pbEvocar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout"
-        android:layout_marginStart="65dp"
+        android:visibility="invisible"
+        android:layout_alignBottom="@+id/chronometerEvocar"
         android:layout_toEndOf="@+id/chronometerEvocar"
-        android:visibility="invisible" />
+        android:layout_marginStart="85dp" />
 
 </RelativeLayout>

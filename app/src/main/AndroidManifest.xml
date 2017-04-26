@@ -18,7 +18,10 @@
             android:name=".SplashActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter></activity>
         <activity
             android:name=".LanguageActivity"
             android:screenOrientation="landscape" />
@@ -57,7 +60,8 @@
         <activity
             android:name=".VisualitzarFragmentsActivity"
             android:label="@string/Visualitzar"
-            android:screenOrientation="landscape" ></activity>
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".EvocarActivity"
             android:label="@string/Evocar"
@@ -71,7 +75,7 @@
             android:name=".Preguntes2Activity"
             android:label="@string/Questions"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
         <activity
             android:name=".AlbumActivity"
             android:label="@string/Album"
@@ -91,10 +95,8 @@
         <activity
             android:name=".VisualitzarActivity"
             android:label="@string/Visualitzar"
-            android:screenOrientation="landscape"><intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter></activity>
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".TestActivity"
             android:label="Test"
