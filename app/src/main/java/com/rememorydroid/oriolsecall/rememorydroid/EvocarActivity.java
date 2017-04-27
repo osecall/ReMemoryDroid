@@ -2,7 +2,6 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -81,17 +80,9 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
             AlertDialog.Builder alertab = new AlertDialog.Builder(EvocarActivity.this);
             alertab
-                    //.setMessage(R.string.DoingGreat)
                     .setView(textEntryView)
                     .setCancelable(false)
                     .setTitle(R.string.Congratulations);
-                    /*
-                    .setNeutralButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            startActivity(intent);
-                        }
-                    });*/
 
             final AlertDialog alerta = alertab.create();
 
@@ -368,8 +359,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         finish();
     }
 
-
-
         //Part del menú 'action bar'
 
         @Override
@@ -377,7 +366,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             // Inflate the menu; this adds items to the action bar if it is present.
             getMenuInflater().inflate(R.menu.menu, menu);
             menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
-            menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient) + "(" + pacientusuari.getID() + ")");
+            menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient) + " (" + pacientusuari.getID() + ")");
             return true;
         }
 
@@ -428,23 +417,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                 .setTitle(getString(R.string.Attention))
                 .setCancelable(false)
                 .setView(textEntryView);
-                //.setMessage(getString(R.string.EvocarAdiaelg))
-                /*
-                .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        reproduirMissatgeDialeg();
-                        arg0.dismiss();
-                        arg0.cancel();
-                    }
-                })
-                .setNegativeButton(R.string.NoListen, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                        dialogInterface.dismiss();
-                        ibRecordEvocar.setEnabled(true);
-                    }
-                });*/
 
         final AlertDialog alerta = dialeg.create();
 
@@ -479,25 +451,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         dialeg
                 .setTitle(getString(R.string.Attention))
                 .setCancelable(false)
-                //.setMessage(getString(R.string.Evocarccurta))
                 .setView(textEntryView);
-        /*
-                .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        reproduirMissatgeDialeg();
-                        arg0.dismiss();
-                        arg0.cancel();
-                    }
-                })
-                .setNegativeButton(R.string.NoListen, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                        dialogInterface.dismiss();
-                        ibRecordEvocar.setEnabled(true);
-                    }
-                })*/
-
 
         final AlertDialog alerta = dialeg.create();
 
@@ -533,23 +487,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                 .setTitle(getString(R.string.Attention))
                 .setCancelable(false)
                 .setView(textEntryView);
-        /*
-                //.setMessage(getString(R.string.EvocarB))
-                .setPositiveButton(R.string.Listen, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        reproduirMissatgeDialeg();
-                        arg0.dismiss();
-                        arg0.cancel();
-                    }
-                })
-                .setNegativeButton(R.string.NoListen, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                        dialogInterface.dismiss();
-                        ibRecordEvocar.setEnabled(true);
-                    }
-                });*/
         final AlertDialog alerta = dialeg.create();
 
         alerta.show();
@@ -583,14 +520,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                 .setTitle(getString(R.string.Congratulations))
                 .setCancelable(false)
                 .setView(textEntryView);
-                //.setMessage(getString(R.string.DoingGreat))
-        /*
-                .setPositiveButton(R.string.ThankYou, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        arg0.dismiss();
-                        arg0.cancel();
-                    }
-                });*/
 
         final AlertDialog alerta = dialeg.create();
 
@@ -605,9 +534,8 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     }
 
 
-
     private void reproduirMissatgeDialeg(){
-        final MediaPlayer mp = MediaPlayer.create(this,R.raw.evocara);
+        final MediaPlayer mp = MediaPlayer.create(this,R.raw.respirar1);
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {

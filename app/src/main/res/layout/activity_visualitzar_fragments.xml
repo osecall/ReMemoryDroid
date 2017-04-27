@@ -2,48 +2,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.rememorydroid.oriolsecall.rememorydroid.VisualitzarFragmentsActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/common_google_signin_btn_text_dark_focused"
+    tools:context="com.rememorydroid.oriolsecall.rememorydroid.VisualitzarFragmentsActivity">
 
     <ImageView
         android:id="@+id/ibStop"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:elevation="24dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/stop"
-        android:layout_marginEnd="94dp"
-        android:layout_marginBottom="58dp"
-        android:layout_above="@+id/btNextWeather"
+        app:srcCompat="@drawable/stopwhite"
+        android:layout_alignTop="@+id/ibPlay"
         android:layout_toStartOf="@+id/btNextWeather" />
 
     <ImageView
         android:id="@+id/ibPlay"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="99dp"
         android:elevation="24dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/play"
-        android:layout_above="@+id/ibStop"
-        android:layout_alignStart="@+id/ibStop"
-        android:layout_marginBottom="30dp" />
+        app:srcCompat="@drawable/playwhite"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/vvVisualitzar1" />
 
     <VideoView
         android:id="@+id/vvVisualitzar1"
         android:layout_width="575dp"
         android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"/>
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/btNextWeather"
         style="@style/Next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="81dp" />
+        android:layout_marginBottom="81dp"
+        android:layout_marginEnd="80dp" />
 
 </RelativeLayout>

@@ -64,7 +64,7 @@
     <string name="Backwards">Back</string>
     <string name="SelectionVersionEpisode">You have to select a version and episode</string>
     <string name="Games">Memory and focusing games</string>
-    <string name="Movie">ReExperimentation</string>
+    <string name="Movie">Episodes Review</string>
     <string name="Album">Pictures album</string>
     <string name="Memory">Memory improvment guide</string>
     <string name="EpisodeSelected">Episode Selected: %s</string>

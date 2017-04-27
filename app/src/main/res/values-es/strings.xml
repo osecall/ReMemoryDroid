@@ -64,7 +64,7 @@
     <string name="Backwards">Atras</string>
     <string name="SelectionVersionEpisode">Tienes que seleccionar un episodio y una versión</string>
     <string name="Games">Juegos de atención y memoria</string>
-    <string name="Movie">ReExperimentación</string>
+    <string name="Movie">Revisión episodios</string>
     <string name="Album">Àlbum de fotos</string>
     <string name="Memory">Guía para mejorar la memoria</string>
     <string name="EpisodeSelected">Episodio seleccionado: %s</string>

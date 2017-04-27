@@ -177,7 +177,7 @@ public class Preguntes2Activity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesPersones_Accions(rb.getText().toString());
@@ -257,7 +257,7 @@ public class Preguntes2Activity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesPersones_Grups(rb.getText().toString());
@@ -332,7 +332,7 @@ public class Preguntes2Activity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesPersones_Relacio(rb.getText().toString());

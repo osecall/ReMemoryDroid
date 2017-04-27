@@ -75,26 +75,22 @@
         android:id="@+id/tvRecordingEvocar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="458dp"
         android:text="@string/Recording"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_above="@+id/linearLayout"
-        android:layout_alignParentStart="true" />
+        android:layout_alignStart="@+id/linearLayout" />
 
     <Chronometer
         android:id="@+id/chronometerEvocar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="137dp"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_alignBaseline="@+id/tvRecordingEvocar"
-        android:layout_alignBottom="@+id/tvRecordingEvocar"
-        android:layout_toEndOf="@+id/tvRecordingEvocar" />
+        android:layout_above="@+id/linearLayout"
+        android:layout_centerHorizontal="true" />
 
     <ProgressBar
         android:id="@+id/pbEvocar"
@@ -102,8 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        android:layout_alignBottom="@+id/chronometerEvocar"
-        android:layout_toEndOf="@+id/chronometerEvocar"
-        android:layout_marginStart="85dp" />
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignEnd="@+id/linearLayout" />
 
 </RelativeLayout>

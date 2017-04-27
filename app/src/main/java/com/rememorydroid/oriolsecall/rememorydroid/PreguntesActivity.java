@@ -1,7 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.IdRes;
@@ -168,7 +167,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
@@ -265,7 +264,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     respostes_recuperades.setPreguntesQuan_Temps(rb.getText().toString());
 
@@ -345,7 +344,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     respostes_recuperades.setPreguntesQuan_Duracio(rb.getText().toString());
 
@@ -438,7 +437,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     String seleccionat = listView.getItemAtPosition(i).toString();
                     listView.setItemChecked(i,true);
                     Toast.makeText(getContext(), seleccionat,
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                     respostes_recuperades.setPreguntesQuan_Mes(seleccionat);
 
                     btNextMonth.setEnabled(true);
@@ -515,7 +514,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     respostes_recuperades.setPreguntesQuan_FranjaDia(rb.getText().toString());
 
@@ -595,7 +594,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     respostes_recuperades.setPreguntesOn_Localitzacio(rb.getText().toString());
 
@@ -677,7 +676,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     respostes_recuperades.setPreguntesOn_Entorns(rb.getText().toString());
 
@@ -742,7 +741,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     respostes_recuperades.setPreguntesOn_Ubicacio(rb.getText().toString());
 
@@ -838,7 +837,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     respostes_recuperades.setPreguntesPerceptius_Sons(rb.getText().toString());
 
@@ -919,7 +918,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     respostes_recuperades.setPreguntesPerceptius_Temperatura(rb.getText().toString());
 
@@ -1006,7 +1005,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     Toast.makeText(getContext(), rb.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     respostes_recuperades.setPreguntesPerceptius_Olors(rb.getText().toString());
 

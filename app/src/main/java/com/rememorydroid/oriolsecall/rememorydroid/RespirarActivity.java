@@ -1,7 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AlertDialog;
@@ -9,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +31,7 @@ public class RespirarActivity extends AppCompatActivity {
         //d'aquesta forma ens evitem duplicar classes (activities)
         if(getIntent().hasExtra("Segon")){
             ivRespirar.setImageResource(R.drawable.abstracte2);
-            Reproduccio = R.raw.respirar2;
+            Reproduccio = R.raw.respirar234;
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Segon","Segon");
             ReproduirMissatge(mp);
@@ -42,7 +40,7 @@ public class RespirarActivity extends AppCompatActivity {
         }
         else if(getIntent().hasExtra("Tercer")){
             ivRespirar.setImageResource(R.drawable.abstracte3);
-            Reproduccio = R.raw.respirar3;
+            Reproduccio = R.raw.respirar234;
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Tercer","Tercer");
             ReproduirMissatge(mp);
@@ -51,7 +49,7 @@ public class RespirarActivity extends AppCompatActivity {
         }
         else if(getIntent().hasExtra("Quarta")){
             ivRespirar.setImageResource(R.drawable.abstracte4);
-            Reproduccio = R.raw.respirar4;
+            Reproduccio = R.raw.respirar234;
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Quarta","Quarta");
             ReproduirMissatge(mp);
@@ -60,7 +58,7 @@ public class RespirarActivity extends AppCompatActivity {
         }
         else if(getIntent().hasExtra("Curta1")){
             ivRespirar.setImageResource(R.drawable.abstracte5);
-            Reproduccio = R.raw.respirar5;
+            Reproduccio = R.raw.respirar234;
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this,VisualitzarActivity.class);
             intentRespirar.putExtra("Curta1","Curta1");
@@ -69,7 +67,7 @@ public class RespirarActivity extends AppCompatActivity {
         }
         else if(getIntent().hasExtra("Curta2")){
             ivRespirar.setImageResource(R.drawable.abstracte6);
-            Reproduccio = R.raw.respirar5;
+            Reproduccio = R.raw.respirar234;
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this,TestActivity.class);
             intentRespirar.putExtra("SegonTest","SegonTest");
@@ -80,7 +78,6 @@ public class RespirarActivity extends AppCompatActivity {
             Reproduccio = R.raw.respirar1;
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this, VisualitzarActivity.class);
-            intentRespirar.putExtra("Primer","Primer");
             ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
         }
@@ -99,7 +96,6 @@ public class RespirarActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setView(textEntryView)
                 .setTitle(getString(R.string.Attention));
-                //.setMessage(R.string.InstructonsBreathing)
 
         final AlertDialog alerta = DialegFormControl.create();
 
@@ -111,9 +107,6 @@ public class RespirarActivity extends AppCompatActivity {
                 alerta.dismiss();
             }
         });
-
-
-
     }
 
     private void ReproduirMissatge(final MediaPlayer mp){

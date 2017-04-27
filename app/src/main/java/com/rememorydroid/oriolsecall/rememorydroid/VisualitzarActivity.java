@@ -1,31 +1,20 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ViewUtils;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.Surface;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -47,7 +36,6 @@ public class VisualitzarActivity extends BaseActivity {
     private ImageView ibPlay, ibStop;
     private Button btNext;
     private Intent intent;
-    private int duration;
     private ProgressBar ProgressBarVideo;
     private boolean noAudio=false;
     private PacientUsuari pacient;
@@ -100,15 +88,30 @@ public class VisualitzarActivity extends BaseActivity {
         vv.setEnabled(false);
 
         //Per les instruccions
-        mp = MediaPlayer.create(this, R.raw.visualitzar1);
-        DialogInstruccionsVisualitzar(mp);
-        //Vídeo
-        //vv.setVideoURI(Uri.parse("android.resource://"+ getPackageName() + "/"+ R.raw.video1));
-        intent=new Intent(VisualitzarActivity.this,EvocarActivity.class);
+        mp = MediaPlayer.create(this, R.raw.visualitzacio0);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mp.stop();
+                mp.release();
+                ibPlay.setVisibility(View.VISIBLE);
+                ibStop.setVisibility(View.VISIBLE);
+                ibPlay.setEnabled(true);
+                ibStop.setEnabled(true);
+                vv.setEnabled(true);
 
-        if(getIntent().hasExtra("Primer")){
-            //Versió llarga primera visualització...
-        }
+            }
+        });
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                DialogInstruccionsVisualitzar();
+                mp.start();
+            }
+        });
+
+        //Vídeo
+        intent=new Intent(VisualitzarActivity.this,EvocarActivity.class);
 
         if(getIntent().hasExtra("Curta1")){
             noAudio=true;
@@ -122,21 +125,14 @@ public class VisualitzarActivity extends BaseActivity {
         vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(final MediaPlayer mediaPlayer) {
-                duration = vv.getDuration();
-
                 vv.setMediaController(new MediaController(VisualitzarActivity.this));
-                if(noAudio){
-                    mediaPlayer.setVolume(0,0);
-                }
                 vv.start();
                 vv.pause();
-                ProgressBarVideo.setMax(duration);
+                ProgressBarVideo.setMax(vv.getDuration());
                 ProgressBarVideo.setProgress(0);
 
                 ibPlay.setEnabled(true);
                 ibStop.setEnabled(true);
-
-
             }
         });
 
@@ -145,7 +141,7 @@ public class VisualitzarActivity extends BaseActivity {
         vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
                 btNext.setVisibility(View.VISIBLE);
                 btNext.setEnabled(true);
             }
@@ -159,18 +155,18 @@ public class VisualitzarActivity extends BaseActivity {
         });
 
 
-        //Aquí el video no es fragmenta en 3 parts
         ibPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(vv.isPlaying()){
                     vv.pause();
-                    ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                    ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
                 }
                 else{
                     vv.start();
-                    ibPlay.setImageDrawable(getDrawable(R.drawable.pause));
+                    ibPlay.setImageDrawable(getDrawable(R.drawable.pausewhite));
 
+                    //Actualitzem la barra de progrés
                     new Thread(new Runnable() {
                         public void run() {
                             while (vv.isPlaying()) {
@@ -182,9 +178,6 @@ public class VisualitzarActivity extends BaseActivity {
                                 });
                             }}}).start();
                 }
-
-
-
             }
         });
 
@@ -193,12 +186,12 @@ public class VisualitzarActivity extends BaseActivity {
             public void onClick(View view) {
                 vv.pause();
                 vv.seekTo(0);
-                ibPlay.setImageDrawable(getDrawable(R.drawable.play));
+                ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
             }
         });
     }
 
-    private void DialogInstruccionsVisualitzar(final MediaPlayer mp) {
+    private void DialogInstruccionsVisualitzar() {
         AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(VisualitzarActivity.this);
         LayoutInflater factory = LayoutInflater.from(this);
         View textEntryView = factory.inflate(R.layout.dialegs, null);
@@ -209,29 +202,7 @@ public class VisualitzarActivity extends BaseActivity {
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
                 .setView(textEntryView)
-                .setCancelable(false);/*
-                .setMessage(R.string.DialogVideo1)
-                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        mp.start();
-                        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mediaPlayer) {
-                                mp.stop();
-                                mp.release();
-                                ibPlay.setVisibility(View.VISIBLE);
-                                ibStop.setVisibility(View.VISIBLE);
-                                ibPlay.setEnabled(true);
-                                ibStop.setEnabled(true);
-                                vv.setEnabled(true);
-
-                            }
-                        });
-                        arg0.cancel();
-                        arg0.dismiss();
-                    }
-                })
-                .show();*/
+                .setCancelable(false);
 
         final AlertDialog alerta = DialegFormControl.create();
 
@@ -240,21 +211,6 @@ public class VisualitzarActivity extends BaseActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mp.start();
-                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mp.stop();
-                        mp.release();
-                        ibPlay.setVisibility(View.VISIBLE);
-                        ibStop.setVisibility(View.VISIBLE);
-                        ibPlay.setEnabled(true);
-                        ibStop.setEnabled(true);
-                        vv.setEnabled(true);
-
-                    }
-                });
-
                 alerta.dismiss();
             }
         });
@@ -301,5 +257,11 @@ public class VisualitzarActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        finish();
+        super.onDestroy();
     }
 }
