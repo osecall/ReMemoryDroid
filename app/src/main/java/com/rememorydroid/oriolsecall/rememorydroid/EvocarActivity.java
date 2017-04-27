@@ -159,7 +159,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             //Enviar fitxer so a FireBase
             showProgressDialog();
             //Col·locar-ho en l'episodi corresponent
-            StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child(ID_usuari).child(episodi).child(NomFitxerCloud);
+            StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child(ID_usuari).child(episodi).child("sons").child(NomFitxerCloud);
             soRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

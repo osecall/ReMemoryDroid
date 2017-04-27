@@ -76,7 +76,7 @@ public class AlbumActivity extends BaseActivity {
 
         Animation fadeIn = new AlphaAnimation(0,1);
         fadeIn.setInterpolator(new DecelerateInterpolator());
-        fadeIn.setDuration(2000);
+        fadeIn.setDuration(1500);
 
         animation = new AnimationSet(false);
         animation.addAnimation(fadeIn);
@@ -95,14 +95,6 @@ public class AlbumActivity extends BaseActivity {
         Dialeg
                 .setTitle(getString(R.string.Attention))
                 .setView(textEntryView);
-        /*
-                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        descargarImatges();
-                        arg0.dismiss();
-                    }
-                })
-                .show();*/
         final AlertDialog alerta = Dialeg.create();
 
         alerta.show();
@@ -373,12 +365,12 @@ public class AlbumActivity extends BaseActivity {
     }
 
     private void descargarImatges(){
-        StorageReference Ref0 = myRef.child(ID).child(episodi).child("0.jpg");
-        StorageReference Ref1 = myRef.child(ID).child(episodi).child("1.jpg");
-        StorageReference Ref2 = myRef.child(ID).child(episodi).child("2.jpg");
-        StorageReference Ref3 = myRef.child(ID).child(episodi).child("3.jpg");
-        StorageReference Ref4 = myRef.child(ID).child(episodi).child("4.jpg");
-        StorageReference Ref5 = myRef.child(ID).child(episodi).child("5.jpg");
+        StorageReference Ref0 = myRef.child(ID).child(episodi).child("imatges").child("0.jpg");
+        StorageReference Ref1 = myRef.child(ID).child(episodi).child("imatges").child("1.jpg");
+        StorageReference Ref2 = myRef.child(ID).child(episodi).child("imatges").child("2.jpg");
+        StorageReference Ref3 = myRef.child(ID).child(episodi).child("imatges").child("3.jpg");
+        StorageReference Ref4 = myRef.child(ID).child(episodi).child("imatges").child("4.jpg");
+        StorageReference Ref5 = myRef.child(ID).child(episodi).child("imatges").child("5.jpg");
 
 
         showProgressDialog();

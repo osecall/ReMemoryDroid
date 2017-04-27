@@ -744,7 +744,7 @@ public class TestActivity extends AppCompatActivity {
                         //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
                         ArrayList<String> rutes = respostes.ConvertToCVS(getContext());
                         //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta i el JSON[1]
-                        StorageReference PacientRef = myRef.child(pacient.getID()).child(episodi).child("ResultatVersioCurta_"+pacient.getID()+".csv");
+                        StorageReference PacientRef = myRef.child(pacient.getID()).child(episodi).child("resultats").child("ResultatVersioCurta_"+pacient.getID()+".csv");
                         Uri file = Uri.fromFile(new File(rutes.get(0)));
 
                         //Pujem el JSON a la base de dades
@@ -856,7 +856,7 @@ public class TestActivity extends AppCompatActivity {
                         //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
                         ArrayList<String> rutes = respostes.ConvertToCVS(getContext());
                         //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta i el JSON[1]
-                        StorageReference PacientRef = myRef.child(pacient.getID()).child(episodi).child("ResultatVersioLlarga_"+pacient.getID()+".csv");
+                        StorageReference PacientRef = myRef.child(pacient.getID()).child(episodi).child("resultats").child("ResultatVersioLlarga_"+pacient.getID()+".csv");
                         Uri file = Uri.fromFile(new File(rutes.get(0)));
 
                         //Pujem el JSON a la base de dades
@@ -1054,11 +1054,11 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void NotificarTest1(){
-        Bitmap bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(),R.drawable.checkgreensesentadp);
+        Bitmap bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(),R.drawable.iconrem);
 
         NotificationCompat.Builder mBuilder =
                  new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.iconhappyface)
+                .setSmallIcon(R.drawable.iconrem)
                 .setLargeIcon(bitmap)
                 .setContentTitle(getString(R.string.NotificationAlert))
                 .setContentText(getString(R.string.NotificationTest1, pacient.getName()))
@@ -1067,11 +1067,11 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void NotificarTest2(){
-        Bitmap bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(),R.drawable.checkgreensesentadp);
+        Bitmap bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(),R.drawable.iconrem);
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.iconhappyface)
+                        .setSmallIcon(R.drawable.iconrem)
                         .setLargeIcon(bitmap)
                         .setContentTitle(getString(R.string.NotificationAlert))
                         .setContentText(getString(R.string.NotificationTest2, pacient.getName()))
