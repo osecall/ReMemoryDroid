@@ -3,18 +3,15 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -47,8 +44,6 @@ import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
-
-import junit.framework.Test;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -187,8 +182,8 @@ public class TestActivity extends AppCompatActivity {
             final View rootView = inflater.inflate(R.layout.activity_test_1, container, false);
 
             ColorGenerator generator = ColorGenerator.DEFAULT;
-            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("1",generator.getRandomColor());
-            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("6",generator.getRandomColor());
+            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("1",generator.getRandomColor());
+            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("6",generator.getRandomColor());
 
             ImageView ivFromPage = (ImageView) rootView.findViewById(R.id.ivFromPage1);
             ImageView ivToPage = (ImageView) rootView.findViewById(R.id.ivToPage1);
@@ -222,7 +217,7 @@ public class TestActivity extends AppCompatActivity {
                     btNext.setVisibility(View.VISIBLE);
                     btNext.setEnabled(true);
 
-                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
+                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(110).height(110).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
                     ivNumSeleccionat.setImageDrawable(NumeroSeleccionat);
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
@@ -281,8 +276,8 @@ public class TestActivity extends AppCompatActivity {
             final View rootView = inflater.inflate(R.layout.activity_test_2, container, false);
 
             ColorGenerator generator = ColorGenerator.DEFAULT;
-            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("2",generator.getRandomColor());
-            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("6",generator.getRandomColor());
+            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("2",generator.getRandomColor());
+            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("6",generator.getRandomColor());
 
             ImageView ivFromPage = (ImageView) rootView.findViewById(R.id.ivFromPage1);
             ImageView ivToPage = (ImageView) rootView.findViewById(R.id.ivToPage1);
@@ -311,7 +306,7 @@ public class TestActivity extends AppCompatActivity {
                     btNext.setVisibility(View.VISIBLE);
                     btNext.setEnabled(true);
 
-                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
+                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(110).height(110).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
                     ivNumSeleccionat.setImageDrawable(NumeroSeleccionat);
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
@@ -378,8 +373,8 @@ public class TestActivity extends AppCompatActivity {
             final View rootView = inflater.inflate(R.layout.activity_test_3, container, false);
 
             ColorGenerator generator = ColorGenerator.DEFAULT;
-            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("3",generator.getRandomColor());
-            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("6",generator.getRandomColor());
+            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("3",generator.getRandomColor());
+            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("6",generator.getRandomColor());
 
             ImageView ivFromPage = (ImageView) rootView.findViewById(R.id.ivFromPage1);
             ImageView ivToPage = (ImageView) rootView.findViewById(R.id.ivToPage1);
@@ -408,7 +403,7 @@ public class TestActivity extends AppCompatActivity {
                     btNext.setVisibility(View.VISIBLE);
                     btNext.setEnabled(true);
 
-                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
+                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(110).height(110).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
                     ivNumSeleccionat.setImageDrawable(NumeroSeleccionat);
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
@@ -474,8 +469,8 @@ public class TestActivity extends AppCompatActivity {
             final View rootView = inflater.inflate(R.layout.activity_test_4, container, false);
 
             ColorGenerator generator = ColorGenerator.DEFAULT;
-            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("4",generator.getRandomColor());
-            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("6",generator.getRandomColor());
+            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("4",generator.getRandomColor());
+            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("6",generator.getRandomColor());
 
             ImageView ivFromPage = (ImageView) rootView.findViewById(R.id.ivFromPage1);
             ImageView ivToPage = (ImageView) rootView.findViewById(R.id.ivToPage1);
@@ -504,7 +499,7 @@ public class TestActivity extends AppCompatActivity {
                     btNext.setVisibility(View.VISIBLE);
                     btNext.setEnabled(true);
 
-                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
+                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(110).height(110).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
                     ivNumSeleccionat.setImageDrawable(NumeroSeleccionat);
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
@@ -570,8 +565,8 @@ public class TestActivity extends AppCompatActivity {
             final View rootView = inflater.inflate(R.layout.activity_test_5, container, false);
 
             ColorGenerator generator = ColorGenerator.DEFAULT;
-            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("5",generator.getRandomColor());
-            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("6",generator.getRandomColor());
+            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("5",generator.getRandomColor());
+            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("6",generator.getRandomColor());
 
             ImageView ivFromPage = (ImageView) rootView.findViewById(R.id.ivFromPage1);
             ImageView ivToPage = (ImageView) rootView.findViewById(R.id.ivToPage1);
@@ -601,7 +596,7 @@ public class TestActivity extends AppCompatActivity {
                     btNext.setVisibility(View.VISIBLE);
                     btNext.setEnabled(true);
 
-                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
+                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(110).height(110).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
                     ivNumSeleccionat.setImageDrawable(NumeroSeleccionat);
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
@@ -666,8 +661,8 @@ public class TestActivity extends AppCompatActivity {
             final View rootView = inflater.inflate(R.layout.activity_test_6, container, false);
 
             ColorGenerator generator = ColorGenerator.DEFAULT;
-            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("6",generator.getRandomColor());
-            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(65).height(65).endConfig().buildRound("6",generator.getRandomColor());
+            TextDrawable FromPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("6",generator.getRandomColor());
+            TextDrawable ToPage = TextDrawable.builder().beginConfig().width(40).height(40).endConfig().buildRound("6",generator.getRandomColor());
 
             ImageView ivFromPage = (ImageView) rootView.findViewById(R.id.ivFromPage1);
             ImageView ivToPage = (ImageView) rootView.findViewById(R.id.ivToPage1);
@@ -708,7 +703,7 @@ public class TestActivity extends AppCompatActivity {
                         }
                     }
 
-                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(150).height(150).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
+                    TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(110).height(110).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
                     ivNumSeleccionat.setImageDrawable(NumeroSeleccionat);
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
@@ -914,13 +909,7 @@ public class TestActivity extends AppCompatActivity {
                         DialegDespedida
                                 .setCancelable(false)
                                 .setView(textEntryView);
-                                //.setMessage(R.string.Colaboration)
-                                /*.setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        startActivity(new Intent(getContext(), TractamentsActivity.class));
-                                        arg0.dismiss();
-                                    }
-                                });*/
+
 
                         final AlertDialog alerta = DialegDespedida.create();
 
@@ -1037,8 +1026,6 @@ public class TestActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setView(textEntryView)
                 .setTitle(getString(R.string.Attention));
-                //.setMessage(R.string.AlertDialaogTest)
-
 
         final AlertDialog alerta = DialegFormControl.create();
 

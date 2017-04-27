@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:screenOrientation="landscape"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:screenOrientation="landscape"
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.AlbumActivity">
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvAlbumTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="17dp"
             android:layout_marginTop="19dp"
@@ -30,13 +23,13 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/tvAlbumTitle"
             android:layout_below="@+id/tvAlbumTitle"
             android:layout_gravity="center"
             android:layout_margin="17dp"
             android:layout_marginTop="17dp"
             android:text="@string/ChooseImageFavourite"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            tools:ignore="ObsoleteLayoutParam" />
 
         <LinearLayout
             android:id="@+id/llIv0to4"
@@ -54,14 +47,18 @@
                     android:id="@+id/ivAlbum0"
                     android:layout_width="350dp"
                     android:layout_height="225dp"
-                    android:layout_gravity="center_horizontal|center" />
+                    android:layout_gravity="center_horizontal|center"
+                    android:contentDescription="foto0"
+                    tools:ignore="HardcodedText" />
 
                 <ImageView
                     android:id="@+id/imageView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marco2" />
+                    app:srcCompat="@drawable/marco2"
+                    android:contentDescription="marcdefotos"
+                    tools:ignore="HardcodedText" />
 
             </FrameLayout>
 
@@ -75,14 +72,18 @@
                     android:layout_width="350dp"
                     android:layout_height="225dp"
                     android:layout_gravity="center_horizontal|center"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="fitCenter"
+                    android:contentDescription="foto1"
+                    tools:ignore="HardcodedText" />
 
                 <ImageView
                     android:id="@+id/imageView12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marco2" />
+                    app:srcCompat="@drawable/marco2"
+                    android:contentDescription="marcdefotos"
+                    tools:ignore="HardcodedText" />
 
             </FrameLayout>
 
@@ -96,14 +97,18 @@
                     android:layout_width="350dp"
                     android:layout_height="225dp"
                     android:layout_gravity="center_horizontal|center"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="fitCenter"
+                    android:contentDescription="foto2"
+                    tools:ignore="HardcodedText" />
 
                 <ImageView
                     android:id="@+id/imageView13"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marco2" />
+                    app:srcCompat="@drawable/marco2"
+                    android:contentDescription="marcodefotos"
+                    tools:ignore="HardcodedText" />
 
             </FrameLayout>
 
@@ -126,14 +131,18 @@
                     android:layout_width="350dp"
                     android:layout_height="225dp"
                     android:layout_gravity="center_horizontal|center"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="fitCenter"
+                    android:contentDescription="foto4"
+                    tools:ignore="HardcodedText" />
 
                 <ImageView
                     android:id="@+id/imageView14"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marco2" />
+                    app:srcCompat="@drawable/marco2"
+                    android:contentDescription="marcodefotos"
+                    tools:ignore="HardcodedText" />
 
             </FrameLayout>
 
@@ -147,14 +156,18 @@
                     android:layout_width="350dp"
                     android:layout_height="225dp"
                     android:layout_gravity="center_horizontal|center"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="fitCenter"
+                    android:contentDescription="foto4"
+                    tools:ignore="HardcodedText" />
 
                 <ImageView
                     android:id="@+id/imageView15"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marco2" />
+                    app:srcCompat="@drawable/marco2"
+                    android:contentDescription="marcodefotos"
+                    tools:ignore="HardcodedText" />
 
             </FrameLayout>
 
@@ -168,19 +181,22 @@
                     android:layout_width="350dp"
                     android:layout_height="225dp"
                     android:layout_gravity="center_horizontal|center"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="fitCenter"
+                    android:contentDescription="foto5"
+                    tools:ignore="HardcodedText" />
 
                 <ImageView
                     android:id="@+id/imageView16"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/marco2" />
+                    app:srcCompat="@drawable/marco2"
+                    android:contentDescription="marcodefotos"
+                    tools:ignore="HardcodedText" />
 
             </FrameLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+</LinearLayout>
 
-</RelativeLayout>
