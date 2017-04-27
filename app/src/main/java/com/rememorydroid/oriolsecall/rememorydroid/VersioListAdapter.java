@@ -60,7 +60,7 @@ public class VersioListAdapter extends ArrayAdapter<VersioList> {
         //La primera lletra del text per dibuixar-lo
         String inicial = Character.toString(datos.get(position).getWeekDay().toString().charAt(0));
 
-        viewHolder.ivDrawVersio.setImageDrawable(TextDrawable.builder().beginConfig().width(100).height(100).endConfig().buildRound(inicial, Color.RED));
+        viewHolder.ivDrawVersio.setImageDrawable(TextDrawable.builder().beginConfig().width(70).height(70).endConfig().buildRound(inicial, Color.RED));
 
 
         return view;

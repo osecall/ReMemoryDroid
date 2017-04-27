@@ -57,7 +57,7 @@ public class EpisodiListAdapter extends ArrayAdapter<EpisodiList> {
                 .findViewById(R.id.tvLayOutFecha);
 
         //Construim el TextDrawable que anirà a cada número de la llista
-        draws = TextDrawable.builder().beginConfig().width(70).height(70).endConfig().buildRound(datos.get(position).getNumero(),ColorGenerator.DEFAULT.getRandomColor());
+        draws = TextDrawable.builder().beginConfig().width(60).height(60).endConfig().buildRound(datos.get(position).getNumero(),ColorGenerator.DEFAULT.getRandomColor());
 
 
         //viewHolder.tvLayOutNum.setText(datos.get(position).getNumero());
