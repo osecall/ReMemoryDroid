@@ -56,7 +56,7 @@ public class VisualitzarActivity extends BaseActivity {
         pacient = temp.fromJson(pacient_json, PacientUsuari.class);
         episodi = prefs.getString("episodi",null);
 
-        myRef = myRef.child(pacient.getID()).child(episodi).child("video.mp4");
+        myRef = myRef.child(pacient.getID()).child(episodi).child("video").child("video.mp4");
 
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
         ProgressBarVideo = (ProgressBar) findViewById(R.id.progressBarVideo);
