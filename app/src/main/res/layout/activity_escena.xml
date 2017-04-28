@@ -10,9 +10,10 @@
 
 
     <FrameLayout
+        android:id="@+id/frameLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/frameLayout3">
+        android:layout_marginLeft="10dp">
 
         <ImageView
             android:id="@+id/ivPicturePreferredCurta"
@@ -26,7 +27,7 @@
             android:layout_width="460dp"
             android:layout_height="380dp"
             android:layout_gravity="center"
-             android:scaleType="fitXY"
+            android:scaleType="fitXY"
             app:srcCompat="@drawable/marcofoto" />
 
     </FrameLayout>

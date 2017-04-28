@@ -99,8 +99,8 @@
     </style>
 
     <style name="radioGroupElements">
-        <item name="android:textSize">75sp</item>
-        <item name="android:layout_margin">40sp</item>
+        <item name="android:textSize">65sp</item>
+        <item name="android:layout_margin">30sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">center</item>
         <item name="android:drawableBottom">@android:drawable/btn_radio</item>
@@ -139,6 +139,10 @@
         <item name="android:drawableLeft">@android:drawable/btn_radio</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:button">@null</item>
+    </style>
+
+    <style name="ivNumSeleccionat">
+        <item name="android:layout_marginTop">30dp</item>
     </style>
 
 </resources>

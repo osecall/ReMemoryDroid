@@ -1,7 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -14,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -74,6 +72,16 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum4 = (ImageView) findViewById(R.id.ivAlbum4);
         ivAlbum5 = (ImageView) findViewById(R.id.ivAlbum5);
 
+        ivAlbum0.setEnabled(false);
+        ivAlbum1.setEnabled(false);
+        ivAlbum2.setEnabled(false);
+        ivAlbum3.setEnabled(false);
+        ivAlbum4.setEnabled(false);
+        ivAlbum5.setEnabled(false);
+
+
+
+
         Animation fadeIn = new AlphaAnimation(0,1);
         fadeIn.setInterpolator(new DecelerateInterpolator());
         fadeIn.setDuration(1500);
@@ -85,7 +93,8 @@ public class AlbumActivity extends BaseActivity {
         translate = AnimationUtils.loadAnimation(getBaseContext(), R.anim.translate);
         translate.reset();
 
-        RefFavour = myRef.child(ID).child(episodi).child("Favorita").child("favorita.jpg");
+        RefFavour = myRef.child(ID).child(episodi).child("favorita").child("favorita.jpg");
+        descargarImatges();
 
         AlertDialog.Builder Dialeg = new AlertDialog.Builder(AlbumActivity.this);
         TextView Missatge = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
@@ -102,8 +111,6 @@ public class AlbumActivity extends BaseActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                descargarImatges();
                 alerta.dismiss();
             }
         });
@@ -372,7 +379,6 @@ public class AlbumActivity extends BaseActivity {
         StorageReference Ref4 = myRef.child(ID).child(episodi).child("imatges").child("4.jpg");
         StorageReference Ref5 = myRef.child(ID).child(episodi).child("imatges").child("5.jpg");
 
-
         showProgressDialog();
         Ref0.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -381,6 +387,7 @@ public class AlbumActivity extends BaseActivity {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum0);
                 hideProgressDialog();
                 ivAlbum0.setAnimation(animation);
+                ivAlbum0.setEnabled(true);
             }
         });
         showProgressDialog();
@@ -390,6 +397,7 @@ public class AlbumActivity extends BaseActivity {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum1);
                 hideProgressDialog();
                 ivAlbum1.setAnimation(animation);
+                ivAlbum1.setEnabled(true);
             }
         });
         showProgressDialog();
@@ -399,6 +407,7 @@ public class AlbumActivity extends BaseActivity {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum2);
                 hideProgressDialog();
                 ivAlbum2.setAnimation(animation);
+                ivAlbum2.setEnabled(true);
             }
         });
         showProgressDialog();
@@ -408,6 +417,7 @@ public class AlbumActivity extends BaseActivity {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum3);
                 hideProgressDialog();
                 ivAlbum3.setAnimation(animation);
+                ivAlbum3.setEnabled(true);
             }
         });
         showProgressDialog();
@@ -417,6 +427,7 @@ public class AlbumActivity extends BaseActivity {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum4);
                 hideProgressDialog();
                 ivAlbum4.setAnimation(animation);
+                ivAlbum4.setEnabled(true);
             }
         });
         showProgressDialog();
@@ -426,6 +437,7 @@ public class AlbumActivity extends BaseActivity {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum5);
                 hideProgressDialog();
                 ivAlbum5.setAnimation(animation);
+                ivAlbum5.setEnabled(true);
             }
         });
 

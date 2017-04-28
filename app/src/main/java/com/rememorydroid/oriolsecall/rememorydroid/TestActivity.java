@@ -21,6 +21,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,7 +46,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class TestActivity extends AppCompatActivity {
@@ -222,10 +226,10 @@ public class TestActivity extends AppCompatActivity {
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
                     if(SegonTest){
-                        respostes.setTest2Pregunta1(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest2Pregunta1(rb.getText().toString());
                     }
                     else{
-                        respostes.setTest1Pregunta1(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest1Pregunta1(rb.getText().toString());
 
                     }
                 }
@@ -311,10 +315,10 @@ public class TestActivity extends AppCompatActivity {
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
                     if(SegonTest){
-                        respostes.setTest2Pregunta2(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest2Pregunta2(rb.getText().toString());
                     }
                     else{
-                        respostes.setTest1Pregunta2(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest1Pregunta2(rb.getText().toString());
 
                     }
                 }
@@ -408,10 +412,10 @@ public class TestActivity extends AppCompatActivity {
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
                     if(SegonTest){
-                        respostes.setTest2Pregunta3(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest2Pregunta3(rb.getText().toString());
                     }
                     else{
-                        respostes.setTest1Pregunta3(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest1Pregunta3(rb.getText().toString());
                     }
                 }
             });
@@ -504,10 +508,10 @@ public class TestActivity extends AppCompatActivity {
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
                     if(SegonTest){
-                        respostes.setTest2Pregunta4(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest2Pregunta4(rb.getText().toString());
                     }
                     else{
-                        respostes.setTest1Pregunta4(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest1Pregunta4(rb.getText().toString());
                     }
                 }
             });
@@ -601,10 +605,10 @@ public class TestActivity extends AppCompatActivity {
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
                     if(SegonTest){
-                        respostes.setTest2Pregunta5(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest2Pregunta5(rb.getText().toString());
                     }
                     else{
-                        respostes.setTest1Pregunta5(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest1Pregunta5(rb.getText().toString());
                     }
                 }
             });
@@ -689,17 +693,25 @@ public class TestActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     if(!SegonTest){
-                        if(!respostes.getTest1Pregunta1().matches("0") && !respostes.getTest1Pregunta2().matches("0") && !respostes.getTest1Pregunta3().matches("0") &&
-                                !respostes.getTest1Pregunta4().matches("0") && !respostes.getTest1Pregunta5().matches("0")){
+                        if(!respostes.getTest1Pregunta1().isEmpty() && !respostes.getTest1Pregunta2().isEmpty() && !respostes.getTest1Pregunta3().isEmpty() &&
+                                !respostes.getTest1Pregunta4().isEmpty() && !respostes.getTest1Pregunta5().isEmpty()){
                             btNext.setVisibility(View.VISIBLE);
                             btNext.setEnabled(true);
                         }
+                        else{
+                            Toast.makeText(getContext(), R.string.MissAnswers,
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }
                     if(SegonTest){
-                        if(!respostes.getTest2Pregunta1().matches("0") && !respostes.getTest2Pregunta2().isEmpty() && !respostes.getTest2Pregunta3().matches("0") &&
-                                !respostes.getTest2Pregunta4().matches("0") && !respostes.getTest2Pregunta5().matches("0")){
+                        if(!respostes.getTest2Pregunta1().isEmpty() && !respostes.getTest2Pregunta2().isEmpty() && !respostes.getTest2Pregunta3().isEmpty() &&
+                                !respostes.getTest2Pregunta4().isEmpty() && !respostes.getTest2Pregunta5().isEmpty()){
                             btNext.setVisibility(View.VISIBLE);
                             btNext.setEnabled(true);
+                        }
+                        else{
+                            Toast.makeText(getContext(), R.string.MissAnswers,
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -708,11 +720,11 @@ public class TestActivity extends AppCompatActivity {
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
 
                     if(SegonTest){
-                        respostes.setTest2Pregunta6(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest2Pregunta6(rb.getText().toString());
                         respostes.setTest2Sumatori();
                     }
                     else{
-                        respostes.setTest1Pregunta6(Integer.parseInt(rb.getText().toString()));
+                        respostes.setTest1Pregunta6(rb.getText().toString());
                         respostes.setTest1Sumatori();
                     }
                 }
@@ -737,20 +749,15 @@ public class TestActivity extends AppCompatActivity {
                     if(Curta && SegonTest){
                         //Aquest cas és la versió curta i el segon test, s'ha d'enviar resultat a la DB i acabar
                         //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
-                        ArrayList<String> rutes = respostes.ConvertToCVS(getContext());
-                        //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta i el JSON[1]
-                        StorageReference PacientRef = myRef.child(pacient.getID()).child(episodi).child("resultats").child("ResultatVersioCurta_"+pacient.getID()+".csv");
-                        Uri file = Uri.fromFile(new File(rutes.get(0)));
-
-                        //Pujem el JSON a la base de dades
-                        TestAnswers respostesJSON = gson.fromJson(rutes.get(1), TestAnswers.class);
-                        DBRef.child(pacient.getID()).child("episodis").child(episodi).child("respostes").setValue(respostesJSON);
+                        String ruta = respostes.ConvertToCVS();
+                        //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta
+                        StorageReference PacientRef = myRef.child(pacient.getID()).child(episodi).child("respostes").child("ResultatVersioCurta_"+pacient.getID()+".csv");
+                        Uri file = Uri.fromFile(new File(ruta));
 
                         // Create file metadata including the content type (CSV)
                         StorageMetadata metadata = new StorageMetadata.Builder()
                                .setContentType("text/csv")
                                .build();
-
 
                         mProgressDialog = new ProgressDialog(getContext());
                         mProgressDialog.setMessage(getString(R.string.loading));
@@ -761,13 +768,11 @@ public class TestActivity extends AppCompatActivity {
                         PacientRef.putFile(file,metadata).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                while(!task.isSuccessful()){
-                                    mProgressDialog.show();
-                                }
-                                if(task.isComplete()){
-                                    mProgressDialog.show();
+                                if(task.isSuccessful()){
+                                    mProgressDialog.dismiss();
+                                    mProgressDialog.dismiss();
                                     Toast.makeText(getContext(), R.string.UploadCSVSuccessful,
-                                    Toast.LENGTH_LONG).show();
+                                            Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -798,14 +803,6 @@ public class TestActivity extends AppCompatActivity {
                         DialegDespedida
                                     .setCancelable(false)
                                     .setView(textEntryView);
-                                    //.setMessage(R.string.Colaboration)
-                                    /*
-                                    .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface arg0, int arg1) {
-                                            startActivity(new Intent(getContext(), TractamentsActivity.class));
-                                            arg0.dismiss();
-                                       }
-                                    });*/
 
                         final AlertDialog alerta = DialegDespedida.create();
 
@@ -816,6 +813,7 @@ public class TestActivity extends AppCompatActivity {
                             public void onClick(View view) {
                                 startActivity(new Intent(getContext(), TractamentsActivity.class));
                                 alerta.dismiss();
+                                getActivity().finish();
                             }
                         });
 
@@ -849,21 +847,16 @@ public class TestActivity extends AppCompatActivity {
 
                     if(!Curta && SegonTest){
                         //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
-                        ArrayList<String> rutes = respostes.ConvertToCVS(getContext());
-                        //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta i el JSON[1]
-                        StorageReference PacientRef = myRef.child(pacient.getID()).child(episodi).child("resultats").child("ResultatVersioLlarga_"+pacient.getID()+".csv");
-                        Uri file = Uri.fromFile(new File(rutes.get(0)));
+                        String ruta = respostes.ConvertToCVS();
+                        Uri file = Uri.fromFile(new File(ruta));
 
-                        //Pujem el JSON a la base de dades
-                        TestAnswers respostesJSON = gson.fromJson(rutes.get(1), TestAnswers.class);
-                        DBRef.child(pacient.getID()).child("episodis").child(episodi).child("respostes").setValue(respostesJSON);
+                        //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta
+                        StorageReference PacientRef = myRef.child(pacient.getID()).child(episodi).child("respostes").child("ResultatVersioLlarga_"+pacient.getID()+".csv");
 
                         // Create file metadata including the content type (CSV)
                         StorageMetadata metadata = new StorageMetadata.Builder()
                                 .setContentType("text/csv")
                                 .build();
-
-
 
                         mProgressDialog = new ProgressDialog(getContext());
                         mProgressDialog.setMessage(getString(R.string.loading));
@@ -886,6 +879,7 @@ public class TestActivity extends AppCompatActivity {
                         });
 
                         //Notificació
+
                         Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
 
                         NotificationCompat.Builder mBuilder =
@@ -920,6 +914,7 @@ public class TestActivity extends AppCompatActivity {
                             public void onClick(View view) {
                                 startActivity(new Intent(getContext(), TractamentsActivity.class));
                                 alerta.dismiss();
+                                getActivity().finish();
                             }
                         });
 
@@ -930,6 +925,7 @@ public class TestActivity extends AppCompatActivity {
                         editor.putString("respostes",gson.toJson(respostes,TestAnswers.class));
                         editor.commit();
                         Intent intent = new Intent (getContext(), RespirarActivity.class);
+
                         Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
 
                         //Notificació
@@ -943,6 +939,7 @@ public class TestActivity extends AppCompatActivity {
 
                         NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
                         m.notify(4,mBuilder.build());
+
                         startActivity(intent);
                     }
 

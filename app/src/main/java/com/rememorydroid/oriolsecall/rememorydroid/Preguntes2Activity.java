@@ -29,6 +29,8 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
+import static com.rememorydroid.oriolsecall.rememorydroid.TestActivity.gson;
+
 public class Preguntes2Activity extends AppCompatActivity {
 
     /**
@@ -48,7 +50,7 @@ public class Preguntes2Activity extends AppCompatActivity {
 
     public static SharedPreferences prefs;
 
-    public static TestAnswers respostes_recuperades;
+    public static TestAnswers respostes_recuperades = new TestAnswers();
 
     public static PacientUsuari pacient;
 
@@ -74,12 +76,9 @@ public class Preguntes2Activity extends AppCompatActivity {
 
         prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
 
-        SharedPreferences.Editor editor = prefs.edit();
-
         String respostes_json = prefs.getString("respostes", null);
         //Guardem a TestAnswers
         Gson gson = new Gson();
-        respostes_recuperades= new TestAnswers();
         respostes_recuperades = gson.fromJson(respostes_json, TestAnswers.class);
 
         pacient = gson.fromJson(prefs.getString("pacient",null),PacientUsuari.class);
@@ -180,7 +179,7 @@ public class Preguntes2Activity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
 
                     //Guardem resposta obteniguda
-                    respostes_recuperades.setPreguntesPersones_Accions(rb.getText().toString());
+                    respostes_recuperades.setPreguntesPersonesAccions(rb.getText().toString());
 
                     btNextPeople1.setEnabled(true);
                     btNextPeople1.setVisibility(View.VISIBLE);
@@ -260,7 +259,7 @@ public class Preguntes2Activity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
 
                     //Guardem resposta obteniguda
-                    respostes_recuperades.setPreguntesPersones_Grups(rb.getText().toString());
+                    respostes_recuperades.setPreguntesPersonesGrups(rb.getText().toString());
 
                     btNextPeople2.setEnabled(true);
                     btNextPeople2.setVisibility(View.VISIBLE);
@@ -335,7 +334,7 @@ public class Preguntes2Activity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
 
                     //Guardem resposta obteniguda
-                    respostes_recuperades.setPreguntesPersones_Relacio(rb.getText().toString());
+                    respostes_recuperades.setPreguntesPersonesRelacio(rb.getText().toString());
 
                     btNextPeople3.setEnabled(true);
                     btNextPeople3.setVisibility(View.VISIBLE);
@@ -409,10 +408,17 @@ public class Preguntes2Activity extends AppCompatActivity {
 
                     RadioButton rbSeleccionat = (RadioButton) rootView.findViewById(radioGroup.getCheckedRadioButtonId());
                     //Guardem resposta obteniguda
-                    respostes_recuperades.setPreguntesEmocions_Observades(rbSeleccionat.getText().toString());
-                    if(rgFragment42Q2.getCheckedRadioButtonId()!=-1){
-                        btNextPeople4.setEnabled(true);
-                        btNextPeople4.setVisibility(View.VISIBLE);
+                    respostes_recuperades.setPreguntesEmocionsObservades(rbSeleccionat.getText().toString());
+                    if(respostes_recuperades.getPreguntesPersonesRelacio()!=null && respostes_recuperades.getPreguntesPersonesGrups()!=null
+                            && respostes_recuperades.getPreguntesPersonesAccions()!=null) {
+                        if (rgFragment42Q2.getCheckedRadioButtonId() != -1) {
+                            btNextPeople4.setEnabled(true);
+                            btNextPeople4.setVisibility(View.VISIBLE);
+                        }
+                    }
+                    else{
+                        Toast.makeText(getContext(), R.string.MissAnswers,
+                                Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -423,10 +429,18 @@ public class Preguntes2Activity extends AppCompatActivity {
 
                     RadioButton rbSeleccionat = (RadioButton) rootView.findViewById(radioGroup.getCheckedRadioButtonId());
                     //Guardem resposta obteniguda
-                    respostes_recuperades.setPreguntesEmocions_Propies(rbSeleccionat.getText().toString());
-                    if(rgFragment41Q2.getCheckedRadioButtonId()!=-1){
-                        btNextPeople4.setEnabled(true);
-                        btNextPeople4.setVisibility(View.VISIBLE);
+                    respostes_recuperades.setPreguntesEmocionsPropies(rbSeleccionat.getText().toString());
+
+                    if(respostes_recuperades.getPreguntesPersonesRelacio()!=null && respostes_recuperades.getPreguntesPersonesGrups()!=null
+                            && respostes_recuperades.getPreguntesPersonesAccions()!=null){
+                        if(rgFragment41Q2.getCheckedRadioButtonId()!=-1){
+                            btNextPeople4.setEnabled(true);
+                            btNextPeople4.setVisibility(View.VISIBLE);
+                        }
+                    }
+                    else{
+                        Toast.makeText(getContext(), R.string.MissAnswers,
+                        Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -442,6 +456,9 @@ public class Preguntes2Activity extends AppCompatActivity {
             btNextPeople4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    String respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
+                    prefs.edit().putString("respostes",respostes_json);
+                    prefs.edit().commit();
                     Intent intent = new Intent(getActivity(),RespirarActivity.class);
                     intent.putExtra("Quarta","Quarta");
                     startActivity(intent);

@@ -117,9 +117,7 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
                         ibStop.setEnabled(true);
                     }
                 });
-
                 mp.start();
-
             }
         });
 

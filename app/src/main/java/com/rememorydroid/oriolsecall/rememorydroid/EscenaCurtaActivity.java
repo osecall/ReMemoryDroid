@@ -39,7 +39,7 @@ public class EscenaCurtaActivity extends BaseActivity {
         ivPicturePreferred = (ImageView) findViewById(R.id.ivPicturePreferredCurta);
         btNextEscenaCurta = (Button) findViewById(R.id.btNextEscenaCurta);
 
-        myRefFavour = myRef.child(pacient.getID()).child(Episodi).child("Favorita").child("favorita.jpg");
+        myRefFavour = myRef.child(pacient.getID()).child(Episodi).child("favorita").child("favorita.jpg");
 
         showProgressDialog();
 

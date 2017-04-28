@@ -71,14 +71,14 @@
     <string name="VersionSelected">Versión seleccionada: %s</string>
     <string name="From">de</string>
     <string name="Question1Pel1">Me siento normalmente despierto</string>
-    <string name="AtAll">Nada</string>
+    <string name="AtAll">Nada\n1</string>
     <string name="NameOfEpisode">Nombre del episodio</string>
     <string name="TimeEpisode">Franja horaria</string>
     <string name="DateEpisode">Fecha</string>
     <string name="WrongPassword">Contraseña incorrecta</string>
     <string name="UserDeleted">"Usuario paciente eliminado: "</string>
     <string name="AlertDialaogTest">Por favor, señale la opción que más se aproxime a cómo se siente usted ahora mismo</string>
-    <string name="Very">Mucho</string>
+    <string name="Very">Mucho\n10</string>
     <string name="Question2Pel1">Me siento capaz de recordar cosa importantes para mi</string>
     <string name="Question3Pel1">Me siento capaz de recordar cosas que hago durante el dia</string>
     <string name="Question4Pel1">Me siento capaz d\'esforzarme para superar las dificultades</string>
@@ -262,7 +262,7 @@
     <string name="Question3">Pregunta 3</string>
     <string name="Question4">Pregunta 4</string>
     <string name="Question5">Pregunta 5</string>
-    <string name="Question6">Pregunta 5</string>
+    <string name="Question6">Pregunta 6</string>
     <string name="title_activity_test">Test</string>
     <string name="False">Falso</string>
     <string name="True">Verdad</string>
@@ -279,4 +279,5 @@
     <string name="Test1Ticker">Test 1 terminado! Muy buen trabajo %s !!</string>
     <string name="Test2Ticker">Test 2 terminado! Muy buen trabajo %s !!</string>
     <string name="NotificationTest2">Test 2 terminado por %s !</string>
+    <string name="MissAnswers">Te has dejado de contestar algunas previas preguntas</string>
 </resources>

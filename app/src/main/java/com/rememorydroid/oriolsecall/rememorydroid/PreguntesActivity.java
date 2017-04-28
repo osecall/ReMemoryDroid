@@ -36,7 +36,7 @@ public class PreguntesActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private static ViewPager mViewPager;
     public static SharedPreferences prefs;
-    public static TestAnswers respostes_recuperades;
+    public static TestAnswers respostes_recuperades = new TestAnswers();
     private static PacientUsuari pacient;
 
 
@@ -62,12 +62,9 @@ public class PreguntesActivity extends AppCompatActivity {
 
         prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
 
-        SharedPreferences.Editor editor = prefs.edit();
-
         String respostes_json = prefs.getString("respostes", null);
         //Guardem a TestAnswers
         Gson gson = new Gson();
-        respostes_recuperades= new TestAnswers();
         respostes_recuperades = gson.fromJson(respostes_json, TestAnswers.class);
 
         String pacient_json = prefs.getString("pacient",null);
@@ -170,7 +167,7 @@ public class PreguntesActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
 
                     //Guardem resposta obteniguda
-                    respostes_recuperades.setPreguntesQuan_EpocaAny(rb.getText().toString());
+                    respostes_recuperades.setPreguntesQuanEpocaAny(rb.getText().toString());
 
                     btNextTime.setVisibility(View.VISIBLE);
                     btNextTime.setEnabled(true);
@@ -266,7 +263,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_SHORT).show();
 
-                    respostes_recuperades.setPreguntesQuan_Temps(rb.getText().toString());
+                    respostes_recuperades.setPreguntesQuanTemps(rb.getText().toString());
 
                     btNextWeather.setEnabled(true);
                     btNextWeather.setVisibility(View.VISIBLE);
@@ -346,7 +343,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_SHORT).show();
 
-                    respostes_recuperades.setPreguntesQuan_Duracio(rb.getText().toString());
+                    respostes_recuperades.setPreguntesQuanDuracio(rb.getText().toString());
 
                     btNextLong.setEnabled(true);
                     btNextLong.setVisibility(View.VISIBLE);
@@ -438,7 +435,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     listView.setItemChecked(i,true);
                     Toast.makeText(getContext(), seleccionat,
                             Toast.LENGTH_SHORT).show();
-                    respostes_recuperades.setPreguntesQuan_Mes(seleccionat);
+                    respostes_recuperades.setPreguntesQuanMes(seleccionat);
 
                     btNextMonth.setEnabled(true);
                     btNextMonth.setVisibility(View.VISIBLE);
@@ -516,7 +513,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_SHORT).show();
 
-                    respostes_recuperades.setPreguntesQuan_FranjaDia(rb.getText().toString());
+                    respostes_recuperades.setPreguntesQuanFranjaDia(rb.getText().toString());
 
                     btNextDayTime.setEnabled(true);
                     btNextDayTime.setVisibility(View.VISIBLE);
@@ -596,7 +593,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_SHORT).show();
 
-                    respostes_recuperades.setPreguntesOn_Localitzacio(rb.getText().toString());
+                    respostes_recuperades.setPreguntesOnLocalitzacio(rb.getText().toString());
 
                     btNextGeo.setEnabled(true);
                     btNextGeo.setVisibility(View.VISIBLE);
@@ -678,7 +675,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_SHORT).show();
 
-                    respostes_recuperades.setPreguntesOn_Entorns(rb.getText().toString());
+                    respostes_recuperades.setPreguntesOnEntorns(rb.getText().toString());
 
                     btNextEnv.setEnabled(true);
                     btNextEnv.setVisibility(View.VISIBLE);
@@ -743,7 +740,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_SHORT).show();
 
-                    respostes_recuperades.setPreguntesOn_Ubicacio(rb.getText().toString());
+                    respostes_recuperades.setPreguntesOnUbicacio(rb.getText().toString());
 
                     btNextLoc.setEnabled(true);
                     btNextLoc.setVisibility(View.VISIBLE);
@@ -839,7 +836,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_SHORT).show();
 
-                    respostes_recuperades.setPreguntesPerceptius_Sons(rb.getText().toString());
+                    respostes_recuperades.setPreguntesPerceptiusSons(rb.getText().toString());
 
                     btNextDetails.setEnabled(true);
                     btNextDetails.setVisibility(View.VISIBLE);
@@ -920,7 +917,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_SHORT).show();
 
-                    respostes_recuperades.setPreguntesPerceptius_Temperatura(rb.getText().toString());
+                    respostes_recuperades.setPreguntesPerceptiusTemperatura(rb.getText().toString());
 
                     btNextDetails2.setEnabled(true);
                     btNextDetails2.setVisibility(View.VISIBLE);
@@ -983,7 +980,7 @@ public class PreguntesActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     //Ho guardem a SharedPreferences
                     Gson gson= new Gson();
-                    String respostes_json = gson.toJson(respostes_recuperades);
+                    String respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                     prefs.edit().putString("respostes",respostes_json);
                     prefs.edit().commit();
 
@@ -1007,11 +1004,20 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), rb.getText().toString(),
                             Toast.LENGTH_SHORT).show();
 
-                    respostes_recuperades.setPreguntesPerceptius_Olors(rb.getText().toString());
+                    respostes_recuperades.setPreguntesPerceptiusOlors(rb.getText().toString());
 
-                    btNextDetails3.setEnabled(true);
-                    btNextDetails3.setVisibility(View.VISIBLE);
-
+                    if(respostes_recuperades.getPreguntesQuanTemps()!=null && respostes_recuperades.getPreguntesQuanDuracio()!=null &&
+                            respostes_recuperades.getPreguntesQuanMes()!=null && respostes_recuperades.getPreguntesQuanFranjaDia()!=null &&
+                            respostes_recuperades.getPreguntesOnLocalitzacio()!=null && respostes_recuperades.getPreguntesOnEntorns()!=null &&
+                            respostes_recuperades.getPreguntesOnUbicacio()!=null && respostes_recuperades.getPreguntesPerceptiusSons()!=null &&
+                            respostes_recuperades.getPreguntesPerceptiusTemperatura()!=null){
+                        btNextDetails3.setEnabled(true);
+                        btNextDetails3.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        Toast.makeText(getContext(), R.string.MissAnswers,
+                                Toast.LENGTH_LONG).show();
+                    }
                 }
 
             });
@@ -1119,15 +1125,7 @@ public class PreguntesActivity extends AppCompatActivity {
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
                 .setView(textEntryView)
-                .setCancelable(false);/*
-                .setMessage(R.string.AskingQuestions)
-                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        arg0.dismiss();
-                        arg0.cancel();
-                    }
-                })
-                .show();*/
+                .setCancelable(false);
 
         final AlertDialog alerta = DialegFormControl.create();
 

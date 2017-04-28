@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class RespirarActivity extends AppCompatActivity {
@@ -31,7 +32,9 @@ public class RespirarActivity extends AppCompatActivity {
         //d'aquesta forma ens evitem duplicar classes (activities)
         if(getIntent().hasExtra("Segon")){
             ivRespirar.setImageResource(R.drawable.abstracte2);
-            Reproduccio = R.raw.respirar234;
+            //Reproduccio = R.raw.respirar234;
+            Reproduccio = R.raw.test;
+
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Segon","Segon");
             ReproduirMissatge(mp);
@@ -40,7 +43,9 @@ public class RespirarActivity extends AppCompatActivity {
         }
         else if(getIntent().hasExtra("Tercer")){
             ivRespirar.setImageResource(R.drawable.abstracte3);
-            Reproduccio = R.raw.respirar234;
+
+            //Reproduccio = R.raw.respirar234;
+            Reproduccio = R.raw.test;
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Tercer","Tercer");
             ReproduirMissatge(mp);
@@ -49,7 +54,9 @@ public class RespirarActivity extends AppCompatActivity {
         }
         else if(getIntent().hasExtra("Quarta")){
             ivRespirar.setImageResource(R.drawable.abstracte4);
-            Reproduccio = R.raw.respirar234;
+            //Reproduccio = R.raw.respirar234;
+            Reproduccio = R.raw.test;
+
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Quarta","Quarta");
             ReproduirMissatge(mp);
@@ -58,7 +65,9 @@ public class RespirarActivity extends AppCompatActivity {
         }
         else if(getIntent().hasExtra("Curta1")){
             ivRespirar.setImageResource(R.drawable.abstracte5);
-            Reproduccio = R.raw.respirar234;
+            //Reproduccio = R.raw.respirar234;
+            Reproduccio = R.raw.test;
+
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this,VisualitzarActivity.class);
             intentRespirar.putExtra("Curta1","Curta1");
@@ -67,7 +76,9 @@ public class RespirarActivity extends AppCompatActivity {
         }
         else if(getIntent().hasExtra("Curta2")){
             ivRespirar.setImageResource(R.drawable.abstracte6);
-            Reproduccio = R.raw.respirar234;
+            //Reproduccio = R.raw.respirar234;
+            Reproduccio = R.raw.test;
+
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this,TestActivity.class);
             intentRespirar.putExtra("SegonTest","SegonTest");
@@ -75,7 +86,9 @@ public class RespirarActivity extends AppCompatActivity {
             DialogInstruccionsRespirar();
         }
         else{
-            Reproduccio = R.raw.respirar1;
+            //Reproduccio = R.raw.respirar1;
+            Reproduccio = R.raw.test;
+
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this, VisualitzarActivity.class);
             ReproduirMissatge(mp);

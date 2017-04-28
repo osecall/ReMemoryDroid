@@ -1,6 +1,9 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -8,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -19,369 +23,377 @@ import java.util.ArrayList;
 public class TestAnswers implements Serializable {
 
 
-    int Test1Pregunta1;
-    int Test1Pregunta2;
-    int Test1Pregunta3;
-    int Test1Pregunta4;
-    int Test1Pregunta5;
-    int Test1Pregunta6;
-    int Test1Sumatori;
+    public String Test1Pregunta1=new String();
+    public String Test1Pregunta2=new String();
+    public String Test1Pregunta3=new String();
+    public String Test1Pregunta4=new String();
+    public String Test1Pregunta5=new String();
+    public String Test1Pregunta6=new String();
+    public String Test1Sumatori=new String();
 
-    int Test2Pregunta1;
-    int Test2Pregunta2;
-    int Test2Pregunta3;
-    int Test2Pregunta4;
-    int Test2Pregunta5;
-    int Test2Pregunta6;
-    int Test2Sumatori;
+    public String Test2Pregunta1=new String();
+    public String Test2Pregunta2=new String();
+    public String Test2Pregunta3=new String();
+    public String Test2Pregunta4=new String();
+    public String Test2Pregunta5=new String();
+    public String Test2Pregunta6=new String();
+    public String Test2Sumatori=new String();
 
-    String PreguntesPersones_Relacio;
-    String PreguntesPersones_Grups;
-    String PreguntesPersones_Numero;
-    String PreguntesPersones_Accions;
+    public String PreguntesPersonesRelacio=new String();
+    public String PreguntesPersonesGrups=new String();
+    public String PreguntesPersonesNumero=new String();
+    public String PreguntesPersonesAccions=new String();
 
-    String PreguntesPerceptius_Sons;
-    String PreguntesPerceptius_Temperatura;
-    String PreguntesPerceptius_Olors;
+    public String PreguntesPerceptiusSons=new String();
+    public String PreguntesPerceptiusTemperatura=new String();
+    public String PreguntesPerceptiusOlors=new String();
 
-    String PreguntesEmocions_Observades;
-    String PreguntesEmocions_Propies;
+    public String PreguntesEmocionsObservades=new String();
+    public String PreguntesEmocionsPropies=new String();
 
-    String PreguntesEmocionsEscena1_Emocio;
-    String PreguntesEmocionsEscena1_Intentistat;
+    public String PreguntesEmocionsEscenaEmocio=new String();
+    public String PreguntesEmocionsEscenaIntentistat=new String();
 
-    String PreguntesEmocionsEscena2_Emocio;
-    String PreguntesEmocionsEscena2_Intentistat;
+    public String PreguntesOnLocalitzacio=new String();
+    public String PreguntesOnUbicacio=new String();
+    public String PreguntesOnEntorns=new String();
 
-    String PreguntesEmocionsEscena3_Emocio;
-    String PreguntesEmocionsEscena3_Intentistat;
-
-    String PreguntesOn_Localitzacio;
-    String PreguntesOn_Ubicacio;
-    String PreguntesOn_Entorns;
-
-    String PreguntesQuan_EpocaAny;
-    String PreguntesQuan_FranjaDia;
-    String PreguntesQuan_Mes;
-    String PreguntesQuan_Duracio;
-    String PreguntesQuan_Temps;
+    public String PreguntesQuanEpocaAny=new String();
+    public String PreguntesQuanFranjaDia=new String();
+    public String PreguntesQuanMes=new String();
+    public String PreguntesQuanDuracio=new String();
+    public String PreguntesQuanTemps=new String();
 
     public TestAnswers() {
+        this.Test1Pregunta1="";
+        this.Test1Pregunta2="";
+        this.Test1Pregunta3="";
+        this.Test1Pregunta4="";
+        this.Test1Pregunta5="";
+        this.Test1Pregunta6="";
+        this.Test1Sumatori="";
+
+        this.Test2Pregunta1="";
+        this.Test2Pregunta2="";
+        this.Test2Pregunta3="";
+        this.Test2Pregunta4="";
+        this.Test2Pregunta5="";
+        this.Test2Pregunta6="";
+        this.Test2Sumatori="";
+
+        PreguntesPersonesRelacio="";
+        PreguntesPersonesGrups="";
+        PreguntesPersonesNumero="";
+        PreguntesPersonesAccions="";
+
+        PreguntesPerceptiusSons="";
+        PreguntesPerceptiusTemperatura="";
+        PreguntesPerceptiusOlors="";
+
+        PreguntesEmocionsObservades="";
+        PreguntesEmocionsPropies="";
+
+        PreguntesEmocionsEscenaEmocio="";
+        PreguntesEmocionsEscenaIntentistat="";
+
+        PreguntesOnLocalitzacio="";
+        PreguntesOnUbicacio="";
+        PreguntesOnEntorns="";
+
+        PreguntesQuanEpocaAny="";
+        PreguntesQuanFranjaDia="";
+        PreguntesQuanMes="";
+        PreguntesQuanDuracio="";
+        PreguntesQuanTemps="";
+
     }
+
 
     public String getTest1Sumatori() {
-        return String.valueOf(Test1Sumatori);
-    }
-
-    public void setTest1Sumatori() {
-        Test1Sumatori = this.Test1Pregunta1+this.Test1Pregunta2+this.Test1Pregunta3
-                +this.Test1Pregunta4+this.Test1Pregunta5+this.Test1Pregunta6;
+        return Test1Sumatori;
     }
 
     public String getTest2Sumatori() {
-        return String.valueOf(Test2Sumatori);
+        return Test2Sumatori;
     }
+
+
+    public void setTest1Sumatori() {
+        Test1Sumatori = String.valueOf(Integer.parseInt(this.Test1Pregunta1)+Integer.parseInt(this.Test1Pregunta2)+Integer.parseInt(this.Test1Pregunta3)+
+                Integer.parseInt(this.Test1Pregunta4)+Integer.parseInt(this.Test1Pregunta5)+Integer.parseInt(this.Test1Pregunta6));
+    }
+
 
     public void setTest2Sumatori() {
-        Test2Sumatori = this.Test2Pregunta1+this.Test2Pregunta2+this.Test2Pregunta3
-                +this.Test2Pregunta4+this.Test2Pregunta5+this.Test2Pregunta6;
+        Test2Sumatori = String.valueOf(Integer.parseInt(this.Test2Pregunta1)+Integer.parseInt(this.Test2Pregunta2)+Integer.parseInt(this.Test2Pregunta3)+
+                Integer.parseInt(this.Test2Pregunta4)+Integer.parseInt(this.Test2Pregunta5)+Integer.parseInt(this.Test2Pregunta6));
     }
+
+    public String getDifferencesTests(){
+        return String.valueOf(Math.abs((Integer.parseInt(Test1Sumatori))-(Integer.parseInt(Test2Sumatori))));
+    }
+
 
     public String getTest1Pregunta1() {
-        return String.valueOf(Test1Pregunta1);
+        return Test1Pregunta1;
     }
 
-    public void setTest1Pregunta1(int test1Pregunta1) {
+    public void setTest1Pregunta1(String test1Pregunta1) {
         Test1Pregunta1 = test1Pregunta1;
     }
 
     public String getTest1Pregunta2() {
-        return String.valueOf(Test1Pregunta2);
+        return Test1Pregunta2;
     }
 
-    public void setTest1Pregunta2(int test1Pregunta2) {
+    public void setTest1Pregunta2(String test1Pregunta2) {
         Test1Pregunta2 = test1Pregunta2;
     }
 
     public String getTest1Pregunta3() {
-        return String.valueOf(Test1Pregunta3);
+        return Test1Pregunta3;
     }
 
-    public void setTest1Pregunta3(int test1Pregunta3) {
+    public void setTest1Pregunta3(String test1Pregunta3) {
         Test1Pregunta3 = test1Pregunta3;
     }
 
     public String getTest1Pregunta4() {
-        return String.valueOf(Test1Pregunta4);
+        return Test1Pregunta4;
     }
 
-    public void setTest1Pregunta4(int test1Pregunta4) {
+    public void setTest1Pregunta4(String test1Pregunta4) {
         Test1Pregunta4 = test1Pregunta4;
     }
 
     public String getTest1Pregunta5() {
-        return String.valueOf(Test1Pregunta5);
+        return Test1Pregunta5;
     }
 
-    public void setTest1Pregunta5(int test1Pregunta5) {
+    public void setTest1Pregunta5(String test1Pregunta5) {
         Test1Pregunta5 = test1Pregunta5;
     }
 
     public String getTest1Pregunta6() {
-        return String.valueOf(Test1Pregunta6);
+        return Test1Pregunta6;
     }
 
-    public void setTest1Pregunta6(int test1Pregunta6) {
+    public void setTest1Pregunta6(String test1Pregunta6) {
         Test1Pregunta6 = test1Pregunta6;
     }
 
-    public String getTest2Pregunta1() {
-        return String.valueOf(Test2Pregunta1);
+    public void setTest1Sumatori(String test1Sumatori) {
+        Test1Sumatori = test1Sumatori;
     }
 
-    public void setTest2Pregunta1(int test2Pregunta1) {
+    public String getTest2Pregunta1() {
+        return Test2Pregunta1;
+    }
+
+    public void setTest2Pregunta1(String test2Pregunta1) {
         Test2Pregunta1 = test2Pregunta1;
     }
 
     public String getTest2Pregunta2() {
-        return String.valueOf(Test2Pregunta2);
+        return Test2Pregunta2;
     }
 
-    public void setTest2Pregunta2(int test2Pregunta2) {
+    public void setTest2Pregunta2(String test2Pregunta2) {
         Test2Pregunta2 = test2Pregunta2;
     }
 
     public String getTest2Pregunta3() {
-        return String.valueOf(Test2Pregunta3);
+        return Test2Pregunta3;
     }
 
-    public void setTest2Pregunta3(int test2Pregunta3) {
+    public void setTest2Pregunta3(String test2Pregunta3) {
         Test2Pregunta3 = test2Pregunta3;
     }
 
     public String getTest2Pregunta4() {
-        return String.valueOf(Test2Pregunta4);
+        return Test2Pregunta4;
     }
 
-    public void setTest2Pregunta4(int test2Pregunta4) {
+    public void setTest2Pregunta4(String test2Pregunta4) {
         Test2Pregunta4 = test2Pregunta4;
     }
 
     public String getTest2Pregunta5() {
-        return String.valueOf(Test2Pregunta5);
+        return Test2Pregunta5;
     }
 
-    public void setTest2Pregunta5(int test2Pregunta5) {
+    public void setTest2Pregunta5(String test2Pregunta5) {
         Test2Pregunta5 = test2Pregunta5;
     }
 
     public String getTest2Pregunta6() {
-        return String.valueOf(Test2Pregunta6);
+        return Test2Pregunta6;
     }
 
-    public void setTest2Pregunta6(int test2Pregunta6) {
+    public void setTest2Pregunta6(String test2Pregunta6) {
         Test2Pregunta6 = test2Pregunta6;
     }
 
-    public String getPreguntesPersones_Relacio() {
-        return PreguntesPersones_Relacio;
+    public void setTest2Sumatori(String test2Sumatori) {
+        Test2Sumatori = test2Sumatori;
     }
 
-    public void setPreguntesPersones_Relacio(String preguntesPersones_Relacio) {
-        PreguntesPersones_Relacio = preguntesPersones_Relacio;
+    public String getPreguntesPersonesRelacio() {
+        return PreguntesPersonesRelacio;
     }
 
-    public String getPreguntesPersones_Grups() {
-        return PreguntesPersones_Grups;
+    public void setPreguntesPersonesRelacio(String preguntesPersonesRelacio) {
+        PreguntesPersonesRelacio = preguntesPersonesRelacio;
     }
 
-    public void setPreguntesPersones_Grups(String preguntesPersones_Grups) {
-        PreguntesPersones_Grups = preguntesPersones_Grups;
+    public String getPreguntesPersonesGrups() {
+        return PreguntesPersonesGrups;
     }
 
-    public String getPreguntesPersones_Numero() {
-        return PreguntesPersones_Numero;
+    public void setPreguntesPersonesGrups(String preguntesPersonesGrups) {
+        PreguntesPersonesGrups = preguntesPersonesGrups;
     }
 
-    public void setPreguntesPersones_Numero(String preguntesPersones_Numero) {
-        PreguntesPersones_Numero = preguntesPersones_Numero;
+    public String getPreguntesPersonesNumero() {
+        return PreguntesPersonesNumero;
     }
 
-    public String getPreguntesPersones_Accions() {
-        return PreguntesPersones_Accions;
+    public void setPreguntesPersonesNumero(String preguntesPersonesNumero) {
+        PreguntesPersonesNumero = preguntesPersonesNumero;
     }
 
-    public void setPreguntesPersones_Accions(String preguntesPersones_Accions) {
-        PreguntesPersones_Accions = preguntesPersones_Accions;
+    public String getPreguntesPersonesAccions() {
+        return PreguntesPersonesAccions;
     }
 
-    public String getPreguntesPerceptius_Sons() {
-        return PreguntesPerceptius_Sons;
+    public void setPreguntesPersonesAccions(String preguntesPersonesAccions) {
+        PreguntesPersonesAccions = preguntesPersonesAccions;
     }
 
-    public void setPreguntesPerceptius_Sons(String preguntesPerceptius_Sons) {
-        PreguntesPerceptius_Sons = preguntesPerceptius_Sons;
+    public String getPreguntesPerceptiusSons() {
+        return PreguntesPerceptiusSons;
     }
 
-    public String getPreguntesPerceptius_Temperatura() {
-        return PreguntesPerceptius_Temperatura;
+    public void setPreguntesPerceptiusSons(String preguntesPerceptiusSons) {
+        PreguntesPerceptiusSons = preguntesPerceptiusSons;
     }
 
-    public void setPreguntesPerceptius_Temperatura(String preguntesPerceptius_Temperatura) {
-        PreguntesPerceptius_Temperatura = preguntesPerceptius_Temperatura;
+    public String getPreguntesPerceptiusTemperatura() {
+        return PreguntesPerceptiusTemperatura;
     }
 
-    public String getPreguntesPerceptius_Olors() {
-        return PreguntesPerceptius_Olors;
+    public void setPreguntesPerceptiusTemperatura(String preguntesPerceptiusTemperatura) {
+        PreguntesPerceptiusTemperatura = preguntesPerceptiusTemperatura;
     }
 
-    public void setPreguntesPerceptius_Olors(String preguntesPerceptius_Olors) {
-        PreguntesPerceptius_Olors = preguntesPerceptius_Olors;
+    public String getPreguntesPerceptiusOlors() {
+        return PreguntesPerceptiusOlors;
     }
 
-    public String getPreguntesEmocions_Observades() {
-        return PreguntesEmocions_Observades;
+    public void setPreguntesPerceptiusOlors(String preguntesPerceptiusOlors) {
+        PreguntesPerceptiusOlors = preguntesPerceptiusOlors;
     }
 
-    public void setPreguntesEmocions_Observades(String preguntesEmocions_Observades) {
-        PreguntesEmocions_Observades = preguntesEmocions_Observades;
+    public String getPreguntesEmocionsObservades() {
+        return PreguntesEmocionsObservades;
     }
 
-    public String getPreguntesEmocions_Propies() {
-        return PreguntesEmocions_Propies;
+    public void setPreguntesEmocionsObservades(String preguntesEmocionsObservades) {
+        PreguntesEmocionsObservades = preguntesEmocionsObservades;
     }
 
-    public void setPreguntesEmocions_Propies(String preguntesEmocions_Propies) {
-        PreguntesEmocions_Propies = preguntesEmocions_Propies;
+    public String getPreguntesEmocionsPropies() {
+        return PreguntesEmocionsPropies;
     }
 
-    public String getPreguntesEmocionsEscena1_Emocio() {
-        return PreguntesEmocionsEscena1_Emocio;
+    public void setPreguntesEmocionsPropies(String preguntesEmocionsPropies) {
+        PreguntesEmocionsPropies = preguntesEmocionsPropies;
     }
 
-    public void setPreguntesEmocionsEscena1_Emocio(String preguntesEmocionsEscena1_Emocio) {
-        PreguntesEmocionsEscena1_Emocio = preguntesEmocionsEscena1_Emocio;
+    public String getPreguntesEmocionsEscenaEmocio() {
+        return PreguntesEmocionsEscenaEmocio;
     }
 
-    public String getPreguntesEmocionsEscena1_Intentistat() {
-        return PreguntesEmocionsEscena1_Intentistat;
+    public void setPreguntesEmocionsEscenaEmocio(String preguntesEmocionsEscenaEmocio) {
+        PreguntesEmocionsEscenaEmocio = preguntesEmocionsEscenaEmocio;
     }
 
-    public void setPreguntesEmocionsEscena1_Intentistat(String preguntesEmocionsEscena1_Intentistat) {
-        PreguntesEmocionsEscena1_Intentistat = preguntesEmocionsEscena1_Intentistat;
+    public String getPreguntesEmocionsEscenaIntentistat() {
+        return PreguntesEmocionsEscenaIntentistat;
     }
 
-    public String getPreguntesEmocionsEscena2_Emocio() {
-        return PreguntesEmocionsEscena2_Emocio;
+    public void setPreguntesEmocionsEscenaIntentistat(String preguntesEmocionsEscenaIntentistat) {
+        PreguntesEmocionsEscenaIntentistat = preguntesEmocionsEscenaIntentistat;
     }
 
-    public void setPreguntesEmocionsEscena2_Emocio(String preguntesEmocionsEscena2_Emocio) {
-        PreguntesEmocionsEscena2_Emocio = preguntesEmocionsEscena2_Emocio;
+    public String getPreguntesOnLocalitzacio() {
+        return PreguntesOnLocalitzacio;
     }
 
-    public String getPreguntesEmocionsEscena2_Intentistat() {
-        return PreguntesEmocionsEscena2_Intentistat;
+    public void setPreguntesOnLocalitzacio(String preguntesOnLocalitzacio) {
+        PreguntesOnLocalitzacio = preguntesOnLocalitzacio;
     }
 
-    public void setPreguntesEmocionsEscena2_Intentistat(String preguntesEmocionsEscena2_Intentistat) {
-        PreguntesEmocionsEscena2_Intentistat = preguntesEmocionsEscena2_Intentistat;
+    public String getPreguntesOnUbicacio() {
+        return PreguntesOnUbicacio;
     }
 
-    public String getPreguntesEmocionsEscena3_Emocio() {
-        return PreguntesEmocionsEscena3_Emocio;
+    public void setPreguntesOnUbicacio(String preguntesOnUbicacio) {
+        PreguntesOnUbicacio = preguntesOnUbicacio;
     }
 
-    public void setPreguntesEmocionsEscena3_Emocio(String preguntesEmocionsEscena3_Emocio) {
-        PreguntesEmocionsEscena3_Emocio = preguntesEmocionsEscena3_Emocio;
+    public String getPreguntesOnEntorns() {
+        return PreguntesOnEntorns;
     }
 
-    public String getPreguntesEmocionsEscena3_Intentistat() {
-        return PreguntesEmocionsEscena3_Intentistat;
+    public void setPreguntesOnEntorns(String preguntesOnEntorns) {
+        PreguntesOnEntorns = preguntesOnEntorns;
     }
 
-    public void setPreguntesEmocionsEscena3_Intentistat(String preguntesEmocionsEscena3_Intentistat) {
-        PreguntesEmocionsEscena3_Intentistat = preguntesEmocionsEscena3_Intentistat;
+    public String getPreguntesQuanEpocaAny() {
+        return PreguntesQuanEpocaAny;
     }
 
-    public String getPreguntesOn_Localitzacio() {
-        return PreguntesOn_Localitzacio;
+    public void setPreguntesQuanEpocaAny(String preguntesQuanEpocaAny) {
+        PreguntesQuanEpocaAny = preguntesQuanEpocaAny;
     }
 
-    public void setPreguntesOn_Localitzacio(String preguntesOn_Localitzacio) {
-        PreguntesOn_Localitzacio = preguntesOn_Localitzacio;
+    public String getPreguntesQuanFranjaDia() {
+        return PreguntesQuanFranjaDia;
     }
 
-    public String getPreguntesOn_Ubicacio() {
-        return PreguntesOn_Ubicacio;
+    public void setPreguntesQuanFranjaDia(String preguntesQuanFranjaDia) {
+        PreguntesQuanFranjaDia = preguntesQuanFranjaDia;
     }
 
-    public void setPreguntesOn_Ubicacio(String preguntesOn_Ubicacio) {
-        PreguntesOn_Ubicacio = preguntesOn_Ubicacio;
+    public String getPreguntesQuanMes() {
+        return PreguntesQuanMes;
     }
 
-    public String getPreguntesOn_Entorns() {
-        return PreguntesOn_Entorns;
+    public void setPreguntesQuanMes(String preguntesQuanMes) {
+        PreguntesQuanMes = preguntesQuanMes;
     }
 
-    public void setPreguntesOn_Entorns(String preguntesOn_Entorns) {
-        PreguntesOn_Entorns = preguntesOn_Entorns;
+    public String getPreguntesQuanDuracio() {
+        return PreguntesQuanDuracio;
     }
 
-    public String getPreguntesQuan_EpocaAny() {
-        return PreguntesQuan_EpocaAny;
+    public void setPreguntesQuanDuracio(String preguntesQuanDuracio) {
+        PreguntesQuanDuracio = preguntesQuanDuracio;
     }
 
-    public void setPreguntesQuan_EpocaAny(String preguntesQuan_EpocaAny) {
-        PreguntesQuan_EpocaAny = preguntesQuan_EpocaAny;
+    public String getPreguntesQuanTemps() {
+        return PreguntesQuanTemps;
     }
 
-    public String getPreguntesQuan_FranjaDia() {
-        return PreguntesQuan_FranjaDia;
+    public void setPreguntesQuanTemps(String preguntesQuanTemps) {
+        PreguntesQuanTemps = preguntesQuanTemps;
     }
 
-    public void setPreguntesQuan_FranjaDia(String preguntesQuan_FranjaDia) {
-        PreguntesQuan_FranjaDia = preguntesQuan_FranjaDia;
-    }
-
-    public String getPreguntesQuan_Mes() {
-        return PreguntesQuan_Mes;
-    }
-
-    public void setPreguntesQuan_Mes(String preguntesQuan_Mes) {
-        PreguntesQuan_Mes = preguntesQuan_Mes;
-    }
-
-    public String getPreguntesQuan_Duracio() {
-        return PreguntesQuan_Duracio;
-    }
-
-    public void setPreguntesQuan_Duracio(String preguntesQuan_Duracio) {
-        PreguntesQuan_Duracio = preguntesQuan_Duracio;
-    }
-
-    public String getPreguntesQuan_Temps() {
-        return PreguntesQuan_Temps;
-    }
-
-    public void setPreguntesQuan_Temps(String preguntesQuan_Temps) {
-        PreguntesQuan_Temps = preguntesQuan_Temps;
-    }
-
-     public String getDifferencesTests(){
-        return String.valueOf(Math.abs(Test1Sumatori-Test2Sumatori));
-    }
-
-
-    public ArrayList<String> ConvertToCVS(Context context){
+    public String ConvertToCVS(){
 
         String dades = new String();
-        String respostesJSON = new String();
-        ArrayList<String> rutes=new ArrayList<String>();
 
-        File outPutFile = new File(context.getFilesDir(),"respostes.cvs");
-        File outPutFileJSON = new File(context.getFilesDir(),"respostesJSON.json");
-
-        FileOutputStream outputStream;
 
         //Capçalera de les columnes
         dades = "Test1_1,Test1_2,Test1_3,Test1_4,Test1_5,Test1_6,Test1_Sumatori,Test2_1,Test2_2,Test2_3,Test2_4,Test2_5,"+
@@ -391,34 +403,26 @@ public class TestAnswers implements Serializable {
                 "Emocions_Observades,Emocions_Propies,Emocions_Escena1_Emocio,Emocions_Escena1_Intensitat,"+
                 "Emocions_Escena2_Emocio,Emocions_Escena2_Intensitat,Emocions_Escena3_Emocio,Emocions_Escena3_Intensitat\n";
 
-        dades = dades+getTest1Pregunta1()+","+getTest1Pregunta2()+","+getTest1Pregunta3()+","+getTest1Pregunta4()+","+
-                getTest1Pregunta5()+","+getTest1Pregunta6()+getTest1Sumatori()+","+getTest2Pregunta1()+","+getTest2Pregunta2()+","+getTest2Pregunta3()+","+getTest2Pregunta4()+","+
-                getTest2Pregunta5()+","+getTest2Pregunta6()+","+getTest2Sumatori()+","+getDifferencesTests()+","+getPreguntesQuan_EpocaAny()+","+
-                getPreguntesQuan_Temps()+","+getPreguntesQuan_Duracio()+","+getPreguntesQuan_Mes()+","+getPreguntesQuan_FranjaDia()+","+
-                getPreguntesOn_Localitzacio()+","+getPreguntesOn_Entorns()+","+getPreguntesOn_Ubicacio()+","+getPreguntesPerceptius_Sons()+","+
-                getPreguntesPerceptius_Temperatura()+","+getPreguntesPerceptius_Olors()+","+getPreguntesPersones_Accions()+","+getPreguntesPersones_Grups()+","+
-                getPreguntesPersones_Numero()+","+getPreguntesPersones_Relacio()+","+getPreguntesEmocions_Observades()+","+getPreguntesEmocions_Propies()+","+
-                getPreguntesEmocionsEscena1_Emocio()+","+getPreguntesEmocionsEscena1_Intentistat()+","+getPreguntesEmocionsEscena2_Emocio()+","+
-                getPreguntesEmocionsEscena2_Intentistat()+","+getPreguntesEmocionsEscena3_Emocio()+","+getPreguntesEmocionsEscena3_Intentistat()+"\n";
-
-        Gson tmp = new Gson();
-
-        respostesJSON = tmp.toJson(this,TestAnswers.class);
+        dades = dades+(getTest1Pregunta1()+","+getTest1Pregunta2()+","+getTest1Pregunta3()+","+getTest1Pregunta4()+","+
+                getTest1Pregunta5()+","+getTest1Pregunta6()+","+getTest1Sumatori()+","+getTest2Pregunta1()+","+getTest2Pregunta2()+","+getTest2Pregunta3()+","+getTest2Pregunta4()+","+
+                getTest2Pregunta5()+","+getTest2Pregunta6()+","+getTest2Sumatori()+","+getDifferencesTests()+","+getPreguntesQuanEpocaAny()+","+
+                getPreguntesQuanTemps()+","+getPreguntesQuanDuracio()+","+getPreguntesQuanMes()+","+getPreguntesQuanFranjaDia()+","+
+                getPreguntesOnLocalitzacio()+","+getPreguntesOnEntorns()+","+getPreguntesOnUbicacio()+","+getPreguntesPerceptiusSons()+","+
+                getPreguntesPerceptiusTemperatura()+","+getPreguntesPerceptiusOlors()+","+getPreguntesPersonesAccions()+","+getPreguntesPersonesGrups()+","+
+                getPreguntesPersonesNumero()+","+getPreguntesPersonesRelacio()+","+getPreguntesEmocionsObservades()+","+getPreguntesEmocionsPropies()+","+
+                getPreguntesEmocionsEscenaEmocio()+","+getPreguntesEmocionsEscenaIntentistat())+"\n";
 
 
         try {
-            outputStream = context.openFileOutput("respostes.cvs", Context.MODE_PRIVATE);
-            outputStream.write(dades.getBytes());
-            outputStream.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "respostes.csv");
+            OutputStreamWriter osw = new OutputStreamWriter(
+                    new FileOutputStream(file));
+            osw.write(dades);
+            osw.flush();
+            osw.close();
+            return file.getAbsolutePath();
+        } catch (IOException ioe) {
+            return ioe.getStackTrace().toString();
         }
-
-        rutes.add(0,outPutFile.getAbsolutePath());
-        rutes.add(1,respostesJSON);
-        return rutes;
     }
 }
