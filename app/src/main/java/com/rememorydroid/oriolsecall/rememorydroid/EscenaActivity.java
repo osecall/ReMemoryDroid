@@ -36,15 +36,20 @@ public class EscenaActivity extends BaseActivity {
     private Intent intent;
     private TextView tvValorIntensity1;
     private PacientUsuari pacient;
+    private TestAnswers respostes_recuperades;
+    private SharedPreferences prefs;
+    private Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escena);
 
-        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        Gson gson = new Gson();
+        prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         pacient = gson.fromJson(prefs.getString("pacient",null), PacientUsuari.class);
+
+        respostes_recuperades = gson.fromJson(prefs.getString("respostes",null),TestAnswers.class);
+
 
         etQuestion1Escena = (EditText) findViewById(R.id.editText1);
         etQuestion2Escena = (EditText) findViewById(R.id.editText2);
@@ -100,6 +105,7 @@ public class EscenaActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     A = eLvEmocions.getItemAtPosition(i).toString();
+                    respostes_recuperades.setPreguntesEmocionsEscenaEmocio(A);
                     btNextEscena.setVisibility(View.VISIBLE);
                 }
                 else{
@@ -120,6 +126,7 @@ public class EscenaActivity extends BaseActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 tvValorIntensity1.setText(String.valueOf(i+1));
+                respostes_recuperades.setPreguntesEmocionsEscenaIntentistat(String.valueOf(i+1));
                 if(eLvEmocions.getSelectedItemPosition()!=0){
                     btNextEscena.setVisibility(View.VISIBLE);
                 }
@@ -151,7 +158,11 @@ public class EscenaActivity extends BaseActivity {
                             Toast.LENGTH_LONG).show();
                 }
                 else{
+                    prefs.edit().putString("respostes",gson.toJson(respostes_recuperades,TestAnswers.class));
+                    prefs.edit().commit();
+                    prefs.edit().apply();
                     startActivity(intent);
+
                 }
             }
         });

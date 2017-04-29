@@ -569,7 +569,7 @@ public class TestActivity extends AppCompatActivity {
 
             ImageView ivFromPage = (ImageView) rootView.findViewById(R.id.ivFromPage1);
             ImageView ivToPage = (ImageView) rootView.findViewById(R.id.ivToPage1);
-            final ImageView ivNumSeleccionat= (ImageView) rootView.findViewById(R.id.ivNumSeleccionat1);
+            final ImageView ivNumSeleccionat= (ImageView) rootView.findViewById(R.id.ivNumSeleccionat);
 
             ivFromPage.setImageDrawable(FromPage);
             ivToPage.setImageDrawable(ToPage);
@@ -665,7 +665,7 @@ public class TestActivity extends AppCompatActivity {
 
             ImageView ivFromPage = (ImageView) rootView.findViewById(R.id.ivFromPage1);
             ImageView ivToPage = (ImageView) rootView.findViewById(R.id.ivToPage1);
-            final ImageView ivNumSeleccionat= (ImageView) rootView.findViewById(R.id.ivNumSeleccionat1);
+            final ImageView ivNumSeleccionat= (ImageView) rootView.findViewById(R.id.ivNumSeleccionat);
 
             ivFromPage.setImageDrawable(FromPage);
             ivToPage.setImageDrawable(ToPage);

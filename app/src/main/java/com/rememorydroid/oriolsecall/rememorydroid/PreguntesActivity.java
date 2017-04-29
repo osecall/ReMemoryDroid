@@ -450,7 +450,6 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), seleccionat,
                             Toast.LENGTH_SHORT).show();
                     respostes_recuperades.setPreguntesQuanMes(seleccionat);
-                    respostes_recuperades.setPreguntesQuanTemps("hey");
 
                     btNextMonth.setEnabled(true);
                     btNextMonth.setVisibility(View.VISIBLE);

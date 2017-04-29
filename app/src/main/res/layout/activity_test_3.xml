@@ -2,180 +2,170 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.rememorydroid.oriolsecall.rememorydroid.TestActivity$Fragment3"
+    tools:context="com.rememorydroid.oriolsecall.rememorydroid.TestActivity$PlaceholderFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/ivToPage1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_alignTop="@+id/ivFromPage1"
-        android:layout_toEndOf="@+id/tvFromTo" />
 
-    <ImageView
-        android:id="@+id/ivFromPage1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="23dp"
+        android:orientation="vertical"
         android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/tvFromTo" />
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout5">
 
-    <TextView
-        android:id="@+id/tvFromTo"
-        android:text="@string/From"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
-        android:layout_alignTop="@+id/ivToPage1"
-        android:layout_centerHorizontal="true" />
+            <ImageView
+                android:id="@+id/ivToPage1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tvQuestionPel1"
-        style="@style/QuestionsTestPel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvFromTo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
-        android:text="@string/Question3Pel1" />
+            <TextView
+                android:id="@+id/tvFromTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/From"
+                android:textAlignment="center"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btBackPel3"
-        style="@style/Back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ivNumSeleccionat"
-        android:layout_alignStart="@+id/tvQuestionPel1" />
+            <ImageView
+                android:id="@+id/ivFromPage1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvQuestionPel1"
+            style="@style/QuestionsTestPel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/Question1Pel1"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/rbGroup1Pel3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_column="0"
+            android:layout_span="50"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb1Pel1"
+                style="@style/radioGroupElements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1" />
+
+            <RadioButton
+                android:id="@+id/rb2Pel1"
+                style="@style/radioGroupElements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2" />
+
+            <RadioButton
+                android:id="@+id/rb3Pel1"
+                style="@style/radioGroupElements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3" />
+
+            <RadioButton
+                android:id="@+id/rb4Pel1"
+                style="@style/radioGroupElements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4" />
+
+            <RadioButton
+                android:id="@+id/rb5Pel1"
+                style="@style/radioGroupElements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5" />
+
+            <RadioButton
+                android:id="@+id/rb6Pel1"
+                style="@style/radioGroupElements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6" />
+
+            <RadioButton
+                android:id="@+id/rb7Pel1"
+                style="@style/radioGroupElements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7" />
+
+            <RadioButton
+                android:id="@+id/rb8Pel1"
+                style="@style/radioGroupElements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8" />
+
+            <RadioButton
+                android:id="@+id/rb9Pel1"
+                style="@style/radioGroupElements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9" />
+
+            <RadioButton
+                android:id="@+id/rb10Pel1"
+                style="@style/radioGroupElements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10" />
+        </RadioGroup>
+
+        <ImageView
+            android:id="@+id/ivNumSeleccionat"
+            style="@style/ivNumSeleccionat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="24dp"
+            android:src="@drawable/common_google_signin_btn_icon_dark"
+            android:visibility="invisible" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btNextPel3"
         style="@style/Next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ivNumSeleccionat"
-        android:layout_alignEnd="@+id/tvQuestionPel1"
-        android:layout_marginEnd="14dp" />
+        android:layout_marginEnd="33dp"
+        android:layout_alignBaseline="@+id/btBackPel3"
+        android:layout_alignBottom="@+id/btBackPel3"
+        android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:id="@+id/tvGensPel1"
+    <Button
+        android:id="@+id/btBackPel3"
+        style="@style/Back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/AtAll"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/tvQuestionPel1"
-        android:layout_alignStart="@+id/tvQuestionPel1" />
-
-    <TextView
-        android:id="@+id/tvMoltPel1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Very"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/tvQuestionPel1"
-        android:layout_alignEnd="@+id/btNextPel3"
-        android:layout_marginEnd="11dp" />
-
-    <RadioGroup
-        android:id="@+id/rbGroup1Pel3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_span="50"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_below="@+id/tvGensPel1"
-        android:layout_alignParentStart="true">
-
-        <RadioButton
-            android:id="@+id/rb1Pel3"
-            style="@style/radioGroupElements"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1" />
-
-        <RadioButton
-            android:id="@+id/rb2Pel3"
-            style="@style/radioGroupElements"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2" />
-
-        <RadioButton
-            android:id="@+id/rb3Pel3"
-            style="@style/radioGroupElements"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3" />
-
-        <RadioButton
-            android:id="@+id/rb4Pel3"
-            style="@style/radioGroupElements"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4" />
-
-        <RadioButton
-            android:id="@+id/rb5Pel3"
-            style="@style/radioGroupElements"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5" />
-
-        <RadioButton
-            android:id="@+id/rb6Pel3"
-            style="@style/radioGroupElements"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="6" />
-
-        <RadioButton
-            android:id="@+id/rb7Pel3"
-            style="@style/radioGroupElements"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="7" />
-
-        <RadioButton
-            android:id="@+id/rb8Pel3"
-            style="@style/radioGroupElements"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="8" />
-
-        <RadioButton
-            android:id="@+id/rb9Pel3"
-            style="@style/radioGroupElements"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="9" />
-
-        <RadioButton
-            android:id="@+id/rb10Pel3"
-            style="@style/radioGroupElements"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10" />
-    </RadioGroup>
-
-    <ImageView
-        android:id="@+id/ivNumSeleccionat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_dark"
-        android:layout_below="@+id/rbGroup1Pel3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp" />
+        android:layout_marginStart="39dp"
+        android:layout_marginBottom="82dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
-
-
-
-
-

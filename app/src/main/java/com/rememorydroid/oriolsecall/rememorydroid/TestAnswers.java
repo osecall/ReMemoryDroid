@@ -384,11 +384,8 @@ public class TestAnswers implements Serializable {
 
     public String ConvertToCVS(){
 
-        String dades = new String();
-
-
         //Capçalera de les columnes
-        dades = "Test1_1,Test1_2,Test1_3,Test1_4,Test1_5,Test1_6,Test1_Sumatori,Test2_1,Test2_2,Test2_3,Test2_4,Test2_5,"+
+        String dades = "Test1_1,Test1_2,Test1_3,Test1_4,Test1_5,Test1_6,Test1_Sumatori,Test2_1,Test2_2,Test2_3,Test2_4,Test2_5,"+
                 "Test2_6,Test2_Sumatori,Test_Differencial,Quan_EpocaAny,Quan_Temps,Quan_Duracio,Quan_Mes,Quan_FranjaDia,"+
                 "On_Localització,On_Entorns,On_Ubicacio,Perceptius_Sons,Perceptius_Temperatura,Perceptius_Olors,"+
                 "Persones_Accions,Persones_GrupsEdats,Persones_NumeroApareixen,Persones_Relacio,"+
