@@ -40,7 +40,6 @@ public class VisualitzarActivity extends BaseActivity {
     private boolean noAudio=false;
     private PacientUsuari pacient;
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
-    private SharedPreferences prefs;
     private String episodi;
     private File video;
 
@@ -98,8 +97,6 @@ public class VisualitzarActivity extends BaseActivity {
                 ibStop.setVisibility(View.VISIBLE);
                 ibPlay.setEnabled(true);
                 ibStop.setEnabled(true);
-                vv.setEnabled(true);
-
             }
         });
         mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -128,6 +125,7 @@ public class VisualitzarActivity extends BaseActivity {
                 vv.setMediaController(new MediaController(VisualitzarActivity.this));
                 vv.start();
                 vv.pause();
+                vv.seekTo(0);
                 ProgressBarVideo.setMax(vv.getDuration());
                 ProgressBarVideo.setProgress(0);
 
@@ -259,5 +257,15 @@ public class VisualitzarActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        vv.pause();
+    }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        vv.start();
+    }
 }

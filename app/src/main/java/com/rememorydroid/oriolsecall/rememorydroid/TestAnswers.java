@@ -382,25 +382,35 @@ public class TestAnswers implements Serializable {
         PreguntesQuanTemps = preguntesQuanTemps;
     }
 
-    public String ConvertToCVS(){
+    public String ConvertToCVS(boolean curta){
 
-        //Capçalera de les columnes
-        String dades = "Test1_1,Test1_2,Test1_3,Test1_4,Test1_5,Test1_6,Test1_Sumatori,Test2_1,Test2_2,Test2_3,Test2_4,Test2_5,"+
-                "Test2_6,Test2_Sumatori,Test_Differencial,Quan_EpocaAny,Quan_Temps,Quan_Duracio,Quan_Mes,Quan_FranjaDia,"+
-                "On_Localització,On_Entorns,On_Ubicacio,Perceptius_Sons,Perceptius_Temperatura,Perceptius_Olors,"+
-                "Persones_Accions,Persones_GrupsEdats,Persones_NumeroApareixen,Persones_Relacio,"+
-                "Emocions_Observades,Emocions_Propies,Emocions_Escena1_Emocio,Emocions_Escena1_Intensitat,"+
-                "Emocions_Escena2_Emocio,Emocions_Escena2_Intensitat,Emocions_Escena3_Emocio,Emocions_Escena3_Intensitat\n";
+        String dades;
+        if(!curta){
+            //Capçalera de les columnes
+            dades = "Test1_1;Test1_2;Test1_3;Test1_4;Test1_5;Test1_6;Test1_Sumatori;Test2_1;Test2_2;Test2_3;Test2_4;Test2_5;"+
+                    "Test2_6;Test2_Sumatori;Test_Differencial;Quan_EpocaAny;Quan_Temps;Quan_Duracio;Quan_Mes;Quan_FranjaDia;"+
+                    "On_Localització;On_Entorns;On_Ubicacio;Perceptius_Sons;Perceptius_Temperatura;Perceptius_Olors;"+
+                    "Persones_Accions;Persones_GrupsEdats;Persones_NumeroApareixen;Persones_Relacio;"+
+                    "Emocions_Observades;Emocions_Propies;Emocions_Escena_Emocio;Emocions_Escena_Intensitat\n";
 
-        dades = dades+(getTest1Pregunta1()+","+getTest1Pregunta2()+","+getTest1Pregunta3()+","+getTest1Pregunta4()+","+
-                getTest1Pregunta5()+","+getTest1Pregunta6()+","+getTest1Sumatori()+","+getTest2Pregunta1()+","+getTest2Pregunta2()+","+getTest2Pregunta3()+","+getTest2Pregunta4()+","+
-                getTest2Pregunta5()+","+getTest2Pregunta6()+","+getTest2Sumatori()+","+getDifferencesTests()+","+getPreguntesQuanEpocaAny()+","+
-                getPreguntesQuanTemps()+","+getPreguntesQuanDuracio()+","+getPreguntesQuanMes()+","+getPreguntesQuanFranjaDia()+","+
-                getPreguntesOnLocalitzacio()+","+getPreguntesOnEntorns()+","+getPreguntesOnUbicacio()+","+getPreguntesPerceptiusSons()+","+
-                getPreguntesPerceptiusTemperatura()+","+getPreguntesPerceptiusOlors()+","+getPreguntesPersonesAccions()+","+getPreguntesPersonesGrups()+","+
-                getPreguntesPersonesNumero()+","+getPreguntesPersonesRelacio()+","+getPreguntesEmocionsObservades()+","+getPreguntesEmocionsPropies()+","+
-                getPreguntesEmocionsEscenaEmocio()+","+getPreguntesEmocionsEscenaIntentistat())+"\n";
+            dades = dades+(getTest1Pregunta1()+";"+getTest1Pregunta2()+";"+getTest1Pregunta3()+";"+getTest1Pregunta4()+";"+
+                    getTest1Pregunta5()+";"+getTest1Pregunta6()+";"+getTest1Sumatori()+";"+getTest2Pregunta1()+";"+getTest2Pregunta2()+";"+getTest2Pregunta3()+";"+getTest2Pregunta4()+";"+
+                    getTest2Pregunta5()+";"+getTest2Pregunta6()+";"+getTest2Sumatori()+";"+getDifferencesTests()+";"+getPreguntesQuanEpocaAny()+";"+
+                    getPreguntesQuanTemps()+";"+getPreguntesQuanDuracio()+";"+getPreguntesQuanMes()+";"+getPreguntesQuanFranjaDia()+";"+
+                    getPreguntesOnLocalitzacio()+";"+getPreguntesOnEntorns()+";"+getPreguntesOnUbicacio()+";"+getPreguntesPerceptiusSons()+";"+
+                    getPreguntesPerceptiusTemperatura()+";"+getPreguntesPerceptiusOlors()+";"+getPreguntesPersonesAccions()+";"+getPreguntesPersonesGrups()+";"+
+                    getPreguntesPersonesNumero()+";"+getPreguntesPersonesRelacio()+";"+getPreguntesEmocionsObservades()+";"+getPreguntesEmocionsPropies()+";"+
+                    getPreguntesEmocionsEscenaEmocio()+";"+getPreguntesEmocionsEscenaIntentistat())+"\n";
+        }
+        else{
+            //Capçalera de les columnes
+            dades = "Test1_1;Test1_2;Test1_3;Test1_4;Test1_5;Test1_6;Test1_Sumatori;Test2_1;Test2_2;Test2_3;Test2_4;Test2_5;"+
+                    "Test2_6;Test2_Sumatori;Test_Differencial\n";
 
+            dades = dades+(getTest1Pregunta1()+";"+getTest1Pregunta2()+";"+getTest1Pregunta3()+";"+getTest1Pregunta4()+";"+
+                    getTest1Pregunta5()+";"+getTest1Pregunta6()+";"+getTest1Sumatori()+";"+getTest2Pregunta1()+";"+getTest2Pregunta2()+";"+getTest2Pregunta3()+";"+getTest2Pregunta4()+";"+
+                    getTest2Pregunta5()+";"+getTest2Pregunta6()+";"+getTest2Sumatori()+";"+getDifferencesTests()+"\n");
+        }
 
         try {
             File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "respostes.csv");

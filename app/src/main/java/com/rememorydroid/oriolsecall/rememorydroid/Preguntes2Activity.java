@@ -47,11 +47,9 @@ public class Preguntes2Activity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private static ViewPager mViewPager;
-
     public static SharedPreferences prefs;
-
+    public static SharedPreferences.Editor editor;
     public static TestAnswers respostes_recuperades = new TestAnswers();
-
     public static PacientUsuari pacient;
 
     @Override
@@ -75,6 +73,7 @@ public class Preguntes2Activity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
         prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        editor= prefs.edit();
 
         String respostes_json = prefs.getString("respostes", null);
         //Guardem a TestAnswers
@@ -457,9 +456,9 @@ public class Preguntes2Activity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     String respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
-                    prefs.edit().putString("respostes",respostes_json);
-                    prefs.edit().commit();
-                    prefs.edit().apply();
+                    editor.putString("respostes",respostes_json);
+                    editor.commit();
+                    editor.apply();
 
                     Intent intent = new Intent(getActivity(),RespirarActivity.class);
                     intent.putExtra("Quarta","Quarta");

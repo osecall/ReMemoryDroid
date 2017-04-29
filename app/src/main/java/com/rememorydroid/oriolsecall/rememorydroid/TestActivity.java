@@ -56,8 +56,8 @@ public class TestActivity extends AppCompatActivity {
     public static PacientUsuari pacient = new PacientUsuari();
     public static boolean SegonTest = false;
     public static boolean Curta = false;
-    public static String episodi= new String();
-    public static Gson gson= new Gson();
+    public static String episodi = new String();
+    public static Gson gson = new Gson();
     public static SharedPreferences.Editor editor;
     public static StorageReference myRef;
     public static DatabaseReference DBRef;
@@ -100,8 +100,7 @@ public class TestActivity extends AppCompatActivity {
         }
         if(getIntent().hasExtra("SegonTest")){
             SegonTest=true;
-            String respostes_json = prefs.getString("respostes",null);
-            respostes_recuperades = gson.fromJson(respostes_json,TestAnswers.class);
+            respostes_recuperades = gson.fromJson(prefs.getString("respostes",null),TestAnswers.class);
         }
 
         mostrarAlertaPelicula();
@@ -744,7 +743,7 @@ public class TestActivity extends AppCompatActivity {
                     if(Curta && SegonTest){
                         //Aquest cas és la versió curta i el segon test, s'ha d'enviar resultat a la DB i acabar
                         //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
-                        String ruta = respostes_recuperades.ConvertToCVS();
+                        String ruta = respostes_recuperades.ConvertToCVS(true);
                         //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta
                         StorageReference PacientRef = myRef.child(pacient.getID()).child(episodi).child("respostes").child("ResultatVersioCurta_"+pacient.getID()+".csv");
                         Uri file = Uri.fromFile(new File(ruta));
@@ -842,7 +841,7 @@ public class TestActivity extends AppCompatActivity {
 
                     if(!Curta && SegonTest){
                         //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
-                        String ruta = respostes_recuperades.ConvertToCVS();
+                        String ruta = respostes_recuperades.ConvertToCVS(false);
                         Uri file = Uri.fromFile(new File(ruta));
 
                         //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta
