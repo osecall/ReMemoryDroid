@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 public class TractamentsActivity extends AppCompatActivity {
 
     private TextView idCuUserTreatment, NomCuUserTreatment, CognomCuUserTreatment;
-    private Button btPelicula, btAlbum, btGuia, btBackEpisodiActivity;
+    private Button btPelicula, btAlbum, btGuia;
     private Intent IntentToTreatment;
 
 

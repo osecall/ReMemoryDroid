@@ -169,7 +169,6 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
         super.onDestroy();
         mp.release();
         mp = null;
-        finish();
     }
 
 

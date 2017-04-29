@@ -1,9 +1,12 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,8 +31,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
+
+import java.io.File;
 
 public class PreguntesActivity extends AppCompatActivity {
 
@@ -38,7 +48,7 @@ public class PreguntesActivity extends AppCompatActivity {
     public static SharedPreferences prefs;
     public static TestAnswers respostes_recuperades = new TestAnswers();
     private static PacientUsuari pacient;
-
+    public static StorageReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +79,10 @@ public class PreguntesActivity extends AppCompatActivity {
 
         String pacient_json = prefs.getString("pacient",null);
         pacient = gson.fromJson(pacient_json, PacientUsuari.class);
+
+        AlertDialog.Builder test = new AlertDialog.Builder(PreguntesActivity.this);
+        test.setMessage(respostes_recuperades.toString());
+
     }
 
 
@@ -436,6 +450,7 @@ public class PreguntesActivity extends AppCompatActivity {
                     Toast.makeText(getContext(), seleccionat,
                             Toast.LENGTH_SHORT).show();
                     respostes_recuperades.setPreguntesQuanMes(seleccionat);
+                    respostes_recuperades.setPreguntesQuanTemps("hey");
 
                     btNextMonth.setEnabled(true);
                     btNextMonth.setVisibility(View.VISIBLE);
@@ -983,10 +998,14 @@ public class PreguntesActivity extends AppCompatActivity {
                     String respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                     prefs.edit().putString("respostes",respostes_json);
                     prefs.edit().commit();
+                    prefs.edit().apply();
 
                     Intent intent = new Intent(getContext(),RespirarActivity.class);
                     intent.putExtra("Tercer","Tercer");
                     startActivity(intent);
+
+
+
                 }
             });
 

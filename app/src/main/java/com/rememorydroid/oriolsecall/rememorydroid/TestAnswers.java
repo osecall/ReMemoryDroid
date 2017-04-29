@@ -1,19 +1,11 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.os.Environment;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 
 /**
@@ -105,8 +97,8 @@ public class TestAnswers implements Serializable {
         PreguntesQuanMes="";
         PreguntesQuanDuracio="";
         PreguntesQuanTemps="";
-
     }
+
 
 
     public String getTest1Sumatori() {

@@ -356,7 +356,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         mp.release();
         mr=null;
         mp=null;
-        finish();
     }
 
         //Part del menú 'action bar'

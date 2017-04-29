@@ -216,7 +216,6 @@ public class PacientUserSignUpActivity extends BaseActivity{
                 editor.commit();
                 hideProgressDialog();
                 startActivity(PacientUserSUintent);
-                finish();
             }
         });
     }

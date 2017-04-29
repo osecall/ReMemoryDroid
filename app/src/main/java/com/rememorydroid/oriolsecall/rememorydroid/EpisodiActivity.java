@@ -384,7 +384,6 @@ public class EpisodiActivity extends BaseActivity {
                         hideProgressDialog();
                         arg0.cancel();
                         startActivity(getIntent());
-                        finish();
                     }})
                 .show();
 

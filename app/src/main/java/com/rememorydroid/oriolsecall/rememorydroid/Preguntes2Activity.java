@@ -459,6 +459,8 @@ public class Preguntes2Activity extends AppCompatActivity {
                     String respostes_json = gson.toJson(respostes_recuperades,TestAnswers.class);
                     prefs.edit().putString("respostes",respostes_json);
                     prefs.edit().commit();
+                    prefs.edit().apply();
+
                     Intent intent = new Intent(getActivity(),RespirarActivity.class);
                     intent.putExtra("Quarta","Quarta");
                     startActivity(intent);

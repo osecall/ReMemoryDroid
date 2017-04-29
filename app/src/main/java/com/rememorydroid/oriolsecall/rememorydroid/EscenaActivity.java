@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
+
+import static android.view.KeyEvent.ACTION_UP;
 
 public class EscenaActivity extends BaseActivity {
 
@@ -150,6 +153,42 @@ public class EscenaActivity extends BaseActivity {
                 else{
                     startActivity(intent);
                 }
+            }
+        });
+
+
+        etQuestion1Escena.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode==66 && event.getAction()==ACTION_UP){
+                    etQuestion2Escena.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        etQuestion2Escena.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode==66 && event.getAction()==ACTION_UP){
+                    etQuestion3Escena.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        etQuestion3Escena.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode==66 && event.getAction()==ACTION_UP){
+                    etQuestion4Escena.requestFocus();
+                    return true;
+                }
+                return false;
             }
         });
     }

@@ -79,7 +79,6 @@ public class EpisodePresentationActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable(){
             public void run(){
                 startActivity(new Intent(EpisodePresentationActivity.this, TestActivity.class));
-                finish();
             }
         }, 8000);
 

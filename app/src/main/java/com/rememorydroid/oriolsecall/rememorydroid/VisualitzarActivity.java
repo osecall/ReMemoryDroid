@@ -259,9 +259,5 @@ public class VisualitzarActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onDestroy() {
-        finish();
-        super.onDestroy();
-    }
+
 }
