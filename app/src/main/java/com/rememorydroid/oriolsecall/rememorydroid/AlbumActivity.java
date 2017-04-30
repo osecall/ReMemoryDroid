@@ -44,7 +44,6 @@ public class AlbumActivity extends BaseActivity {
     private String ID, episodi;
     private Animation translate;
     private AnimationSet animation;
-    private int complete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +52,6 @@ public class AlbumActivity extends BaseActivity {
 
         ID = new String();
         episodi = new String();
-        complete = 0;
-
-
 
         LayoutInflater factory = LayoutInflater.from(this);
         View textEntryView = factory.inflate(R.layout.dialegs, null);
@@ -128,7 +124,6 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum0);
                 hideProgressDialog();
-                ivAlbum0.setAnimation(animation);
                 ivAlbum0.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -180,7 +175,6 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum1);
                 hideProgressDialog();
-                ivAlbum1.setAnimation(animation);
                 ivAlbum1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -232,7 +226,6 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum2);
                 hideProgressDialog();
-                ivAlbum2.setAnimation(animation);
                 ivAlbum2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -283,7 +276,6 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum3);
                 hideProgressDialog();
-                ivAlbum3.setAnimation(animation);
                 ivAlbum3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -334,7 +326,6 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum4);
                 hideProgressDialog();
-                ivAlbum4.setAnimation(animation);
                 ivAlbum4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -385,7 +376,6 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum5);
                 hideProgressDialog();
-                ivAlbum5.setAnimation(animation);
                 ivAlbum5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

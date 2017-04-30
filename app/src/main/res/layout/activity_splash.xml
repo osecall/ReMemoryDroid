@@ -7,19 +7,12 @@
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.SplashActivity">
 
 
-    <RelativeLayout
-        android:layout_width="1264dp"
-        android:layout_height="647dp">
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="22dp"
-            app:srcCompat="@drawable/iconmarcarem" />
-
-    </RelativeLayout>
-
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="1008dp"
+        android:layout_height="504dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/iconmarcarem" />
 </RelativeLayout>

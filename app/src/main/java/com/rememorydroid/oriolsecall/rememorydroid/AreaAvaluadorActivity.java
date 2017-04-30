@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class AreaAvaluadorActivity extends BaseActivity {
 
     private TextView emailAvaluador, tvCUid, tvCUname, tvCUsurName, tvtest;
-    private FloatingActionButton fabSignUp, fabDeleteUser;
+    private FloatingActionButton fabSignUp;
     private String MessageDialogFinal, IDuserDelete;
     private PacientUsuari pacient;
     private ListView lvPacients;

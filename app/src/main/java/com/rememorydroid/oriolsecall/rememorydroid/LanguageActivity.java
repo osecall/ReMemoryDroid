@@ -18,7 +18,7 @@ public class LanguageActivity extends AppCompatActivity {
 
     private ImageButton btcaIdioma, btesIdioma, btenIdioma;
     private Locale locale;
-    private Configuration config = new Configuration();
+    private Configuration config;
 
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1 ;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2 ;
@@ -31,6 +31,7 @@ public class LanguageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language);
 
+        config = new Configuration();
 
         btcaIdioma = (ImageButton) findViewById(R.id.btcaIdioma);
         btesIdioma = (ImageButton) findViewById(R.id.btesIdioma);

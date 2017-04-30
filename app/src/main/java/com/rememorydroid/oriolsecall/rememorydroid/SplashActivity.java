@@ -16,9 +16,7 @@ public class SplashActivity extends AppCompatActivity {
 
         new Handler().postDelayed(new Runnable(){
             public void run(){
-                // Cuando pasen los SPLASH_SCREEN_DELAY segundos, pasamos a la actividad principal de la aplicación
                 Intent intent = new Intent(SplashActivity.this, LanguageActivity.class);
-
                 startActivity(intent);
                 finish();
             }

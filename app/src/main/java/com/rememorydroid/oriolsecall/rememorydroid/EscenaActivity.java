@@ -40,12 +40,14 @@ public class EscenaActivity extends BaseActivity {
     private SharedPreferences.Editor editor;
     private SharedPreferences prefs;
     private Gson gson = new Gson();
-    private boolean intensitatCambiada = false;
+    private boolean intensitatCambiada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escena);
+
+        intensitatCambiada = false;
 
         prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         editor = prefs.edit();

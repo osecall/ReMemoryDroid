@@ -49,13 +49,15 @@ public class Preguntes2Activity extends AppCompatActivity {
     private static ViewPager mViewPager;
     public static SharedPreferences prefs;
     public static SharedPreferences.Editor editor;
-    public static TestAnswers respostes_recuperades = new TestAnswers();
+    public static TestAnswers respostes_recuperades;
     public static PacientUsuari pacient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preguntes2);
+
+        respostes_recuperades=new TestAnswers();
 
         DialegQuestionari();
 

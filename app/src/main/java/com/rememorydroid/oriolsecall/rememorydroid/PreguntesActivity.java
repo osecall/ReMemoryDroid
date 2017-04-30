@@ -38,7 +38,7 @@ public class PreguntesActivity extends AppCompatActivity {
     private static ViewPager mViewPager;
     public static SharedPreferences prefs;
     public static SharedPreferences.Editor editor;
-    public static TestAnswers respostes_recuperades = new TestAnswers();
+    public static TestAnswers respostes_recuperades;
     private static PacientUsuari pacient;
     public static StorageReference myRef;
 
@@ -46,6 +46,8 @@ public class PreguntesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preguntes);
+
+        respostes_recuperades = new TestAnswers();
 
         DialegQuestionari();
 

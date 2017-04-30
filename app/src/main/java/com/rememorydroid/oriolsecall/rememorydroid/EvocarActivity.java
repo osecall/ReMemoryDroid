@@ -43,13 +43,13 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     private MediaPlayer mp;
     private MediaRecorder mr;
     private Intent intent;
-    private String outputFile = null;
+    private String outputFile;
     private String ID_usuari, NomFitxerCloud, episodi;
     private Button btNext;
     private TextView tvRecording;
     private Chronometer chronometer;
     private FirebaseStorage reference = FirebaseStorage.getInstance();
-    private boolean curta=false;
+    private boolean curta;
     private ProgressBar pbEvocar;
     private PacientUsuari pacientusuari;
     private static final int MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 4 ;
@@ -226,6 +226,9 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evocar);
+
+        curta=false;
+        outputFile = null;
 
 
         if (ContextCompat.checkSelfPermission(this,

@@ -39,8 +39,8 @@ public class EpisodiActivity extends BaseActivity {
     private ListView lista, listaVersio;
     private Button btNextEpisode;
     private FloatingActionButton fabEpisodi;
-    private long i=0;
-    private long j=1;
+    private long i;
+    private long j;
     private String Versio;
     private String episodiSeleccionat;
     private EpisodiListAdapter adaptadorPersonalitzat;
@@ -55,6 +55,9 @@ public class EpisodiActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episodi);
+
+        i=0;
+        j=1;
 
         Versio=new String();
 

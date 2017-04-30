@@ -144,7 +144,7 @@ public class TestActivity extends AppCompatActivity {
 
             Toast.makeText(TestActivity.this, R.string.MenuChangePacient,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(TestActivity.this, AreaAvaluadorActivity.class);
+            Intent areaAvaluador = new Intent(TestActivity.this, TractamentsActivity.class);
             startActivity(areaAvaluador);
         }
 
@@ -807,11 +807,9 @@ public class TestActivity extends AppCompatActivity {
                             public void onClick(View view) {
                                 alerta.dismiss();
                                 startActivity(new Intent(getContext(), TractamentsActivity.class));
+                                getActivity().finish();
                             }
                         });
-
-
-
                     }
 
                     if(Curta && !SegonTest){
@@ -910,7 +908,8 @@ public class TestActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 alerta.dismiss();
-                                startActivity(new Intent(getContext(), AreaAvaluadorActivity.class));
+                                startActivity(new Intent(getContext(), TractamentsActivity.class));
+                                getActivity().finish();
                             }
                         });
 
