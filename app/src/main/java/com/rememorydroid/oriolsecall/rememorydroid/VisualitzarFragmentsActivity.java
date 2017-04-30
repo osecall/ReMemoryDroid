@@ -262,4 +262,6 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
         myThread2 = new Thread(Fragments2);
 
         */
+
+
 }

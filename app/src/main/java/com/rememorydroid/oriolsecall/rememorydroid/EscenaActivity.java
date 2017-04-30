@@ -40,6 +40,7 @@ public class EscenaActivity extends BaseActivity {
     private SharedPreferences.Editor editor;
     private SharedPreferences prefs;
     private Gson gson = new Gson();
+    private boolean intensitatCambiada = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +127,7 @@ public class EscenaActivity extends BaseActivity {
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 tvValorIntensity1.setText(String.valueOf(i+1));
                 respostes_recuperades.setPreguntesEmocionsEscenaIntentistat(String.valueOf(i+1));
+                intensitatCambiada=true;
                 if(eLvEmocions.getSelectedItemPosition()!=0){
                     btNextEscena.setVisibility(View.VISIBLE);
                 }
@@ -133,7 +135,7 @@ public class EscenaActivity extends BaseActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
+                intensitatCambiada=true;
             }
 
             @Override
@@ -154,8 +156,21 @@ public class EscenaActivity extends BaseActivity {
                 intent.putExtra("favorita",imatge_favorita);
                 editor.putString("respostes",gson.toJson(respostes_recuperades,TestAnswers.class));
                 editor.commit();
-                if(eLvEmocions.getSelectedItemPosition()==0){
+                if(etQuestion1Escena.getText().toString().isEmpty() || etQuestion2Escena.getText().toString().isEmpty() ||
+                        etQuestion3Escena.getText().toString().isEmpty() || etQuestion4Escena.getText().toString().isEmpty()){
+                    Toast.makeText(EscenaActivity.this, R.string.Misstextfields,
+                            Toast.LENGTH_LONG).show();
+                }
+                else if(eLvEmocions.getSelectedItemPosition()<=0){
                     Toast.makeText(EscenaActivity.this, R.string.ChooseEmotion,
+                            Toast.LENGTH_LONG).show();
+                }
+                else if(seekBar2.getProgress()<1){
+                    Toast.makeText(EscenaActivity.this, R.string.ChooseIntensity,
+                            Toast.LENGTH_LONG).show();
+                }
+                else if(!intensitatCambiada){
+                    Toast.makeText(EscenaActivity.this, R.string.ChooseIntensity,
                             Toast.LENGTH_LONG).show();
                 }
                 else{

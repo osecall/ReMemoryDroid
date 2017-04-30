@@ -257,15 +257,6 @@ public class VisualitzarActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        vv.pause();
-    }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        vv.start();
-    }
+
 }

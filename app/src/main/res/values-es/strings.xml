@@ -280,4 +280,6 @@
     <string name="Test2Ticker">Test 2 terminado! Muy buen trabajo %s !!</string>
     <string name="NotificationTest2">Test 2 terminado por %s !</string>
     <string name="MissAnswers">Te has dejado de contestar algunas previas preguntas</string>
+    <string name="Misstextfields">Te has dejado de introducir texto en los campos</string>
+    <string name="ChooseIntensity">Escoge una intensidad de la emoción</string>
 </resources>
