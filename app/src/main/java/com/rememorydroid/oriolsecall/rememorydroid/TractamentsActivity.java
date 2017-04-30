@@ -84,8 +84,6 @@ public class TractamentsActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     //Part del menú 'action bar'

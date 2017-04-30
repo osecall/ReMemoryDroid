@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -687,8 +688,10 @@ public class TestActivity extends AppCompatActivity {
                     RadioButton rb = (RadioButton) rootView.findViewById(radioButtonID);
 
                     if(!SegonTest){
-                        if(!respostes_recuperades.getTest1Pregunta1().isEmpty() && !respostes_recuperades.getTest1Pregunta2().isEmpty() && !respostes_recuperades.getTest1Pregunta3().isEmpty() &&
-                                !respostes_recuperades.getTest1Pregunta4().isEmpty() && !respostes_recuperades.getTest1Pregunta5().isEmpty()){
+                        if(!respostes_recuperades.getTest1Pregunta1().matches("") && !respostes_recuperades.getTest1Pregunta2().matches("") && !respostes_recuperades.getTest1Pregunta3().matches("") &&
+                                !respostes_recuperades.getTest1Pregunta4().matches("") && !respostes_recuperades.getTest1Pregunta5().matches("")){
+                            respostes_recuperades.setTest1Pregunta6(rb.getText().toString());
+                            respostes_recuperades.setTest1Sumatori();
                             btNext.setVisibility(View.VISIBLE);
                             btNext.setEnabled(true);
                         }
@@ -696,23 +699,27 @@ public class TestActivity extends AppCompatActivity {
                             Toast.makeText(getContext(), R.string.MissAnswers,
                                     Toast.LENGTH_LONG).show();
                         }
+
                     }
                     if(SegonTest){
-                        if(!respostes_recuperades.getTest2Pregunta1().isEmpty() && !respostes_recuperades.getTest2Pregunta2().isEmpty() && !respostes_recuperades.getTest2Pregunta3().isEmpty() &&
-                                !respostes_recuperades.getTest2Pregunta4().isEmpty() && !respostes_recuperades.getTest2Pregunta5().isEmpty()){
+                        if(!respostes_recuperades.getTest2Pregunta1().matches("") && !respostes_recuperades.getTest2Pregunta2().matches("") && !respostes_recuperades.getTest2Pregunta3().matches("") &&
+                                !respostes_recuperades.getTest2Pregunta4().matches("") && !respostes_recuperades.getTest2Pregunta5().matches("")){
                             btNext.setVisibility(View.VISIBLE);
                             btNext.setEnabled(true);
+                            respostes_recuperades.setTest2Pregunta6(rb.getText().toString());
+                            respostes_recuperades.setTest2Sumatori();
                         }
                         else{
                             Toast.makeText(getContext(), R.string.MissAnswers,
                                     Toast.LENGTH_LONG).show();
                         }
+
                     }
 
                     TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(110).height(110).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
                     ivNumSeleccionat.setImageDrawable(NumeroSeleccionat);
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
-
+                    /*
                     if(SegonTest){
                         respostes_recuperades.setTest2Pregunta6(rb.getText().toString());
                         respostes_recuperades.setTest2Sumatori();
@@ -720,7 +727,7 @@ public class TestActivity extends AppCompatActivity {
                     else{
                         respostes_recuperades.setTest1Pregunta6(rb.getText().toString());
                         respostes_recuperades.setTest1Sumatori();
-                    }
+                    }*/
                 }
             });
 
@@ -776,8 +783,8 @@ public class TestActivity extends AppCompatActivity {
 
                         NotificationCompat.Builder mBuilder =
                                 new NotificationCompat.Builder(getContext())
-                                        .setSmallIcon(R.drawable.iconrem)
                                         .setLargeIcon(bitmap)
+                                        .setSmallIcon(R.drawable.attachment)
                                         .setContentTitle(getString(R.string.NotificationAlert))
                                         .setContentText(getString(R.string.NotificationTest2, pacient.getName()))
                                         .setTicker(getString(R.string.Test2Ticker,pacient.getName()));
@@ -825,8 +832,8 @@ public class TestActivity extends AppCompatActivity {
 
                         NotificationCompat.Builder mBuilder =
                                 new NotificationCompat.Builder(getContext())
-                                        .setSmallIcon(R.drawable.iconrem)
                                         .setLargeIcon(bitmap)
+                                        .setSmallIcon(R.drawable.attachment)
                                         .setContentTitle(getString(R.string.NotificationAlert))
                                         .setContentText(getString(R.string.NotificationTest1, pacient.getName()))
                                         .setTicker(getString(R.string.Test1Ticker,pacient.getName()));
@@ -876,12 +883,15 @@ public class TestActivity extends AppCompatActivity {
 
                         Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
 
+                        Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
                         NotificationCompat.Builder mBuilder =
                                 new NotificationCompat.Builder(getContext())
-                                        .setSmallIcon(R.drawable.iconrem)
                                         .setLargeIcon(bitmap)
+                                        .setSmallIcon(R.drawable.attachment)
                                         .setContentTitle(getString(R.string.NotificationAlert))
                                         .setContentText(getString(R.string.NotificationTest2, pacient.getName()))
+                                        .setSound(defaultSound)
                                         .setTicker(getString(R.string.Test2Ticker,pacient.getName()));
 
                         NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
@@ -922,13 +932,15 @@ public class TestActivity extends AppCompatActivity {
 
                         Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
 
+                        Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                         //Notificació
                         NotificationCompat.Builder mBuilder =
                                 new NotificationCompat.Builder(getContext())
-                                        .setSmallIcon(R.drawable.iconrem)
                                         .setLargeIcon(bitmap)
+                                        .setSmallIcon(R.drawable.attachment)
                                         .setContentTitle(getString(R.string.NotificationAlert))
                                         .setContentText(getString(R.string.NotificationTest1, pacient.getName()))
+                                        .setSound(defaultSound)
                                         .setTicker(getString(R.string.Test1Ticker,pacient.getName()));
 
                         NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
@@ -1031,29 +1043,4 @@ public class TestActivity extends AppCompatActivity {
 
     }
 
-    private void NotificarTest1(){
-        Bitmap bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(),R.drawable.iconrem);
-
-        NotificationCompat.Builder mBuilder =
-                 new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.iconrem)
-                .setLargeIcon(bitmap)
-                .setContentTitle(getString(R.string.NotificationAlert))
-                .setContentText(getString(R.string.NotificationTest1, pacient.getName()))
-                .setContentInfo("4")
-                .setTicker(getString(R.string.Test1Ticker,pacient.getName()));
-    }
-
-    private void NotificarTest2(){
-        Bitmap bitmap = BitmapFactory.decodeResource(getBaseContext().getResources(),R.drawable.iconrem);
-
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.iconrem)
-                        .setLargeIcon(bitmap)
-                        .setContentTitle(getString(R.string.NotificationAlert))
-                        .setContentText(getString(R.string.NotificationTest2, pacient.getName()))
-                        .setContentInfo("4")
-                        .setTicker(getString(R.string.Test2Ticker,pacient.getName()));
-    }
 }

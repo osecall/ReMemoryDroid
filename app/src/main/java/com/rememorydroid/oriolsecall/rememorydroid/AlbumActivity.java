@@ -120,288 +120,254 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
+                ivAlbum0.setDrawingCacheEnabled(true);
+                ivAlbum0.buildDrawingCache();
+                Bitmap bitmap = ivAlbum0.getDrawingCache();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                final byte[] data0 = baos.toByteArray();
 
-                if(ivAlbum0.isEnabled()){
-                    //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                    ivAlbum0.setDrawingCacheEnabled(true);
-                    ivAlbum0.buildDrawingCache();
-                    Bitmap bitmap = ivAlbum0.getDrawingCache();
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    final byte[] data0 = baos.toByteArray();
-
-                    UploadTask uploadTask = RefFavour.putBytes(data0);
-                    uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            while(!task.isComplete()){
-                                showProgressDialog();
-                            }
-                            if(task.isComplete()){
-                                hideProgressDialog();
-                                Toast.makeText(getApplicationContext(),
-                                        R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                                ivAlbum0.setAnimation(translate);
-                                ivAlbum0.startAnimation(translate);
-
-
-                                new Handler().postDelayed(new Runnable(){
-                                    public void run(){
-                                        Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                        intent.putExtra("favorita",data0);
-                                        startActivity(intent);
-                                    }
-                                }, 3000);
-
-                            }
-                            if(!task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(),
-                                        "Error!", Toast.LENGTH_LONG).show();
-                            }
+                UploadTask uploadTask = RefFavour.putBytes(data0);
+                uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        while(!task.isComplete()){
+                            showProgressDialog();
                         }
-                    });
+                        if(task.isComplete()){
+                            hideProgressDialog();
+                            Toast.makeText(getApplicationContext(),
+                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            ivAlbum0.setAnimation(translate);
+                            ivAlbum0.startAnimation(translate);
 
-                }
-                else{
 
-                }
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita",data0);
+                                    startActivity(intent);
+                                }
+                            }, 3000);
 
+                        }
+                        if(!task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),
+                                    "Error!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
         });
         ivAlbum1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
+                ivAlbum1.setDrawingCacheEnabled(true);
+                ivAlbum1.buildDrawingCache();
+                Bitmap bitmap = ivAlbum1.getDrawingCache();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                final byte[] data1 = baos.toByteArray();
 
-                if(ivAlbum1.isEnabled()){
-                    //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                    ivAlbum1.setDrawingCacheEnabled(true);
-                    ivAlbum1.buildDrawingCache();
-                    Bitmap bitmap = ivAlbum1.getDrawingCache();
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    final byte[] data1 = baos.toByteArray();
-
-                    UploadTask uploadTask = RefFavour.putBytes(data1);
-                    uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            while(!task.isComplete()) showProgressDialog();
-                            if(task.isComplete()){
-                                hideProgressDialog();
-                                Toast.makeText(getApplicationContext(),
-                                        R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                                ivAlbum1.setAnimation(translate);
-                                ivAlbum1.startAnimation(translate);
+                UploadTask uploadTask = RefFavour.putBytes(data1);
+                uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        while(!task.isComplete()) showProgressDialog();
+                        if(task.isComplete()){
+                            hideProgressDialog();
+                            Toast.makeText(getApplicationContext(),
+                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            ivAlbum1.setAnimation(translate);
+                            ivAlbum1.startAnimation(translate);
 
 
-                                new Handler().postDelayed(new Runnable(){
-                                    public void run(){
-                                        Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                        intent.putExtra("favorita",data1);
-                                        startActivity(intent);
-                                    }
-                                }, 3000);
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita",data1);
+                                    startActivity(intent);
+                                }
+                            }, 3000);
 
-                            }
-                            if(!task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(),
-                                        "Error!", Toast.LENGTH_LONG).show();
-                            }
                         }
-                    });
-                }
-                else{
+                        if(!task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),
+                                    "Error!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
 
-                }
 
             }
         });
         ivAlbum2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
+                ivAlbum2.setDrawingCacheEnabled(true);
+                ivAlbum2.buildDrawingCache();
+                Bitmap bitmap = ivAlbum2.getDrawingCache();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                final byte[] data2 = baos.toByteArray();
 
-                if(ivAlbum2.isEnabled()){
-                    //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                    ivAlbum2.setDrawingCacheEnabled(true);
-                    ivAlbum2.buildDrawingCache();
-                    Bitmap bitmap = ivAlbum2.getDrawingCache();
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    final byte[] data2 = baos.toByteArray();
-
-                    UploadTask uploadTask = RefFavour.putBytes(data2);
-                    uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            while(!task.isComplete()) showProgressDialog();
-                            if(task.isComplete()){
-                                hideProgressDialog();
-                                Toast.makeText(getApplicationContext(),
-                                        R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                                ivAlbum2.setAnimation(translate);
-                                ivAlbum2.startAnimation(translate);
+                UploadTask uploadTask = RefFavour.putBytes(data2);
+                uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        while(!task.isComplete()) showProgressDialog();
+                        if(task.isComplete()){
+                            hideProgressDialog();
+                            Toast.makeText(getApplicationContext(),
+                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            ivAlbum2.setAnimation(translate);
+                            ivAlbum2.startAnimation(translate);
 
 
-                                new Handler().postDelayed(new Runnable(){
-                                    public void run(){
-                                        Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                        intent.putExtra("favorita",data2);
-                                        startActivity(intent);
-                                    }
-                                }, 3000);
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita",data2);
+                                    startActivity(intent);
+                                }
+                            }, 3000);
 
-                            }
-                            if(!task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(),
-                                        "Error!", Toast.LENGTH_LONG).show();
-                            }
                         }
-                    });
-                }else{
-
-                }
+                        if(!task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),
+                                    "Error!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
 
             }
         });
         ivAlbum3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
+                ivAlbum3.setDrawingCacheEnabled(true);
+                ivAlbum3.buildDrawingCache();
+                Bitmap bitmap = ivAlbum3.getDrawingCache();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                final byte[] data3 = baos.toByteArray();
 
-                if(ivAlbum3.isEnabled()){
-                    //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                    ivAlbum3.setDrawingCacheEnabled(true);
-                    ivAlbum3.buildDrawingCache();
-                    Bitmap bitmap = ivAlbum3.getDrawingCache();
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    final byte[] data3 = baos.toByteArray();
-
-                    UploadTask uploadTask = RefFavour.putBytes(data3);
-                    uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            while(!task.isComplete()) showProgressDialog();
-                            if(task.isComplete()){
-                                hideProgressDialog();
-                                Toast.makeText(getApplicationContext(),
-                                        R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                                ivAlbum3.setAnimation(translate);
-                                ivAlbum3.startAnimation(translate);
+                UploadTask uploadTask = RefFavour.putBytes(data3);
+                uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        while(!task.isComplete()) showProgressDialog();
+                        if(task.isComplete()){
+                            hideProgressDialog();
+                            Toast.makeText(getApplicationContext(),
+                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            ivAlbum3.setAnimation(translate);
+                            ivAlbum3.startAnimation(translate);
 
 
-                                new Handler().postDelayed(new Runnable(){
-                                    public void run(){
-                                        Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                        intent.putExtra("favorita",data3);
-                                        startActivity(intent);
-                                    }
-                                }, 3000);
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita",data3);
+                                    startActivity(intent);
+                                }
+                            }, 3000);
 
-                            }
-                            if(!task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(),
-                                        "Error!", Toast.LENGTH_LONG).show();
-                            }
                         }
-                    });
-                }else{
-
-                }
+                        if(!task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),
+                                    "Error!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
 
             }
         });
         ivAlbum4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
+                ivAlbum4.setDrawingCacheEnabled(true);
+                ivAlbum4.buildDrawingCache();
+                Bitmap bitmap = ivAlbum4.getDrawingCache();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                final byte[] data4 = baos.toByteArray();
 
-                if(ivAlbum4.isEnabled()){
-                    //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                    ivAlbum4.setDrawingCacheEnabled(true);
-                    ivAlbum4.buildDrawingCache();
-                    Bitmap bitmap = ivAlbum4.getDrawingCache();
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    final byte[] data4 = baos.toByteArray();
-
-                    UploadTask uploadTask = RefFavour.putBytes(data4);
-                    uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            while(!task.isComplete()) showProgressDialog();
-                            if(task.isComplete()){
-                                hideProgressDialog();
-                                Toast.makeText(getApplicationContext(),
-                                        R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                                ivAlbum4.setAnimation(translate);
-                                ivAlbum4.startAnimation(translate);
+                UploadTask uploadTask = RefFavour.putBytes(data4);
+                uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        while(!task.isComplete()) showProgressDialog();
+                        if(task.isComplete()){
+                            hideProgressDialog();
+                            Toast.makeText(getApplicationContext(),
+                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            ivAlbum4.setAnimation(translate);
+                            ivAlbum4.startAnimation(translate);
 
 
-                                new Handler().postDelayed(new Runnable(){
-                                    public void run(){
-                                        Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                        intent.putExtra("favorita",data4);
-                                        startActivity(intent);
-                                    }
-                                }, 3000);
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita",data4);
+                                    startActivity(intent);
+                                }
+                            }, 3000);
 
-                            }
-                            if(!task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(),
-                                        "Error!", Toast.LENGTH_LONG).show();
-                            }
                         }
-                    });
-                }else{
-
-                }
+                        if(!task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),
+                                    "Error!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
 
             }
         });
         ivAlbum5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
+                ivAlbum5.setDrawingCacheEnabled(true);
+                ivAlbum5.buildDrawingCache();
+                Bitmap bitmap = ivAlbum5.getDrawingCache();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                final byte[] data5 = baos.toByteArray();
 
-                if(ivAlbum5.isEnabled()){
-                    //Aconseguim els bits de la foto que conté el view Imageview i el pujem al Firebase
-                    ivAlbum5.setDrawingCacheEnabled(true);
-                    ivAlbum5.buildDrawingCache();
-                    Bitmap bitmap = ivAlbum5.getDrawingCache();
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    final byte[] data5 = baos.toByteArray();
-
-                    UploadTask uploadTask = RefFavour.putBytes(data5);
-                    uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            while(!task.isComplete()) showProgressDialog();
-                            if(task.isComplete()){
-                                hideProgressDialog();
-                                Toast.makeText(getApplicationContext(),
-                                        R.string.PictureUploaded, Toast.LENGTH_LONG).show();
-                                ivAlbum5.setAnimation(translate);
-                                ivAlbum5.startAnimation(translate);
+                UploadTask uploadTask = RefFavour.putBytes(data5);
+                uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        while(!task.isComplete()) showProgressDialog();
+                        if(task.isComplete()){
+                            hideProgressDialog();
+                            Toast.makeText(getApplicationContext(),
+                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            ivAlbum5.setAnimation(translate);
+                            ivAlbum5.startAnimation(translate);
 
 
-                                new Handler().postDelayed(new Runnable(){
-                                    public void run(){
-                                        Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
-                                        intent.putExtra("favorita",data5);
-                                        startActivity(intent);
-                                    }
-                                }, 3000);
+                            new Handler().postDelayed(new Runnable(){
+                                public void run(){
+                                    Intent intent = new Intent(AlbumActivity.this,EscenaActivity.class);
+                                    intent.putExtra("favorita",data5);
+                                    startActivity(intent);
+                                }
+                            }, 3000);
 
-                            }
-                            if(!task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(),
-                                        "Error!", Toast.LENGTH_LONG).show();
-                            }
                         }
-                    });
-                }else{
-
-                }
-
+                        if(!task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),
+                                    "Error!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
         });
     }

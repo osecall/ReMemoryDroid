@@ -282,4 +282,5 @@
     <string name="MissAnswers">Te has dejado de contestar algunas previas preguntas</string>
     <string name="Misstextfields">Te has dejado de introducir texto en los campos</string>
     <string name="ChooseIntensity">Escoge una intensidad de la emoción</string>
+    <string name="WaitImageDownload">Espera que la imagen esté cargada por favor</string>
 </resources>

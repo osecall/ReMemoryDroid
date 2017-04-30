@@ -1006,11 +1006,11 @@ public class PreguntesActivity extends AppCompatActivity {
 
                     respostes_recuperades.setPreguntesPerceptiusOlors(rb.getText().toString());
 
-                    if(respostes_recuperades.getPreguntesQuanTemps()!=null && respostes_recuperades.getPreguntesQuanDuracio()!=null &&
-                            respostes_recuperades.getPreguntesQuanMes()!=null && respostes_recuperades.getPreguntesQuanFranjaDia()!=null &&
-                            respostes_recuperades.getPreguntesOnLocalitzacio()!=null && respostes_recuperades.getPreguntesOnEntorns()!=null &&
-                            respostes_recuperades.getPreguntesOnUbicacio()!=null && respostes_recuperades.getPreguntesPerceptiusSons()!=null &&
-                            respostes_recuperades.getPreguntesPerceptiusTemperatura()!=null){
+                    if(!respostes_recuperades.getPreguntesQuanTemps().isEmpty() && !respostes_recuperades.getPreguntesQuanDuracio().isEmpty() &&
+                            !respostes_recuperades.getPreguntesQuanMes().isEmpty() && !respostes_recuperades.getPreguntesQuanFranjaDia().isEmpty() &&
+                            !respostes_recuperades.getPreguntesOnLocalitzacio().isEmpty() && !respostes_recuperades.getPreguntesOnEntorns().isEmpty() &&
+                            !respostes_recuperades.getPreguntesOnUbicacio().isEmpty() && !respostes_recuperades.getPreguntesPerceptiusSons().isEmpty() &&
+                            !respostes_recuperades.getPreguntesPerceptiusTemperatura().isEmpty()){
                         btNextDetails3.setEnabled(true);
                         btNextDetails3.setVisibility(View.VISIBLE);
                     }

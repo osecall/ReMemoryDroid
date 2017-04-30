@@ -103,10 +103,7 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
             public void onPrepared(MediaPlayer mediaPlayer) {
 
                 mediaPlayer.setVolume(0, 0);
-                vv.start();
-                vv.pause();
-                vv.seekTo(0);
-
+                vv.seekTo(1);
                 mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mediaPlayer) {
@@ -262,6 +259,5 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
         myThread2 = new Thread(Fragments2);
 
         */
-
 
 }

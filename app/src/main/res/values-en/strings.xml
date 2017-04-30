@@ -282,4 +282,5 @@
     <string name="MissAnswers">You missed to answer some previous questions</string>
     <string name="Misstextfields">You miss to text some fields</string>
     <string name="ChooseIntensity">Choose an intensity for the emotion</string>
+    <string name="WaitImageDownload">Wait the image to be loaded please</string>
 </resources>

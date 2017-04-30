@@ -408,8 +408,8 @@ public class Preguntes2Activity extends AppCompatActivity {
                     RadioButton rbSeleccionat = (RadioButton) rootView.findViewById(radioGroup.getCheckedRadioButtonId());
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesEmocionsObservades(rbSeleccionat.getText().toString());
-                    if(respostes_recuperades.getPreguntesPersonesRelacio()!=null && respostes_recuperades.getPreguntesPersonesGrups()!=null
-                            && respostes_recuperades.getPreguntesPersonesAccions()!=null) {
+                    if(!respostes_recuperades.getPreguntesPersonesRelacio().isEmpty() && !respostes_recuperades.getPreguntesPersonesGrups().isEmpty()
+                            && !respostes_recuperades.getPreguntesPersonesAccions().isEmpty()) {
                         if (rgFragment42Q2.getCheckedRadioButtonId() != -1) {
                             btNextPeople4.setEnabled(true);
                             btNextPeople4.setVisibility(View.VISIBLE);
@@ -430,8 +430,8 @@ public class Preguntes2Activity extends AppCompatActivity {
                     //Guardem resposta obteniguda
                     respostes_recuperades.setPreguntesEmocionsPropies(rbSeleccionat.getText().toString());
 
-                    if(respostes_recuperades.getPreguntesPersonesRelacio()!=null && respostes_recuperades.getPreguntesPersonesGrups()!=null
-                            && respostes_recuperades.getPreguntesPersonesAccions()!=null){
+                    if(!respostes_recuperades.getPreguntesPersonesRelacio().isEmpty() && !respostes_recuperades.getPreguntesPersonesGrups().isEmpty()
+                            && !respostes_recuperades.getPreguntesPersonesAccions().isEmpty()){
                         if(rgFragment41Q2.getCheckedRadioButtonId()!=-1){
                             btNextPeople4.setEnabled(true);
                             btNextPeople4.setVisibility(View.VISIBLE);
@@ -534,15 +534,7 @@ public class Preguntes2Activity extends AppCompatActivity {
         DialegFormControl
                 .setTitle(getString(R.string.Attention))
                 .setView(textEntryView)
-                .setCancelable(false);/*
-                .setMessage(R.string.AskingQuestions)
-                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        arg0.dismiss();
-                        arg0.cancel();
-                    }
-                })
-                .show();*/
+                .setCancelable(false);
 
         final AlertDialog alerta = DialegFormControl.create();
 
