@@ -55,7 +55,7 @@ public class TestActivity extends AppCompatActivity {
     public static SharedPreferences prefs;
     public static TestAnswers respostes_recuperades = new TestAnswers();
     public static PacientUsuari pacient = new PacientUsuari();
-    public static boolean SegonTest = false;
+    public static boolean SegonTest;
     public static boolean Curta = false;
     public static String episodi = new String();
     public static Gson gson = new Gson();
@@ -70,6 +70,8 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+        SegonTest=false;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -103,7 +105,6 @@ public class TestActivity extends AppCompatActivity {
             SegonTest=true;
             respostes_recuperades = gson.fromJson(prefs.getString("respostes",null),TestAnswers.class);
         }
-
         mostrarAlertaPelicula();
 
     }
@@ -719,15 +720,7 @@ public class TestActivity extends AppCompatActivity {
                     TextDrawable NumeroSeleccionat = TextDrawable.builder().beginConfig().width(110).height(110).endConfig().buildRound(rb.getText().toString(),ColorGenerator.DEFAULT.getRandomColor());
                     ivNumSeleccionat.setImageDrawable(NumeroSeleccionat);
                     ivNumSeleccionat.setVisibility(View.VISIBLE);
-                    /*
-                    if(SegonTest){
-                        respostes_recuperades.setTest2Pregunta6(rb.getText().toString());
-                        respostes_recuperades.setTest2Sumatori();
-                    }
-                    else{
-                        respostes_recuperades.setTest1Pregunta6(rb.getText().toString());
-                        respostes_recuperades.setTest1Sumatori();
-                    }*/
+
                 }
             });
 
@@ -812,8 +805,8 @@ public class TestActivity extends AppCompatActivity {
                         bt.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                startActivity(new Intent(getContext(), TractamentsActivity.class));
                                 alerta.dismiss();
+                                startActivity(new Intent(getContext(), TractamentsActivity.class));
                             }
                         });
 
@@ -916,8 +909,8 @@ public class TestActivity extends AppCompatActivity {
                         bt.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                startActivity(new Intent(getContext(), TractamentsActivity.class));
                                 alerta.dismiss();
+                                startActivity(new Intent(getContext(), AreaAvaluadorActivity.class));
                             }
                         });
 

@@ -111,7 +111,7 @@
     <string name="SunnyDay">Dia solejat</string>
     <string name="Rainy">Pluja</string>
     <string name="Cloudly">Dia amb núvols</string>
-    <string name="FoggyDay">"When you are ready choose the icon \"Record\". "</string>
+    <string name="FoggyDay">Boira</string>
     <string name="HowLongItLast">Quant va durar?</string>
     <string name="LessThan2Hours">Menys de 2 hores</string>
     <string name="action_settings">Configuració</string>
@@ -179,8 +179,6 @@
     <string name="Listen">Escoltar</string>
     <string name="NoListen">No escoltar</string>
     <string name="HowManyPeople">Numero de persones que apareixen</string>
-    <string name="From1to4">De 1 a 4</string>
-    <string name="From5to9">De 5 a 9</string>
     <string name="MorePeopleThan10">10 o més de 10 persones</string>
     <string name="FamilyMembers">Miembros de familia</string>
     <string name="Friends">Amics</string>
@@ -237,8 +235,6 @@
     <string name="Visualitzar">Visualitzar</string>
     <string name="Evocar">Evocar</string>
     <string name="Questions">Qüestions</string>
-    <string name="Emotions2">Emocions_2</string>
-    <string name="Emotions3">Emocions_3</string>
     <string name="Scene">Escena</string>
     <string name="Fantastic">Fantastic, ho ha fet molt bé %s !!!</string>
     <string name="ToEnd">Ara per finalitzar li demanem que senyali l\'opció que més s\'apoximi a com se sent vosté ara mateix</string>

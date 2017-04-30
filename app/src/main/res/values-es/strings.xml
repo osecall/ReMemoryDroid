@@ -179,8 +179,6 @@
     <string name="Listen">Escuchar</string>
     <string name="NoListen">No escuchar</string>
     <string name="HowManyPeople">Número de personas que aparecen</string>
-    <string name="From1to4">De 1 a 4</string>
-    <string name="From5to9">de 5 a 9</string>
     <string name="MorePeopleThan10">10 o más de 10 personas</string>
     <string name="FamilyMembers">Membres de família</string>
     <string name="Friends">Amigos</string>
@@ -237,8 +235,6 @@
     <string name="Visualitzar">Visualizar</string>
     <string name="Evocar">Evocar</string>
     <string name="Questions">Cuestiones</string>
-    <string name="Emotions2">Emociones_2</string>
-    <string name="Emotions3">Emociones_3</string>
     <string name="Scene">Escena</string>
     <string name="Fantastic">Fantástico, lo ha hecho muy bien %s!!!</string>
     <string name="ToEnd">Ahora para finalizar le pedimos que señale la opción que más se aproxime a cómo se siente usted ahora mismo</string>

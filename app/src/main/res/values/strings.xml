@@ -196,8 +196,6 @@
     <string name="Listen">Listen</string>
     <string name="NoListen">No listen</string>
     <string name="HowManyPeople">Number of people who appears</string>
-    <string name="From1to4">From 1 to 4</string>
-    <string name="From5to9">From 5 to 9</string>
     <string name="MorePeopleThan10">10 or more people</string>
     <string name="FamilyMembers">Family members</string>
     <string name="Friends">Friends</string>
@@ -255,8 +253,6 @@
     <string name="Visualitzar">View</string>
     <string name="Evocar">Evoke</string>
     <string name="Questions">Questions</string>
-    <string name="Emotions2">Emotions_2</string>
-    <string name="Emotions3">Emotions_3</string>
     <string name="Scene">Scene</string>
     <string name="Fantastic">Outstanding, you did it very well %s !!!</string>
     <string name="ToEnd">Now to finalize we ask you to point the option which is closest to how you feel right now</string>

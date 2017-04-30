@@ -103,7 +103,7 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
             public void onPrepared(MediaPlayer mediaPlayer) {
 
                 mediaPlayer.setVolume(0, 0);
-                vv.seekTo(1);
+                vv.start();vv.pause();
                 mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mediaPlayer) {

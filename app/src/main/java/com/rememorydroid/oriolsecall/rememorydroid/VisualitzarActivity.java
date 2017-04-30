@@ -123,7 +123,8 @@ public class VisualitzarActivity extends BaseActivity {
             @Override
             public void onPrepared(final MediaPlayer mediaPlayer) {
                 vv.setMediaController(new MediaController(VisualitzarActivity.this));
-                vv.seekTo(1);
+                vv.start();
+                vv.pause();
                 ProgressBarVideo.setMax(vv.getDuration());
                 ProgressBarVideo.setProgress(0);
 
