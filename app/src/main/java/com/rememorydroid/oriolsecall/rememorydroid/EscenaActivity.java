@@ -36,7 +36,8 @@ public class EscenaActivity extends BaseActivity {
     private Intent intent;
     private TextView tvValorIntensity1;
     private PacientUsuari pacient;
-    private TestAnswers respostes_recuperades;
+    private TestAnswers respostes_recuperades = new TestAnswers();
+    private SharedPreferences.Editor editor;
     private SharedPreferences prefs;
     private Gson gson = new Gson();
 
@@ -46,10 +47,9 @@ public class EscenaActivity extends BaseActivity {
         setContentView(R.layout.activity_escena);
 
         prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        editor = prefs.edit();
         pacient = gson.fromJson(prefs.getString("pacient",null), PacientUsuari.class);
-
         respostes_recuperades = gson.fromJson(prefs.getString("respostes",null),TestAnswers.class);
-
 
         etQuestion1Escena = (EditText) findViewById(R.id.editText1);
         etQuestion2Escena = (EditText) findViewById(R.id.editText2);
@@ -121,7 +121,6 @@ public class EscenaActivity extends BaseActivity {
             }
         });
 
-
         seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -153,16 +152,14 @@ public class EscenaActivity extends BaseActivity {
                 intent.putExtra("D",etQuestion3Escena.getText().toString());
                 intent.putExtra("E",etQuestion4Escena.getText().toString());
                 intent.putExtra("favorita",imatge_favorita);
+                editor.putString("respostes",gson.toJson(respostes_recuperades,TestAnswers.class));
+                editor.commit();
                 if(eLvEmocions.getSelectedItemPosition()==0){
                     Toast.makeText(EscenaActivity.this, R.string.ChooseEmotion,
                             Toast.LENGTH_LONG).show();
                 }
                 else{
-                    prefs.edit().putString("respostes",gson.toJson(respostes_recuperades,TestAnswers.class));
-                    prefs.edit().commit();
-                    prefs.edit().apply();
                     startActivity(intent);
-
                 }
             }
         });

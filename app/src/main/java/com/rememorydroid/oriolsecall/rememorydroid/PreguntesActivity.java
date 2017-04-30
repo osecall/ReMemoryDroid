@@ -268,12 +268,9 @@ public class PreguntesActivity extends AppCompatActivity {
 
                     btNextWeather.setEnabled(true);
                     btNextWeather.setVisibility(View.VISIBLE);
-
                 }
 
             });
-
-
             return rootView;
         }
 
