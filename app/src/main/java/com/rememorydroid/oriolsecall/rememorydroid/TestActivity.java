@@ -807,7 +807,6 @@ public class TestActivity extends AppCompatActivity {
                             public void onClick(View view) {
                                 alerta.dismiss();
                                 startActivity(new Intent(getContext(), TractamentsActivity.class));
-                                getActivity().finish();
                             }
                         });
                     }
@@ -909,7 +908,6 @@ public class TestActivity extends AppCompatActivity {
                             public void onClick(View view) {
                                 alerta.dismiss();
                                 startActivity(new Intent(getContext(), TractamentsActivity.class));
-                                getActivity().finish();
                             }
                         });
 

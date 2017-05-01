@@ -47,7 +47,7 @@ public class EpisodiActivity extends BaseActivity {
     private VersioListAdapter adaptadorVersio;
     private ArrayList<VersioList> versions;
     private ArrayList<EpisodiList> episodis;
-    private String ID_pacient = new String();
+    private String ID_pacient;
     private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
 
 
@@ -55,6 +55,8 @@ public class EpisodiActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episodi);
+
+        ID_pacient= new String();
 
         i=0;
         j=1;

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+
+import static android.view.KeyEvent.ACTION_UP;
 
 public class PacientUserSignUpActivity extends BaseActivity{
 
@@ -56,6 +59,41 @@ public class PacientUserSignUpActivity extends BaseActivity{
         ivSurError = (ImageView) findViewById(R.id.ivSurError);
         ivLastError = (ImageView) findViewById(R.id.ivLastError);
 
+        etIDPacientSignUp.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if(i==66 && keyEvent.getAction()==ACTION_UP){
+                    etNamePacientSignUp.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        etNamePacientSignUp.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if(i==66 && keyEvent.getAction()==ACTION_UP){
+                    etSurNamePacientSignUp.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        etSurNamePacientSignUp.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if(i==66 && keyEvent.getAction()==ACTION_UP){
+                    etLastNamePacientSignUp.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
+
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -65,7 +103,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Toast.makeText(PacientUserSignUpActivity.this, "Error!",
+                        Toast.LENGTH_LONG).show();
             }
         });
 

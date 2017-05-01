@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/ivPicturePreferredCurta"
-            android:layout_width="370dp"
-            android:layout_height="280dp"
+            android:layout_width="380dp"
+            android:layout_height="285dp"
             android:layout_gravity="center"
             android:scaleType="fitXY" />
 

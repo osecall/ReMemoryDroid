@@ -30,6 +30,7 @@ public class SignInActivity extends BaseActivity implements
     private EditText mEmailField;
     private EditText mPasswordField;
 
+
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]

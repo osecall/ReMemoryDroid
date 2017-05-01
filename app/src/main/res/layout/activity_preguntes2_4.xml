@@ -54,48 +54,43 @@
 
                     <RadioButton
                         android:id="@+id/cbTheyAngry"
+                        style="@style/radioGroupElementsTwice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
                         android:text="@string/TheyAreAngry"
-                        android:textSize="21sp" />
+                        android:textSize="18sp" />
 
                     <RadioButton
                         android:id="@+id/cbTheyHappy"
+                        style="@style/radioGroupElementsTwice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
                         android:text="@string/TheyAreHappy"
-                        android:textSize="21sp" />
+                        android:textSize="18sp" />
 
                     <RadioButton
                         android:id="@+id/cbTheySurprised"
+                        style="@style/radioGroupElementsTwice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
                         android:text="@string/TheyAreSuprised"
-                        android:textSize="21sp" />
+                        android:textSize="18sp" />
 
                     <RadioButton
                         android:id="@+id/cbTheySad"
+                        style="@style/radioGroupElementsTwice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
                         android:text="@string/TheyAreSad"
-                        android:textSize="21sp" />
+                        android:textSize="18sp" />
 
                     <RadioButton
                         android:id="@+id/cbTheyScared"
+                        style="@style/radioGroupElementsTwice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
                         android:text="@string/TheyAreScared"
-                        android:textSize="21sp" />
+                        android:textSize="18sp" />
                 </RadioGroup>
 
             </LinearLayout>
@@ -124,57 +119,52 @@
 
                 <RadioButton
                     android:id="@+id/cbNoExperience"
+                    style="@style/radioGroupElementsTwice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:layout_weight="1"
                     android:text="@string/NoEmotion"
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/cbSorprised"
+                    style="@style/radioGroupElementsTwice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:layout_weight="1"
                     android:text="@string/WasSorprised"
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/cbScared"
+                    style="@style/radioGroupElementsTwice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:layout_weight="1"
                     android:text="@string/WasScared"
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/cbAngry"
+                    style="@style/radioGroupElementsTwice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:layout_weight="1"
                     android:text="@string/wasAngry"
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/cbSad"
+                    style="@style/radioGroupElementsTwice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:layout_weight="1"
                     android:text="@string/WasSad"
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/cbHappy"
+                    style="@style/radioGroupElementsTwice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:layout_weight="1"
                     android:text="@string/WasHappy"
-                    android:textSize="21sp" />
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
             </RadioGroup>
 
         </LinearLayout>
