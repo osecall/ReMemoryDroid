@@ -279,4 +279,6 @@
     <string name="Misstextfields">Falta per introduir texts en els camps</string>
     <string name="ChooseIntensity">Escull una intensitat de l\'emoció</string>
     <string name="WaitImageDownload">Espera que la imatge estigui cargada si us plau</string>
+    <string name="EpisodeQuestions">Felicitats %s! Has realitzat el primer questionari sobre l\'episodi!</string>
+    <string name="Episode2Questions">Felicitats %s! Has realitzat el segon questionari sobre l\'episodi!</string>
 </resources>

@@ -279,4 +279,6 @@
     <string name="Misstextfields">Te has dejado de introducir texto en los campos</string>
     <string name="ChooseIntensity">Escoge una intensidad de la emoción</string>
     <string name="WaitImageDownload">Espera que la imagen esté cargada por favor</string>
+    <string name="EpisodeQuestions">Felicidades %s! Has realizado la primera encuesta sobre el episodio!</string>
+    <string name="Episode2Questions">Felicidades %s! Acabas de realizar el segundo cuestionario sobre el episodio!</string>
 </resources>

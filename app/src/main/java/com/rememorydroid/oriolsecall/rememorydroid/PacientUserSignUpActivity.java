@@ -235,29 +235,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
 
 
-    private void introduirPacientNou(final PacientUsuari pacient){
 
-        myRef.push().setValue(pacient).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Intent PacientUserSUintent = new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class);
-
-                // Grabar a SharedPreferences user
-                // Col·locar objecte pacient amb llibreria GSON PacientUserSUintent.set
-
-                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.clear();
-                editor.apply();
-                Gson gson = new Gson();
-                String pacient_json = gson.toJson(pacient, PacientUsuari.class);
-                editor.putString("pacient", pacient_json);
-                editor.commit();
-                hideProgressDialog();
-                startActivity(PacientUserSUintent);
-            }
-        });
-    }
 
 
     //Part del menú 'action bar'

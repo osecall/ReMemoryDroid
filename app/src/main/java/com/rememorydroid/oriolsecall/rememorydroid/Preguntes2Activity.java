@@ -1,10 +1,16 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -184,8 +190,6 @@ public class Preguntes2Activity extends AppCompatActivity {
 
                     btNextPeople1.setEnabled(true);
                     btNextPeople1.setVisibility(View.VISIBLE);
-
-
 
                 }
 
@@ -461,6 +465,25 @@ public class Preguntes2Activity extends AppCompatActivity {
                     editor.putString("respostes",respostes_json);
                     editor.commit();
                     editor.apply();
+
+
+                    //Notificació
+
+                    Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
+
+                    Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+                    NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(getContext())
+                                    .setLargeIcon(bitmap)
+                                    .setSmallIcon(R.drawable.attachment)
+                                    .setContentTitle(getString(R.string.NotificationAlert))
+                                    .setContentText(getString(R.string.Episode2Questions, pacient.getName()))
+                                    .setSound(defaultSound)
+                                    .setTicker(getString(R.string.Test2Ticker,pacient.getName()));
+
+                    NotificationManager m = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
+                    m.notify(6,mBuilder.build());
 
                     Intent intent = new Intent(getActivity(),RespirarActivity.class);
                     intent.putExtra("Quarta","Quarta");
