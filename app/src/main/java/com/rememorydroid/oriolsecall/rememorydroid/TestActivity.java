@@ -56,7 +56,7 @@ public class TestActivity extends AppCompatActivity {
     public static TestAnswers respostes_recuperades = new TestAnswers();
     public static PacientUsuari pacient = new PacientUsuari();
     public static boolean SegonTest;
-    public static boolean Curta = false;
+    public static boolean Curta;
     public static String episodi = new String();
     public static Gson gson = new Gson();
     public static SharedPreferences.Editor editor;
@@ -72,6 +72,7 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         SegonTest=false;
+        Curta = false;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -815,7 +816,6 @@ public class TestActivity extends AppCompatActivity {
                         //Guardem respostes ja que és la primera vegada i és la versió curta
                         editor.putString("respostes",gson.toJson(respostes_recuperades,TestAnswers.class));
                         editor.commit();
-                        editor.apply();
 
                         //Notificació
                         Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
@@ -917,7 +917,6 @@ public class TestActivity extends AppCompatActivity {
                         //Guardem respostes ja que és la primera vegada i és la versió curta
                         editor.putString("respostes",gson.toJson(respostes_recuperades,TestAnswers.class));
                         editor.commit();
-                        editor.apply();
                         Intent intent = new Intent (getContext(), RespirarActivity.class);
 
                         Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);

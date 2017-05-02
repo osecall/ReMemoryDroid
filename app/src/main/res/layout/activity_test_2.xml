@@ -54,7 +54,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="25dp"
             android:layout_marginTop="5dp"
-            android:text="@string/Question5Pel1"
+            android:text="@string/Question2Pel1"
             android:textStyle="bold" />
 
         <RadioGroup

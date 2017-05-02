@@ -255,4 +255,5 @@ public class VisualitzarActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

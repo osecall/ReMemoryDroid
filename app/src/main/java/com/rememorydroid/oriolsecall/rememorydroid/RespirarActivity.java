@@ -10,8 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class RespirarActivity extends AppCompatActivity {
 
@@ -32,7 +33,22 @@ public class RespirarActivity extends AppCompatActivity {
         //d'aquesta forma ens evitem duplicar classes (activities)
         if(getIntent().hasExtra("Segon")){
             ivRespirar.setImageResource(R.drawable.abstracte2);
-            Reproduccio = R.raw.respirar234;
+
+            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else{
+                Reproduccio = R.raw.respirar234;
+            }
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Segon","Segon");
@@ -43,7 +59,22 @@ public class RespirarActivity extends AppCompatActivity {
         else if(getIntent().hasExtra("Tercer")){
             ivRespirar.setImageResource(R.drawable.abstracte3);
 
-            Reproduccio = R.raw.respirar234;
+            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else{
+                Reproduccio = R.raw.respirar234;
+            }
+
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Tercer","Tercer");
             ReproduirMissatge(mp);
@@ -52,7 +83,22 @@ public class RespirarActivity extends AppCompatActivity {
         }
         else if(getIntent().hasExtra("Quarta")){
             ivRespirar.setImageResource(R.drawable.abstracte4);
-            Reproduccio = R.raw.respirar234;
+
+            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else{
+                Reproduccio = R.raw.respirar234;
+            }
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Quarta","Quarta");
@@ -62,7 +108,22 @@ public class RespirarActivity extends AppCompatActivity {
         }
         else if(getIntent().hasExtra("Curta1")){
             ivRespirar.setImageResource(R.drawable.abstracte5);
-            Reproduccio = R.raw.respirar1;
+
+            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+                Reproduccio = R.raw.respirar1;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+                Reproduccio = R.raw.respirar1;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+                Reproduccio = R.raw.respirar1;
+
+            }
+            else{
+                Reproduccio = R.raw.respirar1;
+            }
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this,VisualitzarActivity.class);
@@ -72,7 +133,22 @@ public class RespirarActivity extends AppCompatActivity {
         }
         else if(getIntent().hasExtra("Curta2")){
             ivRespirar.setImageResource(R.drawable.abstracte6);
-            Reproduccio = R.raw.respirar234;
+
+            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+                Reproduccio = R.raw.respirar234;
+
+            }
+            else{
+                Reproduccio = R.raw.respirar234;
+            }
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this,TestActivity.class);
@@ -81,7 +157,23 @@ public class RespirarActivity extends AppCompatActivity {
             DialogInstruccionsRespirar();
         }
         else{
-            Reproduccio = R.raw.respirar1;
+
+            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+                Reproduccio = R.raw.respirar1;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+                Reproduccio = R.raw.respirar1;
+
+            }
+            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+                Reproduccio = R.raw.respirar1;
+
+            }
+            else{
+                Reproduccio = R.raw.respirar1;
+            }
+
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this, VisualitzarActivity.class);

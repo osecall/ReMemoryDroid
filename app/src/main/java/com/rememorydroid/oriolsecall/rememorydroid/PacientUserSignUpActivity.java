@@ -97,7 +97,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Long numeroMaximUser = dataSnapshot.getChildrenCount();
+                Long numeroMaximUser = dataSnapshot.getChildrenCount()+1;
                 etIDPacientSignUp.setText(numeroMaximUser.toString());
             }
 

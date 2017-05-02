@@ -2,50 +2,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:screenOrientation="landscape"
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.Preguntes2Activity$Fragment4">
 
 
+    <Button
+        android:id="@+id/btNextPeople4"
+        style="@style/Next_button"
+        android:layout_marginEnd="41dp"
+        android:layout_alignBottom="@+id/btBackPeople4"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/btBackPeople4"
+        style="@style/Back_button"
+        android:layout_marginStart="38dp"
+        android:layout_marginBottom="84dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        android:gravity="center_horizontal|center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/PeopleAppearing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
+            android:layout_marginBottom="25dp"
             android:text="@string/EmotionsDuringEpisode"
             android:textAlignment="center"
-            android:textSize="50sp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/borde"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/EmotionsLabel1"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+            android:gravity="center_horizontal|center"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/borde"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/EmotionsLabel2"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <RadioGroup
                     android:id="@+id/rgFragment41Q2"
@@ -57,133 +69,117 @@
                         style="@style/radioGroupElementsTwice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/TheyAreAngry"
-                        android:textSize="18sp" />
+                        android:gravity="center_vertical"
+                        android:text="@string/TheyAreAngry" />
 
                     <RadioButton
                         android:id="@+id/cbTheyHappy"
                         style="@style/radioGroupElementsTwice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/TheyAreHappy"
-                        android:textSize="18sp" />
+                        android:gravity="center_vertical"
+                        android:text="@string/TheyAreHappy" />
 
                     <RadioButton
                         android:id="@+id/cbTheySurprised"
                         style="@style/radioGroupElementsTwice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/TheyAreSuprised"
-                        android:textSize="18sp" />
+                        android:gravity="center_vertical"
+                        android:text="@string/TheyAreSuprised" />
 
                     <RadioButton
                         android:id="@+id/cbTheySad"
                         style="@style/radioGroupElementsTwice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/TheyAreSad"
-                        android:textSize="18sp" />
+                        android:gravity="center_vertical"
+                        android:text="@string/TheyAreSad" />
 
                     <RadioButton
                         android:id="@+id/cbTheyScared"
                         style="@style/radioGroupElementsTwice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/TheyAreScared"
-                        android:textSize="18sp" />
+                        android:gravity="center_vertical"
+                        android:text="@string/TheyAreScared" />
                 </RadioGroup>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/borde"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="@string/EmotionsLabel2"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/borde"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <RadioGroup
-                android:id="@+id/rgFragment42Q2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RadioButton
-                    android:id="@+id/cbNoExperience"
-                    style="@style/radioGroupElementsTwice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/NoEmotion"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/cbSorprised"
-                    style="@style/radioGroupElementsTwice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/WasSorprised"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/cbScared"
-                    style="@style/radioGroupElementsTwice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/WasScared"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/cbAngry"
-                    style="@style/radioGroupElementsTwice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/wasAngry"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/cbSad"
-                    style="@style/radioGroupElementsTwice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/WasSad"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/cbHappy"
-                    style="@style/radioGroupElementsTwice"
+                <TextView
+                    android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/WasHappy"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
-            </RadioGroup>
+                    android:text="@string/EmotionsLabel1"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
+                <RadioGroup
+                    android:id="@+id/rgFragment42Q2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/cbNoExperience"
+                        style="@style/radioGroupElementsTwice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/NoEmotion" />
+
+                    <RadioButton
+                        android:id="@+id/cbSorprised"
+                        style="@style/radioGroupElementsTwice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/WasSorprised" />
+
+                    <RadioButton
+                        android:id="@+id/cbScared"
+                        style="@style/radioGroupElementsTwice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/WasScared" />
+
+                    <RadioButton
+                        android:id="@+id/cbAngry"
+                        style="@style/radioGroupElementsTwice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/wasAngry" />
+
+                    <RadioButton
+                        android:id="@+id/cbSad"
+                        style="@style/radioGroupElementsTwice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/WasSad" />
+
+                    <RadioButton
+                        android:id="@+id/cbHappy"
+                        style="@style/radioGroupElementsTwice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/WasHappy"
+                        android:textAlignment="textStart" />
+                </RadioGroup>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btBackPeople4"
-        style="@style/Back_button"
-        android:layout_alignBottom="@+id/btNextPeople4"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="26dp" />
-
-    <Button
-        android:id="@+id/btNextPeople4"
-        style="@style/Next_button"
-        android:layout_marginEnd="26dp"
-        android:layout_alignBottom="@+id/linearLayout2"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="13dp" />
 
 </RelativeLayout>
