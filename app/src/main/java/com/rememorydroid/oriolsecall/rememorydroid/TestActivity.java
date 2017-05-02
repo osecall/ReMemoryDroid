@@ -744,7 +744,7 @@ public class TestActivity extends AppCompatActivity {
                     if(Curta && SegonTest){
                         //Aquest cas és la versió curta i el segon test, s'ha d'enviar resultat a la DB i acabar
                         //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
-                        String ruta = respostes_recuperades.ConvertToCVS(true);
+                        final String ruta = respostes_recuperades.ConvertToCVS(true);
                         //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta
                         StorageReference PacientRef = myRef.child(pacient.getID()).child(episodi).child("respostes").child("ResultatVersioCurta_"+pacient.getID()+".csv");
                         Uri file = Uri.fromFile(new File(ruta));
@@ -806,8 +806,9 @@ public class TestActivity extends AppCompatActivity {
                         bt.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+
                                 alerta.dismiss();
-                                startActivity(new Intent(getContext(), TractamentsActivity.class));
+                                startActivity(new Intent(getContext(), TractamentsActivity.class).putExtra("final","final").putExtra("file",ruta));
                             }
                         });
                     }
@@ -838,7 +839,7 @@ public class TestActivity extends AppCompatActivity {
 
                     if(!Curta && SegonTest){
                         //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
-                        String ruta = respostes_recuperades.ConvertToCVS(false);
+                        final String ruta = respostes_recuperades.ConvertToCVS(false);
                         Uri file = Uri.fromFile(new File(ruta));
 
                         //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta
@@ -907,7 +908,7 @@ public class TestActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 alerta.dismiss();
-                                startActivity(new Intent(getContext(), TractamentsActivity.class));
+                                startActivity(new Intent(getContext(), TractamentsActivity.class).putExtra("final","final").putExtra("file",ruta));
                             }
                         });
 

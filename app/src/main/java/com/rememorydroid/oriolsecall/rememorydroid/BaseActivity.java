@@ -1,7 +1,9 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 /**
  * Created by Oriol on 24/02/2017.
@@ -28,6 +30,25 @@ public class BaseActivity extends AppCompatActivity {
             mProgressDialog.dismiss();
         }
     }
+
+    public void showToast(String message, boolean llarga){
+
+        int duracio;
+
+        if(llarga){
+            duracio = Toast.LENGTH_LONG;
+        }
+        else duracio = Toast.LENGTH_SHORT;
+
+        Toast.makeText(this, message,
+                duracio).show();
+    }
+
+    public void showToastError(){
+        Toast.makeText(this, "Error!",
+                Toast.LENGTH_LONG).show();
+    }
+
 
     @Override
     public void onStop() {

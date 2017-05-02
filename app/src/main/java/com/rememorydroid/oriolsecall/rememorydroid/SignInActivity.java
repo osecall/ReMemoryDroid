@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,22 +21,15 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignInActivity extends BaseActivity implements
         View.OnClickListener {
 
-    private static final String TAG = "EmailPassword";
+    private static final String TAG = "SignInActivity";
     private static final int MY_PERMISSIONS_REQUEST_INTERNET = 3 ;
 
     private TextView mStatusTextView;
     private TextView mDetailTextView;
     private EditText mEmailField;
     private EditText mPasswordField;
-
-
-    // [START declare_auth]
     private FirebaseAuth mAuth;
-    // [END declare_auth]
-
-    // [START declare_auth_listener]
     private FirebaseAuth.AuthStateListener mAuthListener;
-    // [END declare_auth_listener]
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,7 +52,6 @@ public class SignInActivity extends BaseActivity implements
             }
         }
 
-
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
         mDetailTextView = (TextView) findViewById(R.id.detail);
@@ -73,46 +64,37 @@ public class SignInActivity extends BaseActivity implements
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.verify_email_button).setOnClickListener(this);
 
-        // [START initialize_auth]
+        // Inicialitzem l'autenticació
         mAuth = FirebaseAuth.getInstance();
-        // [END initialize_auth]
 
-        // [START auth_state_listener]
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null && checkIfEmailVerified()) {
-                    // User is signed in
+                    // Usuari té sessió activa
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    Toast.makeText(SignInActivity.this, user.getEmail().toString(),
-                            Toast.LENGTH_LONG).show();
+
+                    showToast(user.getEmail().toString(),true);
 
                     Intent areaAvaluador = new Intent(SignInActivity.this, AreaAvaluadorActivity.class);
                     startActivity(areaAvaluador);
 
                 } else {
-                    // User is signed out
+                    // User ha acabat la sessió
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
-                // [START_EXCLUDE]
                 updateUI(user);
-                // [END_EXCLUDE]
             }
         };
-        // [END auth_state_listener]
     }
 
-
-    // [START on_start_add_listener]
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
-    // [END on_start_add_listener]
 
-    // [START on_stop_remove_listener]
     @Override
     public void onStop() {
         super.onStop();
@@ -120,7 +102,6 @@ public class SignInActivity extends BaseActivity implements
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-    // [END on_stop_remove_listener]
 
 
     private void createAccount(String email, String password) {
@@ -131,36 +112,27 @@ public class SignInActivity extends BaseActivity implements
 
         showProgressDialog();
 
-        // [START create_user_with_email]
+        //Crear usuari
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Toast.makeText(SignInActivity.this, R.string.auth_failed,
-                                    Toast.LENGTH_SHORT).show();
+                            showToast(getString(R.string.auth_failed), false);
+                            Log.e(TAG,task.getResult().toString());
                         }
-                        // [START_EXCLUDE]
                         hideProgressDialog();
-                        // [END_EXCLUDE]
                     }
                 });
-        // [END create_user_with_email]
     }
 
     private void signIn(String email, String password) {
         Log.d(TAG, "signIn:" + email);
         if (!validateForm()) {
-      // [START sign_in_with_email]
              return;
         }
-
         showProgressDialog();
 
          mAuth.signInWithEmailAndPassword(email, password)
@@ -169,14 +141,9 @@ public class SignInActivity extends BaseActivity implements
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
-                            Toast.makeText(SignInActivity.this, R.string.auth_failed,
-                                    Toast.LENGTH_SHORT).show();
-
+                            showToast(getString(R.string.auth_failed),false);
                         }
                         else{
                             if(checkIfEmailVerified()){
@@ -185,16 +152,13 @@ public class SignInActivity extends BaseActivity implements
                             }
                         }
 
-
-                        // [START_EXCLUDE]
                         if (!task.isSuccessful()) {
                             mStatusTextView.setText(R.string.auth_failed);
+                            Log.d(TAG,"Error en iniciar sessió."+task.getResult().toString());
                         }
                         hideProgressDialog();
-                        // [END_EXCLUDE]
                     }
                 });
-        // [END sign_in_with_email]
     }
 
     private void signOut() {
@@ -203,36 +167,28 @@ public class SignInActivity extends BaseActivity implements
     }
 
     private void sendEmailVerification() {
-        // Disable button
+
         findViewById(R.id.verify_email_button).setEnabled(false);
 
-        // Send verification email
-        // [START send_email_verification]
+        // email de verificació
         final FirebaseUser user = mAuth.getCurrentUser();
         user.sendEmailVerification()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        // [START_EXCLUDE]
-                        // Re-enable button
                         findViewById(R.id.verify_email_button).setEnabled(true);
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(SignInActivity.this,
-                                    "Verification email sent to " + user.getEmail(),
-                                    Toast.LENGTH_SHORT).show();
+                            showToast(getString(R.string.VerificationEmailSent, user.getEmail()),true);
+                            Log.d(TAG,"Email de verificació enviat a"+user.getEmail());
                             signOut();
 
                         } else {
                             Log.e(TAG, "sendEmailVerification", task.getException());
-                            Toast.makeText(SignInActivity.this,
-                                    "Failed to send verification email.",
-                                    Toast.LENGTH_SHORT).show();
+                            showToast(getString(R.string.VerificationEmailError),true);
                         }
-                        // [END_EXCLUDE]
                     }
                 });
-        // [END send_email_verification]
     }
 
     private boolean validateForm() {
@@ -260,7 +216,6 @@ public class SignInActivity extends BaseActivity implements
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {
-            String verified;
 
             mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
                     user.getEmail()));
@@ -303,8 +258,7 @@ public class SignInActivity extends BaseActivity implements
 
         if (!user.isEmailVerified())
         {
-            //FirebaseAuth.getInstance().signOut();
-            Toast.makeText(SignInActivity.this, R.string.EmailNotVerifiedYet, Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.EmailNotVerifiedYet),true);
             return false;
         }
         else{
@@ -329,7 +283,5 @@ public class SignInActivity extends BaseActivity implements
             }
         }
     }
-
-
 }
 

@@ -3,19 +3,23 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
-public class TractamentsActivity extends AppCompatActivity {
+import java.io.File;
+
+public class TractamentsActivity extends BaseActivity {
 
     private TextView idCuUserTreatment, NomCuUserTreatment, CognomCuUserTreatment;
     private Button btPelicula, btAlbum, btGuia;
@@ -64,6 +68,9 @@ public class TractamentsActivity extends AppCompatActivity {
             }
 
         }
+        if(getIntent().hasExtra("final")){
+            dialegEnviarEmail(getIntent().getStringExtra("file"));
+        }
 
 
         btGuia.setOnClickListener(new View.OnClickListener() {
@@ -106,36 +113,82 @@ public class TractamentsActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.btSignOutMenu) {
-
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(TractamentsActivity.this, R.string.signed_out,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.signed_out),true);
             Intent areaAvaluador = new Intent(TractamentsActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
         }
 
         if (id == R.id.btSignOutPacient) {
-
             //Retorna a la pantalla 'Area Avaluador'
-
-            Toast.makeText(TractamentsActivity.this, R.string.MenuChangePacient,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.MenuChangePacient),true);
             Intent areaAvaluador = new Intent(TractamentsActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
 
         }
 
         if (id == R.id.btEpisodis) {
-
             //Retorna a la pantalla 'Episodis'
-
             Intent intent = new Intent(TractamentsActivity.this, EpisodiActivity.class);
             startActivity(intent);
 
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void enviarEmailCSV(String pathToFile,String[] emailTo, String[] emailCC, String Pacient){
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, emailTo);
+        emailIntent.putExtra(Intent.EXTRA_CC, emailCC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "ResultatsCSV_Pacient_"+Pacient);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "En aquest correu et pots descarregar el fitxer CSV. Gràcies.");
+        emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(pathToFile)));
+        emailIntent.setType("text/csv");
+        startActivity(Intent.createChooser(emailIntent, "Email "));
+    }
+
+    private void dialegEnviarEmail(final String pathFile){
+        AlertDialog.Builder DialegDespedida = new AlertDialog.Builder(this);
+        LayoutInflater factory = LayoutInflater.from(this);
+        View textEntryView = factory.inflate(R.layout.dialegemailnotificacio, null);
+        TextView missatge = (TextView) textEntryView.findViewById(R.id.tvDialeg);
+        final EditText etTo = (EditText) textEntryView.findViewById(R.id.etTo);
+        final EditText etCC = (EditText) textEntryView.findViewById(R.id.etCC);
+        missatge.setText(getString(R.string.EnviarEmail));
+        etTo.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+        etCC.setText("lifelogging.narrative@gmail.com"); //Aquesta és fixe
+        Button btEnviar = (Button) textEntryView.findViewById(R.id.btEnviar);
+        Button btNoEnviar = (Button) textEntryView.findViewById(R.id.btNoEnviar);
+
+        DialegDespedida
+                .setCancelable(false)
+                .setView(textEntryView);
+
+        final AlertDialog alerta = DialegDespedida.create();
+
+        alerta.show();
+
+        btEnviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String[] emailTo = {etTo.getText().toString()};
+                String[] emailCC = {etCC.getText().toString()};
+                enviarEmailCSV(pathFile,emailTo,emailCC,NomCuUserTreatment.getText().toString());
+                alerta.dismiss();
+                alerta.cancel();
+            }
+        });
+
+        btNoEnviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alerta.dismiss();
+                alerta.cancel();
+            }
+        });
     }
 }

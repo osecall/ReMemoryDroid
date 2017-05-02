@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="900dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvDialeg"
+        android:layout_width="900dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="36sp" />
+
+    <EditText
+        android:id="@+id/etTo"
+        android:layout_width="900dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginLeft="15dp"
+        android:hint="To"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:textAlignment="textStart"
+        android:textSize="45sp" />
+
+    <EditText
+        android:id="@+id/etCC"
+        android:layout_width="900dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginLeft="15dp"
+        android:hint="cc"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:textAllCaps="true"
+        android:textSize="45sp" />
+
+    <Button
+        android:id="@+id/btEnviar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="24dp"
+        android:text="Enviar"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btNoEnviar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No enviar"
+        android:elevation="24dp"
+        android:textSize="30sp" />
+</LinearLayout>

@@ -1,6 +1,5 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;

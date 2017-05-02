@@ -281,4 +281,7 @@
     <string name="WaitImageDownload">Espera que la imatge estigui cargada si us plau</string>
     <string name="EpisodeQuestions">Felicitats %s! Has realitzat el primer questionari sobre l\'episodi!</string>
     <string name="Episode2Questions">Felicitats %s! Has realitzat el segon questionari sobre l\'episodi!</string>
+    <string name="VerificationEmailSent">Email de verificació enviat a %s</string>
+    <string name="VerificationEmailError">Error en enviar email de verificació</string>
+    <string name="EnviarEmail">Vols enviar els resultats per email? Si és així omple els camps dels receptors.</string>
 </resources>

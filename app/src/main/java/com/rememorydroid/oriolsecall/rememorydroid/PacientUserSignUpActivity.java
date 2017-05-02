@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,7 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -39,6 +39,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
     private PacientUsuari pacient;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference("pacients");
+    private static final String TAG = "UserSignUpActivity";
+
 
 
     @Override
@@ -103,8 +105,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(PacientUserSignUpActivity.this, "Error!",
-                        Toast.LENGTH_LONG).show();
+                showToastError();
+                Log.e(TAG,"Numero de pacients: "+databaseError.getMessage().toString());
             }
         });
 
@@ -165,8 +167,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
                                                             hideProgressDialog();
-                                                            Toast.makeText(PacientUserSignUpActivity.this, "Error!",
-                                                                    Toast.LENGTH_LONG).show();
+                                                            showToastError();
+                                                            Log.e(TAG,e.getMessage().toString());
 
                                                         }
 
@@ -212,9 +214,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         hideProgressDialog();
-                                        Toast.makeText(PacientUserSignUpActivity.this, "Error!",
-                                                Toast.LENGTH_LONG).show();
-
+                                        Log.e(TAG,e.getMessage().toString());
+                                        showToastError();
                                     }
 
                                 });
@@ -223,8 +224,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-                            Toast.makeText(PacientUserSignUpActivity.this, "Error!",
-                                    Toast.LENGTH_LONG).show();
+                            Log.e(TAG,"Afegir usuari: "+databaseError.getMessage().toString());
+                            showToastError();
                         }
                     });
                 }
@@ -232,9 +233,6 @@ public class PacientUserSignUpActivity extends BaseActivity{
             }
         });
     }
-
-
-
 
 
 
@@ -260,8 +258,9 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(PacientUserSignUpActivity.this, R.string.signed_out,
-                    Toast.LENGTH_LONG).show();
+
+            showToast(getString(R.string.signed_out),true);
+
             Intent areaAvaluador = new Intent(PacientUserSignUpActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
@@ -271,8 +270,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
             //Retorna a la pantalla 'Area Avaluador'
 
-            Toast.makeText(PacientUserSignUpActivity.this, R.string.MenuChangePacient,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.MenuChangePacient),true);
+
             Intent areaAvaluador = new Intent(PacientUserSignUpActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
 
@@ -280,6 +279,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
         return super.onOptionsItemSelected(item);
     }
+
+    //Control formulari per crear usuari pacient
 
 
     private boolean controlFormulariSignUp(String ID, String Nom, String Cognom, String SeCognom){
@@ -293,7 +294,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
                 .setCancelable(true)
                 .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        //Fer res
+                        arg0.dismiss();
                     }
                 });
 
@@ -384,8 +385,6 @@ public class PacientUserSignUpActivity extends BaseActivity{
             ivLastError.setVisibility(View.VISIBLE);
             return false;
         }
-
-
         return true;
     }
 }

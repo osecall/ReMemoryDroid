@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +20,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -38,6 +38,7 @@ import java.util.ArrayList;
 
 public class AreaAvaluadorActivity extends BaseActivity {
 
+    private static final String TAG = "AreaAvaluador";
     private TextView emailAvaluador, tvCUid, tvCUname, tvCUsurName, tvtest;
     private FloatingActionButton fabSignUp;
     private String MessageDialogFinal, IDuserDelete;
@@ -97,7 +98,8 @@ public class AreaAvaluadorActivity extends BaseActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                showToast("Error!",false);
+                Log.e(TAG,databaseError.getMessage().toString());
             }
         });
 
@@ -161,13 +163,12 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                                             @Override
                                                                                             public void onDataChange(DataSnapshot snapshot) {
 
-
                                                                                                 if (snapshot.child(IDuserDelete).exists()){
                                                                                                     snapshot.child(IDuserDelete).getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                                         @Override
                                                                                                         public void onComplete(@NonNull Task<Void> task) {
-                                                                                                            Toast.makeText(AreaAvaluadorActivity.this, getString(R.string.UserDeleted)+IDuserDelete,
-                                                                                                                    Toast.LENGTH_LONG).show();
+
+                                                                                                            showToast(getString(R.string.UserDeleted)+IDuserDelete,true);
 
                                                                                                             //Eliminem l'usuari de la memòria si és el mateix que està a la sessió
                                                                                                             SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
@@ -183,24 +184,21 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                                                                 tvCUid.setVisibility(View.GONE);
                                                                                                                 tvCUname.setVisibility(View.GONE);
                                                                                                                 tvCUsurName.setVisibility(View.GONE);
-
                                                                                                             }
-
                                                                                                         }
                                                                                                     });
-
-
                                                                                                 }
                                                                                                 else{
-                                                                                                    Toast.makeText(AreaAvaluadorActivity.this,R.string.UserDoesNotExist,
-                                                                                                            Toast.LENGTH_LONG).show();
+                                                                                                    showToast(getString(R.string.UserDoesNotExist),true);
+                                                                                                    Log.d(TAG, "Usuari per eliminar no existeix");
                                                                                                 }
                                                                                             }
 
                                                                                             @Override
                                                                                             public void onCancelled(DatabaseError E) {
-                                                                                                Toast.makeText(AreaAvaluadorActivity.this,"Database Error",
-                                                                                                        Toast.LENGTH_LONG).show();
+                                                                                                showToastError();
+                                                                                                Log.e(TAG,"AreaAvaluador: "+E.getMessage().toString());
+
                                                                                             }
                                                                                         });
                                                                                     }
@@ -209,16 +207,12 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                                 }).addOnFailureListener(new OnFailureListener() {
                                                                                     @Override
                                                                                     public void onFailure(@NonNull Exception e) {
-                                                                                        Toast.makeText(AreaAvaluadorActivity.this,getString(R.string.WrongPassword),
-                                                                                                Toast.LENGTH_LONG).show();
+                                                                                        showToast(getString(R.string.WrongPassword),true);
+                                                                                        Log.e(TAG,"AreaAvaluador: "+e.getStackTrace().toString());
                                                                                     }
                                                                                 });
-
-
                                                                                 arg0.cancel();
                                                                                 arg0.dismiss();
-
-
                                                                             }
                                                                         })
                                                                         .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
@@ -233,7 +227,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                         })
                                                         .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
                                                             public void onClick(DialogInterface arg0, int arg1) {
-
+                                                                arg0.dismiss();
                                                             }
                                                         })
                                                         .show();
@@ -250,7 +244,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
                             }
                         }).setActionTextColor(getResources().getColor(R.color.red))
                         .show();
-
                 return true;
             }
         });
@@ -297,11 +290,8 @@ public class AreaAvaluadorActivity extends BaseActivity {
                 Intent EpisodiIntent = new Intent(AreaAvaluadorActivity.this, EpisodiActivity.class);
                 startActivity(EpisodiIntent);
 
+                showToast(NomPacient.getText().toString(),true);
 
-
-
-                Toast.makeText(AreaAvaluadorActivity.this, NomPacient.getText().toString() ,
-                        Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -310,7 +300,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
 
         //Botó Crear nou usuari pacient
 
@@ -356,8 +345,10 @@ public class AreaAvaluadorActivity extends BaseActivity {
 
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(AreaAvaluadorActivity.this, R.string.signed_out,
-                  Toast.LENGTH_LONG).show();
+
+            showToast(getString(R.string.signed_out),true);
+            Log.d(TAG,"Usuari ha acabat la sessió");
+
             Intent areaAvaluador = new Intent(AreaAvaluadorActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
         }
@@ -386,8 +377,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                 pacient = snapshot.child(user_selected.getText().toString()).getValue(PacientUsuari.class);
                                                 pacient.setID(snapshot.child(user_selected.getText().toString()).getKey());
 
-                                                Toast.makeText(AreaAvaluadorActivity.this,user_selected.getText().toString() ,
-                                                        Toast.LENGTH_LONG).show();
+                                                showToast(user_selected.getText().toString(),true);
 
                                                 //Agreguem la informació a la pantalla
                                                 tvCUid.setText("ID "+ pacient.getID());
@@ -414,20 +404,17 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                 //Anem a la pantalla tractaments
                                                 Intent EpisodiIntent = new Intent(AreaAvaluadorActivity.this, EpisodiActivity.class);
                                                 startActivity(EpisodiIntent);
-
-
-
                                             }
                                             else{
-                                                Toast.makeText(AreaAvaluadorActivity.this,R.string.UserDoesNotExist ,
-                                                        Toast.LENGTH_LONG).show();
+                                                showToast(getString(R.string.UserDoesNotExist) ,true);
+                                                Log.d(TAG,"Usuari no existeix a la base de dades");
                                             }
                                         }
                                         @Override
                                         public void onCancelled(DatabaseError E) {
                                             hideProgressDialog();
-                                            Toast.makeText(AreaAvaluadorActivity.this, "Error",
-                                                    Toast.LENGTH_SHORT).show();
+                                            showToastError();
+                                            Log.e(TAG,E.getMessage().toString());
 
                                         }
                                     });

@@ -281,4 +281,7 @@
     <string name="WaitImageDownload">Espera que la imagen esté cargada por favor</string>
     <string name="EpisodeQuestions">Felicidades %s! Has realizado la primera encuesta sobre el episodio!</string>
     <string name="Episode2Questions">Felicidades %s! Acabas de realizar el segundo cuestionario sobre el episodio!</string>
+    <string name="VerificationEmailSent">Email de verificación enviado a %s</string>
+    <string name="VerificationEmailError">Fallo en enviar email de verificación</string>
+    <string name="EnviarEmail">Quieres mandar los resultados por email? Si es así rellena los campos de destinatario.</string>
 </resources>

@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -49,6 +49,7 @@ public class EpisodiActivity extends BaseActivity {
     private ArrayList<EpisodiList> episodis;
     private String ID_pacient;
     private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
+    private static final String TAG = "EpisodiActivity";
 
 
     @Override
@@ -112,8 +113,8 @@ public class EpisodiActivity extends BaseActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 hideProgressDialog();
-                Toast.makeText(EpisodiActivity.this,"Error en connectar base de dades" ,
-                        Toast.LENGTH_LONG).show();
+                Log.e(TAG,databaseError.getMessage().toString());
+                showToastError();
             }
         });
 
@@ -136,8 +137,8 @@ public class EpisodiActivity extends BaseActivity {
                 episodiSeleccionat= String.valueOf(i+1);
 
                 TextView episodiTmp = (TextView) view.findViewById(R.id.tvLayOutEpisodi);
-                Toast.makeText(EpisodiActivity.this,episodiTmp.getText().toString()  ,
-                        Toast.LENGTH_SHORT).show();
+
+                showToast(episodiTmp.getText().toString(),false);
            }
         });
 
@@ -164,9 +165,7 @@ public class EpisodiActivity extends BaseActivity {
                 listaVersio.setItemChecked(i,true);
                 TextView versioSeleccionada = (TextView) view.findViewById(R.id.tvVersio);
 
-
-                Toast.makeText(EpisodiActivity.this, versioSeleccionada.getText().toString() ,
-                       Toast.LENGTH_SHORT).show();
+                showToast(versioSeleccionada.getText().toString(),false);
             }
         });
 
@@ -261,8 +260,7 @@ public class EpisodiActivity extends BaseActivity {
                     public void onClick(DialogInterface arg0, int arg1) {
 
                         if(!String.valueOf(numeroEpisodi).matches(input1.getText().toString())){
-                            Toast.makeText(EpisodiActivity.this, getString(R.string.NumberDoesNotMatch),
-                                    Toast.LENGTH_LONG).show();
+                            showToast(getString(R.string.NumberDoesNotMatch),true);
                         }
                         else{
 
@@ -298,23 +296,23 @@ public class EpisodiActivity extends BaseActivity {
                                                                 snapshot.child(ID_pacient).child("episodis").child(String.valueOf(numeroEpisodi)).getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                     @Override
                                                                     public void onComplete(@NonNull Task<Void> task) {
-                                                                        Toast.makeText(EpisodiActivity.this, getString(R.string.EpisodeDeleted,numeroEpisodi),
-                                                                                Toast.LENGTH_LONG).show();
+                                                                        showToast(getString(R.string.EpisodeDeleted,numeroEpisodi),true);
+                                                                        Log.d(TAG,task.getResult().toString());
                                                                     }
                                                                 });
 
 
                                                             }
                                                             else{
-                                                                Toast.makeText(EpisodiActivity.this,R.string.EpisodeNotExist,
-                                                                        Toast.LENGTH_LONG).show();
+                                                                showToast(getString(R.string.EpisodeNotExist),true);
+                                                                Log.d(TAG,"L'episodi no existeix!");
                                                             }
                                                         }
 
                                                         @Override
                                                         public void onCancelled(DatabaseError E) {
-                                                            Toast.makeText(EpisodiActivity.this,"Database Error",
-                                                                    Toast.LENGTH_LONG).show();
+                                                            showToastError();
+                                                            Log.e(TAG, E.getMessage().toString());
                                                         }
                                                     });
                                                 }
@@ -323,15 +321,12 @@ public class EpisodiActivity extends BaseActivity {
                                             }).addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(EpisodiActivity.this,getString(R.string.WrongPassword),
-                                                            Toast.LENGTH_LONG).show();
+                                                    showToast(getString(R.string.WrongPassword),true);
+                                                    Log.d(TAG,"Password incorrecte");
                                                 }
                                             });
-
-
                                             arg0.cancel();
                                             arg0.dismiss();
-
 
                                         }
                                     })
@@ -376,14 +371,15 @@ public class EpisodiActivity extends BaseActivity {
                                         dataSnapshot.child(ID_pacient).child("episodis").child(numero_episodi).child("Name").getRef().setValue(NameEpisode.getText().toString());
                                         dataSnapshot.child(ID_pacient).child("episodis").child(numero_episodi).child("Fecha").getRef().setValue(FechaEpisode.getText().toString());
                                         dataSnapshot.child(ID_pacient).child("episodis").child(numero_episodi).child("Hora").getRef().setValue(HoraEpisode.getText().toString());
-                                        Toast.makeText(EpisodiActivity.this,
-                                                getString(R.string.EpisodeAdded) + " " + numero_episodi, Toast.LENGTH_LONG).show();
+
+                                        showToast(getString(R.string.EpisodeAdded) + " " + numero_episodi,true);
+                                        Log.d(TAG,getString(R.string.EpisodeAdded) + " " + numero_episodi);
                             }
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
-                                Toast.makeText(EpisodiActivity.this,
-                                        "Error", Toast.LENGTH_LONG).show();
+                                showToastError();
+                                Log.e(TAG,databaseError.getMessage().toString());
                             }
                         });
                         hideProgressDialog();
@@ -417,8 +413,7 @@ public class EpisodiActivity extends BaseActivity {
 
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(EpisodiActivity.this, R.string.signed_out,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.signed_out),true);
             Intent areaAvaluador = new Intent(EpisodiActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
@@ -428,8 +423,7 @@ public class EpisodiActivity extends BaseActivity {
 
             //Retorna a la pantalla 'Area Avaluador'
 
-            Toast.makeText(EpisodiActivity.this, R.string.MenuChangePacient,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.MenuChangePacient),true);
             Intent areaAvaluador = new Intent(EpisodiActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
 
