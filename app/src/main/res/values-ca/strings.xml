@@ -224,7 +224,7 @@
     <string name="WasScared">Estava espantat</string>
     <string name="WasSorprised">Estava sorprès</string>
     <string name="WeAreIn">Estem a</string>
-    <string name="WeAreSub">Som %s.</string>
+    <string name="WeAreSub">Estem %s.</string>
     <string name="WeWere">Estàvem</string>
     <string name="WhatMonth">En quin mes i any es va fer la fotografía?</string>
     <string name="WhatTheyAreDoing">Què estan fent?</string>
@@ -284,4 +284,5 @@
     <string name="VerificationEmailSent">Email de verificació enviat a %s</string>
     <string name="VerificationEmailError">Error en enviar email de verificació</string>
     <string name="EnviarEmail">Vols enviar els resultats per email? Si és així omple els camps dels receptors.</string>
+    <string name="InternetNeeded">Aquesta app necessita Internet per funcionar correctament!</string>
 </resources>

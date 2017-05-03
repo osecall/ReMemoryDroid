@@ -301,6 +301,7 @@
     <string name="VerificationEmailSent">Verification email sent to %s</string>
     <string name="VerificationEmailError">Failed to send verification email</string>
     <string name="EnviarEmail">Do you want to send the results via email? If so fill the reciept fields.</string>
+    <string name="InternetNeeded">This app needs internet to run properly!</string>
 
     <!-- Strings related to login -->
 

@@ -147,8 +147,13 @@ public class TractamentsActivity extends BaseActivity {
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "ResultatsCSV_Pacient_"+Pacient);
         emailIntent.putExtra(Intent.EXTRA_TEXT, "En aquest correu et pots descarregar el fitxer CSV. Gràcies.");
         emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(pathToFile)));
-        emailIntent.setType("text/csv");
-        startActivity(Intent.createChooser(emailIntent, "Email "));
+        emailIntent.setType("message/rfc822");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Enviar email amb resultats:"));
+        } catch (android.content.ActivityNotFoundException ex) {
+            showToast(ex.getMessage().toString(),false);
+        }
     }
 
     private void dialegEnviarEmail(final String pathFile){
@@ -179,7 +184,6 @@ public class TractamentsActivity extends BaseActivity {
                 String[] emailCC = {etCC.getText().toString()};
                 enviarEmailCSV(pathFile,emailTo,emailCC,NomCuUserTreatment.getText().toString());
                 alerta.dismiss();
-                alerta.cancel();
             }
         });
 
@@ -187,7 +191,6 @@ public class TractamentsActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 alerta.dismiss();
-                alerta.cancel();
             }
         });
     }

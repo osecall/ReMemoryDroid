@@ -224,7 +224,7 @@
     <string name="WasScared">Estaba asustado</string>
     <string name="WasSorprised">Esaba sorprendido</string>
     <string name="WeAreIn">Estamos en</string>
-    <string name="WeAreSub">Som %s.</string>
+    <string name="WeAreSub">Estamos %s.</string>
     <string name="WeWere">Estabamos</string>
     <string name="WhatMonth">En que mes y año se tomó la fotografía?</string>
     <string name="WhatTheyAreDoing">Que estan haciendo?</string>
@@ -284,4 +284,5 @@
     <string name="VerificationEmailSent">Email de verificación enviado a %s</string>
     <string name="VerificationEmailError">Fallo en enviar email de verificación</string>
     <string name="EnviarEmail">Quieres mandar los resultados por email? Si es así rellena los campos de destinatario.</string>
+    <string name="InternetNeeded">Esta aplicación necesita Internet para funcionar correctamente!</string>
 </resources>

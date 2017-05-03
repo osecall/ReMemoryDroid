@@ -9,6 +9,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -29,7 +30,9 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
@@ -100,6 +103,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
     private void grabar(String outputFile){
         ibRecordEvocar.setEnabled(false);
+        ibPlayEvocar.setVisibility(View.INVISIBLE);
         mr=new MediaRecorder();
         mr.setAudioSource(MediaRecorder.AudioSource.MIC);
         mr.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -108,10 +112,10 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         mr.setOutputFile(outputFile);
         try {
             mr.prepare();
+            mr.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mr.start();
 
         tvRecording.setVisibility(View.VISIBLE);
         chronometer.setVisibility(View.VISIBLE);
@@ -119,38 +123,40 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         chronometer.start();
         pbEvocar.setVisibility(View.VISIBLE);
 
+        showToast(getString(R.string.Recording),false);
 
-        ibStopRecordEvocar.setVisibility(View.VISIBLE);
-        ibStopRecordEvocar.setEnabled(true);
+        //Com a mínim que es gabrin 3 segons
+        new Handler().postDelayed(new Runnable(){
+            public void run(){
+                ibStopRecordEvocar.setEnabled(true);
+                ibStopRecordEvocar.setVisibility(View.VISIBLE);
+            }
+        }, 3000);
 
-        Toast.makeText(EvocarActivity.this,R.string.Recording ,
-                Toast.LENGTH_SHORT).show();
 
     }
     private void pararGrabar(){
         if(mr!=null){
             mr.stop();
             mr.release();
-            mr=null;
+            mr=new MediaRecorder();
             chronometer.stop();
             chronometer.setVisibility(View.INVISIBLE);
         }
         pbEvocar.setVisibility(View.INVISIBLE);
         tvRecording.setVisibility(View.INVISIBLE);
         ibStopRecordEvocar.setVisibility(View.INVISIBLE);
+        ibPlayEvocar.setVisibility(View.VISIBLE);
 
         ibPlayEvocar.setEnabled(true);
         ibRecordEvocar.setEnabled(true);
-        ibPlayEvocar.setImageResource(R.drawable.audio);
-        Toast.makeText(EvocarActivity.this,R.string.StopRecording ,
-                Toast.LENGTH_SHORT).show();
 
+        showToast(getString(R.string.StopRecording), false);
 
         Uri file = Uri.fromFile(new File(outputFile));
 
         if(file.getPath().isEmpty()){
-            Toast.makeText(EvocarActivity.this, R.string.Record,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.Record),true);
         }
 
         else {
@@ -160,7 +166,13 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             showProgressDialog();
             //Col·locar-ho en l'episodi corresponent
             StorageReference soRef = reference.getReferenceFromUrl("gs://rememorydroid.appspot.com").child(ID_usuari).child(episodi).child("sons").child(NomFitxerCloud);
-            soRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+            // Create file metadata including the content type (3GP)
+            StorageMetadata metadata = new StorageMetadata.Builder()
+                    .setContentType("audio/3gpp")
+                    .build();
+
+            soRef.putFile(file,metadata).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     hideProgressDialog();
@@ -173,9 +185,8 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(EvocarActivity.this, "Error!",
-                                    Toast.LENGTH_LONG).show();
                             hideProgressDialog();
+                            showToast(e.getMessage().toString(),false);
                         }
                     });
         }
@@ -187,14 +198,21 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             ibRecordEvocar.setEnabled(false);
             ibRecordEvocar.setVisibility(View.INVISIBLE);
             mp = MediaPlayer.create(this,Uri.parse(outputFile));
-            mp.start();
+
+            mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mp.start();
+                }
+            });
+
             mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
                     ibRecordEvocar.setEnabled(true);
                     mp.stop();
                     mp.release();
-                    mp=null;
+                    mp=new MediaPlayer();
                     ibStopPlayEvocar.setEnabled(false);
                     ibStopPlayEvocar.setVisibility(View.INVISIBLE);
                     ibRecordEvocar.setVisibility(View.VISIBLE);
@@ -209,9 +227,9 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     }
     private void pararReproduccio(){
         if(mp.isPlaying()){
-            mp.stop();
+            mp.pause();
             mp.release();
-            mp=null;
+            mp=new MediaPlayer();
             ibRecordEvocar.setVisibility(View.VISIBLE);
         }
         ibStopPlayEvocar.setEnabled(false);
@@ -229,7 +247,6 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
         curta=false;
         outputFile = null;
-
 
         if (ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.RECORD_AUDIO)
@@ -334,6 +351,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         ibPlayEvocar.setVisibility(View.INVISIBLE);
         ibPlayEvocar.setEnabled(false);
         ibRecordEvocar.setEnabled(false);
+
 
         tvRecording = (TextView) findViewById(R.id.tvRecordingEvocar);
         tvRecording.setVisibility(View.INVISIBLE);

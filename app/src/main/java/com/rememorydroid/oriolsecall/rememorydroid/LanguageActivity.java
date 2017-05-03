@@ -111,9 +111,12 @@ public class LanguageActivity extends AppCompatActivity {
             }
         }
 
+        //Comprobar si hi ha Internet
+        /*
+
         if(!isThereInternet()){
             AlertDialog.Builder Dialeg = new AlertDialog.Builder(LanguageActivity.this);
-            Dialeg.setCancelable(true).setMessage("Es necessita INTERNET per funcionar l'aplicació")
+            Dialeg.setCancelable(true).setMessage(R.string.InternetNeeded)
                     .setNeutralButton("D'acord", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -123,7 +126,9 @@ public class LanguageActivity extends AppCompatActivity {
                             startActivity(new Intent(Intent.ACTION_MAIN));
                         }
                     }).show();
-        }
+        }*/
+
+        //------------------------------------------
 
         btcaIdioma.setOnClickListener(new View.OnClickListener() {
             @Override

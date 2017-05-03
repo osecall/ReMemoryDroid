@@ -136,12 +136,11 @@ public class AlbumActivity extends BaseActivity {
                                     intent.putExtra("favorita",data0);
                                     startActivity(intent);
                                 }
-                            }, 3000);
+                            }, 2500);
 
                         }
                         if(!task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),
-                                    "Error!", Toast.LENGTH_LONG).show();
+                            showToastError();
                         }
                     }
                 });
@@ -374,57 +373,45 @@ public class AlbumActivity extends BaseActivity {
         StorageReference Ref4 = myRef.child(ID).child(episodi).child("imatges").child("4.jpg");
         StorageReference Ref5 = myRef.child(ID).child(episodi).child("imatges").child("5.jpg");
 
-        showProgressDialog();
         Ref0.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum0);
-                hideProgressDialog();
 
             }
         });
-        showProgressDialog();
         Ref1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum1);
-                hideProgressDialog();
 
             }
         });
-        showProgressDialog();
         Ref2.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum2);
-                hideProgressDialog();
 
             }
         });
-        showProgressDialog();
         Ref3.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum3);
-                hideProgressDialog();
 
             }
         });
-        showProgressDialog();
         Ref4.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum4);
-                hideProgressDialog();
 
             }
         });
-        showProgressDialog();
         Ref5.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum5);
-                hideProgressDialog();
 
             }
         });

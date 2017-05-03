@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -41,7 +40,7 @@
         <activity
             android:name=".TractamentsActivity"
             android:label="@string/TreatmentsArea"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".EpisodiActivity"
             android:label="@string/Episodes"

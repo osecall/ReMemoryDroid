@@ -36,6 +36,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -744,6 +746,7 @@ public class TestActivity extends AppCompatActivity {
                     if(Curta && SegonTest){
                         //Aquest cas és la versió curta i el segon test, s'ha d'enviar resultat a la DB i acabar
                         //Aqui enviem el fitxer CSV i JSON a FireBase i retornem a 'Tractaments'
+
                         final String ruta = respostes_recuperades.ConvertToCVS(true);
                         //Ara tenim la ruta del fitxer CSV[0] a la memoria de la tauleta
                         StorageReference PacientRef = myRef.child(pacient.getID()).child(episodi).child("respostes").child("ResultatVersioCurta_"+pacient.getID()+".csv");
@@ -760,17 +763,22 @@ public class TestActivity extends AppCompatActivity {
                         mProgressDialog.setCancelable(false);
                         mProgressDialog.show();
 
-                        PacientRef.putFile(file,metadata).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        PacientRef.putFile(file,metadata).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
-                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                if(task.isSuccessful()){
-                                    mProgressDialog.dismiss();
-                                    mProgressDialog.dismiss();
-                                    Toast.makeText(getContext(), R.string.UploadCSVSuccessful,
-                                            Toast.LENGTH_LONG).show();
-                                }
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                mProgressDialog.dismiss();
+                                Toast.makeText(getContext(), R.string.UploadCSVSuccessful,
+                                        Toast.LENGTH_LONG).show();
                             }
-                        });
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                mProgressDialog.dismiss();
+                                Toast.makeText(getContext(), "Error!",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }) ;
+
 
                         //Notificació
                         Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.iconrem);
@@ -856,17 +864,18 @@ public class TestActivity extends AppCompatActivity {
                         mProgressDialog.setCancelable(false);
                         mProgressDialog.show();
 
-                        PacientRef.putFile(file,metadata).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        PacientRef.putFile(file,metadata).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
-                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                while(!task.isSuccessful()){
-                                    mProgressDialog.show();
-                                }
-                                if(task.isComplete()){
-                                    mProgressDialog.dismiss();
-                                    Toast.makeText(getContext(), R.string.UploadCSVSuccessful,
-                                            Toast.LENGTH_LONG).show();
-                                }
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                mProgressDialog.dismiss();
+                                Toast.makeText(getContext(), R.string.UploadCSVSuccessful,
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getContext(), "Error!",
+                                        Toast.LENGTH_LONG).show();
                             }
                         });
 
