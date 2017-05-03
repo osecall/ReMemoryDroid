@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,12 +44,13 @@ public class AlbumActivity extends BaseActivity {
     private SharedPreferences prefs;
     private String ID, episodi;
     private Animation translate;
-    private AnimationSet animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
+
+        showProgressDialog();
 
         ID = new String();
         episodi = new String();
@@ -71,21 +73,20 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum4 = (ImageView) findViewById(R.id.ivAlbum4);
         ivAlbum5 = (ImageView) findViewById(R.id.ivAlbum5);
 
+        ivAlbum0.setVisibility(View.INVISIBLE);
+        ivAlbum1.setVisibility(View.INVISIBLE);
+        ivAlbum2.setVisibility(View.INVISIBLE);
+        ivAlbum3.setVisibility(View.INVISIBLE);
+        ivAlbum4.setVisibility(View.INVISIBLE);
+        ivAlbum5.setVisibility(View.INVISIBLE);
 
-        Animation fadeIn = new AlphaAnimation(0,1);
-        fadeIn.setInterpolator(new DecelerateInterpolator());
-        fadeIn.setDuration(1500);
-
-        animation = new AnimationSet(false);
-        animation.addAnimation(fadeIn);
+        descargarImatges();
 
         //Per animar les imatges al clicar a sobre
         translate = AnimationUtils.loadAnimation(getBaseContext(), R.anim.translate);
         translate.reset();
 
         RefFavour = myRef.child(ID).child(episodi).child("favorita").child("favorita.jpg");
-
-        descargarImatges();
 
         AlertDialog.Builder Dialeg = new AlertDialog.Builder(AlbumActivity.this);
         TextView Missatge = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
@@ -353,13 +354,14 @@ public class AlbumActivity extends BaseActivity {
 
                         }
                         if(!task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),
-                                    "Error!", Toast.LENGTH_LONG).show();
+                            showToastError();
                         }
                     }
                 });
             }
         });
+
+        hideProgressDialog();
 
 
     }
@@ -376,42 +378,88 @@ public class AlbumActivity extends BaseActivity {
         Ref0.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
+                ivAlbum0.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum0);
-
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                showToastError();
+                ivAlbum0.setVisibility(View.INVISIBLE);
             }
         });
         Ref1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
+                ivAlbum1.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum1);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                showToastError();
+                ivAlbum1.setVisibility(View.INVISIBLE);
 
             }
         });
         Ref2.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
+                ivAlbum2.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum2);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                showToastError();
+                ivAlbum2.setVisibility(View.INVISIBLE);
 
             }
         });
         Ref3.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
+                ivAlbum3.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum3);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                showToastError();
+                ivAlbum3.setVisibility(View.INVISIBLE);
 
             }
         });
         Ref4.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
+                ivAlbum4.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum4);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                showToastError();
+                ivAlbum4.setVisibility(View.INVISIBLE);
 
             }
         });
         Ref5.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
+                ivAlbum5.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum5);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                showToastError();
+                ivAlbum5.setVisibility(View.INVISIBLE);
 
             }
         });
