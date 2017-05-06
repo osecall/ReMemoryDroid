@@ -8,13 +8,14 @@
     android:theme="@style/AppTheme.NoActionBar"
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.VisualitzarActivity">
 
-    <VideoView
-        android:id="@+id/vvVisualitzar1"
-        android:layout_width="575dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        <VideoView
+            android:id="@+id/vvVisualitzar1"
+            android:layout_width="575dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
 
     <Button
         android:id="@+id/btNextWeather"

@@ -1,9 +1,7 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -26,7 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 import static android.view.KeyEvent.ACTION_UP;
 
@@ -150,15 +147,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             // Grabar a SharedPreferences user
-
-                                                            SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                                                            SharedPreferences.Editor editor = prefs.edit();
-                                                            editor.clear();
-                                                            editor.apply();
-                                                            Gson gson = new Gson();
-                                                            String pacient_json = gson.toJson(pacient, PacientUsuari.class);
-                                                            editor.putString("pacient", pacient_json);
-                                                            editor.commit();
+                                                            BorrarSharedPreferences();
+                                                            GravarPacient(pacient);
                                                             hideProgressDialog();
                                                             startActivity(new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class));
 
@@ -180,7 +170,6 @@ public class PacientUserSignUpActivity extends BaseActivity{
                                         .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
-                                                dialogInterface.cancel();
                                                 dialogInterface.dismiss();
                                             }
                                         })
@@ -197,15 +186,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
                                     public void onComplete(@NonNull Task<Void> task) {
                                         // Grabar a SharedPreferences user
-
-                                        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = prefs.edit();
-                                        editor.clear();
-                                        editor.apply();
-                                        Gson gson = new Gson();
-                                        String pacient_json = gson.toJson(pacient, PacientUsuari.class);
-                                        editor.putString("pacient", pacient_json);
-                                        editor.commit();
+                                        BorrarSharedPreferences();
+                                        GravarPacient(pacient);
                                         hideProgressDialog();
                                         startActivity(new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class));
 

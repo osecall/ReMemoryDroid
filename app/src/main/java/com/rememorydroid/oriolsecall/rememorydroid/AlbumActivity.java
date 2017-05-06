@@ -1,8 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
@@ -18,7 +16,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,7 +25,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
@@ -38,7 +34,6 @@ public class AlbumActivity extends BaseActivity {
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private StorageReference RefFavour;
     private ImageView ivAlbum0, ivAlbum1,ivAlbum2,ivAlbum3,ivAlbum4,ivAlbum5;
-    private SharedPreferences prefs;
     private String ID, episodi;
     private Animation translate;
 
@@ -55,12 +50,8 @@ public class AlbumActivity extends BaseActivity {
         LayoutInflater factory = LayoutInflater.from(this);
         View textEntryView = factory.inflate(R.layout.dialegs, null);
 
-        prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        Gson gson = new Gson();
-        String pacient_json = prefs.getString("pacient",null);
-        PacientUsuari pacient = gson.fromJson(pacient_json,PacientUsuari.class);
-        episodi = prefs.getString("episodi",null);
+        PacientUsuari pacient = ObtenirPacient();
+        episodi = ObtenirEpisodi();
         ID = pacient.getID();
 
         ivAlbum0 = (ImageView) findViewById(R.id.ivAlbum0);
@@ -76,6 +67,13 @@ public class AlbumActivity extends BaseActivity {
         ivAlbum3.setVisibility(View.INVISIBLE);
         ivAlbum4.setVisibility(View.INVISIBLE);
         ivAlbum5.setVisibility(View.INVISIBLE);
+
+        ivAlbum0.setEnabled(false);
+        ivAlbum1.setEnabled(false);
+        ivAlbum2.setEnabled(false);
+        ivAlbum3.setEnabled(false);
+        ivAlbum4.setEnabled(false);
+        ivAlbum5.setEnabled(false);
 
         descargarImatges();
 
@@ -122,8 +120,7 @@ public class AlbumActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if(task.isSuccessful()){
                             hideProgressDialog();
-                            Toast.makeText(getApplicationContext(),
-                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            showToast(getString(R.string.PictureUploaded),true);
                             ivAlbum0.setAnimation(translate);
                             ivAlbum0.startAnimation(translate);
 
@@ -139,6 +136,8 @@ public class AlbumActivity extends BaseActivity {
                         }
                         if(!task.isSuccessful()){
                             showToastError();
+                            ivAlbum0.setEnabled(false);
+                            ivAlbum0.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
@@ -163,8 +162,7 @@ public class AlbumActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if(task.isSuccessful()){
                             hideProgressDialog();
-                            Toast.makeText(getApplicationContext(),
-                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            showToast(getString(R.string.PictureUploaded),true);
                             ivAlbum1.setAnimation(translate);
                             ivAlbum1.startAnimation(translate);
 
@@ -179,8 +177,9 @@ public class AlbumActivity extends BaseActivity {
 
                         }
                         if(!task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),
-                                    "Error!", Toast.LENGTH_LONG).show();
+                           showToastError();
+                            ivAlbum1.setEnabled(false);
+                            ivAlbum1.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
@@ -207,8 +206,7 @@ public class AlbumActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if(task.isSuccessful()){
                             hideProgressDialog();
-                            Toast.makeText(getApplicationContext(),
-                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            showToast(getString(R.string.PictureUploaded),true);
                             ivAlbum3.setAnimation(translate);
                             ivAlbum3.startAnimation(translate);
 
@@ -223,8 +221,9 @@ public class AlbumActivity extends BaseActivity {
 
                         }
                         if(!task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),
-                                    "Error!", Toast.LENGTH_LONG).show();
+                            showToastError();
+                            ivAlbum2.setEnabled(false);
+                            ivAlbum2.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
@@ -249,8 +248,7 @@ public class AlbumActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if(task.isSuccessful()){
                             hideProgressDialog();
-                            Toast.makeText(getApplicationContext(),
-                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            showToast(getString(R.string.PictureUploaded),true);
                             ivAlbum2.setAnimation(translate);
                             ivAlbum2.startAnimation(translate);
 
@@ -265,8 +263,9 @@ public class AlbumActivity extends BaseActivity {
 
                         }
                         if(!task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),
-                                    "Error!", Toast.LENGTH_LONG).show();
+                            showToastError();
+                            ivAlbum3.setEnabled(false);
+                            ivAlbum3.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
@@ -292,8 +291,7 @@ public class AlbumActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if(task.isSuccessful()){
                             hideProgressDialog();
-                            Toast.makeText(getApplicationContext(),
-                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            showToast(getString(R.string.PictureUploaded),true);
                             ivAlbum4.setAnimation(translate);
                             ivAlbum4.startAnimation(translate);
 
@@ -308,8 +306,9 @@ public class AlbumActivity extends BaseActivity {
 
                         }
                         if(!task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),
-                                    "Error!", Toast.LENGTH_LONG).show();
+                            showToastError();
+                            ivAlbum4.setEnabled(false);
+                            ivAlbum4.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
@@ -335,8 +334,7 @@ public class AlbumActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if(task.isSuccessful()){
                             hideProgressDialog();
-                            Toast.makeText(getApplicationContext(),
-                                    R.string.PictureUploaded, Toast.LENGTH_LONG).show();
+                            showToast(getString(R.string.PictureUploaded),true);
                             ivAlbum5.setAnimation(translate);
                             ivAlbum5.startAnimation(translate);
 
@@ -352,6 +350,8 @@ public class AlbumActivity extends BaseActivity {
                         }
                         if(!task.isSuccessful()){
                             showToastError();
+                            ivAlbum5.setEnabled(false);
+                            ivAlbum5.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
@@ -359,8 +359,6 @@ public class AlbumActivity extends BaseActivity {
         });
 
         hideProgressDialog();
-
-
     }
 
     private void descargarImatges(){
@@ -377,6 +375,7 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 ivAlbum0.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum0);
+                ivAlbum0.setEnabled(true);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -390,6 +389,7 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 ivAlbum1.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum1);
+                ivAlbum1.setEnabled(true);
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -405,6 +405,7 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 ivAlbum2.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum2);
+                ivAlbum2.setEnabled(true);
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -420,6 +421,7 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 ivAlbum3.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum3);
+                ivAlbum3.setEnabled(true);
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -435,6 +437,7 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 ivAlbum4.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum4);
+                ivAlbum4.setEnabled(true);
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -450,6 +453,7 @@ public class AlbumActivity extends BaseActivity {
             public void onSuccess(Uri uri) {
                 ivAlbum5.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum5);
+                ivAlbum5.setEnabled(true);
 
             }
         }).addOnFailureListener(new OnFailureListener() {

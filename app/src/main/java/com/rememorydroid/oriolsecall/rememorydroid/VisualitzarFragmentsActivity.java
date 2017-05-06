@@ -1,8 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,17 +28,24 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private String episodi;
     private MediaPlayer mpBackVideo;
+    private int stopPosition, stopPositionAudio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualitzar_fragments);
 
-        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        String pacient_json = prefs.getString("pacient", null);
-        Gson temp = new Gson();
-        pacient = temp.fromJson(pacient_json, PacientUsuari.class);
-        episodi = prefs.getString("episodi", null);
+        if(savedInstanceState != null){
+            stopPosition = savedInstanceState.getInt("position");
+            stopPositionAudio = savedInstanceState.getInt("positionAudio");
+        }
+
+        WriteStoragePermissos();
+        ReadStoragePermissos();
+
+        pacient= ObtenirPacient();
+        episodi = ObtenirEpisodi();
+
         myRef = myRef.child(pacient.getID()).child(episodi).child("video").child("video.mp4");
 
         vv = (VideoView) findViewById(R.id.vvVisualitzar1);
@@ -168,95 +172,49 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
         mp = null;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        vv.pause();
+        mpBackVideo.pause();
+        ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
+    }
 
-    /*
-        Runnable Fragments2 = new Runnable() {
-            @Override
-            public void run() {
-                while(vv.isPlaying()){
-                    if (vv.getCurrentPosition() == SegonaFraccio) {
+    @Override
+    protected void onPause() {
+        super.onPause();
+        vv.pause();
+        mpBackVideo.pause();
+        ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
 
-                        vv.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                vv.pause();
-                            }
-                        });
+    }
 
-                        final MediaPlayer mp = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.segonfragment);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        vv.seekTo(stopPosition);
+        mpBackVideo.seekTo(stopPositionAudio);
+        vv.start();
+        mpBackVideo.start();
+    }
 
-                        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                            @Override
-                            public void onPrepared(MediaPlayer mediaPlayer) {
-                                mp.start();
-                            }
-                        });
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        vv.seekTo(stopPosition);
+        mpBackVideo.seekTo(stopPositionAudio);
+        vv.start();
+        mpBackVideo.start();
+    }
 
-                        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mediaPlayer) {
-                                mp.stop();
-                                mp.release();
-                                vv.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        vv.start();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                }
-            }
-        };
-
-
-        Runnable Fragments = new Runnable() {
-            @Override
-            public void run() {
-                while (vv.isPlaying()) {
-
-                    if (vv.getCurrentPosition() == PrimeraFraccio) {
-
-                        vv.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                vv.pause();
-                            }
-                        });
-
-                        final MediaPlayer mp = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.firstfragment);
-
-                        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                            @Override
-                            public void onPrepared(MediaPlayer mediaPlayer) {
-                                mp.start();
-                            }
-                        });
-
-                        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mediaPlayer) {
-                                mp.stop();
-                                mp.release();
-                                vv.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        vv.start();
-                                        myThread2.start();
-                                    }
-                                });
-                            }
-                        });
-                    }
-
-                }
-            }
-        };
-
-        myThread = new Thread(Fragments);
-        myThread2 = new Thread(Fragments2);
-
-        */
-
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        stopPosition = vv.getCurrentPosition();
+        stopPositionAudio = mpBackVideo.getCurrentPosition();
+        vv.pause();
+        mpBackVideo.pause();
+        outState.putInt("position", stopPosition);
+        outState.putInt("positionAudio", stopPositionAudio);
+    }
 }

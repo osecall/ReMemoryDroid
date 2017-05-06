@@ -1,8 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
@@ -15,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.gson.Gson;
 
 import java.io.File;
 
@@ -40,10 +37,8 @@ public class TractamentsActivity extends BaseActivity {
         btGuia = (Button) findViewById(R.id.btGuia);
 
         //Llegim informació de l'usuari
-        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String pacient_json= prefs.getString("pacient",null);
-        PacientUsuari pacient = gson.fromJson(pacient_json, PacientUsuari.class);
+
+        PacientUsuari pacient = ObtenirPacient();
 
 
         idCuUserTreatment.setText(pacient.getID());
@@ -52,18 +47,18 @@ public class TractamentsActivity extends BaseActivity {
 
         //Deshabilitar alguns botons si s'ha escollit versió llarga
 
-        if(prefs.getString("Versio",null).matches("Long")){
+        if(ObtenirVersio().matches("Long")){
             btAlbum.setEnabled(false);
             btGuia.setEnabled(false);
             btPelicula.setEnabled(true);
 
         }
-        else if(prefs.getString("Versio",null).matches("Short")){
+        else if(ObtenirVersio().matches("Short")){
             btPelicula.setEnabled(true);
             btAlbum.setEnabled(true);
             btGuia.setEnabled(true);
 
-            if(prefs.getString("episodi",null).isEmpty()){
+            if(ObtenirEpisodi().isEmpty()){
                 btPelicula.setEnabled(false);
             }
 

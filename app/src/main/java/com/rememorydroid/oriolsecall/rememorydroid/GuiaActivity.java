@@ -1,17 +1,15 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class GuiaActivity extends AppCompatActivity {
+public class GuiaActivity extends BaseActivity {
 
     private Button btBackGuide;
 
@@ -56,8 +54,8 @@ public class GuiaActivity extends AppCompatActivity {
 
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(GuiaActivity.this, R.string.signed_out,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.signed_out),true);
+
             Intent areaAvaluador = new Intent(GuiaActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
@@ -67,8 +65,7 @@ public class GuiaActivity extends AppCompatActivity {
 
             //Retorna a la pantalla 'Area Avaluador'
 
-            Toast.makeText(GuiaActivity.this, R.string.MenuChangePacient,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.MenuChangePacient),true);
             Intent areaAvaluador = new Intent(GuiaActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
 

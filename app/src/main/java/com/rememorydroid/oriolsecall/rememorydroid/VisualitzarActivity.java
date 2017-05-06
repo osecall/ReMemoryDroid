@@ -1,8 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
@@ -16,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,11 +33,12 @@ public class VisualitzarActivity extends BaseActivity {
     private Button btNext;
     private Intent intent;
     private ProgressBar ProgressBarVideo;
-    private boolean noAudio=false;
+    private boolean noAudio;
     private PacientUsuari pacient;
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private String episodi;
     private File video;
+    private int stopPosition;
 
 
     @Override
@@ -49,11 +46,18 @@ public class VisualitzarActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualitzar);
 
-        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        String pacient_json = prefs.getString("pacient",null);
-        Gson temp = new Gson();
-        pacient = temp.fromJson(pacient_json, PacientUsuari.class);
-        episodi = prefs.getString("episodi",null);
+        if(savedInstanceState != null){
+            stopPosition = savedInstanceState.getInt("position");
+        }
+
+        noAudio=false;
+
+        WriteStoragePermissos();
+        ReadStoragePermissos();
+
+        pacient = ObtenirPacient();
+        episodi = ObtenirEpisodi();
+
 
         myRef = myRef.child(pacient.getID()).child(episodi).child("video").child("video.mp4");
 
@@ -132,7 +136,6 @@ public class VisualitzarActivity extends BaseActivity {
                 ibStop.setEnabled(true);
             }
         });
-
 
 
         vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -235,8 +238,7 @@ public class VisualitzarActivity extends BaseActivity {
 
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(VisualitzarActivity.this, R.string.signed_out,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.signed_out),true);
             Intent areaAvaluador = new Intent(VisualitzarActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
@@ -246,8 +248,8 @@ public class VisualitzarActivity extends BaseActivity {
 
             //Retorna a la pantalla 'Area Avaluador'
 
-            Toast.makeText(VisualitzarActivity.this, R.string.MenuChangePacient,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.MenuChangePacient),true);
+
             Intent areaAvaluador = new Intent(VisualitzarActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
 
@@ -256,4 +258,40 @@ public class VisualitzarActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        vv.pause();
+        ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        vv.pause();
+        ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        vv.seekTo(stopPosition);
+        vv.start();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        vv.seekTo(stopPosition);
+        vv.start();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        stopPosition = vv.getCurrentPosition();
+        vv.pause();
+        outState.putInt("position", stopPosition);
+    }
 }

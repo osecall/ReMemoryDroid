@@ -77,7 +77,7 @@
     <string name="TimeEpisode">Time</string>
     <string name="DateEpisode">Date</string>
     <string name="WrongPassword">Wrong password</string>
-    <string name="UserDeleted">"Paient user deleted: "</string>
+    <string name="UserDeleted">\"Pacient user deleted: \"</string>
     <string name="AlertDialaogTest">Please, mark up the option which is the closest how you are feeling right now</string>
     <string name="Question2Pel1">I\'m feeling capable of recalling important things to me</string>
     <string name="Question3Pel1">I\'m feeling capable of recalling things I do along the day</string>
@@ -285,4 +285,5 @@
     <string name="VerificationEmailError">Failed to send verification email</string>
     <string name="EnviarEmail">Do you want to send the results via email? If so fill the reciept fields.</string>
     <string name="InternetNeeded">This app needs internet to run properly!</string>
+    <string name="CheckPoint">Do you want to cotinue from the last part?</string>
 </resources>

@@ -1,10 +1,8 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,14 +31,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 public class AreaAvaluadorActivity extends BaseActivity {
 
     private static final String TAG = "AreaAvaluador";
-    private TextView emailAvaluador, tvCUid, tvCUname, tvCUsurName, tvtest;
+    private TextView emailAvaluador, tvCUname, tvCUsurName;
+    private ImageView ivCUid;
     private FloatingActionButton fabSignUp;
     private String MessageDialogFinal, IDuserDelete;
     private PacientUsuari pacient;
@@ -54,11 +53,10 @@ public class AreaAvaluadorActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area_avaluador);
-
         pacient=null;
 
         emailAvaluador = (TextView) findViewById(R.id.tvAssessersSessionEmail);
-        tvCUid = (TextView) findViewById(R.id.tvCUid);
+        ivCUid = (ImageView) findViewById(R.id.ivCUid);
         tvCUname = (TextView) findViewById(R.id.tvCUname);
         tvCUsurName = (TextView) findViewById(R.id.tvCUlastName);
 
@@ -70,7 +68,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
         //Col·loquem usuari pacient actual a la pantalla amb textview si n'hi ha
 
         //Fer consulta de l'usuari si n'hi ha a preferedsharing
-        tvCUid.setText("ID: ");
         tvCUname.setText(R.string.NonSelected);
         tvCUsurName.setText(R.string.CULastName);
 
@@ -80,11 +77,11 @@ public class AreaAvaluadorActivity extends BaseActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int i=0;
+                PacientList.clear(); //Borrem la llista actual sinó sortirà duplicat si s'elimina algun usuari
                 for (DataSnapshot data : dataSnapshot.getChildren()){
                     PacientUsuari pacientUser = new PacientUsuari();
 
-                    pacientUser.setID(String.valueOf(i++));
+                    pacientUser.setID(data.getKey());
                     pacientUser.setName(data.child("name").getValue(String.class));
                     pacientUser.setLastName(data.child("lastName").getValue(String.class));
                     pacientUser.setSurName(data.child("surName").getValue(String.class));
@@ -118,7 +115,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                 Borrar
                                         .setIcon(R.drawable.warningdialogdeleteuser)
                                         .setTitle(getString(R.string.Attention))
-                                        .setMessage(getString(R.string.DeletePacient)+" "+String.valueOf(i)+"\n"+getString(R.string.PacientIDSecurity))
+                                        .setMessage(getString(R.string.DeletePacient)+" "+PacientList.get(i).getID().toString()+"\n"+getString(R.string.PacientIDSecurity))
                                         .setView(textEntryView)
                                         .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface arg0, int arg1) {
@@ -133,8 +130,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                         .setMessage(MessageDialogFinal)
                                                         .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                                                             public void onClick(DialogInterface arg0, int arg1) {
-                                                                // Some stuff to do when ok got clicked
-
                                                                 //Confirmar eliminació per contrasenya
                                                                 //-------------------------------------------------------------------
                                                                 AlertDialog.Builder dialegPassword = new AlertDialog.Builder(AreaAvaluadorActivity.this);
@@ -159,6 +154,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                                     @Override
                                                                                     public void onComplete(@NonNull Task<Void> task) {
 
+                                                                                        showProgressDialog();
                                                                                         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                                                                             @Override
                                                                                             public void onDataChange(DataSnapshot snapshot) {
@@ -167,24 +163,31 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                                                     snapshot.child(IDuserDelete).getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                                         @Override
                                                                                                         public void onComplete(@NonNull Task<Void> task) {
+                                                                                                            if(task.isSuccessful()){
+                                                                                                                hideProgressDialog();
+                                                                                                                showToast(getString(R.string.UserDeleted)+IDuserDelete,true);
+                                                                                                                //Eliminem l'usuari de la memòria si és el mateix que està a la sessió
+                                                                                                                PacientUsuari pacient = ObtenirPacient();
 
-                                                                                                            showToast(getString(R.string.UserDeleted)+IDuserDelete,true);
 
-                                                                                                            //Eliminem l'usuari de la memòria si és el mateix que està a la sessió
-                                                                                                            SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                                                                                                            String pacient_json = prefs.getString("pacient",null);
-                                                                                                            Gson temp = new Gson();
-                                                                                                            PacientUsuari pacient = temp.fromJson(pacient_json, PacientUsuari.class);
-                                                                                                            if(pacient.getID().equalsIgnoreCase(IDuserDelete)){
-                                                                                                                SharedPreferences.Editor editor = prefs.edit();
-                                                                                                                editor.remove("pacient");
-                                                                                                                editor.commit();
-                                                                                                                editor.clear();
-                                                                                                                editor.apply();
-                                                                                                                tvCUid.setVisibility(View.GONE);
-                                                                                                                tvCUname.setVisibility(View.GONE);
-                                                                                                                tvCUsurName.setVisibility(View.GONE);
+                                                                                                                if(pacient.getID().equalsIgnoreCase(IDuserDelete)){
+                                                                                                                    BorrarSharedPreferences();
+
+                                                                                                                    ivCUid.setVisibility(View.GONE);
+                                                                                                                    tvCUname.setVisibility(View.GONE);
+                                                                                                                    tvCUsurName.setVisibility(View.GONE);
+                                                                                                                }
                                                                                                             }
+                                                                                                            else{
+                                                                                                                showToastError();
+                                                                                                                Log.e(TAG,"Error en eliminar pacient!");
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                                                                        @Override
+                                                                                                        public void onFailure(@NonNull Exception e) {
+                                                                                                            showToastError();
+                                                                                                            Log.e(TAG,"Error en eliminar pacient!");
                                                                                                         }
                                                                                                     });
                                                                                                 }
@@ -211,14 +214,12 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                                         Log.e(TAG,"AreaAvaluador: "+e.getStackTrace().toString());
                                                                                     }
                                                                                 });
-                                                                                arg0.cancel();
                                                                                 arg0.dismiss();
                                                                             }
                                                                         })
                                                                         .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
                                                                             public void onClick(DialogInterface arg0, int arg1) {
                                                                                 arg0.dismiss();
-                                                                                arg0.cancel();
                                                                             }
                                                                         })
                                                                         .show();
@@ -237,7 +238,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 dialogInterface.dismiss();
-                                                dialogInterface.cancel();
                                             }
                                         })
                                         .show();
@@ -247,7 +247,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
                 return true;
             }
         });
-
 
 
         lvPacients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -260,11 +259,11 @@ public class AreaAvaluadorActivity extends BaseActivity {
                 TextView Cognom = (TextView) view.findViewById(R.id.tvCognomPacient);
                 TextView SegCognom = (TextView) view.findViewById(R.id.tvCognom2Pacient);
 
-                tvCUid.setText("ID: "+String.valueOf(i));
+                ivCUid.setImageDrawable(TextDrawable.builder().beginConfig().height(60).width(60).bold().endConfig().buildRound(PacientList.get(i).getID(),ColorGenerator.MATERIAL.getRandomColor()));
                 tvCUname.setText(getString(R.string.CUName,NomPacient.getText().toString()));
                 tvCUsurName.setText(getString(R.string.CULastName,Cognom.getText().toString()));
 
-                tvCUid.setVisibility(View.VISIBLE);
+                ivCUid.setVisibility(View.VISIBLE);
                 tvCUname.setVisibility(View.VISIBLE);
                 tvCUsurName.setVisibility(View.VISIBLE);
 
@@ -274,24 +273,15 @@ public class AreaAvaluadorActivity extends BaseActivity {
                 pacient.setLastName(SegCognom.getText().toString());
 
                 //Guardem la informació del pacient a la memòria "pacient"
+                BorrarSharedPreferences();
+                GravarPacient(pacient);
 
-                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.clear();
-                editor.apply();
-                //Passem objecte pacient a JSON
-                Gson gson = new Gson();
-                String pacient_json = gson.toJson(pacient,PacientUsuari.class);
-                editor.putString("pacient", pacient_json);
-                editor.commit();
                 pacient=null;
 
-                //Anem a la pantalla tractaments
+                showToast(NomPacient.getText().toString(),true);
+                //Anem a la pantalla de selecció episodis
                 Intent EpisodiIntent = new Intent(AreaAvaluadorActivity.this, EpisodiActivity.class);
                 startActivity(EpisodiIntent);
-
-                showToast(NomPacient.getText().toString(),true);
-
             }
         });
     }
@@ -380,25 +370,19 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                 showToast(user_selected.getText().toString(),true);
 
                                                 //Agreguem la informació a la pantalla
-                                                tvCUid.setText("ID "+ pacient.getID());
+                                                ivCUid.setImageDrawable(TextDrawable.builder().beginConfig().height(60).width(60).bold().endConfig().buildRound(pacient.getID(),ColorGenerator.MATERIAL.getRandomColor()));
                                                 tvCUname.setText(pacient.getName());
                                                 tvCUsurName.setText(pacient.getSurName());
-                                                tvCUid.setVisibility(View.VISIBLE);
+                                                ivCUid.setVisibility(View.VISIBLE);
                                                 tvCUname.setVisibility(View.VISIBLE);
                                                 tvCUsurName.setVisibility(View.VISIBLE);
 
 
                                                 //Guardem la informació del pacient a la memòria "pacient"
+                                                BorrarSharedPreferences();
 
-                                                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                                                SharedPreferences.Editor editor = prefs.edit();
-                                                editor.clear();
-                                                editor.apply();
                                                 //Passem objecte pacient a JSON
-                                                Gson gson = new Gson();
-                                                String pacient_json = gson.toJson(pacient,PacientUsuari.class);
-                                                editor.putString("pacient", pacient_json);
-                                                editor.commit();
+                                                GravarPacient(pacient);
                                                 pacient=null;
 
                                                 //Anem a la pantalla tractaments
@@ -424,7 +408,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
                             })
                             .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.cancel();
+                                    arg0.dismiss();
                                 }
                             })
                             .show();

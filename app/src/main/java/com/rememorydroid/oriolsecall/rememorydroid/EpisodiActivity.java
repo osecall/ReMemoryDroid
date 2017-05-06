@@ -1,9 +1,7 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -30,7 +28,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -77,14 +74,10 @@ public class EpisodiActivity extends BaseActivity {
         episodiSeleccionat = new String();
 
         //Recuperem pacient
-        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        String pacient_json = prefs.getString("pacient",null);
-        Gson temp = new Gson();
-        PacientUsuari pacient = temp.fromJson(pacient_json, PacientUsuari.class);
+        PacientUsuari pacient = ObtenirPacient();
 
         ID_pacient = pacient.getID().toString(); //ID del pacient per recuperar episodis i posar-los a la llista
         //Ara ja tenim l'objecte PacientUsuari
-
 
         showProgressDialog();
         myRef.addValueEventListener(new ValueEventListener() {
@@ -127,8 +120,6 @@ public class EpisodiActivity extends BaseActivity {
         adaptadorVersio = new VersioListAdapter(this, versions);
 
         listaVersio.setAdapter(adaptadorVersio);
-
-
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -180,9 +171,6 @@ public class EpisodiActivity extends BaseActivity {
                 //Passem versió per intent ja que només s'usarà a la pròxima activity una vegada
                 //Com que hi ha 3 idiomes passem alguna dada per indica que s'ha escollit la versió llarga a la següent activity
 
-                SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-
                 if(Versio.matches("Llarga") && episodiSeleccionat.isEmpty()){
                     new AlertDialog.Builder(EpisodiActivity.this)
                             .setTitle(getString(R.string.Attention))
@@ -221,17 +209,16 @@ public class EpisodiActivity extends BaseActivity {
                 }
                 else if(Versio.matches("Curta")){
                     TractamentIntent.putExtra("versio","Short");
-                    editor.putString("Versio", "Short");
+                    GravarVersio("Short");
+
                     startActivity(TractamentIntent);
                 }
                 else if(Versio.matches("Llarga")){
                      TractamentIntent.putExtra("versio","Long");
-                     editor.putString("Versio", "Long");
+                     GravarVersio("Long");
                      startActivity(TractamentIntent);
                 }
-
-                editor.putString("episodi", episodiSeleccionat);
-                editor.commit();
+                GravarEpisodi(episodiSeleccionat);
 
             }
         });

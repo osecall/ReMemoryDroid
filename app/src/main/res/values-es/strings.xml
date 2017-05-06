@@ -285,4 +285,5 @@
     <string name="VerificationEmailError">Fallo en enviar email de verificación</string>
     <string name="EnviarEmail">Quieres mandar los resultados por email? Si es así rellena los campos de destinatario.</string>
     <string name="InternetNeeded">Esta aplicación necesita Internet para funcionar correctamente!</string>
+    <string name="CheckPoint">Quieres continuar desde donde lo dejaste?</string>
 </resources>

@@ -1,8 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +19,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 public class Escena2Activity extends BaseActivity {
 
@@ -60,13 +56,11 @@ public class Escena2Activity extends BaseActivity {
         image.setImageBitmap(imatge_seleccionada);
         hideProgressDialog();
 
-        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        String pacient_json = prefs.getString("pacient",null);
-        episodi = prefs.getString("episodi",null);
-        Gson temp = new Gson();
-        pacient = temp.fromJson(pacient_json, PacientUsuari.class);
+        episodi = ObtenirEpisodi();
+        pacient = ObtenirPacient();
 
         showProgressDialog();
+
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -77,8 +71,7 @@ public class Escena2Activity extends BaseActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 hideProgressDialog();
-                Toast.makeText(Escena2Activity.this,"Error en connectar base de dades" ,
-                        Toast.LENGTH_LONG).show();
+                showToastError();
 
             }
         });
@@ -122,7 +115,6 @@ public class Escena2Activity extends BaseActivity {
                         Dialeg2
                                 .setCancelable(false)
                                 .setView(textEntryView);
-                                //.setMessage(R.string.ToEnd)
 
 
                         final AlertDialog alerta2 = Dialeg2.create();
@@ -171,8 +163,7 @@ public class Escena2Activity extends BaseActivity {
 
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(Escena2Activity.this, R.string.signed_out,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.signed_out),true);
             Intent areaAvaluador = new Intent(Escena2Activity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
@@ -181,9 +172,7 @@ public class Escena2Activity extends BaseActivity {
         if (id == R.id.btSignOutPacient) {
 
             //Retorna a la pantalla 'Area Avaluador'
-
-            Toast.makeText(Escena2Activity.this, R.string.MenuChangePacient,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.MenuChangePacient),true);
             Intent areaAvaluador = new Intent(Escena2Activity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
 

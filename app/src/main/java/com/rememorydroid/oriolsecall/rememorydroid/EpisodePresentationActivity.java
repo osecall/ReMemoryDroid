@@ -1,8 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
@@ -10,14 +8,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 public class EpisodePresentationActivity extends BaseActivity {
 
@@ -42,11 +38,8 @@ public class EpisodePresentationActivity extends BaseActivity {
         tvEpisodePresenDate = (TextView) findViewById(R.id.tvEpisodePresenDate);
         tvEpisodePresenTime = (TextView) findViewById(R.id.tvEpisodePresenTime);
 
-        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        String pacient_json = prefs.getString("pacient",null);
-        episodi = prefs.getString("episodi",null);
-        Gson temp = new Gson();
-        PacientUsuari pacient = temp.fromJson(pacient_json, PacientUsuari.class);
+        episodi = ObtenirEpisodi();
+        PacientUsuari pacient = ObtenirPacient();
 
 
         ID_pacient=pacient.getID();
@@ -64,9 +57,7 @@ public class EpisodePresentationActivity extends BaseActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 hideProgressDialog();
-                Toast.makeText(EpisodePresentationActivity.this,"Error en connectar base de dades" ,
-                        Toast.LENGTH_LONG).show();
-
+                showToastError();
             }
         });
 
@@ -79,11 +70,6 @@ public class EpisodePresentationActivity extends BaseActivity {
                 startActivity(new Intent(EpisodePresentationActivity.this, TestActivity.class));
             }
         }, 8000);
-
-
-
-
-
 
     }
 }

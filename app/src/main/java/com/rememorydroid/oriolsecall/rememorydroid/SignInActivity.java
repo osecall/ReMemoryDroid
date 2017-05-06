@@ -36,21 +36,8 @@ public class SignInActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        if (ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.INTERNET)
-                != PackageManager.PERMISSION_GRANTED) {
+        InternetPermissos();
 
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    android.Manifest.permission.INTERNET)) {
-
-            } else {
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.INTERNET},
-                        MY_PERMISSIONS_REQUEST_INTERNET);
-
-            }
-        }
 
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
@@ -266,22 +253,5 @@ public class SignInActivity extends BaseActivity implements
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
-        switch (requestCode) {
-
-            case MY_PERMISSIONS_REQUEST_INTERNET: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                } else {
-
-                }
-                return;
-
-            }
-        }
-    }
 }
 

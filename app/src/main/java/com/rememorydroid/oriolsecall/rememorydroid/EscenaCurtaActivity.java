@@ -1,22 +1,23 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+
+import static android.view.KeyEvent.ACTION_UP;
 
 public class EscenaCurtaActivity extends BaseActivity {
 
@@ -27,18 +28,21 @@ public class EscenaCurtaActivity extends BaseActivity {
     private String Episodi;
     private Button btNextEscenaCurta;
     private PacientUsuari pacient;
+    private EditText etCurta11, etCurta22, etCurta33,etCurta44;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escena_curta);
 
-        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String pacient_json= prefs.getString("pacient",null);
-        Episodi = prefs.getString("episodi",null);
 
-        pacient = gson.fromJson(pacient_json, PacientUsuari.class);
+        Episodi = ObtenirEpisodi();
+        pacient = ObtenirPacient();
+
+        etCurta11 = (EditText) findViewById(R.id.etCurta11);
+        etCurta22 = (EditText) findViewById(R.id.etCurta22);
+        etCurta33 = (EditText) findViewById(R.id.etCurta33);
+        etCurta44 = (EditText) findViewById(R.id.etCurta44);
 
         ivPicturePreferred = (ImageView) findViewById(R.id.ivPicturePreferredCurta);
         btNextEscenaCurta = (Button) findViewById(R.id.btNextEscenaCurta);
@@ -58,9 +62,48 @@ public class EscenaCurtaActivity extends BaseActivity {
         btNextEscenaCurta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EscenaCurtaActivity.this, RespirarActivity.class);
-                intent.putExtra("Curta1","Curta1");
-                startActivity(intent);
+                if(!etCurta11.getText().toString().isEmpty() && !etCurta22.getText().toString().isEmpty()
+                        && !etCurta33.getText().toString().isEmpty() && !etCurta44.getText().toString().isEmpty()){
+                    Intent intent = new Intent(EscenaCurtaActivity.this, RespirarActivity.class);
+                    intent.putExtra("Curta1","Curta1");
+                    startActivity(intent);
+                }
+                else showToast(getString(R.string.Misstextfields),true);
+            }
+        });
+
+        etCurta11.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode==66 && event.getAction()==ACTION_UP){
+                    etCurta22.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        etCurta22.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode==66 && event.getAction()==ACTION_UP){
+                    etCurta33.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        etCurta33.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode==66 && event.getAction()==ACTION_UP){
+                    etCurta44.requestFocus();
+                    return true;
+                }
+                return false;
             }
         });
     }

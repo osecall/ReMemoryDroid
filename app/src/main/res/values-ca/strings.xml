@@ -77,7 +77,7 @@
     <string name="TimeEpisode">Franja horària</string>
     <string name="DateEpisode">Data</string>
     <string name="WrongPassword">Contrasenya incorrecte</string>
-    <string name="UserDeleted">"Usuari paient eliminat: "</string>
+    <string name="UserDeleted">\"Usuari pacient eliminat: \"</string>
     <string name="AlertDialaogTest">Si us plau, senyali l\'opció que més s\'aproximi a com vosté se sent ara mateix</string>
     <string name="Question2Pel1">Em sento capaç de recordar coses importants per mi</string>
     <string name="Question3Pel1">Em sento capaç de recordar coses que faig durant el dia</string>
@@ -285,4 +285,5 @@
     <string name="VerificationEmailError">Error en enviar email de verificació</string>
     <string name="EnviarEmail">Vols enviar els resultats per email? Si és així omple els camps dels receptors.</string>
     <string name="InternetNeeded">Aquesta app necessita Internet per funcionar correctament!</string>
+    <string name="CheckPoint">Vols continuar des d\'on ho vas deixar?</string>
 </resources>

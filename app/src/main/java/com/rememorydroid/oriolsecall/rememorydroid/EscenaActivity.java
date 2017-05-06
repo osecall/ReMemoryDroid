@@ -1,10 +1,9 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -18,27 +17,21 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.gson.Gson;
 
 import static android.view.KeyEvent.ACTION_UP;
 
 public class EscenaActivity extends BaseActivity {
 
     private EditText etQuestion1Escena, etQuestion2Escena,etQuestion3Escena,etQuestion4Escena;
-    private ImageView imatgeEscena;
+    private ImageView imatgeEscena, ivValorIntensity1;
     private Spinner eLvEmocions;
     private Button btNextEscena;
     private SeekBar seekBar2;
     private String A;
     private Intent intent;
-    private TextView tvValorIntensity1;
     private PacientUsuari pacient;
-    private TestAnswers respostes_recuperades = new TestAnswers();
-    private SharedPreferences.Editor editor;
-    private SharedPreferences prefs;
-    private Gson gson = new Gson();
+    private TestAnswers respostes_recuperades;
     private boolean intensitatCambiada;
 
     @Override
@@ -46,19 +39,18 @@ public class EscenaActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escena);
 
+        respostes_recuperades= new TestAnswers();
         intensitatCambiada = false;
 
-        prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        editor = prefs.edit();
-        pacient = gson.fromJson(prefs.getString("pacient",null), PacientUsuari.class);
-        respostes_recuperades = gson.fromJson(prefs.getString("respostes",null),TestAnswers.class);
+        pacient = ObtenirPacient();
+        respostes_recuperades = ObtenirRespostesActuals();
 
         etQuestion1Escena = (EditText) findViewById(R.id.editText1);
         etQuestion2Escena = (EditText) findViewById(R.id.editText2);
         etQuestion3Escena = (EditText) findViewById(R.id.et3);
         etQuestion4Escena = (EditText) findViewById(R.id.editText4);
 
-        tvValorIntensity1 = (TextView) findViewById(R.id.tvValorIntensity1);
+        ivValorIntensity1 = (ImageView) findViewById(R.id.ivValorIntensity1);
 
 
         seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
@@ -111,22 +103,20 @@ public class EscenaActivity extends BaseActivity {
                     btNextEscena.setVisibility(View.VISIBLE);
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),
-                            R.string.ChooseSpinner, Toast.LENGTH_LONG).show();
+                    showToast(getString(R.string.ChooseSpinner), true);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(getApplicationContext(),
-                        R.string.ChooseSpinner, Toast.LENGTH_LONG).show();
+                showToast(getString(R.string.ChooseSpinner),true);
             }
         });
 
         seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                tvValorIntensity1.setText(String.valueOf(i+1));
+                ivValorIntensity1.setImageDrawable(TextDrawable.builder().beginConfig().height(60).width(60).bold().textColor(R.color.white).endConfig().buildRound(String.valueOf(i+1),ColorGenerator.DEFAULT.getColor(R.color.colorPrimaryDark)));
                 respostes_recuperades.setPreguntesEmocionsEscenaIntentistat(String.valueOf(i+1));
                 intensitatCambiada=true;
                 if(eLvEmocions.getSelectedItemPosition()!=0){
@@ -155,24 +145,22 @@ public class EscenaActivity extends BaseActivity {
                 intent.putExtra("D",etQuestion3Escena.getText().toString());
                 intent.putExtra("E",etQuestion4Escena.getText().toString());
                 intent.putExtra("favorita",imatge_favorita);
-                editor.putString("respostes",gson.toJson(respostes_recuperades,TestAnswers.class));
-                editor.commit();
+
+                GravarRespoestesActuals(respostes_recuperades);
                 if(etQuestion1Escena.getText().toString().isEmpty() || etQuestion2Escena.getText().toString().isEmpty() ||
                         etQuestion3Escena.getText().toString().isEmpty() || etQuestion4Escena.getText().toString().isEmpty()){
-                    Toast.makeText(EscenaActivity.this, R.string.Misstextfields,
-                            Toast.LENGTH_LONG).show();
+                    showToast(getString(R.string.Misstextfields),true);
+
                 }
                 else if(eLvEmocions.getSelectedItemPosition()<=0){
-                    Toast.makeText(EscenaActivity.this, R.string.ChooseEmotion,
-                            Toast.LENGTH_LONG).show();
+                    showToast(getString(R.string.ChooseEmotion),true);
+
                 }
                 else if(seekBar2.getProgress()<1){
-                    Toast.makeText(EscenaActivity.this, R.string.ChooseIntensity,
-                            Toast.LENGTH_LONG).show();
+                    showToast(getString(R.string.ChooseIntensity),true);
                 }
                 else if(!intensitatCambiada){
-                    Toast.makeText(EscenaActivity.this, R.string.ChooseIntensity,
-                            Toast.LENGTH_LONG).show();
+                    showToast(getString(R.string.ChooseIntensity),true);
                 }
                 else{
                     startActivity(intent);
@@ -240,8 +228,7 @@ public class EscenaActivity extends BaseActivity {
 
             //Retorna a la pantalla inicial
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(EscenaActivity.this, R.string.signed_out,
-                    Toast.LENGTH_LONG).show();
+            showToast(getString(R.string.signed_out),true);
             Intent areaAvaluador = new Intent(EscenaActivity.this, SignInActivity.class);
             startActivity(areaAvaluador);
 
@@ -250,9 +237,8 @@ public class EscenaActivity extends BaseActivity {
         if (id == R.id.btSignOutPacient) {
 
             //Retorna a la pantalla 'Area Avaluador'
+            showToast(getString(R.string.MenuChangePacient),true);
 
-            Toast.makeText(EscenaActivity.this, R.string.MenuChangePacient,
-                    Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(EscenaActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
 

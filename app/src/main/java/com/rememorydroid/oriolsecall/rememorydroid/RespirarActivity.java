@@ -217,7 +217,12 @@ public class RespirarActivity extends AppCompatActivity {
                 startActivity(intentRespirar);
             }
         });
-        mp.start();
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mp.start();
+            }
+        });
     }
 
     @Override

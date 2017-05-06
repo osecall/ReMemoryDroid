@@ -53,6 +53,14 @@
             android:layout_marginLeft="10dp"
             android:text="Cognom2"
             android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvIDPacient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:visibility="invisible" />
     </LinearLayout>
 
 </LinearLayout>

@@ -1,9 +1,7 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -25,7 +23,6 @@ import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,7 +31,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -247,63 +243,17 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         curta=false;
         outputFile = null;
 
-        if (ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.RECORD_AUDIO)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    android.Manifest.permission.RECORD_AUDIO)) {
-
-            } else {
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.RECORD_AUDIO},
-                        MY_PERMISSIONS_REQUEST_RECORD_AUDIO);
-
-            }
-        }
-
-        if (ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-            } else {
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-
-            }
-        }
-
-        if (ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
-
-            } else {
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-
-            }
-        }
+        AudioRecordPermissos();
+        WriteStoragePermissos();
+        ReadStoragePermissos();
+        InternetPermissos();
 
         //Extreure dades pacient
-        SharedPreferences prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String pacient = prefs.getString("pacient",null);
-        pacientusuari = gson.fromJson(pacient, PacientUsuari.class);
+        pacientusuari = ObtenirPacient();
         ID_usuari = pacientusuari.getID();
-        episodi = prefs.getString("episodi",null);
+        episodi = ObtenirEpisodi();
         //Comprobar si és versió curta
-        if (prefs.getString("Versio",null).matches("Short")) curta = true;
+        if (ObtenirVersio().matches("Short")) curta = true;
 
         //Evocar C
         if(curta && getIntent().hasExtra("EvocarC")){
@@ -401,8 +351,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
                 //Retorna a la pantalla inicial
                 FirebaseAuth.getInstance().signOut();
-                Toast.makeText(EvocarActivity.this, R.string.signed_out,
-                        Toast.LENGTH_LONG).show();
+                showToast(getString(R.string.signed_out),true);
                 Intent areaAvaluador = new Intent(EvocarActivity.this, SignInActivity.class);
                 startActivity(areaAvaluador);
 
@@ -412,8 +361,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
                 //Retorna a la pantalla 'Area Avaluador'
 
-                Toast.makeText(EvocarActivity.this, R.string.MenuChangePacient,
-                        Toast.LENGTH_LONG).show();
+                showToast(getString(R.string.MenuChangePacient),true);
                 Intent areaAvaluador = new Intent(EvocarActivity.this, AreaAvaluadorActivity.class);
                 startActivity(areaAvaluador);
 
@@ -565,40 +513,5 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         });
         mp.start();
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
-        switch (requestCode) {
-
-             case MY_PERMISSIONS_REQUEST_RECORD_AUDIO: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                } else {
-
-                }
-                }
-                case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
-                     // If request is cancelled, the result arrays are empty.
-                     if (grantResults.length > 0
-                             && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                     } else {
-
-                     }
-                     return;
-                 }case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
-                     // If request is cancelled, the result arrays are empty.
-                     if (grantResults.length > 0
-                             && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                     } else {
-
-                     }
-                     return;
-                 }
-            }
-        }
-    }
+}
 

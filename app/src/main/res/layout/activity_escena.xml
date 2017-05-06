@@ -262,17 +262,12 @@
         android:layout_toStartOf="@+id/textView11"
         android:layout_marginEnd="32dp" />
 
-    <TextView
-        android:id="@+id/tvValorIntensity1"
+    <ImageView
+        android:id="@+id/ivValorIntensity1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/seekBar2"
-        android:layout_marginEnd="64dp"
-        android:layout_toStartOf="@+id/btNextEscena"
-        android:elevation="24dp"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="36sp"
-        android:textStyle="bold" />
+        android:layout_below="@+id/textView11"
+        android:layout_marginEnd="46dp"
+        android:layout_toStartOf="@+id/btNextEscena" />
 
 </RelativeLayout>
