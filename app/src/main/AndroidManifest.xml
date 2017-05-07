@@ -109,6 +109,9 @@
             android:label="Test"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PacientAnswersActivity"
+            android:label="@string/Answers"
+            android:screenOrientation="landscape"></activity>
     </application>
-
 </manifest>

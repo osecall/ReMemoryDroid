@@ -286,4 +286,9 @@
     <string name="EnviarEmail">Quieres mandar los resultados por email? Si es así rellena los campos de destinatario.</string>
     <string name="InternetNeeded">Esta aplicación necesita Internet para funcionar correctamente!</string>
     <string name="CheckPoint">Quieres continuar desde donde lo dejaste?</string>
+    <string name="FieldEmpty">Campo esta vacío</string>
+    <string name="SendingResults">Enviar respuestas por email</string>
+    <string name="DownloadAnswers">Decargar respuestas</string>
+    <string name="Answers">Respuestas</string>
+    <string name="DownloadDone">Descarga correcta!</string>
 </resources>

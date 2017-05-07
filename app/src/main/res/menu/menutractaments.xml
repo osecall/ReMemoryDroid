@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
         <item android:id="@+id/btSignOutMenu"
             android:title="@string/sign_out">
         </item>
@@ -8,6 +7,9 @@
             android:title="@string/sign_out_Pacient">
         </item>
         <item android:id="@+id/btEpisodis"
-            android:title="@string/Episodes">
+            android:title="@string/Episodes"></item>
+    <item
+        android:id="@+id/btAnswers"
+        android:title="@string/Answers">
         </item>
 </menu>

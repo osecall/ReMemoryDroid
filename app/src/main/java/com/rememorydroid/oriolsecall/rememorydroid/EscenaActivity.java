@@ -3,7 +3,6 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -16,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
-import android.widget.TextView;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 import static android.view.KeyEvent.ACTION_UP;
@@ -150,7 +149,14 @@ public class EscenaActivity extends BaseActivity {
                 if(etQuestion1Escena.getText().toString().isEmpty() || etQuestion2Escena.getText().toString().isEmpty() ||
                         etQuestion3Escena.getText().toString().isEmpty() || etQuestion4Escena.getText().toString().isEmpty()){
                     showToast(getString(R.string.Misstextfields),true);
-
+                    if (etQuestion1Escena.getText().toString().isEmpty())
+                        etQuestion1Escena.setError(getString(R.string.FieldEmpty));
+                    if (etQuestion2Escena.getText().toString().isEmpty())
+                        etQuestion2Escena.setError(getString(R.string.FieldEmpty));
+                    if (etQuestion3Escena.getText().toString().isEmpty())
+                        etQuestion3Escena.setError(getString(R.string.FieldEmpty));
+                    if (etQuestion4Escena.getText().toString().isEmpty())
+                        etQuestion4Escena.setError(getString(R.string.FieldEmpty));
                 }
                 else if(eLvEmocions.getSelectedItemPosition()<=0){
                     showToast(getString(R.string.ChooseEmotion),true);

@@ -2,8 +2,8 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -96,6 +96,8 @@ public class TractamentsActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.menutractaments, menu);
         menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
         menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient)+" ("+idCuUserTreatment.getText().toString()+")");
+        menu.getItem(3).setTitle(getString(R.string.Answers) + " (" + idCuUserTreatment.getText().toString() + ")");
+
         return true;
     }
 
@@ -129,6 +131,11 @@ public class TractamentsActivity extends BaseActivity {
             Intent intent = new Intent(TractamentsActivity.this, EpisodiActivity.class);
             startActivity(intent);
 
+        }
+
+        if (id == R.id.btAnswers) {
+            //Retorna a la pantalla 'Episodis'
+            startActivity(new Intent(TractamentsActivity.this, PacientAnswersActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

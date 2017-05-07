@@ -67,8 +67,18 @@ public class EscenaCurtaActivity extends BaseActivity {
                     Intent intent = new Intent(EscenaCurtaActivity.this, RespirarActivity.class);
                     intent.putExtra("Curta1","Curta1");
                     startActivity(intent);
+                } else {
+                    if (etCurta11.getText().toString().isEmpty())
+                        etCurta11.setError(getString(R.string.FieldEmpty));
+                    if (etCurta22.getText().toString().isEmpty())
+                        etCurta22.setError(getString(R.string.FieldEmpty));
+                    if (etCurta33.getText().toString().isEmpty())
+                        etCurta33.setError(getString(R.string.FieldEmpty));
+                    if (etCurta44.getText().toString().isEmpty())
+                        etCurta44.setError(getString(R.string.FieldEmpty));
+
+                    showToast(getString(R.string.Misstextfields), true);
                 }
-                else showToast(getString(R.string.Misstextfields),true);
             }
         });
 
