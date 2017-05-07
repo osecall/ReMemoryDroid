@@ -20,6 +20,7 @@ public class EpisodePresentationActivity extends BaseActivity {
     private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
     private String ID_pacient, episodi;
     private TextView tvEpisodePresenName, tvEpisodePresenDate,tvEpisodePresenTime;
+    private Handler handler;
 
 
     @Override
@@ -65,12 +66,15 @@ public class EpisodePresentationActivity extends BaseActivity {
         tvEpisodePresenDate.setAnimation(animation);
         tvEpisodePresenTime.setAnimation(animation);
 
-        new Handler().postDelayed(new Runnable(){
-            public void run(){
+        handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
                 startActivity(new Intent(EpisodePresentationActivity.this, TestActivity.class));
                 finish();
             }
-        }, 8000);
-
+        };
+        handler.postDelayed(runnable, 6500);
     }
+
 }
