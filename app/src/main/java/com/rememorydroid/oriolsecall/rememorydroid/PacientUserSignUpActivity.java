@@ -2,8 +2,8 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,15 +29,12 @@ import static android.view.KeyEvent.ACTION_UP;
 public class PacientUserSignUpActivity extends BaseActivity{
 
 
+    private static final String TAG = "UserSignUpActivity";
     private Button btSavePacientSignUp;
     private EditText etIDPacientSignUp, etNamePacientSignUp, etSurNamePacientSignUp, etLastNamePacientSignUp;
-    private ImageView ivIDerror, ivNameError, ivSurError, ivLastError;
     private PacientUsuari pacient;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference("pacients");
-    private static final String TAG = "UserSignUpActivity";
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +49,6 @@ public class PacientUserSignUpActivity extends BaseActivity{
         etSurNamePacientSignUp = (EditText) findViewById(R.id.etSurNamePacientSignUp);
         etLastNamePacientSignUp = (EditText) findViewById(R.id.etLastNamePacientSignUp);
 
-        ivIDerror = (ImageView) findViewById(R.id.ivIDerror);
-        ivNameError = (ImageView) findViewById(R.id.ivNameError);
-        ivSurError = (ImageView) findViewById(R.id.ivSurError);
-        ivLastError = (ImageView) findViewById(R.id.ivLastError);
 
         etIDPacientSignUp.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -96,8 +88,18 @@ public class PacientUserSignUpActivity extends BaseActivity{
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                String aux = "0";
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    if (Integer.parseInt(aux) - Integer.parseInt(data.getKey()) < -1) {
+                        etIDPacientSignUp.setText(String.valueOf(Integer.parseInt(data.getKey()) - 1));
+                        break;
+                    }
+                    aux = data.getKey();
+
+                }
+                /*
                 Long numeroMaximUser = dataSnapshot.getChildrenCount()+1;
-                etIDPacientSignUp.setText(numeroMaximUser.toString());
+                etIDPacientSignUp.setText(numeroMaximUser.toString());*/
             }
 
             @Override
@@ -216,8 +218,6 @@ public class PacientUserSignUpActivity extends BaseActivity{
         });
     }
 
-
-
     //Part del menú 'action bar'
 
     @Override
@@ -287,27 +287,27 @@ public class PacientUserSignUpActivity extends BaseActivity{
         if(ID.isEmpty()){
             DialegFormControl.setMessage(R.string.IDFieldEmpty);
             DialegFormControl.show();
-            ivIDerror.setVisibility(View.VISIBLE);
+            etIDPacientSignUp.setError(getString(R.string.IDFieldEmpty));
             return false;
 
         }
         if(!android.text.TextUtils.isDigitsOnly(ID)){
             DialegFormControl.setMessage(R.string.IDonlyDigits);
             DialegFormControl.show();
-            ivIDerror.setVisibility(View.VISIBLE);
+            etIDPacientSignUp.setError(getString(R.string.IDonlyDigits));
             return false;
         }
         if(ID.length()>4){
             DialegFormControl.setMessage(R.string.IDlength4);
             DialegFormControl.show();
-            ivIDerror.setVisibility(View.VISIBLE);
+            etIDPacientSignUp.setError(getString(R.string.IDlength4));
             return false;
 
         }
         if(ID.length()<1){
             DialegFormControl.setMessage(R.string.IDlength1);
             DialegFormControl.show();
-            ivIDerror.setVisibility(View.VISIBLE);
+            etIDPacientSignUp.setError(getString(R.string.IDlength1));
             return false;
 
         }
@@ -315,56 +315,56 @@ public class PacientUserSignUpActivity extends BaseActivity{
         if(Nom.isEmpty()){
             DialegFormControl.setMessage(R.string.NameFieldEmpty);
             DialegFormControl.show();
-            ivNameError.setVisibility(View.VISIBLE);
+            etNamePacientSignUp.setError(getString(R.string.NameFieldEmpty));
             return false;
         }
         if(Nom.length()>30 || Nom.length()<2){
             DialegFormControl.setMessage(R.string.NameLength);
             DialegFormControl.show();
-            ivNameError.setVisibility(View.VISIBLE);
+            etNamePacientSignUp.setError(getString(R.string.NameLength));
             return false;
         }
 
         if(!Nom.matches("^[a-z ñ A-Z]+$")){
             DialegFormControl.setMessage(R.string.NameNotDigits);
             DialegFormControl.show();
-            ivNameError.setVisibility(View.VISIBLE);
+            etNamePacientSignUp.setError(getString(R.string.NameNotDigits));
             return false;
         }
         if(Cognom.isEmpty()){
             DialegFormControl.setMessage(R.string.SurnameEmpty);
             DialegFormControl.show();
-            ivSurError.setVisibility(View.VISIBLE);
+            etSurNamePacientSignUp.setError(getString(R.string.SurnameEmpty));
             return false;
         }
         if(!Cognom.matches("^[a-z ñ A-Z]+$")){
             DialegFormControl.setMessage(R.string.SurNameNotDigits);
             DialegFormControl.show();
-            ivSurError.setVisibility(View.VISIBLE);
+            etSurNamePacientSignUp.setError(getString(R.string.SurNameNotDigits));
             return false;
         }
         if(Cognom.length()>30 || Cognom.length()<2){
             DialegFormControl.setMessage(R.string.SurnameLength);
             DialegFormControl.show();
-            ivSurError.setVisibility(View.VISIBLE);
+            etSurNamePacientSignUp.setError(getString(R.string.SurnameLength));
             return false;
         }
         if(SeCognom.isEmpty()) {
             DialegFormControl.setMessage(R.string.LastNameEmpty);
             DialegFormControl.show();
-            ivLastError.setVisibility(View.VISIBLE);
+            etLastNamePacientSignUp.setError(getString(R.string.LastNameEmpty));
             return false;
         }
         if(!SeCognom.matches("^[a-z ñ A-Z]+$")){
             DialegFormControl.setMessage(R.string.LastNameNotDigits);
             DialegFormControl.show();
-            ivLastError.setVisibility(View.VISIBLE);
+            etLastNamePacientSignUp.setError(getString(R.string.LastNameNotDigits));
             return false;
         }
         if(SeCognom.length()>30 || SeCognom.length()<2){
             DialegFormControl.setMessage(R.string.LastNameLength);
             DialegFormControl.show();
-            ivLastError.setVisibility(View.VISIBLE);
+            etLastNamePacientSignUp.setError(getString(R.string.LastNameLength));
             return false;
         }
         return true;

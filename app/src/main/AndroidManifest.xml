@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,8 +25,10 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter></activity>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".LanguageActivity"
             android:screenOrientation="landscape" />
@@ -40,7 +47,7 @@
         <activity
             android:name=".TractamentsActivity"
             android:label="@string/TreatmentsArea"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".EpisodiActivity"
             android:label="@string/Episodes"
@@ -61,7 +68,7 @@
             android:name=".VisualitzarFragmentsActivity"
             android:label="@string/Visualitzar"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EvocarActivity"
             android:label="@string/Evocar"
@@ -75,11 +82,11 @@
             android:name=".Preguntes2Activity"
             android:label="@string/Questions"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar" ></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AlbumActivity"
             android:label="@string/Album"
-            android:screenOrientation="landscape" ></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".EscenaActivity"
             android:label="@string/Scene"
@@ -96,7 +103,7 @@
             android:name=".VisualitzarActivity"
             android:label="@string/Visualitzar"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TestActivity"
             android:label="Test"

@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.rememorydroid.oriolsecall.rememorydroid.PacientUserSignUpActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.rememorydroid.oriolsecall.rememorydroid.PacientUserSignUpActivity">
 
 
     <LinearLayout
@@ -52,13 +52,6 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/ivIDerror"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/signodeadmiracion" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -83,13 +76,6 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="24sp" />
-
-            <ImageView
-                android:id="@+id/ivNameError"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/signodeadmiracion" />
 
         </LinearLayout>
 
@@ -116,13 +102,6 @@
                 android:inputType="textPersonName"
                 android:textSize="24sp" />
 
-            <ImageView
-                android:id="@+id/ivSurError"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/signodeadmiracion" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -147,13 +126,6 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="24sp" />
-
-            <ImageView
-                android:id="@+id/ivLastError"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/signodeadmiracion" />
 
         </LinearLayout>
 
