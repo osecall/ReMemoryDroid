@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -28,6 +31,7 @@ public class PacientAnswersActivity extends BaseActivity {
     private static final String TAG = "PacientAnswrsActivity";
     private Button EvocarA, EvocarB, EvocarC, EvocarD, btER, btDR;
     private ImageView imatge;
+    private String pacientID;
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private StorageReference myRefA = FirebaseStorage.getInstance().getReference();
     private StorageReference myRefB = FirebaseStorage.getInstance().getReference();
@@ -51,6 +55,7 @@ public class PacientAnswersActivity extends BaseActivity {
         imatge = (ImageView) findViewById(R.id.ivFavorita);
 
         final PacientUsuari pacient = ObtenirPacient();
+        pacientID = pacient.getID();
         final String episodi = ObtenirEpisodi();
 
         showProgressDialog();
@@ -172,5 +177,59 @@ public class PacientAnswersActivity extends BaseActivity {
         } catch (android.content.ActivityNotFoundException ex) {
             showToast(ex.getMessage().toString(), false);
         }
+    }
+
+    //Part del menú 'action bar'
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menuanswers, menu);
+        menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient) + " (" + pacientID + ")");
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.btSignOutMenu) {
+            //Retorna a la pantalla inicial
+            FirebaseAuth.getInstance().signOut();
+            showToast(getString(R.string.signed_out), true);
+            Intent areaAvaluador = new Intent(PacientAnswersActivity.this, SignInActivity.class);
+            startActivity(areaAvaluador);
+
+        }
+
+        if (id == R.id.btSignOutPacient) {
+            //Retorna a la pantalla 'Area Avaluador'
+            showToast(getString(R.string.MenuChangePacient), true);
+            Intent areaAvaluador = new Intent(PacientAnswersActivity.this, AreaAvaluadorActivity.class);
+            startActivity(areaAvaluador);
+
+        }
+
+        if (id == R.id.btEpisodis) {
+            //Retorna a la pantalla 'Episodis'
+            Intent intent = new Intent(PacientAnswersActivity.this, EpisodiActivity.class);
+            startActivity(intent);
+
+        }
+
+        if (id == R.id.btTractaments) {
+            //Retorna a la pantalla 'Episodis'
+            startActivity(new Intent(PacientAnswersActivity.this, TractamentsActivity.class));
+
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

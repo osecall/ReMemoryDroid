@@ -291,4 +291,5 @@
     <string name="DownloadAnswers">Decargar respuestas</string>
     <string name="Answers">Respuestas</string>
     <string name="DownloadDone">Descarga correcta!</string>
+    <string name="Treatments">Tratamientos</string>
 </resources>
