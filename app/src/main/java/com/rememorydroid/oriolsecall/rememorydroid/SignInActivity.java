@@ -1,13 +1,11 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,6 +15,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import static android.view.KeyEvent.ACTION_UP;
 
 public class SignInActivity extends BaseActivity implements
         View.OnClickListener {
@@ -74,6 +74,34 @@ public class SignInActivity extends BaseActivity implements
                 updateUI(user);
             }
         };
+
+        //Per si es prem el botó 'enter' un cop s'ha escrit les credencials
+        mPasswordField.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == 66 && event.getAction() == ACTION_UP) {
+                    signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        //Anem al camp de la contrasenya
+        mEmailField.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == 66 && event.getAction() == ACTION_UP) {
+                    mPasswordField.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
     }
 
     @Override

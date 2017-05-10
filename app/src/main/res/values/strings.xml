@@ -311,6 +311,14 @@
     <string name="Answers">Answers</string>
     <string name="DownloadDone">Download correct!</string>
     <string name="Treatments">Treatments</string>
+    <string name="MenuTreatments">Treatments menu</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="PacientAnswers">Pacient answers</string>
+    <string name="sign_out_menu">Sign out (%s)</string>
+    <string name="PacientIssues">Pacient issues</string>
+    <string name="AssessorIssues">Assessor issues</string>
 
     <!-- Strings related to login -->
 

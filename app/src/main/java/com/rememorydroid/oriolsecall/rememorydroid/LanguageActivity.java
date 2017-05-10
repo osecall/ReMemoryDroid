@@ -1,11 +1,13 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -16,8 +18,6 @@ public class LanguageActivity extends BaseActivity {
     private ImageButton btcaIdioma, btesIdioma, btenIdioma;
     private Locale locale;
     private Configuration config;
-
-
 
 
     @Override
@@ -38,20 +38,23 @@ public class LanguageActivity extends BaseActivity {
 
 
         //Comprobar si hi ha Internet
-        /*
+
 
         if(!isThereInternet()){
             AlertDialog.Builder Dialeg = new AlertDialog.Builder(LanguageActivity.this);
-            Dialeg.setCancelable(true).setMessage(R.string.InternetNeeded)
+            Dialeg.setCancelable(false).setMessage(R.string.InternetNeeded)
                     .setNeutralButton("D'acord", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
                             LanguageActivity.this.finish();
-                            startActivity(new Intent(Intent.ACTION_MAIN));
+                            Intent startMain = new Intent(Intent.ACTION_MAIN);
+                            startMain.addCategory(Intent.CATEGORY_HOME);
+                            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(startMain);
                         }
                     }).show();
-        }*/
+        }
 
         //------------------------------------------
 
@@ -93,20 +96,12 @@ public class LanguageActivity extends BaseActivity {
 
     }
 
-
     private boolean isThereInternet(){
+        boolean connected = false;
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo actNetInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        NetworkInfo actNetInfo2 = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-        if(actNetInfo!=null){
-            if(actNetInfo.isConnected()) return true;
-        }
-        else if (actNetInfo2!=null){
-            if(actNetInfo2.isConnected()) return true;
-        }
-        return false;
-
+        //we are connected to a network
+        connected = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
+        return connected;
     }
 }

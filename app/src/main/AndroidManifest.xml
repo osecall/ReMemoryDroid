@@ -8,10 +8,12 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="false"
+        android:requiresSmallestWidthDp="600"
+        android:smallScreens="false"
+        android:xlargeScreens="true" />
 
     <application
         android:allowBackup="true"
@@ -43,10 +45,6 @@
         <activity
             android:name=".PacientUserSignUpActivity"
             android:label="@string/SignUpPacientTitleActivity"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".TractamentsActivity"
-            android:label="@string/TreatmentsArea"
             android:screenOrientation="landscape" />
         <activity
             android:name=".EpisodiActivity"
@@ -112,6 +110,11 @@
         <activity
             android:name=".PacientAnswersActivity"
             android:label="@string/Answers"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".TractamentsActivity"
+            android:label="@string/TreatmentsArea"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
+
 </manifest>

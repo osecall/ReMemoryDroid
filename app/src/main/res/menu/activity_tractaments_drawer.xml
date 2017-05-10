@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:title="@string/PacientIssues">
+            <menu>
+                <item
+                    android:id="@+id/signoutpacient"
+                    android:icon="@drawable/signoutpacient24"
+                    android:title="@string/sign_out_Pacient" />
+                <item
+                    android:id="@+id/backtoepisodes"
+                    android:icon="@drawable/backicon24"
+                    android:title="@string/Episodes" />
+                <item
+                    android:id="@+id/answers"
+                    android:icon="@drawable/attachment"
+                    android:title="@string/PacientAnswers" />
+            </menu>
+        </item>
+    </group>
+
+    <item android:title="@string/AssessorIssues">
+        <menu>
+            <item
+                android:id="@+id/signOutAssessor"
+                android:icon="@drawable/signout24"
+                android:title="@string/sign_out_menu" />
+        </menu>
+    </item>
+
+</menu>
