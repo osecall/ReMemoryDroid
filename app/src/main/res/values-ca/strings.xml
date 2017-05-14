@@ -299,4 +299,10 @@
     <string name="AssessorIssues">Questions del avaluador</string>
     <string name="navigation_drawer_close">Tancar menú navegador</string>
     <string name="navigation_drawer_open">Obrir menú navegador</string>
+    <string name="VideoUploadCorrect">S\'ha pujat el vídeo correctament</string>
+    <string name="UploadVideo">Pujar video</string>
+    <string name="ChooseSource">Selecciona la font</string>
+    <string name="ImagesUpload">Imatges pujades</string>
+    <string name="Pictures">Fotos</string>
+    <string name="ChoosePicturesUpload">Selecciona on colocar la fotografía</string>
 </resources>

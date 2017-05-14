@@ -3,8 +3,8 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +24,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 
 public class VisualitzarActivity extends BaseActivity {
 
@@ -61,7 +62,7 @@ public class VisualitzarActivity extends BaseActivity {
 
         myRef = myRef.child(pacient.getID()).child(episodi).child("video").child("video.mp4");
 
-        vv = (VideoView) findViewById(R.id.vvVisualitzar1);
+        vv = (VideoView) findViewById(R.id.vvVisualitzar);
         ProgressBarVideo = (ProgressBar) findViewById(R.id.progressBarVideo);
         ibPlay = (ImageView) findViewById(R.id.ibPlay);
         ibStop = (ImageView) findViewById(R.id.ibStop);
@@ -91,7 +92,19 @@ public class VisualitzarActivity extends BaseActivity {
         vv.setEnabled(false);
 
         //Per les instruccions
-        mp = MediaPlayer.create(this, R.raw.visualitzacio0);
+        //Per les instruccions, diferents possibles idiomes en l'audio
+        if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+            mp = MediaPlayer.create(this, R.raw.visualitzacio0);
+
+        } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+            mp = MediaPlayer.create(this, R.raw.visualitzacio0_es);
+
+        } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+            mp = MediaPlayer.create(this, R.raw.visualitzacio0_en);
+
+        } else {
+            mp = MediaPlayer.create(this, R.raw.visualitzacio0);
+        }
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
@@ -150,7 +163,9 @@ public class VisualitzarActivity extends BaseActivity {
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vv.stopPlayback();
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -258,12 +273,6 @@ public class VisualitzarActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        vv.pause();
-        ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
-    }
 
     @Override
     protected void onPause() {
@@ -280,12 +289,6 @@ public class VisualitzarActivity extends BaseActivity {
         vv.start();
     }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        vv.seekTo(stopPosition);
-        vv.start();
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

@@ -11,25 +11,25 @@
         android:id="@+id/ibStop"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_alignTop="@+id/ibPlay"
+        android:layout_toStartOf="@+id/btNextWeather"
         android:elevation="24dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/stopwhite"
-        android:layout_alignTop="@+id/ibPlay"
-        android:layout_toStartOf="@+id/btNextWeather" />
+        app:srcCompat="@drawable/stopwhite" />
 
     <ImageView
         android:id="@+id/ibPlay"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_centerVertical="true"
         android:layout_marginEnd="99dp"
+        android:layout_toStartOf="@+id/vvVisualitzar2"
         android:elevation="24dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/playwhite"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/vvVisualitzar1" />
+        app:srcCompat="@drawable/playwhite" />
 
     <VideoView
-        android:id="@+id/vvVisualitzar1"
+        android:id="@+id/vvVisualitzar2"
         android:layout_width="575dp"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"

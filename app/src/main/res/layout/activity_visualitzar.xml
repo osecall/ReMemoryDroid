@@ -9,7 +9,7 @@
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.VisualitzarActivity">
 
         <VideoView
-            android:id="@+id/vvVisualitzar1"
+            android:id="@+id/vvVisualitzar"
             android:layout_width="575dp"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
@@ -33,33 +33,33 @@
         android:id="@+id/ibStop"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_alignTop="@+id/ibPlay"
+        android:layout_marginEnd="35dp"
+        android:layout_toStartOf="@+id/btNextWeather"
         android:elevation="24dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/stopwhite"
-        android:layout_alignTop="@+id/ibPlay"
-        android:layout_toEndOf="@+id/vvVisualitzar1"
-        android:layout_marginStart="65dp" />
+        app:srcCompat="@drawable/stopwhite" />
 
     <ImageView
         android:id="@+id/ibPlay"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_alignEnd="@+id/progressBarVideo"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="24dp"
         android:elevation="24dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/playwhite"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/vvVisualitzar1"
-        android:layout_marginEnd="85dp" />
+        app:srcCompat="@drawable/playwhite" />
 
     <ProgressBar
         android:id="@+id/progressBarVideo"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="69dp"
-        android:layout_marginEnd="36dp"
-        android:progressBackgroundTint="@color/colorPrimaryDark"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/vvVisualitzar1" />
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="72dp"
+        android:progressBackgroundTint="@color/colorPrimaryDark" />
 
 </RelativeLayout>

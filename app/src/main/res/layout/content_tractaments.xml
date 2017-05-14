@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,13 +7,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.TractamentsActivity"
     tools:showIn="@layout/app_bar_tractaments">
-
-
-    <RelativeLayout
-        android:layout_width="1264dp"
-        android:layout_height="647dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,7 +95,5 @@
             </LinearLayout>
 
         </LinearLayout>
+</RelativeLayout>
 
-    </RelativeLayout>
-
-</android.support.constraint.ConstraintLayout>

@@ -26,6 +26,14 @@
                 android:id="@+id/signOutAssessor"
                 android:icon="@drawable/signout24"
                 android:title="@string/sign_out_menu" />
+            <item
+                android:id="@+id/videos"
+                android:icon="@drawable/video24"
+                android:title="@string/UploadVideo" />
+            <item
+                android:id="@+id/pictures"
+                android:icon="@drawable/pictures"
+                android:title="@string/Pictures" />
         </menu>
     </item>
 

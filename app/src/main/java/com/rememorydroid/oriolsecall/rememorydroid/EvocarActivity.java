@@ -1,19 +1,15 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +30,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 
 public class EvocarActivity extends BaseActivity implements View.OnClickListener{
 
@@ -48,11 +45,8 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
     private Chronometer chronometer;
     private FirebaseStorage reference = FirebaseStorage.getInstance();
     private boolean curta;
-    private ProgressBar pbEvocar;
+    private ProgressBar pbEvocar, pb2Evocar;
     private PacientUsuari pacientusuari;
-    private static final int MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 4 ;
-    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1 ;
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2 ;
 
 
     @Override
@@ -197,7 +191,20 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
+                    pb2Evocar.setMax(mp.getDuration());
                     mp.start();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            while (mp.isPlaying()) {
+                                pb2Evocar.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        pb2Evocar.setProgress(mp.getCurrentPosition());
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
                 }
             });
 
@@ -292,6 +299,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         ibPlayEvocar = (ImageButton) findViewById(R.id.ibPlayEvocar);
         ibStopRecordEvocar = (ImageButton) findViewById(R.id.ibStopRecordEvocar);
         pbEvocar = (ProgressBar) findViewById(R.id.pbEvocar);
+        pb2Evocar = (ProgressBar) findViewById(R.id.pb2Evocar);
 
         ibStopRecordEvocar.setVisibility(View.INVISIBLE);
         ibStopPlayEvocar.setVisibility(View.INVISIBLE);
@@ -502,12 +510,25 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
 
     private void reproduirMissatgeDialeg(){
-        final MediaPlayer mp = MediaPlayer.create(this,R.raw.respirar1);
+
+        MediaPlayer mp = new MediaPlayer();
+
+        if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+            mp = MediaPlayer.create(this, R.raw.evocar1);
+        } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+            mp = MediaPlayer.create(this, R.raw.evocar1_es);
+
+        } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+            mp = MediaPlayer.create(this, R.raw.evocar1_en);
+        } else {
+            mp = MediaPlayer.create(this, R.raw.evocar1);
+        }
+
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                mp.stop();
-                mp.release();
+                mediaPlayer.stop();
+                mediaPlayer.release();
                 ibRecordEvocar.setEnabled(true);
             }
         });

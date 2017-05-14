@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.VideoView;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
@@ -15,6 +16,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 
 public class VisualitzarFragmentsActivity extends BaseActivity {
 
@@ -28,17 +30,17 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private String episodi;
     private MediaPlayer mpBackVideo;
-    private int stopPosition, stopPositionAudio;
+    private int audioBack;
+    private boolean audioFinish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualitzar_fragments);
 
-        if(savedInstanceState != null){
-            stopPosition = savedInstanceState.getInt("position");
-            stopPositionAudio = savedInstanceState.getInt("positionAudio");
-        }
+        mp = null;
+        mpBackVideo = null;
+        audioFinish = false;
 
         WriteStoragePermissos();
         ReadStoragePermissos();
@@ -48,7 +50,7 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
 
         myRef = myRef.child(pacient.getID()).child(episodi).child("video").child("video.mp4");
 
-        vv = (VideoView) findViewById(R.id.vvVisualitzar1);
+        vv = (VideoView) findViewById(R.id.vvVisualitzar2);
         ibPlay = (ImageView) findViewById(R.id.ibPlay);
         ibStop = (ImageView) findViewById(R.id.ibStop);
         btNext = (Button) findViewById(R.id.btNextWeather);
@@ -76,27 +78,110 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
         ibStop.setVisibility(View.INVISIBLE);
 
         if (getIntent().hasExtra("Segon")) {
-            mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada);
+
+            if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada);
+                audioBack = R.raw.visualitzacioguiada1playing;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing);
+
+            } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada_es);
+                audioBack = R.raw.visualitzacioguiada1playing_es;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing_es);
+
+
+            } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada_en);
+                audioBack = R.raw.visualitzacioguiada1playing_en;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing_en);
+
+            } else {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada);
+                audioBack = R.raw.visualitzacioguiada1playing;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing);
+            }
+
             intent = new Intent(VisualitzarFragmentsActivity.this, PreguntesActivity.class);
-            mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing);
         }
 
         else if (getIntent().hasExtra("Tercer")) {
-            mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
+
+            if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
+                audioBack = R.raw.visualitzacioguiada2playing;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing);
+
+            } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_es);
+                audioBack = R.raw.visualitzacioguiada2playing_es;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_es);
+
+
+            } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_en);
+                audioBack = R.raw.visualitzacioguiada2playing_en;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_en);
+
+            } else {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
+                audioBack = R.raw.visualitzacioguiada2playing;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing);
+            }
+
             intent = new Intent(VisualitzarFragmentsActivity.this, Preguntes2Activity.class);
             //Aquí el video no té audio i es reproduirà un audio mentres video reprodueix
-            mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing);
         }
 
         else if (getIntent().hasExtra("Quarta")) {
-            mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada);
+
+            if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada);
+                audioBack = R.raw.visualitzacioguiada3playing;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing);
+
+            } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada_es);
+                audioBack = R.raw.visualitzacioguiada3playing_es;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing_es);
+
+            } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada_en);
+                audioBack = R.raw.visualitzacioguiada3playing_en;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing_en);
+
+            } else {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada);
+                audioBack = R.raw.visualitzacioguiada3playing;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing);
+            }
+
             intent = new Intent(VisualitzarFragmentsActivity.this, EvocarActivity.class);
-            mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing);
             intent.putExtra("Quarta", "Quarta");
         }
 
         else if (getIntent().hasExtra("Curta")) {
-            mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
+
+            if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
+                audioBack = R.raw.visualitzacioguiada2playing;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing);
+
+            } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_es);
+                audioBack = R.raw.visualitzacioguiada2playing_es;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_es);
+
+            } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_en);
+                audioBack = R.raw.visualitzacioguiada2playing_en;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_en);
+
+            } else {
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
+                audioBack = R.raw.visualitzacioguiada2playing;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing);
+            }
+
             intent = new Intent(VisualitzarFragmentsActivity.this, EvocarActivity.class);
             intent.putExtra("EvocarD", "EvocarD");
         }
@@ -110,8 +195,6 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
                 mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mediaPlayer) {
-                        mp.release();
-                        mp = null;
                         ibPlay.setVisibility(View.VISIBLE);
                         ibStop.setVisibility(View.VISIBLE);
                         ibPlay.setEnabled(true);
@@ -131,6 +214,15 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
             }
         });
 
+        // New
+        mpBackVideo.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                audioFinish = true;
+            }
+        });
+        //
+
         ibPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,7 +233,7 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
                 } else {
                     ibPlay.setImageDrawable(getDrawable(R.drawable.pausewhite));
                     vv.start();
-                    mpBackVideo.start();
+                    if (!audioFinish) mpBackVideo.start();
                 }
             }
         });
@@ -151,8 +243,10 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
             public void onClick(View view) {
                 ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
                 vv.pause();
+                mpBackVideo.pause();
                 vv.seekTo(0);
                 mpBackVideo.seekTo(0);
+                audioFinish = false;
             }
         });
 
@@ -160,61 +254,12 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intent);
+                vv.stopPlayback();
+                mp.release();
+                mpBackVideo.release();
+                finish();
             }
         });
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mp.release();
-        mp = null;
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        vv.pause();
-        mpBackVideo.pause();
-        ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        vv.pause();
-        mpBackVideo.pause();
-        ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        vv.seekTo(stopPosition);
-        mpBackVideo.seekTo(stopPositionAudio);
-        vv.start();
-        mpBackVideo.start();
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        vv.seekTo(stopPosition);
-        mpBackVideo.seekTo(stopPositionAudio);
-        vv.start();
-        mpBackVideo.start();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        stopPosition = vv.getCurrentPosition();
-        stopPositionAudio = mpBackVideo.getCurrentPosition();
-        vv.pause();
-        mpBackVideo.pause();
-        outState.putInt("position", stopPosition);
-        outState.putInt("positionAudio", stopPositionAudio);
     }
 }

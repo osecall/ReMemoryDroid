@@ -3,9 +3,9 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -39,11 +39,11 @@ public class RespirarActivity extends AppCompatActivity {
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("es")){
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_es;
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("en")){
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_en;
 
             }
             else{
@@ -52,7 +52,7 @@ public class RespirarActivity extends AppCompatActivity {
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Segon","Segon");
-            ReproduirMissatge(mp);
+            //ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
 
         }
@@ -64,11 +64,11 @@ public class RespirarActivity extends AppCompatActivity {
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("es")){
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_es;
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("en")){
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_en;
 
             }
             else{
@@ -77,7 +77,7 @@ public class RespirarActivity extends AppCompatActivity {
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Tercer","Tercer");
-            ReproduirMissatge(mp);
+            //ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
 
         }
@@ -89,11 +89,11 @@ public class RespirarActivity extends AppCompatActivity {
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("es")){
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_es;
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("en")){
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_en;
 
             }
             else{
@@ -102,7 +102,7 @@ public class RespirarActivity extends AppCompatActivity {
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Quarta","Quarta");
-            ReproduirMissatge(mp);
+            //ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
 
         }
@@ -114,11 +114,11 @@ public class RespirarActivity extends AppCompatActivity {
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("es")){
-                Reproduccio = R.raw.respirar1;
+                Reproduccio = R.raw.respirar1_es;
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("en")){
-                Reproduccio = R.raw.respirar1;
+                Reproduccio = R.raw.respirar1_en;
 
             }
             else{
@@ -128,7 +128,7 @@ public class RespirarActivity extends AppCompatActivity {
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this,VisualitzarActivity.class);
             intentRespirar.putExtra("Curta1","Curta1");
-            ReproduirMissatge(mp);
+            //ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
         }
         else if(getIntent().hasExtra("Curta2")){
@@ -139,11 +139,11 @@ public class RespirarActivity extends AppCompatActivity {
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("es")){
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_es;
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("en")){
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_en;
 
             }
             else{
@@ -153,7 +153,7 @@ public class RespirarActivity extends AppCompatActivity {
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this,TestActivity.class);
             intentRespirar.putExtra("SegonTest","SegonTest");
-            ReproduirMissatge(mp);
+            //ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
         }
         else{
@@ -163,11 +163,11 @@ public class RespirarActivity extends AppCompatActivity {
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("es")){
-                Reproduccio = R.raw.respirar1;
+                Reproduccio = R.raw.respirar1_es;
 
             }
             else if(Locale.getDefault().getLanguage().toString().matches("en")){
-                Reproduccio = R.raw.respirar1;
+                Reproduccio = R.raw.respirar1_en;
 
             }
             else{
@@ -177,7 +177,7 @@ public class RespirarActivity extends AppCompatActivity {
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this, VisualitzarActivity.class);
-            ReproduirMissatge(mp);
+            //ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
         }
     }
@@ -203,6 +203,7 @@ public class RespirarActivity extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ReproduirMissatge(mp);
                 alerta.dismiss();
             }
         });
@@ -213,23 +214,15 @@ public class RespirarActivity extends AppCompatActivity {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 mp.stop();
-                mp.release();
                 startActivity(intentRespirar);
             }
         });
-        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mp.start();
-            }
-        });
+        mp.start();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mp.stop();
         mp.release();
-        mp=null;
     }
 }
