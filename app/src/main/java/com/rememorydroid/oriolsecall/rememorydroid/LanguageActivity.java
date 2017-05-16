@@ -31,32 +31,29 @@ public class LanguageActivity extends BaseActivity {
         btesIdioma = (ImageButton) findViewById(R.id.btesIdioma);
         btenIdioma = (ImageButton) findViewById(R.id.btenIdioma);
 
+        if (!isNetworkAvailable()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(LanguageActivity.this);
+            builder.setMessage(R.string.InternetNeeded)
+                    .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent startMain = new Intent(Intent.ACTION_MAIN);
+                            startMain.addCategory(Intent.CATEGORY_HOME);
+                            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(startMain);
+                            finish();
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            builder.create().show();
+
+        }
+
+
         InternetPermissos();
         AudioRecordPermissos();
         WriteStoragePermissos();
         ReadStoragePermissos();
 
-
-        //Comprobar si hi ha Internet
-
-
-        if(!isThereInternet()){
-            AlertDialog.Builder Dialeg = new AlertDialog.Builder(LanguageActivity.this);
-            Dialeg.setCancelable(false).setMessage(R.string.InternetNeeded)
-                    .setNeutralButton("D'acord", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            LanguageActivity.this.finish();
-                            Intent startMain = new Intent(Intent.ACTION_MAIN);
-                            startMain.addCategory(Intent.CATEGORY_HOME);
-                            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(startMain);
-                        }
-                    }).show();
-        }
-
-        //------------------------------------------
 
         btcaIdioma.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,12 +93,11 @@ public class LanguageActivity extends BaseActivity {
 
     }
 
-    private boolean isThereInternet(){
-        boolean connected = false;
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        //we are connected to a network
-        connected = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
-        return connected;
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
