@@ -305,4 +305,16 @@
     <string name="ImagesUpload">Imagenes subidas</string>
     <string name="Pictures">Fotos</string>
     <string name="ChoosePicturesUpload">Selecciona donde introducir la fotografia</string>
+    <string name="GridA">Cuadrícula A</string>
+    <string name="GridB">Cuadrícula B</string>
+    <string name="GridC">Cuadrícula C</string>
+    <string name="GridD">Cuadrícula D</string>
+    <string name="DescriptionDetailedComplete">Descripción detallada y completa</string>
+    <string name="DetailedDescription">Descripción detallada pero no completa</string>
+    <string name="DontMention">No menciona</string>
+    <string name="GenericDescription">Descripción generica</string>
+    <string name="Event">Esdevenimientos</string>
+    <string name="Perceptions">Percepciones</string>
+    <string name="Place">Lugar</string>
+    <string name="Time">Tiempo</string>
 </resources>

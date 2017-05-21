@@ -305,4 +305,16 @@
     <string name="ImagesUpload">Imatges upload</string>
     <string name="Pictures">Pictures</string>
     <string name="ChoosePicturesUpload">Choose where to upload the picture</string>
+    <string name="GridA">Grid A</string>
+    <string name="GridB">Grid B</string>
+    <string name="GridC">Grid C</string>
+    <string name="GridD">Grid D</string>
+    <string name="DescriptionDetailedComplete">Description detailed and complete</string>
+    <string name="DetailedDescription">Detailed description but not completed</string>
+    <string name="DontMention">Don\'t mention</string>
+    <string name="GenericDescription">Generic Description</string>
+    <string name="Event">Event</string>
+    <string name="Perceptions">Perceptions</string>
+    <string name="Place">Place</string>
+    <string name="Time">Time</string>
 </resources>

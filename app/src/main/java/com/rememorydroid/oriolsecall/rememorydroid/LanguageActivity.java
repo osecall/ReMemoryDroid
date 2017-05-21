@@ -43,7 +43,6 @@ public class LanguageActivity extends BaseActivity {
                             finish();
                         }
                     });
-            // Create the AlertDialog object and return it
             builder.create().show();
 
         }

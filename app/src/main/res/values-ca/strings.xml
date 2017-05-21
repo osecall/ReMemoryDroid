@@ -305,4 +305,16 @@
     <string name="ImagesUpload">Imatges pujades</string>
     <string name="Pictures">Fotos</string>
     <string name="ChoosePicturesUpload">Selecciona on colocar la fotografía</string>
+    <string name="GridA">Graella A</string>
+    <string name="GridB">Graella B</string>
+    <string name="GridC">Graella C</string>
+    <string name="GridD">Graella D</string>
+    <string name="DescriptionDetailedComplete">Descripció detallada i completa</string>
+    <string name="DetailedDescription">Descripció detallada però no completa</string>
+    <string name="DontMention">No menciona</string>
+    <string name="GenericDescription">Descripció genèrica</string>
+    <string name="Event">Esdeveniments</string>
+    <string name="Perceptions">Percepcions</string>
+    <string name="Place">Lloc</string>
+    <string name="Time">Temps</string>
 </resources>

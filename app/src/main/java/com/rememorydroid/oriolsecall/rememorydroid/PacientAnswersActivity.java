@@ -6,18 +6,24 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -29,7 +35,7 @@ import java.io.File;
 public class PacientAnswersActivity extends BaseActivity {
 
     private static final String TAG = "PacientAnswrsActivity";
-    private Button EvocarA, EvocarB, EvocarC, EvocarD, btER, btDR;
+    private Button EvocarA, EvocarB, EvocarC, EvocarD, btER, btDR, btGraellaA, btGraellaB, btGraellaC, btGraellaD;
     private ImageView imatge;
     private String pacientID;
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
@@ -39,11 +45,17 @@ public class PacientAnswersActivity extends BaseActivity {
     private StorageReference myRefD = FirebaseStorage.getInstance().getReference();
     private StorageReference myRefEnviar = FirebaseStorage.getInstance().getReference();
     private StorageReference myRefDescarregar = FirebaseStorage.getInstance().getReference();
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference dbRef = database.getReference("pacients");
+    private TextView tvTotal0;
+
+    private int total = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pacient_answers);
+        total = 0;
 
         EvocarA = (Button) findViewById(R.id.btEvocarA);
         EvocarB = (Button) findViewById(R.id.btEvocarB);
@@ -51,6 +63,12 @@ public class PacientAnswersActivity extends BaseActivity {
         EvocarD = (Button) findViewById(R.id.btEvocarD);
         btER = (Button) findViewById(R.id.btER);
         btDR = (Button) findViewById(R.id.btDR);
+        btGraellaA = (Button) findViewById(R.id.btGraellaA);
+        btGraellaB = (Button) findViewById(R.id.btGraellaB);
+        btGraellaC = (Button) findViewById(R.id.btGraellaC);
+        btGraellaD = (Button) findViewById(R.id.btGraellaD);
+
+
 
         imatge = (ImageView) findViewById(R.id.ivFavorita);
 
@@ -162,6 +180,34 @@ public class PacientAnswersActivity extends BaseActivity {
             }
         });
 
+        btGraellaA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GraellaEvocar("A");
+            }
+        });
+        btGraellaB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GraellaEvocar("B");
+
+            }
+        });
+        btGraellaC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GraellaEvocar("C");
+
+            }
+        });
+        btGraellaD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GraellaEvocar("D");
+
+            }
+        });
+
     }
 
     private void enviarEmailCSV(Uri pathToFile, String Pacient) {
@@ -231,5 +277,187 @@ public class PacientAnswersActivity extends BaseActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onCkeckboxClicked(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.cb01:
+                if (checked) {
+                    total++;
+                    updateTotal();
+                } else {
+                    total--;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb02:
+                if (checked) {
+                    total = total + 2;
+                    updateTotal();
+                } else {
+                    total = total - 2;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb03:
+                if (checked) {
+                    total = total + 3;
+                    updateTotal();
+                } else {
+                    total = total - 3;
+                    updateTotal();
+                }
+                break;
+
+
+            case R.id.cb11:
+                if (checked) {
+                    total++;
+                    updateTotal();
+                } else {
+                    total--;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb12:
+                if (checked) {
+                    total = total + 2;
+                    updateTotal();
+                } else {
+                    total = total - 2;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb13:
+                if (checked) {
+                    total = total + 3;
+                    updateTotal();
+                } else {
+                    total = total - 3;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb21:
+                if (checked) {
+                    total = total + 1;
+                    updateTotal();
+                } else {
+                    total = total - 1;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb22:
+                if (checked) {
+                    total = total + 2;
+                    updateTotal();
+                } else {
+                    total = total - 2;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb23:
+                if (checked) {
+                    total = total + 3;
+                    updateTotal();
+                } else {
+                    total = total - 3;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb31:
+                if (checked) {
+                    total = total + 1;
+                    updateTotal();
+                } else {
+                    total = total - 1;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb32:
+                if (checked) {
+                    total = total + 2;
+                    updateTotal();
+                } else {
+                    total = total - 2;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb33:
+                if (checked) {
+                    total = total + 3;
+                    updateTotal();
+                } else {
+                    total = total - 3;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb41:
+                if (checked) {
+                    total = total + 1;
+                    updateTotal();
+                } else {
+                    total = total - 1;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb42:
+                if (checked) {
+                    total = total + 2;
+                    updateTotal();
+                } else {
+                    total = total - 2;
+                    updateTotal();
+                }
+                break;
+            case R.id.cb43:
+                if (checked) {
+                    total = total + 3;
+                    updateTotal();
+                } else {
+                    total = total - 3;
+                    updateTotal();
+                }
+                break;
+        }
+    }
+
+    private void updateTotal() {
+        tvTotal0.setText(String.valueOf(total));
+    }
+
+
+    private void GraellaEvocar(final String graella) {
+        total = 0;
+        AlertDialog.Builder DialegGraella = new AlertDialog.Builder(PacientAnswersActivity.this);
+        LayoutInflater factory = LayoutInflater.from(PacientAnswersActivity.this);
+        View viewgraella = factory.inflate(R.layout.dialeggraella, null);
+        DialegGraella.setView(viewgraella);
+        final Button btOKGrid = (Button) viewgraella.findViewById(R.id.btOKGrid);
+        final Button btKO = (Button) viewgraella.findViewById(R.id.btKOGrid);
+        tvTotal0 = (TextView) viewgraella.findViewById(R.id.tvTotal0);
+
+
+        final AlertDialog alertaGraella = DialegGraella.create();
+        alertaGraella.show();
+
+        btOKGrid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbRef.child(ObtenirPacient().getID()).child("episodis").child(ObtenirEpisodi().toString()).child("Total_graella_evocar_" + graella).setValue(String.valueOf(total));
+                alertaGraella.dismiss();
+            }
+        });
+
+        btKO.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertaGraella.dismiss();
+            }
+        });
+
+
+
     }
 }
