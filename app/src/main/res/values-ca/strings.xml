@@ -321,4 +321,5 @@
     <string name="PunctuationUploaded">Puntuació pujada</string>
     <string name="Bodyemal">En aquest correu et pots descarregar el fitxer CSV. Gràcies.</string>
     <string name="SubjectEmail">ResultatsCSV_Pacient_</string>
+    <string name="SendEmailResults">Enviar e-mail amb resultats</string>
 </resources>

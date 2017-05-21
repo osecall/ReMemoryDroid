@@ -321,4 +321,5 @@
     <string name="PunctuationUploaded">Puntuación subida</string>
     <string name="Bodyemal">En este correo puedes decargarte los resultados del paciente.</string>
     <string name="SubjectEmail">ResultadosCSV_Pacient_</string>
+    <string name="SendEmailResults"></string>
 </resources>

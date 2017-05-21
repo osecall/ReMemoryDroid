@@ -237,13 +237,13 @@ public class TractamentsActivity extends BaseActivity
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.putExtra(Intent.EXTRA_EMAIL, emailTo);
         emailIntent.putExtra(Intent.EXTRA_CC, emailCC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.SubjectEmail + Pacient);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, R.string.Bodyemal);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.SubjectEmail) + Pacient);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.Bodyemal));
         emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(pathToFile)));
         emailIntent.setType("message/rfc822");
 
         try {
-            startActivity(Intent.createChooser(emailIntent, "Enviar email amb resultats:"));
+            startActivity(Intent.createChooser(emailIntent, getString(R.string.SendEmailResults)));
         } catch (android.content.ActivityNotFoundException ex) {
             showToast(ex.getMessage().toString(),false);
         }

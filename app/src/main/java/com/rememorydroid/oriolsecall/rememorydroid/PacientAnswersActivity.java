@@ -18,10 +18,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -85,7 +83,6 @@ public class PacientAnswersActivity extends BaseActivity {
                 tvCurrentPunct1.setText(dataSnapshot.child("Total_graella_evocar_B").getValue(String.class));
                 tvCurrentPunct2.setText(dataSnapshot.child("Total_graella_evocar_C").getValue(String.class));
                 tvCurrentPunct3.setText(dataSnapshot.child("Total_graella_evocar_D").getValue(String.class));
-
             }
 
             @Override
@@ -170,17 +167,17 @@ public class PacientAnswersActivity extends BaseActivity {
         btER.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myRefEnviar.child(pacient.getID()).child(episodi).child("respostes").child("ResultatVersioLlarga_" + pacient.getID() + ".csv").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        final Uri fitxer = uri;
-                        enviarEmailCSV(fitxer, pacient.getName());
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
+                final Uri urifile = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "ResultatVersioLlarga_" + pacient.getID() + "_episodi_" + episodi + ".csv"));
+                myRefDescarregar.child(pacient.getID()).child(episodi.toString()).child("respostes").child("ResultatVersioLlarga_" + pacient.getID() + ".csv").getFile(urifile).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        showToastError();
-                        Log.e(TAG, "Error al enviar fitxer respostes desde FireBase");
+                        showToast(e.getMessage().toString(), false);
+                        Log.e(TAG, "Error al descargar fitxer resultats!");
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        enviarEmailCSV(urifile, pacient.getName());
                     }
                 });
             }
@@ -190,15 +187,15 @@ public class PacientAnswersActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Uri urifile = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "ResultatVersioLlarga_" + pacient.getID() + "_episodi_" + episodi + ".csv"));
-                myRefDescarregar.child(pacient.getID()).child(episodi).child("respostes").child("ResultatVersioLlarga_" + pacient.getID() + ".csv").getFile(urifile).addOnFailureListener(new OnFailureListener() {
+                myRefDescarregar.child(pacient.getID()).child(episodi.toString()).child("respostes").child("ResultatVersioLlarga_" + pacient.getID() + ".csv").getFile(urifile).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         showToast(e.getMessage().toString(), false);
                         Log.e(TAG, "Error al descargar fitxer resultats!");
                     }
-                }).addOnCompleteListener(new OnCompleteListener<FileDownloadTask.TaskSnapshot>() {
+                }).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<FileDownloadTask.TaskSnapshot> task) {
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                         showToast("Descàrga correcte", false);
                     }
                 });

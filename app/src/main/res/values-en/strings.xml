@@ -321,4 +321,5 @@
     <string name="PunctuationUploaded">Punctuation has been uploaded</string>
     <string name="Bodyemal">Here you cand find the results of the pacient</string>
     <string name="SubjectEmail">ResultsCSV_Pacient_</string>
+    <string name="SendEmailResults">Send email with results</string>
 </resources>
