@@ -23,8 +23,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -48,7 +51,7 @@ public class PacientAnswersActivity extends BaseActivity {
     private StorageReference myRefDescarregar = FirebaseStorage.getInstance().getReference();
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference dbRef = database.getReference("pacients");
-    private TextView tvTotal0;
+    private TextView tvTotal0, tvCurrentPunct0, tvCurrentPunct1, tvCurrentPunct2, tvCurrentPunct3;
 
     private int total = 0;
 
@@ -69,6 +72,27 @@ public class PacientAnswersActivity extends BaseActivity {
         btGraellaC = (Button) findViewById(R.id.btGraellaC);
         btGraellaD = (Button) findViewById(R.id.btGraellaD);
 
+        tvCurrentPunct0 = (TextView) findViewById(R.id.tvCurrentPunct0);
+        tvCurrentPunct1 = (TextView) findViewById(R.id.tvCurrentPunct1);
+        tvCurrentPunct2 = (TextView) findViewById(R.id.tvCurrentPunct2);
+        tvCurrentPunct3 = (TextView) findViewById(R.id.tvCurrentPunct3);
+
+        DatabaseReference punctRef = dbRef.child(ObtenirPacient().getID()).child("episodis").child(ObtenirEpisodi().toString());
+        punctRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                tvCurrentPunct0.setText(dataSnapshot.child("Total_graella_evocar_A").getValue(String.class));
+                tvCurrentPunct1.setText(dataSnapshot.child("Total_graella_evocar_B").getValue(String.class));
+                tvCurrentPunct2.setText(dataSnapshot.child("Total_graella_evocar_C").getValue(String.class));
+                tvCurrentPunct3.setText(dataSnapshot.child("Total_graella_evocar_D").getValue(String.class));
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                showToastError();
+            }
+        });
 
 
         imatge = (ImageView) findViewById(R.id.ivFavorita);
