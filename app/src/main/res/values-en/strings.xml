@@ -319,4 +319,6 @@
     <string name="Time">Time</string>
     <string name="Valor15">Value can\'t be greater than 15</string>
     <string name="PunctuationUploaded">Punctuation has been uploaded</string>
+    <string name="Bodyemal">Here you cand find the results of the pacient</string>
+    <string name="SubjectEmail">ResultsCSV_Pacient_</string>
 </resources>

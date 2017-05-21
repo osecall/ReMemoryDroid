@@ -319,4 +319,6 @@
     <string name="Time">Tiempo</string>
     <string name="Valor15">El valor no puede ser mayor de 15</string>
     <string name="PunctuationUploaded">Puntuación subida</string>
+    <string name="Bodyemal">En este correo puedes decargarte los resultados del paciente.</string>
+    <string name="SubjectEmail">ResultadosCSV_Pacient_</string>
 </resources>

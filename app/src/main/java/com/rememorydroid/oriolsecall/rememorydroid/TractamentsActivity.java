@@ -237,8 +237,8 @@ public class TractamentsActivity extends BaseActivity
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.putExtra(Intent.EXTRA_EMAIL, emailTo);
         emailIntent.putExtra(Intent.EXTRA_CC, emailCC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "ResultatsCSV_Pacient_"+Pacient);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "En aquest correu et pots descarregar el fitxer CSV. Gràcies.");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.SubjectEmail + Pacient);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, R.string.Bodyemal);
         emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(pathToFile)));
         emailIntent.setType("message/rfc822");
 
