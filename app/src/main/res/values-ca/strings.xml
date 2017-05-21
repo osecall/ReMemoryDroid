@@ -317,4 +317,6 @@
     <string name="Perceptions">Percepcions</string>
     <string name="Place">Lloc</string>
     <string name="Time">Temps</string>
+    <string name="Valor15">El valor no pot ser major de 15</string>
+    <string name="PunctuationUploaded">Puntuació pujada</string>
 </resources>

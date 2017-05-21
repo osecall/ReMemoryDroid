@@ -1,6 +1,7 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -424,7 +425,15 @@ public class PacientAnswersActivity extends BaseActivity {
     }
 
     private void updateTotal() {
-        tvTotal0.setText(String.valueOf(total));
+        if (total > 15) {
+            tvTotal0.setTextColor(Color.parseColor("#ffff4444"));
+            tvTotal0.setError(getString(R.string.Valor15));
+            showToast(getString(R.string.Valor15), false);
+        } else {
+            tvTotal0.setTextColor(Color.parseColor("#3788e4"));
+            tvTotal0.setError(null);
+            tvTotal0.setText(String.valueOf(total));
+        }
     }
 
 
@@ -447,6 +456,7 @@ public class PacientAnswersActivity extends BaseActivity {
             public void onClick(View view) {
                 dbRef.child(ObtenirPacient().getID()).child("episodis").child(ObtenirEpisodi().toString()).child("Total_graella_evocar_" + graella).setValue(String.valueOf(total));
                 alertaGraella.dismiss();
+                showToast(getString(R.string.PunctuationUploaded), false);
             }
         });
 
@@ -456,8 +466,5 @@ public class PacientAnswersActivity extends BaseActivity {
                 alertaGraella.dismiss();
             }
         });
-
-
-
     }
 }

@@ -337,6 +337,8 @@
     <string name="Place">Place</string>
     <string name="Time">Time</string>
     <string name="Perceptions">Perceptions</string>
+    <string name="Valor15">Value can\'t be greater than 15</string>
+    <string name="PunctuationUploaded">Punctuation has been uploaded</string>
 
     <!-- Strings related to login -->
 
