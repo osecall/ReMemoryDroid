@@ -3,10 +3,10 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -370,6 +370,7 @@ public class AlbumActivity extends BaseActivity {
         StorageReference Ref4 = myRef.child(ID).child(episodi).child("imatges").child("4.jpg");
         StorageReference Ref5 = myRef.child(ID).child(episodi).child("imatges").child("5.jpg");
 
+        showProgressDialog();
         Ref0.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -454,6 +455,7 @@ public class AlbumActivity extends BaseActivity {
                 ivAlbum5.setVisibility(View.VISIBLE);
                 Picasso.with(AlbumActivity.this).load(uri).into(ivAlbum5);
                 ivAlbum5.setEnabled(true);
+                hideProgressDialog();
 
             }
         }).addOnFailureListener(new OnFailureListener() {

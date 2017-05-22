@@ -41,6 +41,7 @@ public class TractamentsActivity extends BaseActivity
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private String TAG = "TractamentsAtivity";
     private int i = 0;
+    private boolean booleanPassed = false;
 
 
     @Override
@@ -49,6 +50,8 @@ public class TractamentsActivity extends BaseActivity
         setContentView(R.layout.activity_tractaments);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        booleanPassed = false;
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -419,6 +422,4 @@ public class TractamentsActivity extends BaseActivity
         pickVideo.setType("image/*");
         startActivityForResult(Intent.createChooser(pickVideo, getString(R.string.ChooseSource)), result2);
     }
-
-
 }

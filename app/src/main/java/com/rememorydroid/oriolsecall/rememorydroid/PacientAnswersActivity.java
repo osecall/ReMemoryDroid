@@ -475,9 +475,13 @@ public class PacientAnswersActivity extends BaseActivity {
         btOKGrid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dbRef.child(ObtenirPacient().getID()).child("episodis").child(ObtenirEpisodi().toString()).child("Total_graella_evocar_" + graella).setValue(String.valueOf(total));
-                alertaGraella.dismiss();
-                showToast(getString(R.string.PunctuationUploaded), false);
+                if (total <= 15) {
+                    dbRef.child(ObtenirPacient().getID()).child("episodis").child(ObtenirEpisodi().toString()).child("Total_graella_evocar_" + graella).setValue(String.valueOf(total));
+                    alertaGraella.dismiss();
+                    showToast(getString(R.string.PunctuationUploaded), false);
+                } else {
+                    showToast(getString(R.string.Valor15), false);
+                }
             }
         });
 

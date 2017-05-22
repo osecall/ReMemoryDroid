@@ -1,7 +1,5 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
-import android.*;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,16 +18,14 @@ import com.google.gson.Gson;
 public class BaseActivity extends AppCompatActivity {
 
 
-    public SharedPreferences prefs;
-    public SharedPreferences.Editor editor;
-    public Gson gson;
-
     public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1 ;
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2 ;
     public static final int MY_PERMISSIONS_REQUEST_INTERNET = 3 ;
     public static final int MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 4 ;
-
-
+    public SharedPreferences prefs;
+    public SharedPreferences.Editor editor;
+    public Gson gson;
+    public boolean passed = false;
     public ProgressDialog mProgressDialog;
 
     public void showProgressDialog() {
@@ -85,7 +81,7 @@ public class BaseActivity extends AppCompatActivity {
         gson = new Gson();
         prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         return gson.fromJson(prefs.getString("respostes",null),TestAnswers.class);
-    };
+    }
 
     //Guardar respostes
     public void GravarRespoestesActuals(TestAnswers respostes){
@@ -101,7 +97,7 @@ public class BaseActivity extends AppCompatActivity {
         gson = new Gson();
         prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         return gson.fromJson(prefs.getString("pacient",null),PacientUsuari.class);
-    };
+    }
 
     //Guardar respostes
     public void GravarPacient(PacientUsuari pacient){
@@ -115,7 +111,7 @@ public class BaseActivity extends AppCompatActivity {
     //Obtenir episodi
     public String ObtenirEpisodi(){
         return getSharedPreferences("pacient", Context.MODE_PRIVATE).getString("episodi",null);
-    };
+    }
 
     //Guardar respostes
     public void GravarEpisodi(String episodi){
@@ -128,7 +124,7 @@ public class BaseActivity extends AppCompatActivity {
     //Obtenir versió
     public String ObtenirVersio(){
         return getSharedPreferences("pacient", Context.MODE_PRIVATE).getString("Versio",null);
-    };
+    }
 
     //Guardar versió
     public void GravarVersio(String versio){
@@ -267,5 +263,9 @@ public class BaseActivity extends AppCompatActivity {
             }
         }
     }
+
 }
+
+
+
 
