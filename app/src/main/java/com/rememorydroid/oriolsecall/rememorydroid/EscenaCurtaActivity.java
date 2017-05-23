@@ -35,10 +35,6 @@ public class EscenaCurtaActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escena_curta);
 
-        AudioRecordPermissos();
-        WriteStoragePermissos();
-        ReadStoragePermissos();
-
 
         Episodi = ObtenirEpisodi();
         pacient = ObtenirPacient();

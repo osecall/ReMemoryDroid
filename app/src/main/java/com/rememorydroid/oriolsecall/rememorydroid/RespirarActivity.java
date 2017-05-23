@@ -24,10 +24,6 @@ public class RespirarActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_respirar);
 
-        AudioRecordPermissos();
-        WriteStoragePermissos();
-        ReadStoragePermissos();
-
         ImageView ivRespirar = (ImageView) findViewById(R.id.ivRespirar);
         intentRespirar = new Intent(RespirarActivity.this, VisualitzarFragmentsActivity.class);
         mp=new MediaPlayer();
@@ -217,6 +213,7 @@ public class RespirarActivity extends BaseActivity {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 mp.stop();
+                mp.release();
                 startActivity(intentRespirar);
             }
         });

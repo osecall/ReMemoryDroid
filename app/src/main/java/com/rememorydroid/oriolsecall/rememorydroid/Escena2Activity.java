@@ -34,10 +34,6 @@ public class Escena2Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escena2);
 
-        AudioRecordPermissos();
-        WriteStoragePermissos();
-        ReadStoragePermissos();
-
         A= getIntent().getStringExtra("A");
         B= getIntent().getStringExtra("B");
         C= getIntent().getStringExtra("C");

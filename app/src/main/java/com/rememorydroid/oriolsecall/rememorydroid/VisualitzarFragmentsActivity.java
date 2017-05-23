@@ -257,7 +257,6 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
                 vv.stopPlayback();
                 mp.release();
                 mpBackVideo.release();
-                finish();
             }
         });
 

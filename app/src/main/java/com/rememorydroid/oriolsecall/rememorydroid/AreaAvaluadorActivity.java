@@ -53,10 +53,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area_avaluador);
 
-        AudioRecordPermissos();
-        WriteStoragePermissos();
-        ReadStoragePermissos();
-
         pacient=null;
 
         emailAvaluador = (TextView) findViewById(R.id.tvAssessersSessionEmail);

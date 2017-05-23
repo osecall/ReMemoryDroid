@@ -42,10 +42,6 @@ public class AlbumActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
 
-        AudioRecordPermissos();
-        WriteStoragePermissos();
-        ReadStoragePermissos();
-
         showProgressDialog();
 
         ID = new String();

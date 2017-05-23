@@ -166,7 +166,6 @@ public class VisualitzarActivity extends BaseActivity {
                 vv.stopPlayback();
                 mp.release();
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -263,7 +262,7 @@ public class VisualitzarActivity extends BaseActivity {
         if (id == R.id.btSignOutPacient) {
 
             //Retorna a la pantalla 'Area Avaluador'
-
+            BorrarPacient();
             showToast(getString(R.string.MenuChangePacient),true);
 
             Intent areaAvaluador = new Intent(VisualitzarActivity.this, AreaAvaluadorActivity.class);
