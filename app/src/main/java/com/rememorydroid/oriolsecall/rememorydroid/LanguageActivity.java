@@ -11,6 +11,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.Locale;
 
 public class LanguageActivity extends BaseActivity {
@@ -18,6 +20,8 @@ public class LanguageActivity extends BaseActivity {
     private ImageButton btcaIdioma, btesIdioma, btenIdioma;
     private Locale locale;
     private Configuration config;
+    private FirebaseAuth mAuth;
+
 
 
     @Override
@@ -30,6 +34,11 @@ public class LanguageActivity extends BaseActivity {
         btcaIdioma = (ImageButton) findViewById(R.id.btcaIdioma);
         btesIdioma = (ImageButton) findViewById(R.id.btesIdioma);
         btenIdioma = (ImageButton) findViewById(R.id.btenIdioma);
+
+        InternetPermissos();
+        AudioRecordPermissos();
+        WriteStoragePermissos();
+        ReadStoragePermissos();
 
         if (!isNetworkAvailable()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(LanguageActivity.this);
@@ -46,11 +55,6 @@ public class LanguageActivity extends BaseActivity {
             builder.create().show();
 
         }
-        InternetPermissos();
-        AudioRecordPermissos();
-        WriteStoragePermissos();
-        ReadStoragePermissos();
-
 
         btcaIdioma.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,11 +95,35 @@ public class LanguageActivity extends BaseActivity {
             }
         });
 
-        if (ObtenirLlenguatge() != null) {
-            if (ObtenirPacientBoolean() != null)
-                startActivity(new Intent(LanguageActivity.this, EpisodiActivity.class));
-            else startActivity(new Intent(LanguageActivity.this, SignInActivity.class));
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            if (ObtenirLlenguatge() != null) {
+                if (ObtenirLlenguatge().matches("ca")) {
+                    locale = new Locale("ca");
+                    config.setLocale(locale);
+                    getResources().updateConfiguration(config, null);
+                    GuardarLlenguatge("ca");
+                }
+                if (ObtenirLlenguatge().matches("es")) {
+                    locale = new Locale("es");
+                    config.setLocale(locale);
+                    getResources().updateConfiguration(config, null);
+                    GuardarLlenguatge("es");
+                }
+                if (ObtenirLlenguatge().matches("en")) {
+                    locale = new Locale("en");
+                    config.setLocale(locale);
+                    getResources().updateConfiguration(config, null);
+                    GuardarLlenguatge("en");
+                }
+
+
+                if (ObtenirPacientBoolean() != null)
+                    startActivity(new Intent(LanguageActivity.this, EpisodiActivity.class));
+                else startActivity(new Intent(LanguageActivity.this, SignInActivity.class));
+            }
         }
+
 
     }
 

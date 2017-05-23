@@ -37,7 +37,9 @@ public class SignInActivity extends BaseActivity implements
         setContentView(R.layout.activity_sign_in);
 
         InternetPermissos();
-
+        AudioRecordPermissos();
+        WriteStoragePermissos();
+        ReadStoragePermissos();
 
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
