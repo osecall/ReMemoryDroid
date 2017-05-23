@@ -9,6 +9,10 @@
                     android:icon="@drawable/signoutpacient24"
                     android:title="@string/sign_out_Pacient" />
                 <item
+                    android:id="@+id/changelanguage"
+                    android:icon="@drawable/languages"
+                    android:title="@string/ChangeLanguage" />
+                <item
                     android:id="@+id/backtoepisodes"
                     android:icon="@drawable/backicon24"
                     android:title="@string/Episodes" />

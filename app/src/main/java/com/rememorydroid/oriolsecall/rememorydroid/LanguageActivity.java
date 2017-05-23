@@ -46,12 +46,11 @@ public class LanguageActivity extends BaseActivity {
             builder.create().show();
 
         }
-
-
         InternetPermissos();
         AudioRecordPermissos();
         WriteStoragePermissos();
         ReadStoragePermissos();
+
 
 
         btcaIdioma.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +60,7 @@ public class LanguageActivity extends BaseActivity {
                 showToast("Ha sel·leccionat Català", true);
                 config.setLocale(locale);
                 getResources().updateConfiguration(config,null);
+                GuardarLlenguatge("ca");
                 Intent inici = new Intent(LanguageActivity.this, SignInActivity.class);
                 startActivity(inici);
             }
@@ -73,6 +73,7 @@ public class LanguageActivity extends BaseActivity {
                 showToast("Ha seleccionado Español", true);
                 config.setLocale(locale);
                 getResources().updateConfiguration(config,null);
+                GuardarLlenguatge("es");
                 Intent inici = new Intent(LanguageActivity.this, SignInActivity.class);
                 startActivity(inici);
             }
@@ -85,10 +86,15 @@ public class LanguageActivity extends BaseActivity {
                 showToast("You chose English as a Language", true);
                 config.setLocale(locale);
                 getResources().updateConfiguration(config,null);
+                GuardarLlenguatge("en");
                 Intent inici = new Intent(LanguageActivity.this, SignInActivity.class);
                 startActivity(inici);
             }
         });
+
+        if (!ObtenirLlenguatge().toString().matches("non")) {
+            startActivity(new Intent(LanguageActivity.this, SignInActivity.class));
+        }
 
     }
 

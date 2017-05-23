@@ -322,4 +322,5 @@
     <string name="Bodyemal">En aquest correu et pots descarregar el fitxer CSV. Gràcies.</string>
     <string name="SubjectEmail">ResultatsCSV_Pacient_</string>
     <string name="SendEmailResults">Enviar e-mail amb resultats</string>
+    <string name="ChangeLanguage">Canviar llengua</string>
 </resources>

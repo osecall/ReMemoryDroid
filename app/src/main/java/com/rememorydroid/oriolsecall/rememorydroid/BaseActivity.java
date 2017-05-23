@@ -25,7 +25,6 @@ public class BaseActivity extends AppCompatActivity {
     public SharedPreferences prefs;
     public SharedPreferences.Editor editor;
     public Gson gson;
-    public boolean passed = false;
     public ProgressDialog mProgressDialog;
 
     public void showProgressDialog() {
@@ -108,6 +107,13 @@ public class BaseActivity extends AppCompatActivity {
         editor.commit();
     }
 
+    //Guardar respostes
+    public void BorrarPacient() {
+        prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        editor = prefs.edit();
+        editor.putString("pacient", null).commit();
+    }
+
     //Obtenir episodi
     public String ObtenirEpisodi(){
         return getSharedPreferences("pacient", Context.MODE_PRIVATE).getString("episodi",null);
@@ -142,6 +148,26 @@ public class BaseActivity extends AppCompatActivity {
         editor.commit();
         editor.clear();
         editor.commit();
+    }
+
+
+    //Guardar llenguatge
+    public void GuardarLlenguatge(String language) {
+        prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        editor = prefs.edit();
+        editor.putString("Language", language).commit();
+    }
+
+    //Obtenir llenguatge
+    public String ObtenirLlenguatge() {
+        return getSharedPreferences("pacient", Context.MODE_PRIVATE).getString("Language", "");
+    }
+
+    //Netejar llengua preferida
+    public void BorrarSharedPreferencesLlengua() {
+        prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        editor = prefs.edit();
+        editor.putString("Language", "non").commit();
     }
 
     // Permisos

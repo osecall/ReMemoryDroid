@@ -1,9 +1,9 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -18,7 +18,6 @@ public class SplashActivity extends AppCompatActivity {
             public void run(){
                 Intent intent = new Intent(SplashActivity.this, LanguageActivity.class);
                 startActivity(intent);
-                finish();
             }
         }, SPLASH_SCREEN_DELAY);
 

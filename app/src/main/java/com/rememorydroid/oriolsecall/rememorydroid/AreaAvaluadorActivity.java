@@ -3,12 +3,11 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
-import android.os.Bundle;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -54,6 +53,9 @@ public class AreaAvaluadorActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area_avaluador);
         pacient=null;
+
+        if (ObtenirPacient() != null)
+            startActivity(new Intent(AreaAvaluadorActivity.this, EpisodiActivity.class));
 
         emailAvaluador = (TextView) findViewById(R.id.tvAssessersSessionEmail);
         ivCUid = (ImageView) findViewById(R.id.ivCUid);

@@ -156,8 +156,10 @@ public class TractamentsActivity extends BaseActivity
 
         } else if (id == R.id.signoutpacient) {
             showToast(getString(R.string.MenuChangePacient),true);
+            BorrarPacient();
             Intent areaAvaluador = new Intent(TractamentsActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
+
 
         } else if (id == R.id.backtoepisodes) {
             startActivity(new Intent(TractamentsActivity.this, EpisodiActivity.class));
@@ -170,6 +172,9 @@ public class TractamentsActivity extends BaseActivity
         } else if (id == R.id.pictures) {
             DialegPicture();
 
+        } else if (id == R.id.changelanguage) {
+            BorrarSharedPreferencesLlengua();
+            startActivity(new Intent(TractamentsActivity.this, LanguageActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
