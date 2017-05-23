@@ -368,7 +368,7 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
             if (id == R.id.btSignOutPacient) {
 
                 //Retorna a la pantalla 'Area Avaluador'
-
+                BorrarPacient();
                 showToast(getString(R.string.MenuChangePacient),true);
                 Intent areaAvaluador = new Intent(EvocarActivity.this, AreaAvaluadorActivity.class);
                 startActivity(areaAvaluador);

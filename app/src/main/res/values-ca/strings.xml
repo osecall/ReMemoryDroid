@@ -323,4 +323,5 @@
     <string name="SubjectEmail">ResultatsCSV_Pacient_</string>
     <string name="SendEmailResults">Enviar e-mail amb resultats</string>
     <string name="ChangeLanguage">Canviar llengua</string>
+    <string name="NoEpisodeSelected">No hi ha episodi seleccionat</string>
 </resources>

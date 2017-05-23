@@ -2,10 +2,10 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,6 +33,7 @@ import java.util.ArrayList;
 
 public class EpisodiActivity extends BaseActivity {
 
+    private static final String TAG = "EpisodiActivity";
     private ListView lista, listaVersio;
     private Button btNextEpisode;
     private FloatingActionButton fabEpisodi;
@@ -46,8 +47,6 @@ public class EpisodiActivity extends BaseActivity {
     private ArrayList<EpisodiList> episodis;
     private String ID_pacient;
     private DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("pacients");
-    private static final String TAG = "EpisodiActivity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -409,7 +408,7 @@ public class EpisodiActivity extends BaseActivity {
         if (id == R.id.btSignOutPacient) {
 
             //Retorna a la pantalla 'Area Avaluador'
-
+            BorrarPacient();
             showToast(getString(R.string.MenuChangePacient),true);
             Intent areaAvaluador = new Intent(EpisodiActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);

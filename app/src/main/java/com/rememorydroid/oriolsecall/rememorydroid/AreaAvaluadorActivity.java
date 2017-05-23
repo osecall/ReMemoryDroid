@@ -54,9 +54,6 @@ public class AreaAvaluadorActivity extends BaseActivity {
         setContentView(R.layout.activity_area_avaluador);
         pacient=null;
 
-        if (ObtenirPacient() != null)
-            startActivity(new Intent(AreaAvaluadorActivity.this, EpisodiActivity.class));
-
         emailAvaluador = (TextView) findViewById(R.id.tvAssessersSessionEmail);
         ivCUid = (ImageView) findViewById(R.id.ivCUid);
         tvCUname = (TextView) findViewById(R.id.tvCUname);
@@ -173,7 +170,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
 
 
                                                                                                                 if(pacient.getID().equalsIgnoreCase(IDuserDelete)){
-                                                                                                                    BorrarSharedPreferences();
+                                                                                                                    BorrarPacient();
 
                                                                                                                     ivCUid.setVisibility(View.GONE);
                                                                                                                     tvCUname.setVisibility(View.GONE);
@@ -275,7 +272,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
                 pacient.setLastName(SegCognom.getText().toString());
 
                 //Guardem la informació del pacient a la memòria "pacient"
-                BorrarSharedPreferences();
+                BorrarPacient();
                 GravarPacient(pacient);
 
                 pacient=null;
@@ -381,7 +378,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
 
 
                                                 //Guardem la informació del pacient a la memòria "pacient"
-                                                BorrarSharedPreferences();
+                                                BorrarPacient();
 
                                                 //Passem objecte pacient a JSON
                                                 GravarPacient(pacient);

@@ -98,6 +98,13 @@ public class BaseActivity extends AppCompatActivity {
         return gson.fromJson(prefs.getString("pacient",null),PacientUsuari.class);
     }
 
+    //Retorna si hi ha pacient guardat
+    public String ObtenirPacientBoolean() {
+        prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
+        return prefs.getString("pacient", null);
+    }
+
+
     //Guardar respostes
     public void GravarPacient(PacientUsuari pacient){
         gson = new Gson();
@@ -111,7 +118,7 @@ public class BaseActivity extends AppCompatActivity {
     public void BorrarPacient() {
         prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         editor = prefs.edit();
-        editor.putString("pacient", null).commit();
+        editor.remove("pacient").commit();
     }
 
     //Obtenir episodi
@@ -140,16 +147,6 @@ public class BaseActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    //Borrar pacient
-    public void BorrarSharedPreferences(){
-        prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
-        editor= prefs.edit();
-        editor.remove("pacient");
-        editor.commit();
-        editor.clear();
-        editor.commit();
-    }
-
 
     //Guardar llenguatge
     public void GuardarLlenguatge(String language) {
@@ -160,14 +157,14 @@ public class BaseActivity extends AppCompatActivity {
 
     //Obtenir llenguatge
     public String ObtenirLlenguatge() {
-        return getSharedPreferences("pacient", Context.MODE_PRIVATE).getString("Language", "");
+        return getSharedPreferences("pacient", Context.MODE_PRIVATE).getString("Language", null);
     }
 
     //Netejar llengua preferida
     public void BorrarSharedPreferencesLlengua() {
         prefs = getSharedPreferences("pacient", Context.MODE_PRIVATE);
         editor = prefs.edit();
-        editor.putString("Language", "non").commit();
+        editor.remove("Language").commit();
     }
 
     // Permisos

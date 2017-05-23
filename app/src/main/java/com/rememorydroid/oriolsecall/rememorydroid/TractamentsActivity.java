@@ -41,7 +41,7 @@ public class TractamentsActivity extends BaseActivity
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private String TAG = "TractamentsAtivity";
     private int i = 0;
-    private boolean booleanPassed = false;
+    private boolean shortVersionEpisodeExists = true;
 
 
     @Override
@@ -51,8 +51,7 @@ public class TractamentsActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        booleanPassed = false;
-
+        shortVersionEpisodeExists = true;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -101,6 +100,7 @@ public class TractamentsActivity extends BaseActivity
 
             if(ObtenirEpisodi().isEmpty()){
                 btPelicula.setEnabled(false);
+                shortVersionEpisodeExists = false;
             }
 
         }
@@ -164,7 +164,9 @@ public class TractamentsActivity extends BaseActivity
         } else if (id == R.id.backtoepisodes) {
             startActivity(new Intent(TractamentsActivity.this, EpisodiActivity.class));
         } else if (id == R.id.answers) {
-            startActivity(new Intent(TractamentsActivity.this, PacientAnswersActivity.class));
+            if (shortVersionEpisodeExists) {
+                startActivity(new Intent(TractamentsActivity.this, PacientAnswersActivity.class));
+            } else showToast(getString(R.string.NoEpisodeSelected), true);
         } else if (id == R.id.videos) {
             Intent pickVideo = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
             pickVideo.setType("video/*");

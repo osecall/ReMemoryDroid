@@ -172,6 +172,7 @@ public class Escena2Activity extends BaseActivity {
         if (id == R.id.btSignOutPacient) {
 
             //Retorna a la pantalla 'Area Avaluador'
+            BorrarPacient();
             showToast(getString(R.string.MenuChangePacient),true);
             Intent areaAvaluador = new Intent(Escena2Activity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);

@@ -9,25 +9,23 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -50,8 +48,6 @@ import java.io.File;
 
 public class TestActivity extends AppCompatActivity {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-    private static ViewPager mViewPager;
     public static SharedPreferences prefs;
     public static TestAnswers respostes_recuperades = new TestAnswers();
     public static PacientUsuari pacient = new PacientUsuari();
@@ -65,6 +61,8 @@ public class TestActivity extends AppCompatActivity {
     public static ProgressDialog mProgressDialog;
     public static TextView tv;
     public static View textEntryView;
+    private static ViewPager mViewPager;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,14 +140,39 @@ public class TestActivity extends AppCompatActivity {
         if (id == R.id.btSignOutPacient) {
 
             //Retorna a la pantalla 'Area Avaluador'
-
+            editor.putString("pacient", null).commit();
             Toast.makeText(TestActivity.this, R.string.MenuChangePacient,
                     Toast.LENGTH_LONG).show();
-            Intent areaAvaluador = new Intent(TestActivity.this, TractamentsActivity.class);
+            Intent areaAvaluador = new Intent(TestActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void mostrarAlertaPelicula() {
+        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(TestActivity.this);
+        LayoutInflater factory = LayoutInflater.from(this);
+        textEntryView = factory.inflate(R.layout.dialegs, null);
+        tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        tv.setText(R.string.AlertDialaogTest);
+        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
+        DialegFormControl
+                .setCancelable(false)
+                .setView(textEntryView)
+                .setTitle(getString(R.string.Attention));
+
+        final AlertDialog alerta = DialegFormControl.create();
+
+        alerta.show();
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alerta.dismiss();
+            }
+        });
+
     }
 
     /**
@@ -255,7 +278,6 @@ public class TestActivity extends AppCompatActivity {
         }
     }
 
-
     public static class Fragment2 extends Fragment {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
@@ -341,7 +363,6 @@ public class TestActivity extends AppCompatActivity {
             return rootView;
         }
     }
-
 
     /**
      * A placeholder fragment containing a simple view.
@@ -533,7 +554,6 @@ public class TestActivity extends AppCompatActivity {
             return rootView;
         }
     }
-
 
     /**
      * A placeholder fragment containing a simple view.
@@ -1013,31 +1033,6 @@ public class TestActivity extends AppCompatActivity {
             }
             return null;
         }
-    }
-
-    private void mostrarAlertaPelicula(){
-        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(TestActivity.this);
-        LayoutInflater factory = LayoutInflater.from(this);
-        textEntryView = factory.inflate(R.layout.dialegs, null);
-        tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
-        tv.setText(R.string.AlertDialaogTest);
-        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
-        DialegFormControl
-                .setCancelable(false)
-                .setView(textEntryView)
-                .setTitle(getString(R.string.Attention));
-
-        final AlertDialog alerta = DialegFormControl.create();
-
-        alerta.show();
-
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alerta.dismiss();
-            }
-        });
-
     }
 
 }

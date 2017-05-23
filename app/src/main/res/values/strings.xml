@@ -343,6 +343,7 @@
     <string name="SubjectEmail">ResultsCSV_Pacient_</string>
     <string name="SendEmailResults">Send email with results</string>
     <string name="ChangeLanguage">Change language</string>
+    <string name="NoEpisodeSelected">There is no episode selected</string>
 
     <!-- Strings related to login -->
 

@@ -149,7 +149,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             // Grabar a SharedPreferences user
-                                                            BorrarSharedPreferences();
+                                                            BorrarPacient();
                                                             GravarPacient(pacient);
                                                             hideProgressDialog();
                                                             startActivity(new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class));
@@ -188,7 +188,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
                                     public void onComplete(@NonNull Task<Void> task) {
                                         // Grabar a SharedPreferences user
-                                        BorrarSharedPreferences();
+                                        BorrarPacient();
                                         GravarPacient(pacient);
                                         hideProgressDialog();
                                         startActivity(new Intent(PacientUserSignUpActivity.this, EpisodiActivity.class));
@@ -251,9 +251,8 @@ public class PacientUserSignUpActivity extends BaseActivity{
         if (id == R.id.btSelectUser) {
 
             //Retorna a la pantalla 'Area Avaluador'
-
+            BorrarPacient();
             showToast(getString(R.string.MenuChangePacient),true);
-
             Intent areaAvaluador = new Intent(PacientUserSignUpActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);
 

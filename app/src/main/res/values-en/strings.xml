@@ -60,7 +60,7 @@
     <string name="EpisodeSelection">Episode Selection</string>
     <string name="LongVersion">Long version</string>
     <string name="ShortVersion">Short version</string>
-    <string name="TreatmentsArea">Treatments Area</string>
+    <string name="TreatmentsArea">Treatments</string>
     <string name="Backwards">Back</string>
     <string name="SelectionVersionEpisode">You have to select a version and episode</string>
     <string name="Games">Memory and focusing games</string>
@@ -323,4 +323,5 @@
     <string name="SubjectEmail">ResultsCSV_Pacient_</string>
     <string name="SendEmailResults">Send email with results</string>
     <string name="ChangeLanguage">Change language</string>
+    <string name="NoEpisodeSelected">There is no episode selected</string>
 </resources>

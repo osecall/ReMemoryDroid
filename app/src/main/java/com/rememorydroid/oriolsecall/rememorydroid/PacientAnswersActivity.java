@@ -278,6 +278,7 @@ public class PacientAnswersActivity extends BaseActivity {
 
         if (id == R.id.btSignOutPacient) {
             //Retorna a la pantalla 'Area Avaluador'
+            BorrarPacient();
             showToast(getString(R.string.MenuChangePacient), true);
             Intent areaAvaluador = new Intent(PacientAnswersActivity.this, AreaAvaluadorActivity.class);
             startActivity(areaAvaluador);

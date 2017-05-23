@@ -52,7 +52,6 @@ public class LanguageActivity extends BaseActivity {
         ReadStoragePermissos();
 
 
-
         btcaIdioma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,8 +91,10 @@ public class LanguageActivity extends BaseActivity {
             }
         });
 
-        if (!ObtenirLlenguatge().toString().matches("non")) {
-            startActivity(new Intent(LanguageActivity.this, SignInActivity.class));
+        if (ObtenirLlenguatge() != null) {
+            if (ObtenirPacientBoolean() != null)
+                startActivity(new Intent(LanguageActivity.this, EpisodiActivity.class));
+            else startActivity(new Intent(LanguageActivity.this, SignInActivity.class));
         }
 
     }
