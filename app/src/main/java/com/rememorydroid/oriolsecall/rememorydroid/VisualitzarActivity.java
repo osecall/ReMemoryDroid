@@ -46,11 +46,11 @@ public class VisualitzarActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualitzar);
-
+/*
         if(savedInstanceState != null){
             stopPosition = savedInstanceState.getInt("position");
         }
-
+*/
         noAudio=false;
 
         WriteStoragePermissos();
@@ -164,6 +164,7 @@ public class VisualitzarActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 vv.stopPlayback();
+                mp.release();
                 startActivity(intent);
                 finish();
             }
@@ -273,15 +274,15 @@ public class VisualitzarActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+/*
     @Override
     protected void onPause() {
         super.onPause();
         vv.pause();
         ibPlay.setImageDrawable(getDrawable(R.drawable.playwhite));
 
-    }
-
+    }*/
+    /*
     @Override
     protected void onResume() {
         super.onResume();
@@ -296,5 +297,5 @@ public class VisualitzarActivity extends BaseActivity {
         stopPosition = vv.getCurrentPosition();
         vv.pause();
         outState.putInt("position", stopPosition);
-    }
+    }*/
 }

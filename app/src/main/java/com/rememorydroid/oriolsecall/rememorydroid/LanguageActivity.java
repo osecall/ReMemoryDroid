@@ -35,10 +35,10 @@ public class LanguageActivity extends BaseActivity {
         btesIdioma = (ImageButton) findViewById(R.id.btesIdioma);
         btenIdioma = (ImageButton) findViewById(R.id.btenIdioma);
 
-        InternetPermissos();
         AudioRecordPermissos();
         WriteStoragePermissos();
         ReadStoragePermissos();
+        InternetPermissos();
 
         if (!isNetworkAvailable()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(LanguageActivity.this);
@@ -116,7 +116,6 @@ public class LanguageActivity extends BaseActivity {
                     getResources().updateConfiguration(config, null);
                     GuardarLlenguatge("en");
                 }
-
 
                 if (ObtenirPacientBoolean() != null)
                     startActivity(new Intent(LanguageActivity.this, EpisodiActivity.class));

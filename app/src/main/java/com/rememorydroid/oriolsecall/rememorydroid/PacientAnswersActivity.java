@@ -57,6 +57,11 @@ public class PacientAnswersActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pacient_answers);
+
+        AudioRecordPermissos();
+        WriteStoragePermissos();
+        ReadStoragePermissos();
+
         total = 0;
 
         EvocarA = (Button) findViewById(R.id.btEvocarA);

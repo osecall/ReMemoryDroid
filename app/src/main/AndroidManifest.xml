@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <supports-screens
         android:largeScreens="true"
         android:normalScreens="false"
@@ -115,7 +114,7 @@
         <activity
             android:name=".TractamentsActivity"
             android:label="@string/TreatmentsArea"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

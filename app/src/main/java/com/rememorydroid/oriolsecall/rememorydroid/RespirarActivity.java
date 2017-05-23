@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
-public class RespirarActivity extends AppCompatActivity {
+public class RespirarActivity extends BaseActivity {
 
     private Intent intentRespirar;
     private int Reproduccio;
@@ -24,6 +23,10 @@ public class RespirarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_respirar);
+
+        AudioRecordPermissos();
+        WriteStoragePermissos();
+        ReadStoragePermissos();
 
         ImageView ivRespirar = (ImageView) findViewById(R.id.ivRespirar);
         intentRespirar = new Intent(RespirarActivity.this, VisualitzarFragmentsActivity.class);

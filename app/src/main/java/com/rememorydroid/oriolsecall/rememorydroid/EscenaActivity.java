@@ -38,6 +38,10 @@ public class EscenaActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escena);
 
+        AudioRecordPermissos();
+        WriteStoragePermissos();
+        ReadStoragePermissos();
+
         respostes_recuperades= new TestAnswers();
         intensitatCambiada = false;
 

@@ -247,6 +247,10 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evocar);
 
+        AudioRecordPermissos();
+        WriteStoragePermissos();
+        ReadStoragePermissos();
+
         curta=false;
         outputFile = null;
 
