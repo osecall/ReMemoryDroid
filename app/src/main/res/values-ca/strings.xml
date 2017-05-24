@@ -202,7 +202,7 @@
     <string name="Sad">Trist</string>
     <string name="wasAngry">Estava enfadat</string>
     <string name="ChooseImageFavourite">Seleccioni la imatge que et resulti més significativa per guardarla en el teu àlbum de memòria</string>
-    <string name="PictureUploaded">La teva foto preferida s\'ha guardar en la teva memòria d\'àlbum</string>
+    <string name="PictureUploaded">La teva foto preferida s\'ha guardat en la teva memòria d\'àlbum</string>
     <string name="BeingWith">estan amb %s</string>
     <string name="ChooseSpinner">Has d\'escollir una emoció de la llista!</string>
     <string name="HereShowingImages">Aquí et mostrarem diverses imatges de l\'episodi i et demanarem que escullis la més positiva i significant per tu.\n\nLa imatge que escullis es guardarà a la memòria de l\'àlbum.</string>
@@ -303,7 +303,7 @@
     <string name="UploadVideo">Pujar video</string>
     <string name="ChooseSource">Selecciona la font</string>
     <string name="ImagesUpload">Imatges pujades</string>
-    <string name="Pictures">Fotos</string>
+    <string name="Pictures">Pujar fotos</string>
     <string name="ChoosePicturesUpload">Selecciona on colocar la fotografía</string>
     <string name="GridA">Graella A</string>
     <string name="GridB">Graella B</string>

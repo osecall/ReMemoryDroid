@@ -29,16 +29,15 @@ public class LanguageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language);
 
+        WriteStoragePermissos();
+        AudioRecordPermissos();
+
         config = new Configuration();
 
         btcaIdioma = (ImageButton) findViewById(R.id.btcaIdioma);
         btesIdioma = (ImageButton) findViewById(R.id.btesIdioma);
         btenIdioma = (ImageButton) findViewById(R.id.btenIdioma);
 
-        AudioRecordPermissos();
-        WriteStoragePermissos();
-        ReadStoragePermissos();
-        InternetPermissos();
 
         if (!isNetworkAvailable()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(LanguageActivity.this);

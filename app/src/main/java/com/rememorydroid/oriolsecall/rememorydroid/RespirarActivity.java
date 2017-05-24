@@ -215,6 +215,7 @@ public class RespirarActivity extends BaseActivity {
                 mp.stop();
                 mp.release();
                 startActivity(intentRespirar);
+                finish();
             }
         });
         mp.start();

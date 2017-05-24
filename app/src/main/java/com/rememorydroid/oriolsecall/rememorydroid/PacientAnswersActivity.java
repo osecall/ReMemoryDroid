@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -40,6 +41,8 @@ public class PacientAnswersActivity extends BaseActivity {
     private Button EvocarA, EvocarB, EvocarC, EvocarD, btER, btDR, btGraellaA, btGraellaB, btGraellaC, btGraellaD;
     private ImageView imatge;
     private String pacientID;
+    private MediaPlayer mpA, mpB, mpC, mpD;
+    private ProgressBar pbAnswers;
     private StorageReference myRef = FirebaseStorage.getInstance().getReference();
     private StorageReference myRefA = FirebaseStorage.getInstance().getReference();
     private StorageReference myRefB = FirebaseStorage.getInstance().getReference();
@@ -59,7 +62,6 @@ public class PacientAnswersActivity extends BaseActivity {
         setContentView(R.layout.activity_pacient_answers);
 
         WriteStoragePermissos();
-        ReadStoragePermissos();
 
         total = 0;
 
@@ -78,6 +80,8 @@ public class PacientAnswersActivity extends BaseActivity {
         tvCurrentPunct1 = (TextView) findViewById(R.id.tvCurrentPunct1);
         tvCurrentPunct2 = (TextView) findViewById(R.id.tvCurrentPunct2);
         tvCurrentPunct3 = (TextView) findViewById(R.id.tvCurrentPunct3);
+
+        pbAnswers = (ProgressBar) findViewById(R.id.pbAnswers);
 
         DatabaseReference punctRef = dbRef.child(ObtenirPacient().getID()).child("episodis").child(ObtenirEpisodi().toString());
         punctRef.addValueEventListener(new ValueEventListener() {
@@ -118,9 +122,38 @@ public class PacientAnswersActivity extends BaseActivity {
                 EvocarA.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final MediaPlayer mp = MediaPlayer.create(PacientAnswersActivity.this, pathA);
-                        if (!mp.isPlaying()) mp.start();
-                        else mp.pause();
+                        mpA = MediaPlayer.create(PacientAnswersActivity.this, pathA);
+                        pbAnswers.setMax(mpA.getDuration());
+                        if (!mpA.isPlaying()) {
+                            EvocarB.setEnabled(false);
+                            EvocarC.setEnabled(false);
+                            EvocarD.setEnabled(false);
+                            mpA.start();
+                            new Thread(new Runnable() {
+                                public void run() {
+                                    while (mpA.isPlaying()) {
+                                        pbAnswers.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                pbAnswers.setProgress(mpA.getCurrentPosition());
+                                            }
+                                        });
+                                    }
+                                }
+                            }).start();
+                        }
+                        mpA.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                EvocarB.setEnabled(true);
+                                EvocarC.setEnabled(true);
+                                EvocarD.setEnabled(true);
+                                mpA.release();
+                                mpA = null;
+                            }
+                        });
+
+
                     }
                 });
             }
@@ -132,9 +165,36 @@ public class PacientAnswersActivity extends BaseActivity {
                 EvocarB.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final MediaPlayer mp = MediaPlayer.create(PacientAnswersActivity.this, pathB);
-                        if (!mp.isPlaying()) mp.start();
-                        else mp.pause();
+                        mpB = MediaPlayer.create(PacientAnswersActivity.this, pathB);
+                        pbAnswers.setMax(mpB.getDuration());
+                        if (!mpB.isPlaying()) {
+                            EvocarA.setEnabled(false);
+                            EvocarC.setEnabled(false);
+                            EvocarD.setEnabled(false);
+                            mpB.start();
+                            new Thread(new Runnable() {
+                                public void run() {
+                                    while (mpB.isPlaying()) {
+                                        pbAnswers.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                pbAnswers.setProgress(mpB.getCurrentPosition());
+                                            }
+                                        });
+                                    }
+                                }
+                            }).start();
+                        }
+                        mpB.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                EvocarA.setEnabled(true);
+                                EvocarC.setEnabled(true);
+                                EvocarD.setEnabled(true);
+                                mpB.release();
+                                mpB = null;
+                            }
+                        });
                     }
                 });
             }
@@ -146,9 +206,36 @@ public class PacientAnswersActivity extends BaseActivity {
                 EvocarC.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final MediaPlayer mp = MediaPlayer.create(PacientAnswersActivity.this, pathC);
-                        if (!mp.isPlaying()) mp.start();
-                        else mp.pause();
+                        mpC = MediaPlayer.create(PacientAnswersActivity.this, pathC);
+                        pbAnswers.setMax(mpC.getDuration());
+                        if (!mpC.isPlaying()) {
+                            EvocarA.setEnabled(false);
+                            EvocarB.setEnabled(false);
+                            EvocarD.setEnabled(false);
+                            mpC.start();
+                            new Thread(new Runnable() {
+                                public void run() {
+                                    while (mpC.isPlaying()) {
+                                        pbAnswers.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                pbAnswers.setProgress(mpC.getCurrentPosition());
+                                            }
+                                        });
+                                    }
+                                }
+                            }).start();
+                        }
+                        mpC.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                EvocarA.setEnabled(true);
+                                EvocarB.setEnabled(true);
+                                EvocarD.setEnabled(true);
+                                mpC.release();
+                                mpC = null;
+                            }
+                        });
                     }
                 });
             }
@@ -160,9 +247,36 @@ public class PacientAnswersActivity extends BaseActivity {
                 EvocarD.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final MediaPlayer mp = MediaPlayer.create(PacientAnswersActivity.this, pathD);
-                        if (!mp.isPlaying()) mp.start();
-                        else mp.pause();
+                        mpD = MediaPlayer.create(PacientAnswersActivity.this, pathD);
+                        pbAnswers.setMax(mpD.getDuration());
+                        if (!mpD.isPlaying()) {
+                            EvocarA.setEnabled(false);
+                            EvocarB.setEnabled(false);
+                            EvocarC.setEnabled(false);
+                            mpD.start();
+                            new Thread(new Runnable() {
+                                public void run() {
+                                    while (mpD.isPlaying()) {
+                                        pbAnswers.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                pbAnswers.setProgress(mpD.getCurrentPosition());
+                                            }
+                                        });
+                                    }
+                                }
+                            }).start();
+                        }
+                        mpD.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                EvocarA.setEnabled(true);
+                                EvocarB.setEnabled(true);
+                                EvocarC.setEnabled(true);
+                                mpD.release();
+                                mpD = null;
+                            }
+                        });
                     }
                 });
             }

@@ -832,7 +832,6 @@ public class TestActivity extends AppCompatActivity {
                         bt.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-
                                 alerta.dismiss();
                                 startActivity(new Intent(getContext(), TractamentsActivity.class).putExtra("final","final").putExtra("file",ruta));
                             }

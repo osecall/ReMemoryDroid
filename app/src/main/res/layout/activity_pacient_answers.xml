@@ -137,4 +137,13 @@
             android:text="@string/DownloadAnswers" />
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pbAnswers"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="800dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp" />
 </RelativeLayout>
