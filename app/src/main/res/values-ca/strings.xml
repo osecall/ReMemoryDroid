@@ -295,8 +295,8 @@
     <string name="MenuTreatments">Menú tractaments</string>
     <string name="PacientAnswers">Respostes del pacient</string>
     <string name="sign_out_menu">Sortir (%s)</string>
-    <string name="PacientIssues">Questions del pacient</string>
-    <string name="AssessorIssues">Questions del avaluador</string>
+    <string name="PacientIssues">Qüestions del pacient</string>
+    <string name="AssessorIssues">Qüestions del avaluador</string>
     <string name="navigation_drawer_close">Tancar menú navegador</string>
     <string name="navigation_drawer_open">Obrir menú navegador</string>
     <string name="VideoUploadCorrect">S\'ha pujat el vídeo correctament</string>
