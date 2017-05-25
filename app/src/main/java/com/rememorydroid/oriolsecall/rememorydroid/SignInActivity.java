@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -131,19 +133,19 @@ public class SignInActivity extends BaseActivity implements
         showProgressDialog();
 
         //Crear usuari
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-
-                        if (!task.isSuccessful()) {
-                            showToast(getString(R.string.auth_failed), false);
-                            Log.e(TAG,task.getResult().toString());
-                        }
-                        hideProgressDialog();
-                    }
-                });
+        mAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                Log.d(TAG, "createUserWithEmail:onComplete:" + authResult.toString());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                showToast(getString(R.string.auth_failed), false);
+                Log.e(TAG, e.getStackTrace().toString());
+                hideProgressDialog();
+            }
+        });
     }
 
     private void signIn(String email, String password) {
