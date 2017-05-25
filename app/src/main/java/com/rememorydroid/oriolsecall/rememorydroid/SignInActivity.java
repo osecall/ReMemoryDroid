@@ -78,9 +78,14 @@ public class SignInActivity extends BaseActivity implements
 
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == 66 && event.getAction() == ACTION_UP) {
-                    signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
-                    return true;
+                if (mPasswordField.getText().toString().length() < 6) {
+                    mPasswordField.setError(getString(R.string.LengthSix));
+                } else {
+                    if (keyCode == 66 && event.getAction() == ACTION_UP) {
+                        signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+                        return true;
+                    }
+                    return false;
                 }
                 return false;
             }
@@ -218,6 +223,9 @@ public class SignInActivity extends BaseActivity implements
         String password = mPasswordField.getText().toString();
         if (TextUtils.isEmpty(password)) {
             mPasswordField.setError(getString(R.string.Required));
+            valid = false;
+        } else if (password.length() < 6) {
+            mPasswordField.setError(getString(R.string.LengthSix));
             valid = false;
         } else {
             mPasswordField.setError(null);
