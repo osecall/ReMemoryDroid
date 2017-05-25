@@ -161,6 +161,7 @@ public class SignInActivity extends BaseActivity implements
 
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
+                            mStatusTextView.setText(R.string.auth_failed);
                             showToast(getString(R.string.auth_failed),false);
                         }
                         else{
@@ -168,11 +169,6 @@ public class SignInActivity extends BaseActivity implements
                                 Intent areaAvaluador = new Intent(SignInActivity.this, AreaAvaluadorActivity.class);
                                 startActivity(areaAvaluador);
                             }
-                        }
-
-                        if (!task.isSuccessful()) {
-                            mStatusTextView.setText(R.string.auth_failed);
-                            Log.d(TAG,"Error en iniciar sessió."+task.getResult().toString());
                         }
                         hideProgressDialog();
                     }
