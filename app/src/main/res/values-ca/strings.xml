@@ -287,7 +287,7 @@
     <string name="InternetNeeded">Aquesta app necessita Internet per funcionar correctament!</string>
     <string name="CheckPoint">Vols continuar des d\'on ho vas deixar?</string>
     <string name="FieldEmpty">Camp està buit</string>
-    <string name="SendingResults">Enviar respuestas per email</string>
+    <string name="SendingResults">Enviar respostes per email</string>
     <string name="DownloadAnswers">Descarregar respostes</string>
     <string name="Answers">Respostes</string>
     <string name="DownloadDone">Descàrga correcte!</string>
