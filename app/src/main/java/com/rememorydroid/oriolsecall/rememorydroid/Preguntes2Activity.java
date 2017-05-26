@@ -8,24 +8,22 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -39,6 +37,14 @@ import static com.rememorydroid.oriolsecall.rememorydroid.TestActivity.gson;
 
 public class Preguntes2Activity extends AppCompatActivity {
 
+    public static SharedPreferences prefs;
+    public static SharedPreferences.Editor editor;
+    public static TestAnswers respostes_recuperades;
+    public static PacientUsuari pacient;
+    /**
+     * The {@link ViewPager} that will host the section contents.
+     */
+    private static ViewPager mViewPager;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -48,15 +54,6 @@ public class Preguntes2Activity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private static ViewPager mViewPager;
-    public static SharedPreferences prefs;
-    public static SharedPreferences.Editor editor;
-    public static TestAnswers respostes_recuperades;
-    public static PacientUsuari pacient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +121,7 @@ public class Preguntes2Activity extends AppCompatActivity {
         if (id == R.id.btSignOutPacient) {
 
             //Retorna a la pantalla 'Area Avaluador'
-
+            editor.remove("pacient").commit();
             Toast.makeText(Preguntes2Activity.this, R.string.MenuChangePacient,
                     Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(Preguntes2Activity.this, AreaAvaluadorActivity.class);
@@ -133,6 +130,31 @@ public class Preguntes2Activity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void DialegQuestionari() {
+        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(Preguntes2Activity.this);
+        LayoutInflater factory = LayoutInflater.from(Preguntes2Activity.this);
+        View textEntryView = factory.inflate(R.layout.dialegs, null);
+        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
+        tv.setText(R.string.AskingQuestions);
+
+        DialegFormControl
+                .setTitle(getString(R.string.Attention))
+                .setView(textEntryView)
+                .setCancelable(false);
+
+        final AlertDialog alerta = DialegFormControl.create();
+
+        alerta.show();
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alerta.dismiss();
+            }
+        });
     }
 
     /**
@@ -546,30 +568,5 @@ public class Preguntes2Activity extends AppCompatActivity {
             }
             return null;
         }
-    }
-
-    private void DialegQuestionari(){
-        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(Preguntes2Activity.this);
-        LayoutInflater factory = LayoutInflater.from(Preguntes2Activity.this);
-        View textEntryView = factory.inflate(R.layout.dialegs, null);
-        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
-        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
-        tv.setText(R.string.AskingQuestions);
-
-        DialegFormControl
-                .setTitle(getString(R.string.Attention))
-                .setView(textEntryView)
-                .setCancelable(false);
-
-        final AlertDialog alerta = DialegFormControl.create();
-
-        alerta.show();
-
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alerta.dismiss();
-            }
-        });
     }
 }

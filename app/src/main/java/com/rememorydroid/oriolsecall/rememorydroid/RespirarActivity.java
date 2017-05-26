@@ -51,7 +51,6 @@ public class RespirarActivity extends BaseActivity {
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Segon","Segon");
-            //ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
 
         }
@@ -76,7 +75,6 @@ public class RespirarActivity extends BaseActivity {
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Tercer","Tercer");
-            //ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
 
         }
@@ -101,7 +99,6 @@ public class RespirarActivity extends BaseActivity {
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar.putExtra("Quarta","Quarta");
-            //ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
 
         }
@@ -127,7 +124,6 @@ public class RespirarActivity extends BaseActivity {
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this,VisualitzarActivity.class);
             intentRespirar.putExtra("Curta1","Curta1");
-            //ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
         }
         else if(getIntent().hasExtra("Curta2")){
@@ -152,7 +148,6 @@ public class RespirarActivity extends BaseActivity {
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
             intentRespirar = new Intent(RespirarActivity.this,TestActivity.class);
             intentRespirar.putExtra("SegonTest","SegonTest");
-            //ReproduirMissatge(mp);
             DialogInstruccionsRespirar();
         }
         else{

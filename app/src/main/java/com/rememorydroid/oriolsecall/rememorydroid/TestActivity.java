@@ -140,7 +140,7 @@ public class TestActivity extends AppCompatActivity {
         if (id == R.id.btSignOutPacient) {
 
             //Retorna a la pantalla 'Area Avaluador'
-            editor.putString("pacient", null).commit();
+            editor.remove("pacient").commit();
             Toast.makeText(TestActivity.this, R.string.MenuChangePacient,
                     Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(TestActivity.this, AreaAvaluadorActivity.class);

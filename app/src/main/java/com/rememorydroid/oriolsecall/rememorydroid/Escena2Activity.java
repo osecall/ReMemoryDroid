@@ -34,7 +34,7 @@ public class Escena2Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escena2);
 
-        A= getIntent().getStringExtra("A");
+        A = getIntent().getStringExtra("A").toLowerCase();
         B= getIntent().getStringExtra("B");
         C= getIntent().getStringExtra("C");
         D= getIntent().getStringExtra("D");

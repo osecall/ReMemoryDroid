@@ -38,7 +38,7 @@
         android:layout_toStartOf="@+id/btNextWeather"
         android:elevation="24dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/stopwhite" />
+        app:srcCompat="@drawable/returnsicon" />
 
     <ImageView
         android:id="@+id/ibPlay"

@@ -8,18 +8,17 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,13 +39,13 @@ import com.google.gson.Gson;
 
 public class PreguntesActivity extends AppCompatActivity {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-    private static ViewPager mViewPager;
     public static SharedPreferences prefs;
     public static SharedPreferences.Editor editor;
     public static TestAnswers respostes_recuperades;
-    private static PacientUsuari pacient;
     public static StorageReference myRef;
+    private static ViewPager mViewPager;
+    private static PacientUsuari pacient;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +115,7 @@ public class PreguntesActivity extends AppCompatActivity {
         if (id == R.id.btSignOutPacient) {
 
             //Retorna a la pantalla 'Area Avaluador'
-
+            editor.remove("pacient").commit();
             Toast.makeText(PreguntesActivity.this, R.string.MenuChangePacient,
                     Toast.LENGTH_LONG).show();
             Intent areaAvaluador = new Intent(PreguntesActivity.this, AreaAvaluadorActivity.class);
@@ -126,6 +125,35 @@ public class PreguntesActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void DialegQuestionari() {
+        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PreguntesActivity.this);
+
+        LayoutInflater factory = LayoutInflater.from(PreguntesActivity.this);
+        View textEntryView = factory.inflate(R.layout.dialegs, null);
+        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
+        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
+        tv.setText(R.string.AskingQuestions);
+
+        DialegFormControl
+                .setTitle(getString(R.string.Attention))
+                .setView(textEntryView)
+                .setCancelable(false);
+
+        final AlertDialog alerta = DialegFormControl.create();
+
+        alerta.show();
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alerta.dismiss();
+            }
+        });
+    }
+
+
+    //---------------------------------------------------------------------------------------------
 
     /**
      * A placeholder fragment containing a simple view.
@@ -205,8 +233,8 @@ public class PreguntesActivity extends AppCompatActivity {
         }
     }
 
-
     //---------------------------------------------------------------------------------------------
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -284,7 +312,9 @@ public class PreguntesActivity extends AppCompatActivity {
 
     }
 
+
     //---------------------------------------------------------------------------------------------
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -365,8 +395,8 @@ public class PreguntesActivity extends AppCompatActivity {
 
     }
 
-
     //---------------------------------------------------------------------------------------------
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -455,6 +485,7 @@ public class PreguntesActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -533,7 +564,9 @@ public class PreguntesActivity extends AppCompatActivity {
 
     }
 
+
     //---------------------------------------------------------------------------------------------
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -615,8 +648,8 @@ public class PreguntesActivity extends AppCompatActivity {
 
     }
 
-
     //---------------------------------------------------------------------------------------------
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -695,7 +728,8 @@ public class PreguntesActivity extends AppCompatActivity {
 
     }
 
-    //---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -776,7 +810,9 @@ public class PreguntesActivity extends AppCompatActivity {
 
     }
 
-//---------------------------------------------------------------------------------------------
+
+    //---------------------------------------------------------------------------------------------
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -858,6 +894,7 @@ public class PreguntesActivity extends AppCompatActivity {
 
 
     //---------------------------------------------------------------------------------------------
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -936,8 +973,6 @@ public class PreguntesActivity extends AppCompatActivity {
 
     }
 
-
-    //---------------------------------------------------------------------------------------------
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -1136,32 +1171,6 @@ public class PreguntesActivity extends AppCompatActivity {
             }
             return null;
         }
-    }
-
-    private void DialegQuestionari(){
-        AlertDialog.Builder DialegFormControl = new AlertDialog.Builder(PreguntesActivity.this);
-
-        LayoutInflater factory = LayoutInflater.from(PreguntesActivity.this);
-        View textEntryView = factory.inflate(R.layout.dialegs, null);
-        TextView tv = (TextView) textEntryView.findViewById(R.id.tvMissatgeDialeg);
-        Button bt = (Button) textEntryView.findViewById(R.id.btDiaelgOK);
-        tv.setText(R.string.AskingQuestions);
-
-        DialegFormControl
-                .setTitle(getString(R.string.Attention))
-                .setView(textEntryView)
-                .setCancelable(false);
-
-        final AlertDialog alerta = DialegFormControl.create();
-
-        alerta.show();
-
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alerta.dismiss();
-            }
-        });
     }
 
 }
