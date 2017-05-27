@@ -5,16 +5,7 @@
     <string name="str_es">Español</string>
     <string name="str_en">English</string>
 
-    <string-array name="emocions">
-        <item>Selecciona una emoció aqui</item>
-        <item>Happy</item>
-        <item>Orgulloso</item>
-        <item>Felix</item>
-        <item>Satisfecho</item>
-        <item>Lleno de amor</item>
-        <item>Eufórico</item>
-        <item>Entusiasmado</item>
-    </string-array>
+
 
     <string name="auth_failed">Failed in Auth</string>
     <string name="loading">Loading</string>
@@ -345,6 +336,8 @@
     <string name="ChangeLanguage">Change language</string>
     <string name="NoEpisodeSelected">There is no episode selected</string>
     <string name="LengthSix">Minimum password length is six</string>
+    <string name="In">in</string>
+    <string name="WatchingImage">Looking at this picture I am feeling</string>
 
     <!-- Strings related to login -->
 

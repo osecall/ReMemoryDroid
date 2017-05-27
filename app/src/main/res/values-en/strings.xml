@@ -325,4 +325,6 @@
     <string name="ChangeLanguage">Change language</string>
     <string name="NoEpisodeSelected">There is no episode selected</string>
     <string name="LengthSix">Minimum password length is six</string>
+    <string name="In">in</string>
+    <string name="WatchingImage">Looking at this picture I am feeling</string>
 </resources>

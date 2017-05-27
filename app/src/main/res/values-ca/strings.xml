@@ -325,4 +325,6 @@
     <string name="ChangeLanguage">Canviar llengua</string>
     <string name="NoEpisodeSelected">No hi ha episodi seleccionat</string>
     <string name="LengthSix">Mida contrasenya ha de ser de sis caràcters alfanumèrics</string>
+    <string name="In">a</string>
+    <string name="WatchingImage">Veient aquesta imatge em sento</string>
 </resources>

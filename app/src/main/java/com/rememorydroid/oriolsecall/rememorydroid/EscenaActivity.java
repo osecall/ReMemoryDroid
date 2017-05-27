@@ -17,6 +17,8 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.view.KeyEvent.ACTION_UP;
 
@@ -32,6 +34,9 @@ public class EscenaActivity extends BaseActivity {
     private PacientUsuari pacient;
     private TestAnswers respostes_recuperades;
     private boolean intensitatCambiada;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference dbRef = database.getReference("pacients");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +143,13 @@ public class EscenaActivity extends BaseActivity {
         btNextEscena.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                showProgressDialog();
+                dbRef.child(ObtenirPacient().getID()).child("episodis").child(ObtenirEpisodi().toString()).child("Text_B").setValue(etQuestion1Escena.getText().toString());
+                dbRef.child(ObtenirPacient().getID()).child("episodis").child(ObtenirEpisodi().toString()).child("Text_C").setValue(etQuestion2Escena.getText().toString());
+                dbRef.child(ObtenirPacient().getID()).child("episodis").child(ObtenirEpisodi().toString()).child("Text_D").setValue(etQuestion3Escena.getText().toString());
+                hideProgressDialog();
+
                 intent = new Intent(EscenaActivity.this,Escena2Activity.class);
                 intent.putExtra("A",A);
                 intent.putExtra("B",etQuestion1Escena.getText().toString());

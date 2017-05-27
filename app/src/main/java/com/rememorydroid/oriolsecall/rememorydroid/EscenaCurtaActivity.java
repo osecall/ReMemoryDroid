@@ -3,21 +3,26 @@ package com.rememorydroid.oriolsecall.rememorydroid;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import static android.view.KeyEvent.ACTION_UP;
 
 public class EscenaCurtaActivity extends BaseActivity {
 
@@ -27,22 +32,43 @@ public class EscenaCurtaActivity extends BaseActivity {
     private StorageReference myRefFavour;
     private String Episodi;
     private Button btNextEscenaCurta;
+    private Spinner snEmocions;
     private PacientUsuari pacient;
-    private EditText etCurta11, etCurta22, etCurta33,etCurta44;
+    private TextView tvCurta22, tvCurta33, tvCurta44, tvEscenaInstruccions3;
+    private EditText etCurta44;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference dbRef = database.getReference("pacients");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escena_curta);
 
-
         Episodi = ObtenirEpisodi();
         pacient = ObtenirPacient();
 
-        etCurta11 = (EditText) findViewById(R.id.etCurta11);
-        etCurta22 = (EditText) findViewById(R.id.etCurta22);
-        etCurta33 = (EditText) findViewById(R.id.etCurta33);
+        tvEscenaInstruccions3 = (TextView) findViewById(R.id.tvEscenaInstruccions3);
+        tvCurta22 = (TextView) findViewById(R.id.tvCurta22);
+        tvCurta33 = (TextView) findViewById(R.id.tvCurta33);
+        tvCurta44 = (TextView) findViewById(R.id.tvCurta44);
         etCurta44 = (EditText) findViewById(R.id.etCurta44);
+        snEmocions = (Spinner) findViewById(R.id.snEmocions);
+
+
+        dbRef.child(ObtenirPacient().getID()).child("episodis").child(ObtenirEpisodi().toString()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                tvEscenaInstruccions3.setText(dataSnapshot.child("Name").getValue(String.class));
+                tvCurta22.setText(dataSnapshot.child("Text_B").getValue(String.class));
+                tvCurta33.setText(" " + dataSnapshot.child("Text_C").getValue(String.class) + ",");
+                tvCurta44.setText(getString(R.string.InTheSub, dataSnapshot.child("Text_D").getValue(String.class)));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                showToastError();
+            }
+        });
 
         ivPicturePreferred = (ImageView) findViewById(R.id.ivPicturePreferredCurta);
         btNextEscenaCurta = (Button) findViewById(R.id.btNextEscenaCurta);
@@ -62,18 +88,11 @@ public class EscenaCurtaActivity extends BaseActivity {
         btNextEscenaCurta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!etCurta11.getText().toString().isEmpty() && !etCurta22.getText().toString().isEmpty()
-                        && !etCurta33.getText().toString().isEmpty() && !etCurta44.getText().toString().isEmpty()){
+                if (!etCurta44.getText().toString().isEmpty()) {
                     Intent intent = new Intent(EscenaCurtaActivity.this, RespirarActivity.class);
                     intent.putExtra("Curta1","Curta1");
                     startActivity(intent);
                 } else {
-                    if (etCurta11.getText().toString().isEmpty())
-                        etCurta11.setError(getString(R.string.FieldEmpty));
-                    if (etCurta22.getText().toString().isEmpty())
-                        etCurta22.setError(getString(R.string.FieldEmpty));
-                    if (etCurta33.getText().toString().isEmpty())
-                        etCurta33.setError(getString(R.string.FieldEmpty));
                     if (etCurta44.getText().toString().isEmpty())
                         etCurta44.setError(getString(R.string.FieldEmpty));
 
@@ -82,40 +101,11 @@ public class EscenaCurtaActivity extends BaseActivity {
             }
         });
 
-        etCurta11.setOnKeyListener(new View.OnKeyListener() {
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.emocions, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        snEmocions.setAdapter(adapter2);
 
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(keyCode==66 && event.getAction()==ACTION_UP){
-                    etCurta22.requestFocus();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        etCurta22.setOnKeyListener(new View.OnKeyListener() {
-
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(keyCode==66 && event.getAction()==ACTION_UP){
-                    etCurta33.requestFocus();
-                    return true;
-                }
-                return false;
-            }
-        });
-        etCurta33.setOnKeyListener(new View.OnKeyListener() {
-
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(keyCode==66 && event.getAction()==ACTION_UP){
-                    etCurta44.requestFocus();
-                    return true;
-                }
-                return false;
-            }
-        });
     }
 
     //Part del menú 'action bar'

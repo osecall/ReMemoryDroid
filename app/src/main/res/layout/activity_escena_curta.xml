@@ -9,12 +9,12 @@
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.EscenaCurtaActivity">
 
     <FrameLayout
+        android:id="@+id/frameLayoutEscenaCurta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/frameLayoutEscenaCurta"
+        android:layout_alignEnd="@+id/btNextEscenaCurta"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp">
+        android:layout_marginTop="21dp">
 
         <ImageView
             android:id="@+id/ivPicturePreferredCurta"
@@ -32,25 +32,26 @@
 
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/tvEscenaInstruccions3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/frameLayoutEscenaCurta"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="62dp"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:id="@+id/linearLayoutEscenaCurta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvEscenaInstruccions3"
+        android:layout_below="@+id/tvEscenaInstruccions3"
         android:layout_marginLeft="20dp"
-        android:orientation="vertical"
-        android:layout_below="@+id/frameLayoutEscenaCurta"
-        android:layout_centerHorizontal="true">
-
-        <TextView
-            android:id="@+id/tvEscenaInstruccions3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/et1Curta"
-            android:layout_alignStart="@+id/ivPicturePreferredCurta"
-            android:layout_marginBottom="5dp"
-            android:text="@string/HereWriteAnswers"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+        android:layout_marginTop="39dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -58,15 +59,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvQuestion1EscenaCurta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/WhoAreYouWith"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et1Curta"
+                android:id="@+id/tv1Curta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="false"
@@ -74,16 +67,14 @@
                 android:focusable="false"
                 android:inputType="textPersonName"
                 android:text="@string/IamWith"
-                android:textSize="24sp" />
+                android:textSize="30sp" />
 
-            <EditText
-                android:id="@+id/etCurta11"
+            <TextView
+                android:id="@+id/tvCurta22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textSize="24sp" />
+                android:textSize="30sp" />
 
         </LinearLayout>
 
@@ -93,55 +84,24 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvQuestion2EscenaCurta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/WhereAreThey"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et2Curta"
+                android:id="@+id/tv2Curta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
                 android:inputType="textPersonName"
-                android:text="@string/WeAreIn"
-                android:textSize="24sp" />
+                android:text="@string/In"
+                android:textSize="30sp" />
 
-            <EditText
-                android:id="@+id/etCurta22"
+            <TextView
+                android:id="@+id/tvCurta33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textSize="24sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvQuestion3EscenaCurta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/WhatMonth"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/etCurta33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:ems="15"
                 android:inputType="textPersonName"
-                android:textSize="24sp" />
+                android:textSize="30sp" />
 
         </LinearLayout>
 
@@ -151,14 +111,19 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvQuestion4EscenaCurta"
+                android:id="@+id/tvCurta44"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/WhatTheyAreDoing"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_height="38dp"
+                android:text="@string/InTheSub"
+                android:textSize="30sp" />
+        </LinearLayout>
 
-            <EditText
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
                 android:id="@+id/et4Curta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -167,7 +132,7 @@
                 android:focusable="false"
                 android:inputType="textPersonName"
                 android:text="@string/WeWere"
-                android:textSize="24sp" />
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/etCurta44"
@@ -176,20 +141,39 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textSize="24sp" />
+                android:textSize="30sp" />
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <Spinner
+        android:id="@+id/snEmocions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btNextEscenaCurta"
+        android:layout_alignStart="@+id/linearLayoutEscenaCurta"
+        android:layout_marginBottom="53dp" />
 
     <Button
         android:id="@+id/btNextEscenaCurta"
         style="@style/Next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/linearLayoutEscenaCurta"
-        android:layout_marginBottom="14dp"
-        android:layout_marginStart="43dp"
-        android:layout_toEndOf="@+id/linearLayoutEscenaCurta" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="54dp"
+        android:layout_marginEnd="46dp" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/snEmocions"
+        android:layout_alignStart="@+id/snEmocions"
+        android:layout_marginBottom="25dp"
+        android:text="@string/WatchingImage"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

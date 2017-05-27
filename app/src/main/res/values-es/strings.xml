@@ -325,4 +325,6 @@
     <string name="ChangeLanguage">Cambiar idioma</string>
     <string name="NoEpisodeSelected">No hay episodio seleccionado</string>
     <string name="LengthSix">Contraseña tiene que ser mínimo de 6 caracteres</string>
+    <string name="In">en</string>
+    <string name="WatchingImage">Viendo esta imagen me siento</string>
 </resources>

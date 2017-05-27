@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
-    android:layout_height="match_parent"
     tools:context="com.rememorydroid.oriolsecall.rememorydroid.EscenaActivity">
 
 
@@ -36,34 +36,34 @@
         android:id="@+id/tvEscenaInstruccio1"
         android:layout_width="300sp"
         android:layout_height="wrap_content"
-        android:text="@string/ChooseEmotion"
-        android:textSize="24sp"
-        android:textStyle="bold"
         android:layout_alignTop="@+id/ivPicturePreferredCurta"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp" />
+        android:layout_marginTop="11dp"
+        android:text="@string/ChooseEmotion"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/eLvEmocions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEscenaInstruccio1"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:elevation="24dp"
         android:gravity="center_vertical|center_horizontal"
-        android:spinnerMode="dialog"
-        android:layout_below="@+id/tvEscenaInstruccio1"
-        android:layout_centerHorizontal="true" />
+        android:spinnerMode="dialog" />
 
     <TextView
         android:id="@+id/tvEscenariInstruccions2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/IntensityEmotion"
-        android:textSize="26sp"
-        android:textStyle="bold"
         android:layout_alignBaseline="@+id/tvEscenaInstruccio1"
         android:layout_alignBottom="@+id/tvEscenaInstruccio1"
-        android:layout_alignStart="@+id/textView10" />
+        android:layout_alignStart="@+id/textView10"
+        android:text="@string/IntensityEmotion"
+        android:textSize="26sp"
+        android:textStyle="bold" />
 
     <SeekBar
         android:id="@+id/seekBar2"
@@ -103,18 +103,18 @@
         android:id="@+id/linearLayoutEscenaCurta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:orientation="vertical"
-        android:layout_below="@+id/frameLayout3"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/frameLayout3"
+        android:layout_marginLeft="20dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="18dp">
+        android:layout_marginTop="18dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvEscenaInstruccions3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/et1Curta"
+            android:layout_above="@+id/tv1Curta"
             android:layout_alignStart="@+id/ivPicturePreferredCurta"
             android:layout_marginBottom="5dp"
             android:text="@string/HereWriteAnswers"
@@ -135,7 +135,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et1Curta"
+                android:id="@+id/tv1Curta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="false"
@@ -256,11 +256,11 @@
         style="@style/Next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="86dp"
-        android:visibility="invisible"
         android:layout_alignBottom="@+id/linearLayoutEscenaCurta"
+        android:layout_marginBottom="86dp"
+        android:layout_marginEnd="32dp"
         android:layout_toStartOf="@+id/textView11"
-        android:layout_marginEnd="32dp" />
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/ivValorIntensity1"
