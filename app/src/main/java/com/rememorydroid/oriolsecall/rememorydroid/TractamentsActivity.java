@@ -1,5 +1,6 @@
 package com.rememorydroid.oriolsecall.rememorydroid;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -140,7 +143,6 @@ public class TractamentsActivity extends BaseActivity
     }
 
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -148,35 +150,274 @@ public class TractamentsActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.signOutAssessor) {
-            //Retorna a la pantalla inicial
-            FirebaseAuth.getInstance().signOut();
-            showToast(getString(R.string.signed_out),true);
-            Intent areaAvaluador = new Intent(TractamentsActivity.this, SignInActivity.class);
-            startActivity(areaAvaluador);
+            //Confirmar eliminació per contrasenya
+            //-------------------------------------------------------------------
+            AlertDialog.Builder dialegPassword = new AlertDialog.Builder(TractamentsActivity.this);
+            LayoutInflater factory = LayoutInflater.from(TractamentsActivity.this);
+            View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+            //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+            final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+            dialegPassword
+                    .setView(textEntryView)
+                    .setIcon(R.drawable.passwordicon)
+                    .setTitle(R.string.PasswordDialog)
+                    .setMessage(R.string.IntroducePassword)
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            // Recuperem el email del avaluador i el reautentiquem
+                            String email_user = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                            String pass_user = input.getText().toString();
+                            if (!pass_user.isEmpty()) {
+                                //Reautentiquem al avaluador per seguretat
+                                AuthCredential credential = EmailAuthProvider.getCredential(email_user, pass_user);
+                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        //Retorna a la pantalla inicial
+                                        FirebaseAuth.getInstance().signOut();
+                                        showToast(getString(R.string.signed_out), true);
+                                        Intent areaAvaluador = new Intent(TractamentsActivity.this, SignInActivity.class);
+                                        startActivity(areaAvaluador);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(getString(R.string.IncorrecPassword), false);
 
+                                    }
+                                });
+                            }
+                        }
+                    }).show();
         } else if (id == R.id.signoutpacient) {
-            showToast(getString(R.string.MenuChangePacient),true);
-            BorrarPacient();
-            Intent areaAvaluador = new Intent(TractamentsActivity.this, AreaAvaluadorActivity.class);
-            startActivity(areaAvaluador);
 
+            //Confirmar eliminació per contrasenya
+            //-------------------------------------------------------------------
+            AlertDialog.Builder dialegPassword = new AlertDialog.Builder(TractamentsActivity.this);
+            LayoutInflater factory = LayoutInflater.from(TractamentsActivity.this);
+            View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+            //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+            final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+            dialegPassword
+                    .setView(textEntryView)
+                    .setIcon(R.drawable.passwordicon)
+                    .setTitle(R.string.PasswordDialog)
+                    .setMessage(R.string.IntroducePassword)
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            // Recuperem el email del avaluador i el reautentiquem
+                            String email_user = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                            String pass_user = input.getText().toString();
+                            if (!pass_user.isEmpty()) {
+                                //Reautentiquem al avaluador per seguretat
+                                AuthCredential credential = EmailAuthProvider.getCredential(email_user, pass_user);
+                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        showToast(getString(R.string.MenuChangePacient), true);
+                                        BorrarPacient();
+                                        Intent areaAvaluador = new Intent(TractamentsActivity.this, AreaAvaluadorActivity.class);
+                                        startActivity(areaAvaluador);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(getString(R.string.IncorrecPassword), false);
+
+                                    }
+                                });
+                            }
+                        }
+                    }).show();
 
         } else if (id == R.id.backtoepisodes) {
-            startActivity(new Intent(TractamentsActivity.this, EpisodiActivity.class));
+            //Confirmar eliminació per contrasenya
+            //-------------------------------------------------------------------
+            AlertDialog.Builder dialegPassword = new AlertDialog.Builder(TractamentsActivity.this);
+            LayoutInflater factory = LayoutInflater.from(TractamentsActivity.this);
+            View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+            //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+            final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+            dialegPassword
+                    .setView(textEntryView)
+                    .setIcon(R.drawable.passwordicon)
+                    .setTitle(R.string.PasswordDialog)
+                    .setMessage(R.string.IntroducePassword)
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            // Recuperem el email del avaluador i el reautentiquem
+                            String email_user = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                            String pass_user = input.getText().toString();
+                            if (!pass_user.isEmpty()) {
+                                //Reautentiquem al avaluador per seguretat
+                                AuthCredential credential = EmailAuthProvider.getCredential(email_user, pass_user);
+                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        startActivity(new Intent(TractamentsActivity.this, EpisodiActivity.class));
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(getString(R.string.IncorrecPassword), false);
+
+                                    }
+                                });
+                            }
+                        }
+                    }).show();
         } else if (id == R.id.answers) {
             if (shortVersionEpisodeExists) {
-                startActivity(new Intent(TractamentsActivity.this, PacientAnswersActivity.class));
+
+                //Confirmar eliminació per contrasenya
+                //-------------------------------------------------------------------
+                AlertDialog.Builder dialegPassword = new AlertDialog.Builder(TractamentsActivity.this);
+                LayoutInflater factory = LayoutInflater.from(TractamentsActivity.this);
+                View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+                //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+                final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+                dialegPassword
+                        .setView(textEntryView)
+                        .setIcon(R.drawable.passwordicon)
+                        .setTitle(R.string.PasswordDialog)
+                        .setMessage(R.string.IntroducePassword)
+                        .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                // Recuperem el email del avaluador i el reautentiquem
+                                String email_user = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                                String pass_user = input.getText().toString();
+                                if (!pass_user.isEmpty()) {
+                                    //Reautentiquem al avaluador per seguretat
+                                    AuthCredential credential = EmailAuthProvider.getCredential(email_user, pass_user);
+                                    FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            startActivity(new Intent(TractamentsActivity.this, PacientAnswersActivity.class));
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            showToast(getString(R.string.IncorrecPassword), false);
+
+                                        }
+                                    });
+                                }
+                            }
+                        }).show();
+
             } else showToast(getString(R.string.NoEpisodeSelected), true);
         } else if (id == R.id.videos) {
-            Intent pickVideo = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-            pickVideo.setType("video/*");
-            startActivityForResult(Intent.createChooser(pickVideo, getString(R.string.ChooseSource)), result);
-        } else if (id == R.id.pictures) {
-            DialegPicture();
+            //Confirmar eliminació per contrasenya
+            //-------------------------------------------------------------------
+            AlertDialog.Builder dialegPassword = new AlertDialog.Builder(TractamentsActivity.this);
+            LayoutInflater factory = LayoutInflater.from(TractamentsActivity.this);
+            View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+            //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+            final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+            dialegPassword
+                    .setView(textEntryView)
+                    .setIcon(R.drawable.passwordicon)
+                    .setTitle(R.string.PasswordDialog)
+                    .setMessage(R.string.IntroducePassword)
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            // Recuperem el email del avaluador i el reautentiquem
+                            String email_user = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                            String pass_user = input.getText().toString();
+                            if (!pass_user.isEmpty()) {
+                                //Reautentiquem al avaluador per seguretat
+                                AuthCredential credential = EmailAuthProvider.getCredential(email_user, pass_user);
+                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Intent pickVideo = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+                                        pickVideo.setType("video/*");
+                                        startActivityForResult(Intent.createChooser(pickVideo, getString(R.string.ChooseSource)), result);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(getString(R.string.IncorrecPassword), false);
 
+                                    }
+                                });
+                            }
+                        }
+                    }).show();
+        } else if (id == R.id.pictures) {
+            //Confirmar eliminació per contrasenya
+            //-------------------------------------------------------------------
+            AlertDialog.Builder dialegPassword = new AlertDialog.Builder(TractamentsActivity.this);
+            LayoutInflater factory = LayoutInflater.from(TractamentsActivity.this);
+            View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+            //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+            final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+            dialegPassword
+                    .setView(textEntryView)
+                    .setIcon(R.drawable.passwordicon)
+                    .setTitle(R.string.PasswordDialog)
+                    .setMessage(R.string.IntroducePassword)
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            // Recuperem el email del avaluador i el reautentiquem
+                            String email_user = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                            String pass_user = input.getText().toString();
+                            if (!pass_user.isEmpty()) {
+                                //Reautentiquem al avaluador per seguretat
+                                AuthCredential credential = EmailAuthProvider.getCredential(email_user, pass_user);
+                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        DialegPicture();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(getString(R.string.IncorrecPassword), false);
+
+                                    }
+                                });
+                            }
+
+                        }
+                    }).show();
         } else if (id == R.id.changelanguage) {
-            BorrarSharedPreferencesLlengua();
-            startActivity(new Intent(TractamentsActivity.this, LanguageActivity.class));
+            //Confirmar eliminació per contrasenya
+            //-------------------------------------------------------------------
+            AlertDialog.Builder dialegPassword = new AlertDialog.Builder(TractamentsActivity.this);
+            LayoutInflater factory = LayoutInflater.from(TractamentsActivity.this);
+            View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+            //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+            final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+            dialegPassword
+                    .setView(textEntryView)
+                    .setIcon(R.drawable.passwordicon)
+                    .setTitle(R.string.PasswordDialog)
+                    .setMessage(R.string.IntroducePassword)
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            // Recuperem el email del avaluador i el reautentiquem
+                            String email_user = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                            String pass_user = input.getText().toString();
+                            if (!pass_user.isEmpty()) {
+                                //Reautentiquem al avaluador per seguretat
+                                AuthCredential credential = EmailAuthProvider.getCredential(email_user, pass_user);
+                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        BorrarSharedPreferencesLlengua();
+                                        startActivity(new Intent(TractamentsActivity.this, LanguageActivity.class));
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(getString(R.string.IncorrecPassword), false);
+
+                                    }
+                                });
+                            }
+                        }
+                    }).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

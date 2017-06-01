@@ -38,7 +38,7 @@ import java.io.File;
 public class PacientAnswersActivity extends BaseActivity {
 
     private static final String TAG = "PacientAnswrsActivity";
-    private Button EvocarA, EvocarB, EvocarC, EvocarD, btER, btDR, btGraellaA, btGraellaB, btGraellaC, btGraellaD;
+    private Button EvocarA, EvocarB, EvocarC, EvocarD, btER, btDR, btAF, btGraellaA, btGraellaB, btGraellaC, btGraellaD;
     private ImageView imatge;
     private String pacientID;
     private MediaPlayer mpA, mpB, mpC, mpD;
@@ -71,6 +71,7 @@ public class PacientAnswersActivity extends BaseActivity {
         EvocarD = (Button) findViewById(R.id.btEvocarD);
         btER = (Button) findViewById(R.id.btER);
         btDR = (Button) findViewById(R.id.btDR);
+        btAF = (Button) findViewById(R.id.btAF);
         btGraellaA = (Button) findViewById(R.id.btGraellaA);
         btGraellaB = (Button) findViewById(R.id.btGraellaB);
         btGraellaC = (Button) findViewById(R.id.btGraellaC);
@@ -317,6 +318,15 @@ public class PacientAnswersActivity extends BaseActivity {
                         showToast("Descàrga correcte", false);
                     }
                 });
+            }
+        });
+
+        btAF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent((Intent.ACTION_GET_CONTENT));
+                intent.setType("file/csv");
+                startActivity(intent);
             }
         });
 

@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -333,14 +334,48 @@ public class AreaAvaluadorActivity extends BaseActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.btSignOutMenu) {
 
-            //Retorna a la pantalla inicial
-            FirebaseAuth.getInstance().signOut();
+            //Confirmar eliminació per contrasenya
+            //-------------------------------------------------------------------
+            AlertDialog.Builder dialegPassword = new AlertDialog.Builder(AreaAvaluadorActivity.this);
+            LayoutInflater factory = LayoutInflater.from(AreaAvaluadorActivity.this);
+            View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+            //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+            final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+            dialegPassword
+                    .setView(textEntryView)
+                    .setIcon(R.drawable.passwordicon)
+                    .setTitle(R.string.PasswordDialog)
+                    .setMessage(R.string.IntroducePassword)
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            // Recuperem el email del avaluador i el reautentiquem
+                            String email_user = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                            String pass_user = input.getText().toString();
+                            if (!pass_user.isEmpty()) {
+                                //Reautentiquem al avaluador per seguretat
+                                AuthCredential credential = EmailAuthProvider.getCredential(email_user, pass_user);
+                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        //Retorna a la pantalla inicial
+                                        FirebaseAuth.getInstance().signOut();
 
-            showToast(getString(R.string.signed_out),true);
-            Log.d(TAG,"Usuari ha acabat la sessió");
+                                        showToast(getString(R.string.signed_out), true);
+                                        Log.d(TAG, "Usuari ha acabat la sessió");
 
-            Intent areaAvaluador = new Intent(AreaAvaluadorActivity.this, SignInActivity.class);
-            startActivity(areaAvaluador);
+                                        Intent areaAvaluador = new Intent(AreaAvaluadorActivity.this, SignInActivity.class);
+                                        startActivity(areaAvaluador);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(getString(R.string.IncorrecPassword), false);
+
+                                    }
+                                });
+                            }
+                        }
+                    }).show();
         }
 
         if (id == R.id.btSelectUser) {

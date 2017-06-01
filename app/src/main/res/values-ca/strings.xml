@@ -327,4 +327,5 @@
     <string name="LengthSix">Mida contrasenya ha de ser de sis caràcters alfanumèrics</string>
     <string name="In">a</string>
     <string name="WatchingImage">Veient aquesta imatge em sento</string>
+    <string name="FileExploration">Explorador de fitxers</string>
 </resources>

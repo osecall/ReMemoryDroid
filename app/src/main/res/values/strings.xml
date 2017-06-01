@@ -338,6 +338,7 @@
     <string name="LengthSix">Minimum password length is six</string>
     <string name="In">in</string>
     <string name="WatchingImage">Looking at this picture I am feeling</string>
+    <string name="FileExploration">File explorer</string>
 
     <!-- Strings related to login -->
 
