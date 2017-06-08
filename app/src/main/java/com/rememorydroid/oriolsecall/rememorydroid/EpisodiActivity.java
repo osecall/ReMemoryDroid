@@ -280,15 +280,20 @@ public class EpisodiActivity extends BaseActivity {
                                                         public void onDataChange(DataSnapshot snapshot) {
 
                                                             if (snapshot.child(ID_pacient).exists()){
-                                                                snapshot.child(ID_pacient).child("episodis").child(String.valueOf(numeroEpisodi)).getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                snapshot.child(ID_pacient).child("episodis").child(String.valueOf(numeroEpisodi)).getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                     @Override
-                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                    public void onSuccess(Void aVoid) {
                                                                         showToast(getString(R.string.EpisodeDeleted,numeroEpisodi),true);
-                                                                        Log.d(TAG,task.getResult().toString());
+                                                                        Log.d(TAG, "Usuari pacient borrat");
+                                                                        startActivity(getIntent());
+                                                                    }
+                                                                }).addOnFailureListener(new OnFailureListener() {
+                                                                    @Override
+                                                                    public void onFailure(@NonNull Exception e) {
+                                                                        showToastError();
+                                                                        Log.d(TAG, "Usuari pacient no borrat per un error base de dades");
                                                                     }
                                                                 });
-
-
                                                             }
                                                             else{
                                                                 showToast(getString(R.string.EpisodeNotExist),true);
@@ -312,7 +317,6 @@ public class EpisodiActivity extends BaseActivity {
                                                     Log.d(TAG,"Password incorrecte");
                                                 }
                                             });
-                                            arg0.cancel();
                                             arg0.dismiss();
 
                                         }
@@ -320,7 +324,6 @@ public class EpisodiActivity extends BaseActivity {
                                     .setNegativeButton(getString(R.string.KO), new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface arg0, int arg1) {
                                             arg0.dismiss();
-                                            arg0.cancel();
                                         }
                                     })
                                     .show();

@@ -93,6 +93,9 @@ public class PacientUserSignUpActivity extends BaseActivity{
                     if (Integer.parseInt(aux) - Integer.parseInt(data.getKey()) < -1) {
                         etIDPacientSignUp.setText(String.valueOf(Integer.parseInt(data.getKey()) - 1));
                         break;
+                    } else {
+                        etIDPacientSignUp.setText(String.valueOf(Long.valueOf(dataSnapshot.getChildrenCount())));
+
                     }
                     aux = data.getKey();
 
@@ -223,8 +226,13 @@ public class PacientUserSignUpActivity extends BaseActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menuavaluadors, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         menu.getItem(0).setTitle(getString(R.string.sign_out, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        if (ObtenirPacient() != null) {
+            menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient) + " (" + ObtenirPacient().getID().toString() + ")");
+        } else
+            menu.getItem(1).setTitle(getString(R.string.sign_out_Pacient) + " (" + getString(R.string.NoPacient) + ")");
+
         return true;
     }
 
@@ -248,7 +256,7 @@ public class PacientUserSignUpActivity extends BaseActivity{
 
         }
 
-        if (id == R.id.btSelectUser) {
+        if (id == R.id.btSignOutPacient) {
 
             //Retorna a la pantalla 'Area Avaluador'
             BorrarPacient();

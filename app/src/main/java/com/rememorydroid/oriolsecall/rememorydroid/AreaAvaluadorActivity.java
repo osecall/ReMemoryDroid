@@ -19,10 +19,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -151,26 +149,23 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                                 //Reautentiquem al avaluador per seguretat
                                                                                 AuthCredential credential = EmailAuthProvider.getCredential(email_user,pass_user);
 
-                                                                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                                     @Override
-                                                                                    public void onComplete(@NonNull Task<Void> task) {
-
+                                                                                    public void onSuccess(Void aVoid) {
                                                                                         showProgressDialog();
                                                                                         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                                                                             @Override
                                                                                             public void onDataChange(DataSnapshot snapshot) {
 
                                                                                                 if (snapshot.child(IDuserDelete).exists()){
-                                                                                                    snapshot.child(IDuserDelete).getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                    snapshot.child(IDuserDelete).getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                                                         @Override
-                                                                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                                                                            if(task.isSuccessful()){
-                                                                                                                hideProgressDialog();
-                                                                                                                showToast(getString(R.string.UserDeleted)+IDuserDelete,true);
-                                                                                                                //Eliminem l'usuari de la memòria si és el mateix que està a la sessió
+                                                                                                        public void onSuccess(Void aVoid) {
+                                                                                                            hideProgressDialog();
+                                                                                                            showToast(getString(R.string.UserDeleted) + IDuserDelete, true);
+                                                                                                            //Eliminem l'usuari de la memòria si és el mateix que està a la sessió
+                                                                                                            if (ObtenirPacient() != null) {
                                                                                                                 PacientUsuari pacient = ObtenirPacient();
-
-
                                                                                                                 if(pacient.getID().equalsIgnoreCase(IDuserDelete)){
                                                                                                                     BorrarPacient();
 
@@ -179,10 +174,7 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                                                                     tvCUsurName.setVisibility(View.GONE);
                                                                                                                 }
                                                                                                             }
-                                                                                                            else{
-                                                                                                                showToastError();
-                                                                                                                Log.e(TAG,"Error en eliminar pacient!");
-                                                                                                            }
+
                                                                                                         }
                                                                                                     }).addOnFailureListener(new OnFailureListener() {
                                                                                                         @Override
@@ -206,15 +198,14 @@ public class AreaAvaluadorActivity extends BaseActivity {
                                                                                             }
                                                                                         });
                                                                                     }
-
-
                                                                                 }).addOnFailureListener(new OnFailureListener() {
                                                                                     @Override
                                                                                     public void onFailure(@NonNull Exception e) {
-                                                                                        showToast(getString(R.string.WrongPassword),true);
+                                                                                        showToastError();
                                                                                         Log.e(TAG,"AreaAvaluador: "+e.getStackTrace().toString());
                                                                                     }
                                                                                 });
+
                                                                                 arg0.dismiss();
                                                                             }
                                                                         })

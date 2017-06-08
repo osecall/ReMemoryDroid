@@ -339,6 +339,7 @@
     <string name="In">in</string>
     <string name="WatchingImage">Looking at this picture I am feeling</string>
     <string name="FileExploration">File explorer</string>
+    <string name="NoPacient">No Pacient</string>
 
     <!-- Strings related to login -->
 

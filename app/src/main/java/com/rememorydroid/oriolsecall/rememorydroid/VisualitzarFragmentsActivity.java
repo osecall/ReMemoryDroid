@@ -16,7 +16,6 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 
 public class VisualitzarFragmentsActivity extends BaseActivity {
 
@@ -79,18 +78,18 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
 
         if (getIntent().hasExtra("Segon")) {
 
-            if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+            if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada);
                 audioBack = R.raw.visualitzacioguiada1playing;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing);
 
-            } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada_es);
                 audioBack = R.raw.visualitzacioguiada1playing_es;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing_es);
 
 
-            } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada_en);
                 audioBack = R.raw.visualitzacioguiada1playing_en;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing_en);
@@ -106,18 +105,18 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
 
         else if (getIntent().hasExtra("Tercer")) {
 
-            if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+            if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
                 audioBack = R.raw.visualitzacioguiada2playing;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing);
 
-            } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_es);
                 audioBack = R.raw.visualitzacioguiada2playing_es;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_es);
 
 
-            } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_en);
                 audioBack = R.raw.visualitzacioguiada2playing_en;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_en);
@@ -134,17 +133,17 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
 
         else if (getIntent().hasExtra("Quarta")) {
 
-            if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+            if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada);
                 audioBack = R.raw.visualitzacioguiada3playing;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing);
 
-            } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada_es);
                 audioBack = R.raw.visualitzacioguiada3playing_es;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing_es);
 
-            } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada_en);
                 audioBack = R.raw.visualitzacioguiada3playing_en;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing_en);
@@ -161,17 +160,17 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
 
         else if (getIntent().hasExtra("Curta")) {
 
-            if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+            if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
                 audioBack = R.raw.visualitzacioguiada2playing;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing);
 
-            } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_es);
                 audioBack = R.raw.visualitzacioguiada2playing_es;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_es);
 
-            } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_en);
                 audioBack = R.raw.visualitzacioguiada2playing_en;
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_en);

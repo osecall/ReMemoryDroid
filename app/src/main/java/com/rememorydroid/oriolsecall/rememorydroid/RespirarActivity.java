@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Locale;
-
 public class RespirarActivity extends BaseActivity {
 
     private Intent intentRespirar;
@@ -33,15 +31,13 @@ public class RespirarActivity extends BaseActivity {
         if(getIntent().hasExtra("Segon")){
             ivRespirar.setImageResource(R.drawable.abstracte2);
 
-            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+            if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
                 Reproduccio = R.raw.respirar234;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar234_es;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
                 Reproduccio = R.raw.respirar234_en;
 
             }
@@ -57,15 +53,13 @@ public class RespirarActivity extends BaseActivity {
         else if(getIntent().hasExtra("Tercer")){
             ivRespirar.setImageResource(R.drawable.abstracte3);
 
-            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+            if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
                 Reproduccio = R.raw.respirar234;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar234_es;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
                 Reproduccio = R.raw.respirar234_en;
 
             }
@@ -81,15 +75,13 @@ public class RespirarActivity extends BaseActivity {
         else if(getIntent().hasExtra("Quarta")){
             ivRespirar.setImageResource(R.drawable.abstracte4);
 
-            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+            if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
                 Reproduccio = R.raw.respirar234;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar234_es;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
                 Reproduccio = R.raw.respirar234_en;
 
             }
@@ -105,15 +97,13 @@ public class RespirarActivity extends BaseActivity {
         else if(getIntent().hasExtra("Curta1")){
             ivRespirar.setImageResource(R.drawable.abstracte5);
 
-            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+            if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
                 Reproduccio = R.raw.respirar1;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar1_es;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
                 Reproduccio = R.raw.respirar1_en;
 
             }
@@ -129,15 +119,13 @@ public class RespirarActivity extends BaseActivity {
         else if(getIntent().hasExtra("Curta2")){
             ivRespirar.setImageResource(R.drawable.abstracte6);
 
-            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+            if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
                 Reproduccio = R.raw.respirar234;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar234_es;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
                 Reproduccio = R.raw.respirar234_en;
 
             }
@@ -152,15 +140,13 @@ public class RespirarActivity extends BaseActivity {
         }
         else{
 
-            if(Locale.getDefault().getLanguage().toString().matches("ca")){
+            if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
                 Reproduccio = R.raw.respirar1;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("es")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar1_es;
 
-            }
-            else if(Locale.getDefault().getLanguage().toString().matches("en")){
+            } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
                 Reproduccio = R.raw.respirar1_en;
 
             }

@@ -34,7 +34,6 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 
 public class EvocarActivity extends BaseActivity implements View.OnClickListener{
 
@@ -589,12 +588,12 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
 
         MediaPlayer mp = new MediaPlayer();
 
-        if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+        if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
             mp = MediaPlayer.create(this, R.raw.evocar1);
-        } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+        } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
             mp = MediaPlayer.create(this, R.raw.evocar1_es);
 
-        } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+        } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
             mp = MediaPlayer.create(this, R.raw.evocar1_en);
         } else {
             mp = MediaPlayer.create(this, R.raw.evocar1);

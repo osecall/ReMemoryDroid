@@ -328,4 +328,5 @@
     <string name="In">en</string>
     <string name="WatchingImage">Viendo esta imagen me siento</string>
     <string name="FileExploration">Explorador de ficheros</string>
+    <string name="NoPacient">Ningun paciente</string>
 </resources>

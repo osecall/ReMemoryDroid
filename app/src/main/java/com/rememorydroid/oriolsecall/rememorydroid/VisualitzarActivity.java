@@ -24,7 +24,6 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 
 public class VisualitzarActivity extends BaseActivity {
 
@@ -93,13 +92,13 @@ public class VisualitzarActivity extends BaseActivity {
 
         //Per les instruccions
         //Per les instruccions, diferents possibles idiomes en l'audio
-        if (Locale.getDefault().getLanguage().toString().matches("ca")) {
+        if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
             mp = MediaPlayer.create(this, R.raw.visualitzacio0);
 
-        } else if (Locale.getDefault().getLanguage().toString().matches("es")) {
+        } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
             mp = MediaPlayer.create(this, R.raw.visualitzacio0_es);
 
-        } else if (Locale.getDefault().getLanguage().toString().matches("en")) {
+        } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
             mp = MediaPlayer.create(this, R.raw.visualitzacio0_en);
 
         } else {

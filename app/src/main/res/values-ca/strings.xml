@@ -328,4 +328,5 @@
     <string name="In">a</string>
     <string name="WatchingImage">Veient aquesta imatge em sento</string>
     <string name="FileExploration">Explorador de fitxers</string>
+    <string name="NoPacient">Cap pacient</string>
 </resources>
