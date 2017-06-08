@@ -138,7 +138,42 @@ public class TractamentsActivity extends BaseActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+
+            //Confirmar eliminació per contrasenya
+            //-------------------------------------------------------------------
+            AlertDialog.Builder dialegPassword = new AlertDialog.Builder(TractamentsActivity.this);
+            LayoutInflater factory = LayoutInflater.from(TractamentsActivity.this);
+            View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+            //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+            final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+            dialegPassword
+                    .setView(textEntryView)
+                    .setIcon(R.drawable.passwordicon)
+                    .setTitle(R.string.PasswordDialog)
+                    .setMessage(R.string.IntroducePassword)
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            // Recuperem el email del avaluador i el reautentiquem
+                            String email_user = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                            String pass_user = input.getText().toString();
+                            if (!pass_user.isEmpty()) {
+                                //Reautentiquem al avaluador per seguretat
+                                AuthCredential credential = EmailAuthProvider.getCredential(email_user, pass_user);
+                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        TractamentsActivity.super.onBackPressed();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(getString(R.string.IncorrecPassword), false);
+                                    }
+                                });
+                            }
+                        }
+                    }).show();
         }
     }
 
@@ -670,4 +705,6 @@ public class TractamentsActivity extends BaseActivity
         pickVideo.setType("image/*");
         startActivityForResult(Intent.createChooser(pickVideo, getString(R.string.ChooseSource)), result2);
     }
+
+
 }
