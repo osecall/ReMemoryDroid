@@ -100,9 +100,6 @@ public class PacientUserSignUpActivity extends BaseActivity{
                     aux = data.getKey();
 
                 }
-                /*
-                Long numeroMaximUser = dataSnapshot.getChildrenCount()+1;
-                etIDPacientSignUp.setText(numeroMaximUser.toString());*/
             }
 
             @Override

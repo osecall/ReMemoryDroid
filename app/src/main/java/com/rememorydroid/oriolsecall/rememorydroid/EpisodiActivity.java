@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -86,16 +88,21 @@ public class EpisodiActivity extends BaseActivity {
 
                         i= dataSnapshot.child(ID_pacient).child("episodis").getChildrenCount()+1;//Guardem el número d'episodis
 
-                        while(j<i){
+                        for(DataSnapshot data : dataSnapshot.child(ID_pacient).child("episodis").getChildren()){
+                            //while(j<i){
                             EpisodiList episodi=new EpisodiList("","","");
-                            String valor_de_j_string = String.valueOf(j).toString();
+                            //String valor_de_j_string = String.valueOf(j).toString();
 
-                            episodi.setName(dataSnapshot.child(ID_pacient).child("episodis").child(valor_de_j_string).child("Name").getValue(String.class));
-                            episodi.setFecha(dataSnapshot.child(ID_pacient).child("episodis").child(valor_de_j_string).child("Fecha").getValue(String.class));
-                            episodi.setNumero(String.valueOf(j));
+                            episodi.setName(data.child("Name").getValue(String.class));
+                            episodi.setFecha(data.child("Fecha").getValue(String.class));
+                            episodi.setNumero(data.getKey().toString());
+                            //episodi.setNumero(String.valueOf(j));
                             episodis.add(episodi);
-                            j++;
+                            //j++;
+                            //}
                         }
+
+
                         hideProgressDialog();
                 adaptadorPersonalitzat = new EpisodiListAdapter(EpisodiActivity.this,episodis);
                 lista.setAdapter(adaptadorPersonalitzat);
@@ -125,7 +132,10 @@ public class EpisodiActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 lista.setItemChecked(i,true);
-                episodiSeleccionat= String.valueOf(i+1);
+
+                showToast(episodis.get(i).getNumero().toString(),false);
+
+                episodiSeleccionat= episodis.get(i).getNumero().toString();
 
                 TextView episodiTmp = (TextView) view.findViewById(R.id.tvLayOutEpisodi);
 
@@ -137,7 +147,7 @@ public class EpisodiActivity extends BaseActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                EliminarEpisodi(i+1); //Afegim 1 ja que la llista no comença a 0
+                EliminarEpisodi(); //Afegim 1 ja que la llista no comença a 0
 
                 return true;
             }
@@ -232,8 +242,47 @@ public class EpisodiActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
 
-    private void EliminarEpisodi(final int numeroEpisodi) {
+            //Confirmar eliminació per contrasenya
+            //-------------------------------------------------------------------
+            AlertDialog.Builder dialegPassword = new AlertDialog.Builder(EpisodiActivity.this);
+            LayoutInflater factory = LayoutInflater.from(EpisodiActivity.this);
+            View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+            //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+            final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+            dialegPassword
+                    .setView(textEntryView)
+                    .setIcon(R.drawable.passwordicon)
+                    .setTitle(R.string.PasswordDialog)
+                    .setMessage(R.string.IntroducePassword)
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            // Recuperem el email del avaluador i el reautentiquem
+                            String email_user = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                            String pass_user = input.getText().toString();
+                            if (!pass_user.isEmpty()) {
+                                //Reautentiquem al avaluador per seguretat
+                                AuthCredential credential = EmailAuthProvider.getCredential(email_user, pass_user);
+                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        EpisodiActivity.super.onBackPressed();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(getString(R.string.IncorrecPassword), false);
+                                    }
+                                });
+                            }
+                        }
+                    }).show();
+    }
+
+
+    private void EliminarEpisodi() {
         LayoutInflater factory = LayoutInflater.from(EpisodiActivity.this);
         final View textEntryView = factory.inflate(R.layout.dialeg_deleteepisodi, null);
         final EditText input1 = (EditText) textEntryView.findViewById(R.id.etEpisode);
@@ -241,15 +290,10 @@ public class EpisodiActivity extends BaseActivity {
         Borrar
                 .setIcon(R.drawable.warningdialogdeleteuser)
                 .setTitle(getString(R.string.Attention))
-                .setMessage(getString(R.string.EpisodeToDelete,numeroEpisodi))
+                .setMessage(getString(R.string.EpisodeToDelete))
                 .setView(textEntryView)
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-
-                        if(!String.valueOf(numeroEpisodi).matches(input1.getText().toString())){
-                            showToast(getString(R.string.NumberDoesNotMatch),true);
-                        }
-                        else{
 
                             //Confirmar eliminació per contrasenya
                             //-------------------------------------------------------------------
@@ -280,10 +324,10 @@ public class EpisodiActivity extends BaseActivity {
                                                         public void onDataChange(DataSnapshot snapshot) {
 
                                                             if (snapshot.child(ID_pacient).exists()){
-                                                                snapshot.child(ID_pacient).child("episodis").child(String.valueOf(numeroEpisodi)).getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                snapshot.child(ID_pacient).child("episodis").child(String.valueOf(input1.getText().toString())).getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                     @Override
                                                                     public void onSuccess(Void aVoid) {
-                                                                        showToast(getString(R.string.EpisodeDeleted,numeroEpisodi),true);
+                                                                        showToast(getString(R.string.EpisodeDeleted,Integer.parseInt(input1.getText().toString())),true);
                                                                         Log.d(TAG, "Usuari pacient borrat");
                                                                         startActivity(getIntent());
                                                                     }
@@ -327,7 +371,6 @@ public class EpisodiActivity extends BaseActivity {
                                         }
                                     })
                                     .show();
-                        }
                     }}).show();
     }
 
@@ -444,11 +487,47 @@ public class EpisodiActivity extends BaseActivity {
 
         if (id == R.id.btSignOutPacient) {
 
-            //Retorna a la pantalla 'Area Avaluador'
-            BorrarPacient();
-            showToast(getString(R.string.MenuChangePacient),true);
-            Intent areaAvaluador = new Intent(EpisodiActivity.this, AreaAvaluadorActivity.class);
-            startActivity(areaAvaluador);
+            //Confirmar eliminació per contrasenya
+            //-------------------------------------------------------------------
+            AlertDialog.Builder dialegPassword = new AlertDialog.Builder(EpisodiActivity.this);
+            LayoutInflater factory = LayoutInflater.from(EpisodiActivity.this);
+            View textEntryView = factory.inflate(R.layout.dialeg_delete_user, null);
+            //Instanciem els elements del diàleg per poder obtenir el que ha escrit l'usuari
+            final EditText input = (EditText) textEntryView.findViewById(R.id.etPasswordDelete);
+            dialegPassword
+                    .setView(textEntryView)
+                    .setIcon(R.drawable.passwordicon)
+                    .setTitle(R.string.PasswordDialog)
+                    .setMessage(R.string.IntroducePassword)
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            // Recuperem el email del avaluador i el reautentiquem
+                            String email_user = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                            String pass_user = input.getText().toString();
+                            if (!pass_user.isEmpty()) {
+                                //Reautentiquem al avaluador per seguretat
+                                AuthCredential credential = EmailAuthProvider.getCredential(email_user, pass_user);
+                                FirebaseAuth.getInstance().getCurrentUser().reauthenticate(credential).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        //Retorna a la pantalla 'Area Avaluador'
+                                        BorrarPacient();
+                                        showToast(getString(R.string.MenuChangePacient),true);
+                                        Intent areaAvaluador = new Intent(EpisodiActivity.this, AreaAvaluadorActivity.class);
+                                        startActivity(areaAvaluador);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(getString(R.string.IncorrecPassword), false);
+                                    }
+                                });
+                            }
+                        }
+                    }).show();
+
+
+
 
         }
 

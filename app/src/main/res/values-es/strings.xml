@@ -268,7 +268,7 @@
     <string name="DeleteEpisodi">Introduce ID del episodio</string>
     <string name="EpisodeDeleted">Eliminado episodio numero: %d</string>
     <string name="EpisodeNotExist">El episodio no existe</string>
-    <string name="EpisodeToDelete">Eliminaras este numero de episodio: %d</string>
+    <string name="EpisodeToDelete">Eliminaras este numero de episodio</string>
     <string name="NumberDoesNotMatch">Números no coinciden</string>
     <string name="NotificationAlert">Notificación ReMemory</string>
     <string name="NotificationTest1">Test 1 terminado por %s !</string>

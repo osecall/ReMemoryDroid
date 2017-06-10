@@ -266,9 +266,9 @@
     <string name="SelectionVersion">Seleccioni una versió</string>
     <string name="Record">Has de grabar</string>
     <string name="DeleteEpisodi">Introdueix ID de l\'episodi</string>
-    <string name="EpisodeDeleted">Eliminat episodi numbero: %d</string>
+    <string name="EpisodeDeleted">Eliminat episodi número: %d</string>
     <string name="EpisodeNotExist">L\'episodi no existeix</string>
-    <string name="EpisodeToDelete">Borraràs aquest número d\'episodi: %d</string>
+    <string name="EpisodeToDelete">Borraràs aquest número d\'episodi</string>
     <string name="NumberDoesNotMatch">Números no coincideixen</string>
     <string name="NotificationAlert">Notificació ReMemory</string>
     <string name="NotificationTest1">Test 1 acabat per %s !</string>

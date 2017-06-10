@@ -259,7 +259,8 @@ public class AreaAvaluadorActivity extends BaseActivity {
                 tvCUname.setVisibility(View.VISIBLE);
                 tvCUsurName.setVisibility(View.VISIBLE);
 
-                pacient.setID(String.valueOf(i));
+                //pacient.setID(String.valueOf(i));
+                pacient.setID(PacientList.get(i).getID());
                 pacient.setName(NomPacient.getText().toString());
                 pacient.setSurName(Cognom.getText().toString());
                 pacient.setLastName(SegCognom.getText().toString());

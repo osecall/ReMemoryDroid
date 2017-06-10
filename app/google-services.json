@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "709062652546",
+    "firebase_url": "https://rememorydroid.firebaseio.com",
+    "project_id": "rememorydroid",
+    "storage_bucket": "rememorydroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709062652546:android:7842121ee4e9fda2",
+        "android_client_info": {
+          "package_name": "com.rememorydroid.oriolsecall.rememorydroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709062652546-lqovm38crji63qq8h16urstu302mb105.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rememorydroid.oriolsecall.rememorydroid",
+            "certificate_hash": "708bf638cb0d47f11d8c558ad520e968cfc01595"
+          }
+        },
+        {
+          "client_id": "709062652546-f7divc4bugk3aadc3sksbr0sbtio7ne0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rememorydroid.oriolsecall.rememorydroid",
+            "certificate_hash": "7ee91a3bb5625b6586320efc4b46fe1b843ee5fe"
+          }
+        },
+        {
+          "client_id": "709062652546-n6r9mjftfu6bpjlcps4pi72vnm91mt67.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdGGdtX-jvfkB6hemt10UfWktoMExg0Ik"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709062652546-n6r9mjftfu6bpjlcps4pi72vnm91mt67.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
