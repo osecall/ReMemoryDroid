@@ -324,7 +324,7 @@
     <string name="GenericDescription">Generic Description</string>
     <string name="DetailedDescription">Detailed description but not completed</string>
     <string name="DescriptionDetailedComplete">Description detailed and complete</string>
-    <string name="Event">Event</string>
+    <string name="Event">Events</string>
     <string name="Place">Place</string>
     <string name="Time">Time</string>
     <string name="Perceptions">Perceptions</string>
