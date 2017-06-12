@@ -26,11 +26,11 @@
     <string name="EmailNotVerifiedYet">Email not verified yet</string>
     <string name="sign_out_Pacient">Change Pacient</string>
     <string name="AssesserArea">Assesor\'s Area</string>
-    <string name="PacientSignUp">Sign Up a pacient</string>
+    <string name="PacientSignUp">Create a new pacient</string>
     <string name="PacientSelection">Select a pacient</string>
     <string name="PacientID">Pacient ID</string>
     <string name="DeletePacient">Delete pacient</string>
-    <string name="CurrentUser">Current Pacient User</string>
+    <string name="CurrentUser">Current user Patient</string>
     <string name="Attention">Attention</string>
     <string name="OK">OK</string>
     <string name="KO">Cancel</string>
@@ -55,14 +55,14 @@
     <string name="IDonlyDigits">ID\'s user pacient only accepts numbers</string>
     <string name="IDlength4">ID can\'t be greater than 9999</string>
     <string name="IDlength1">ID must be at least 1 digit</string>
-    <string name="LastNameEmpty">Introduce pacient lastname</string>
+    <string name="LastNameEmpty">Introduce pacient\'s lastname</string>
     <string name="NameLength">Check the name length please, it should be from 2 to 30 characters maximum</string>
     <string name="LastNameLength">Check the lastname length please, it should be from 2 to 30 characters maximum</string>
     <string name="SurnameLength">Check the surname length please, it should be from 2 to 30 characters maximum</string>
     <string name="SurnameEmpty">Introduce a surname please</string>
     <string name="Episodes">Episodes</string>
     <string name="Version">Version</string>
-    <string name="EpisodeSelection">Episode Selection</string>
+    <string name="EpisodeSelection">Episode selection</string>
     <string name="LongVersion">Long version</string>
     <string name="ShortVersion">Short version</string>
     <string name="TreatmentsArea">Treatments Area</string>
@@ -71,7 +71,7 @@
     <string name="Games">Memory and focusing games</string>
     <string name="Album">Pictures album</string>
     <string name="Memory">Memory improvment guide</string>
-    <string name="EpisodeSelected">Episode Selected: %s</string>
+    <string name="EpisodeSelected">Episode selected: %s</string>
     <string name="VersionSelected">Version selected: %s</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -101,7 +101,7 @@
     <string name="EpisodeAdded">Episode\'s number is</string>
     <string name="UserDoesNotExist">User does not exist in the database</string>
     <string name="UserAlreadyExist">User already exists</string>
-    <string name="IDalreadyExists">This ID already exists, write a different one</string>
+    <string name="IDalreadyExists">This ID already exists, choose a different one</string>
     <string name="StopRecording">Stop recording</string>
     <string name="Recording">Recording</string>
     <string name="Congratulations">Congratulations!</string>
@@ -136,7 +136,7 @@
     <string name="August">August</string>
     <string name="September">September</string>
     <string name="November">November</string>
-    <string name="Desember">Desember</string>
+    <string name="Desember">December</string>
     <string name="October">October</string>
     <string name="DayTime">Day time</string>
     <string name="Morning">Morning</string>
@@ -147,7 +147,7 @@
     <string name="InTheCity">In the city where I live</string>
     <string name="OutOfCity">Out of the city/town where I live</string>
     <string name="EverythingHappens">Everything happens in the same place</string>
-    <string name="TwoEnviroments">There are 2 different eniroments</string>
+    <string name="TwoEnviroments">There are 2 different enviroments</string>
     <string name="ThreeEnviroments">There are 3 different enviroments</string>
     <string name="MoreThan3Enviroments">There are more than 3 different enviroments</string>
     <string name="HowManyEnviroments">How many enviroments are there?</string>
@@ -182,7 +182,7 @@
     <string name="Young">Young</string>
     <string name="Youth">Youth</string>
     <string name="Adults">Adults</string>
-    <string name="OldPeople">OldPeople</string>
+    <string name="OldPeople">Old people</string>
     <string name="EvocarAdiaelg">Now we ask you to tell everything you can about what you just have seen.\nTry to give details about where they are, with who, what they were doing, etc.\nWhen you are ready choose the icon \"Record\".</string>
     <string name="Listen">Listen</string>
     <string name="NoListen">No listen</string>
@@ -256,9 +256,9 @@
     <string name="FiveSix">5 out of 6</string>
     <string name="SixSix">6 out of 6</string>
     <string name="Colaboration">Thank you very much for your colaboration %s. You did a great job. We hope it\'s been estimulating.</string>
-    <string name="Evocarccurta">Now we ask you to recall everything you can from the last episode you reviewed in the previous day. Try to give details like where they are, with who they are, what they were doing, etc. When you are ready press the \'record\' button.</string>
+    <string name="Evocarccurta">Now we ask you to recall everything you can from the last episode you reviewed in the previous day. \nTry to give details like where they are, with who they are, what they were doing, etc. \nWhen you are ready press the \'record\' button.</string>
     <string name="PacientIDSecurity">Introduce the pacient ID again for security reasons</string>
-    <string name="AskingQuestions">Here we ask you to answer the next questions about the episode which you have seen, choosing the answer option which you consider it right.</string>
+    <string name="AskingQuestions">Here we ask you to answer the next questions about the episode which you have seen, choosing the answer which you consider it right.</string>
     <string name="title_activity_test">Test</string>
     <string name="PressMoreThanOne">Press the button more than one second to create an pacient user</string>
     <string name="Question1">Question 1</string>
@@ -292,8 +292,8 @@
     <string name="VerificationEmailSent">Verification email sent to %s</string>
     <string name="VerificationEmailError">Failed to send verification email</string>
     <string name="EnviarEmail">Do you want to send the results via email? If so fill the reciept fields.</string>
-    <string name="InternetNeeded">This app needs internet to run properly!</string>
-    <string name="CheckPoint">Do you want to cotinue from the last part?</string>
+    <string name="InternetNeeded">This aplication needs internet to run properly!</string>
+    <string name="CheckPoint">Do you want to continue from the last part?</string>
 
     <!-- Strings related to login -->
     <string name="FieldEmpty">Field is empty</string>
@@ -309,7 +309,7 @@
     <string name="PacientAnswers">Pacient answers</string>
     <string name="sign_out_menu">Sign out (%s)</string>
     <string name="PacientIssues">Pacient issues</string>
-    <string name="AssessorIssues">Assessor issues</string>
+    <string name="AssessorIssues">Assessor\'s issues</string>
     <string name="VideoUploadCorrect">Video upload correct</string>
     <string name="UploadVideo">Upload video</string>
     <string name="ChooseSource">Choose the source</string>
