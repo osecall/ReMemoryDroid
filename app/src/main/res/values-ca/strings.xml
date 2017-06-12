@@ -82,7 +82,7 @@
     <string name="Question2Pel1">Em sento capaç de recordar coses importants per mi</string>
     <string name="Question3Pel1">Em sento capaç de recordar coses que faig durant el dia</string>
     <string name="Question4Pel1">Em sento capaç d\'esforçar-me per superar les dificultats</string>
-    <string name="Question5Pel1">Em sento capaç de fer les taqsuqes que em proposo</string>
+    <string name="Question5Pel1">Em sento capaç de fer les tasques que em proposo</string>
     <string name="Question6Pel1">Em sento capaç de trobar solucions a un problema</string>
     <string name="DialogResting">Recordi que pot descansar i continuar més tard</string>
     <string name="InstructonsBreathing">Segueixi les instruccions que escoltarà a continuació.\n\nSi ho desitja pot tancar els ulls.</string>
@@ -149,7 +149,7 @@
     <string name="Monday">Dilluns</string>
     <string name="Wednesday">Dimecres</string>
     <string name="PerceptiveDetails">Detalls perceptius i sensorials</string>
-    <string name="HowManySounds">Quina sons hi havia al voltant?</string>
+    <string name="HowManySounds">Quins sons hi havia al voltant?</string>
     <string name="Silence">Silenci</string>
     <string name="PeopleTalking">Gent parlant</string>
     <string name="Music">Música</string>
@@ -201,7 +201,7 @@
     <string name="Scene3">Escena 3</string>
     <string name="Sad">Trist</string>
     <string name="wasAngry">Estava enfadat</string>
-    <string name="ChooseImageFavourite">Seleccioni la imatge que li resulti més significativa per guardarla en el seu àlbum de memòria</string>
+    <string name="ChooseImageFavourite">Seleccioni la imatge que li resulti més significativa per guardar-la en el seu àlbum de memòria</string>
     <string name="PictureUploaded">La teva foto preferida s\'ha guardat en la teva memòria d\'àlbum</string>
     <string name="BeingWith">estan amb %s</string>
     <string name="ChooseSpinner">Ha d\'escollir una emoció de la llista!</string>
