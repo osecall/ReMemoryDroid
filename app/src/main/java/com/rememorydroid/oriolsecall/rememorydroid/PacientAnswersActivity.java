@@ -153,8 +153,9 @@ public class PacientAnswersActivity extends BaseActivity {
                                 EvocarB.setEnabled(true);
                                 EvocarC.setEnabled(true);
                                 EvocarD.setEnabled(true);
+                                mpA.stop();
                                 mpA.release();
-                                mpA = null;
+                                mpA=null;
                             }
                         });
 
@@ -196,6 +197,7 @@ public class PacientAnswersActivity extends BaseActivity {
                                 EvocarA.setEnabled(true);
                                 EvocarC.setEnabled(true);
                                 EvocarD.setEnabled(true);
+                                mpB.stop();
                                 mpB.release();
                                 mpB = null;
                             }
@@ -237,6 +239,7 @@ public class PacientAnswersActivity extends BaseActivity {
                                 EvocarA.setEnabled(true);
                                 EvocarB.setEnabled(true);
                                 EvocarD.setEnabled(true);
+                                mpC.stop();
                                 mpC.release();
                                 mpC = null;
                             }
@@ -278,6 +281,7 @@ public class PacientAnswersActivity extends BaseActivity {
                                 EvocarA.setEnabled(true);
                                 EvocarB.setEnabled(true);
                                 EvocarC.setEnabled(true);
+                                mpD.stop();
                                 mpD.release();
                                 mpD = null;
                             }
