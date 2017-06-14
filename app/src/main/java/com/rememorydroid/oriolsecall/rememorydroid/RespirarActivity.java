@@ -32,7 +32,7 @@ public class RespirarActivity extends BaseActivity {
             ivRespirar.setImageResource(R.drawable.abstracte2);
 
             if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_ca;
 
             } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar234_es;
@@ -42,7 +42,7 @@ public class RespirarActivity extends BaseActivity {
 
             }
             else{
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_es;
             }
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
@@ -54,7 +54,7 @@ public class RespirarActivity extends BaseActivity {
             ivRespirar.setImageResource(R.drawable.abstracte3);
 
             if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_ca;
 
             } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar234_es;
@@ -64,7 +64,7 @@ public class RespirarActivity extends BaseActivity {
 
             }
             else{
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_es;
             }
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
@@ -76,7 +76,7 @@ public class RespirarActivity extends BaseActivity {
             ivRespirar.setImageResource(R.drawable.abstracte4);
 
             if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_ca;
 
             } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar234_es;
@@ -86,7 +86,7 @@ public class RespirarActivity extends BaseActivity {
 
             }
             else{
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_es;
             }
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
@@ -98,7 +98,7 @@ public class RespirarActivity extends BaseActivity {
             ivRespirar.setImageResource(R.drawable.abstracte5);
 
             if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-                Reproduccio = R.raw.respirar1;
+                Reproduccio = R.raw.respirar1_ca;
 
             } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar1_es;
@@ -108,7 +108,7 @@ public class RespirarActivity extends BaseActivity {
 
             }
             else{
-                Reproduccio = R.raw.respirar1;
+                Reproduccio = R.raw.respirar1_es;
             }
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
@@ -120,7 +120,7 @@ public class RespirarActivity extends BaseActivity {
             ivRespirar.setImageResource(R.drawable.abstracte6);
 
             if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_ca;
 
             } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar234_es;
@@ -130,7 +130,7 @@ public class RespirarActivity extends BaseActivity {
 
             }
             else{
-                Reproduccio = R.raw.respirar234;
+                Reproduccio = R.raw.respirar234_es;
             }
 
             mp = MediaPlayer.create(RespirarActivity.this,Reproduccio);
@@ -141,7 +141,7 @@ public class RespirarActivity extends BaseActivity {
         else{
 
             if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-                Reproduccio = R.raw.respirar1;
+                Reproduccio = R.raw.respirar1_ca;
 
             } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 Reproduccio = R.raw.respirar1_es;
@@ -151,7 +151,7 @@ public class RespirarActivity extends BaseActivity {
 
             }
             else{
-                Reproduccio = R.raw.respirar1;
+                Reproduccio = R.raw.respirar1_es;
             }
 
 

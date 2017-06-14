@@ -79,9 +79,9 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
         if (getIntent().hasExtra("Segon")) {
 
             if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada);
-                audioBack = R.raw.visualitzacioguiada1playing;
-                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing);
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada_ca);
+                audioBack = R.raw.visualitzacioguiada1playing_ca;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing_ca);
 
             } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada_es);
@@ -95,9 +95,9 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing_en);
 
             } else {
-                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada);
-                audioBack = R.raw.visualitzacioguiada1playing;
-                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing);
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada1aturada_es);
+                audioBack = R.raw.visualitzacioguiada1playing_es;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada1playing_es);
             }
 
             intent = new Intent(VisualitzarFragmentsActivity.this, PreguntesActivity.class);
@@ -106,9 +106,9 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
         else if (getIntent().hasExtra("Tercer")) {
 
             if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
-                audioBack = R.raw.visualitzacioguiada2playing;
-                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing);
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_ca);
+                audioBack = R.raw.visualitzacioguiada2playing_ca;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_ca);
 
             } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_es);
@@ -122,9 +122,9 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_en);
 
             } else {
-                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
-                audioBack = R.raw.visualitzacioguiada2playing;
-                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing);
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_es);
+                audioBack = R.raw.visualitzacioguiada2playing_es;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_es);
             }
 
             intent = new Intent(VisualitzarFragmentsActivity.this, Preguntes2Activity.class);
@@ -134,9 +134,9 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
         else if (getIntent().hasExtra("Quarta")) {
 
             if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada);
-                audioBack = R.raw.visualitzacioguiada3playing;
-                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing);
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada_ca);
+                audioBack = R.raw.visualitzacioguiada3playing_ca;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing_ca);
 
             } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada_es);
@@ -149,9 +149,9 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing_en);
 
             } else {
-                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada);
-                audioBack = R.raw.visualitzacioguiada3playing;
-                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing);
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada3aturada_es);
+                audioBack = R.raw.visualitzacioguiada3playing_es;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada3playing_es);
             }
 
             intent = new Intent(VisualitzarFragmentsActivity.this, EvocarActivity.class);
@@ -161,9 +161,9 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
         else if (getIntent().hasExtra("Curta")) {
 
             if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
-                audioBack = R.raw.visualitzacioguiada2playing;
-                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing);
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_ca);
+                audioBack = R.raw.visualitzacioguiada2playing_ca;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_ca);
 
             } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
                 mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_es);
@@ -176,9 +176,9 @@ public class VisualitzarFragmentsActivity extends BaseActivity {
                 mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_en);
 
             } else {
-                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada);
-                audioBack = R.raw.visualitzacioguiada2playing;
-                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing);
+                mp = MediaPlayer.create(this, R.raw.visualitzacioguiada2aturada_es);
+                audioBack = R.raw.visualitzacioguiada2playing_es;
+                mpBackVideo = MediaPlayer.create(VisualitzarFragmentsActivity.this, R.raw.visualitzacioguiada2playing_es);
             }
 
             intent = new Intent(VisualitzarFragmentsActivity.this, EvocarActivity.class);

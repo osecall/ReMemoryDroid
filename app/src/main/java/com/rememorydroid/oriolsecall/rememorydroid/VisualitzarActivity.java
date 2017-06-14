@@ -93,7 +93,7 @@ public class VisualitzarActivity extends BaseActivity {
         //Per les instruccions
         //Per les instruccions, diferents possibles idiomes en l'audio
         if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-            mp = MediaPlayer.create(this, R.raw.visualitzacio0);
+            mp = MediaPlayer.create(this, R.raw.visualitzacio0_ca);
 
         } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
             mp = MediaPlayer.create(this, R.raw.visualitzacio0_es);
@@ -102,7 +102,7 @@ public class VisualitzarActivity extends BaseActivity {
             mp = MediaPlayer.create(this, R.raw.visualitzacio0_en);
 
         } else {
-            mp = MediaPlayer.create(this, R.raw.visualitzacio0);
+            mp = MediaPlayer.create(this, R.raw.visualitzacio0_es);
         }
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override

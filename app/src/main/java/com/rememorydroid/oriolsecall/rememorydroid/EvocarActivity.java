@@ -589,14 +589,14 @@ public class EvocarActivity extends BaseActivity implements View.OnClickListener
         MediaPlayer mp = new MediaPlayer();
 
         if (getResources().getConfiguration().locale.getLanguage().matches("ca")) {
-            mp = MediaPlayer.create(this, R.raw.evocar1);
+            mp = MediaPlayer.create(this, R.raw.evocar1_ca);
         } else if (getResources().getConfiguration().locale.getLanguage().matches("es")) {
             mp = MediaPlayer.create(this, R.raw.evocar1_es);
 
         } else if (getResources().getConfiguration().locale.getLanguage().matches("en")) {
             mp = MediaPlayer.create(this, R.raw.evocar1_en);
         } else {
-            mp = MediaPlayer.create(this, R.raw.evocar1);
+            mp = MediaPlayer.create(this, R.raw.evocar1_es);
         }
 
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
